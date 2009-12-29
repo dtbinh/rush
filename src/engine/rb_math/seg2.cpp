@@ -4,8 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "stdafx.h"
-#include "Seg2.h"
-#include "Scalar.h"
+#include "seg2.h"
+#include "scalar.h"
 
 /***********************************************************************************/
 /*  Seg2 implementation
@@ -61,7 +61,7 @@ float Seg2::dist2( const Vec2& p ) const
     Vec2 pa = p - a;
 
     float det = ba.norm2();
-    if (_fabs( det ) < c_FltEpsilon) 
+    if (_fabs( det ) < c_FltEpsilon)
     {
         return b.dist2( p );
     }

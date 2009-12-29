@@ -6,7 +6,7 @@
 #define __SCALAR_H__
 #pragma once
 
-#include "MathConst.h"
+#include "mathconst.h"
 
 template <class T> T tmin( const T& a, const T& b ) { return (a < b) ? a : b; }
 template <class T> T tmax( const T& a, const T& b ) { return (a > b) ? a : b; }
@@ -16,9 +16,9 @@ template <class T> T tmin( const T& a, const T& b, const T& c, const T& d ) { re
 template <class T> T tmax( const T& a, const T& b, const T& c, const T& d ) { return tmax( tmax( a, b ), tmax( c, d ) ); }
 template <class T> T tmin( const T& a, const T& b, const T& c, const T& d, const T& e ) { return tmin( tmin( a, b ), tmin( c, d, e ) ); }
 template <class T> T tmax( const T& a, const T& b, const T& c, const T& d, const T& e ) { return tmax( tmax( a, b ), tmax( c, d, e ) ); }
-template <class T> T tmin( const T& a, const T& b, const T& c, 
+template <class T> T tmin( const T& a, const T& b, const T& c,
                           const T& d, const T& e, const T& f ) { return tmin( tmin( a, b, c ), tmin( d, e, f ) ); }
-template <class T> T tmax( const T& a, const T& b, const T& c, 
+template <class T> T tmax( const T& a, const T& b, const T& c,
                           const T& d, const T& e, const T& f ) { return tmax( tmax( a, b, c ), tmax( d, e, f ) ); }
 
 inline float sign( float val )
@@ -41,11 +41,11 @@ inline T wrap( const T& val, const T& minv, const T& maxv )
 {
     T delta = maxv - minv;
     T cval = val;
-    while (cval < minv) 
+    while (cval < minv)
     {
         cval += delta;
     }
-    while (cval > maxv) 
+    while (cval > maxv)
     {
         cval -= delta;
     }
@@ -60,14 +60,14 @@ inline float FastInvSqrt( float f )
     return (float&)y;
 } // FastInvSqrt
 
-inline float RadToDeg( float rad ) 
-{ 
-    return 180.0f * rad / c_PI; 
+inline float RadToDeg( float rad )
+{
+    return 180.0f * rad / c_PI;
 }
 
-inline float DegToRad( float deg ) 
-{ 
-    return c_PI * deg / 180.0f; 
+inline float DegToRad( float deg )
+{
+    return c_PI * deg / 180.0f;
 }
 
 inline float Exposure( float v, float sharpness )

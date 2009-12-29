@@ -4,14 +4,13 @@
 //****************************************************************************/
 #ifndef __PLANE_H__
 #define __PLANE_H__
-#pragma once
 
-#include "Vec3.h"
+#include "vec3.h"
 class Mat4;
 
 //****************************************************************************/
 //  Class:  Plane
-//  Desc:   3D plane, described by ax+by+cz+d=0 
+//  Desc:   3D plane, described by ax+by+cz+d=0
 //****************************************************************************/
 class Plane
 {
@@ -20,10 +19,10 @@ public:
     float	        b;
     float	        c;
     float	        d;
-    
+
                     Plane           (){}
                     Plane           ( float pa, float pb, float pc, float pd );
-                    Plane           ( const Vec3& pt, const Vec3& norm ); 
+                    Plane           ( const Vec3& pt, const Vec3& norm );
                     Plane           ( const Vec3& v1, const Vec3& v2, const Vec3& v3 );
     bool            Intersect       ( const Plane& p1, const Plane& p2, Vec3& pt ) const;
     Vec3&           Normal          ();
@@ -42,24 +41,24 @@ public:
 }; // class Plane
 
 //****************************************************************************/
-//  Plane inlines 
+//  Plane inlines
 //****************************************************************************/
-inline Plane::Plane( float pa, float pb, float pc, float pd ) 
-    :   a( pa ), 
-        b( pb ), 
-        c( pc ), 
+inline Plane::Plane( float pa, float pb, float pc, float pd )
+    :   a( pa ),
+        b( pb ),
+        c( pc ),
         d( pd )
 {}
 
-inline Plane::Plane( const Vec3& pt, const Vec3& norm ) 
-{ 
+inline Plane::Plane( const Vec3& pt, const Vec3& norm )
+{
     a = norm.x;
     b = norm.y;
     c = norm.z;
     d = -pt.dot( norm );
 }
 
-inline Plane::Plane( const Vec3& v1, const Vec3& v2, const Vec3& v3 ) 
+inline Plane::Plane( const Vec3& v1, const Vec3& v2, const Vec3& v3 )
 {
     Vec3 av = v1 - v2;
     Vec3 bv = v3 - v2;
@@ -70,14 +69,14 @@ inline Plane::Plane( const Vec3& v1, const Vec3& v2, const Vec3& v3 )
     d = -n.dot( v2 );
 }
 
-inline Vec3& Plane::Normal() 
-{ 
-    return *((Vec3*)( &a )); 
+inline Vec3& Plane::Normal()
+{
+    return *((Vec3*)( &a ));
 }
 
-inline const Vec3& Plane::Normal() const 
-{ 
-    return *((Vec3*)( &a )); 
+inline const Vec3& Plane::Normal() const
+{
+    return *((Vec3*)( &a ));
 }
 
 inline void Plane::Normalize()
@@ -89,9 +88,9 @@ inline void Plane::Normalize()
    d /= n;
 }
 
-inline bool Plane::OnPositiveSide( const Vec3& v ) const 
-{ 
-    return a*v.x + b*v.y + c*v.z + d >= 0.0f; 
+inline bool Plane::OnPositiveSide( const Vec3& v ) const
+{
+    return a*v.x + b*v.y + c*v.z + d >= 0.0f;
 }
 
 inline bool Plane::ContainsPoint( const Vec3& v, float eps ) const

@@ -5,7 +5,7 @@
 #ifndef __TRI2_H__
 #define __TRI2_H__
 
-#include "Vec2.h"
+#include "vec2.h"
 
 //****************************************************************************/
 //  Class:  Tri2
@@ -22,7 +22,7 @@ public:
     Vec2            bary_coords( const Vec2& p ) const;
     inline Vec2     from_bary_coords( const Vec2& p ) const
     {
-        return Vec2( (a.x - c.x)*p.x + (b.x - c.x)*p.x + c.x, 
+        return Vec2( (a.x - c.x)*p.x + (b.x - c.x)*p.x + c.x,
                      (a.y - c.y)*p.y + (b.y - c.y)*p.y + c.y);
     }
     bool            contains( const Vec2& p ) const;

@@ -1,6 +1,6 @@
 //****************************************************************************/
 //  File:  Path.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "stdafx.h"
 #include "Path.h"
@@ -14,7 +14,7 @@ Path::Path()
     Clear();
 } // Path::Path
 
-Path::Path( const char* path ) 
+Path::Path( const char* path )
 {
     Clear();
     SetPath( path );
@@ -33,7 +33,7 @@ bool Path::SetPath( const char* val )
     if (pExt[0] == '.') pExt++;
     strcpy( m_Ext, pExt );
 
-    //  remove ':' at the end of drive 
+    //  remove ':' at the end of drive
     int lastChar = strlen( m_Drive ) - 1;
     while (lastChar > 0)
     {
@@ -70,14 +70,14 @@ bool Path::SetDrive( const char* val )
 } // Path::SetDrive
 
 bool Path::SetDirectory( const char* val )
-{   
+{
     if (!val || val[0] == 0)
     {
         m_Directory[0] = 0;
         CreateFullPath();
         return true;
     }
-    
+
     char path  [_MAX_PATH];
     char dir   [_MAX_PATH];
     char drive [_MAX_PATH];
@@ -170,11 +170,11 @@ bool Path::SetFileExt( const char* val )
 void Path::Clear()
 {
     m_FullPath[0]   = 0;
-    m_Drive[0]      = 0;     
+    m_Drive[0]      = 0;
     m_Directory[0]  = 0;
     m_File[0]       = 0;
-    m_FileExt[0]    = 0;   
-    m_Ext[0]        = 0;   
+    m_FileExt[0]    = 0;
+    m_Ext[0]        = 0;
     m_DriveDir[0]   = 0;
     m_DirDepth      = 0;
 } // Path::Clear
@@ -265,7 +265,7 @@ bool Path::Exists() const
 
 bool Path::IsDirectory() const
 {
-    DWORD attributes = ::GetFileAttributesA( GetFullPath() );
+    uint32_t attributes = ::GetFileAttributesA( GetFullPath() );
     return attributes != 0xFFFFFFFF && (attributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
 }
 
@@ -277,7 +277,7 @@ int Path::GetFileSize() const
     {
         return 0;
     }
-    
+
     if ((fad.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) !=0)
     {
         return 0;
@@ -306,9 +306,9 @@ int Path::GetDirFiles( std::vector<Path>& files, const char* ext )
     }
 
     HANDLE h = FindFirstFile( searchPath.GetFullPath(), &fData );
-    DWORD err = GetLastError();
+    uint32_t err = GetLastError();
     if (h == INVALID_HANDLE_VALUE) return 0;
-    
+
     int nFiles = 0;
     if (fData.cFileName[0] != '.')
     {

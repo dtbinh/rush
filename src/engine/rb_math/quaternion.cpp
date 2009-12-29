@@ -3,13 +3,13 @@
 //  Desc:  Quaternion class
 //****************************************************************************/
 #include "stdafx.h"
-#include "Quaternion.h"
+#include "quaternion.h"
 
 //****************************************************************************/
 /*  Quaternion implementation
 //****************************************************************************/
 Quaternion Quaternion::null( 0.0f, 0.0f, 0.0f, 0.0f );
- 
+
 Quaternion::Quaternion( const Vec3& axis, float angle )
 {
     float h = angle*0.5f;
@@ -20,7 +20,7 @@ Quaternion::Quaternion( const Vec3& axis, float angle )
 } // Quaternion::Quaternion
 
 Quaternion::Quaternion( const Mat3& rotM )
-{	
+{
     float trace = rotM.e00 + rotM.e11 + rotM.e22;
     float root;
     if (trace > 0.0f)
@@ -78,7 +78,7 @@ void Quaternion::normalize()
 } // Quaternion::normalize
 
 void Quaternion::slerp( const Quaternion& q1, const Quaternion& q2, float t )
-{   
+{
     Quaternion tmp( q2 );
     float cosTheta = q1.dot( q2 );
 
@@ -91,7 +91,7 @@ void Quaternion::slerp( const Quaternion& q1, const Quaternion& q2, float t )
 
     float t1, t2;
     const float c_QuatEpsilon = 0.001f;
-    if (1.0f - cosTheta > c_QuatEpsilon) 
+    if (1.0f - cosTheta > c_QuatEpsilon)
     {
         float theta = acosf( cosTheta );
         float invSinTheta = 1.0f/sinf( theta );
@@ -105,8 +105,8 @@ void Quaternion::slerp( const Quaternion& q1, const Quaternion& q2, float t )
 
         v *= invSinTheta;
         s *= invSinTheta;
-    } 
-    else 
+    }
+    else
     {
         // do simple linear interpolation, because there is no reason for slerp
         t1  = 1.0f - t;

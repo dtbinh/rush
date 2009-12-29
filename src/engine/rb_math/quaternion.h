@@ -4,9 +4,9 @@
 //****************************************************************************/
 #ifndef __QUATERNION_H__
 #define __QUATERNION_H__
-#pragma once
 
-#include "Vec3.h"
+
+#include "vec3.h"
 
 class Mat3;
 //****************************************************************************/
@@ -18,12 +18,12 @@ class Quaternion
 public:
     Vec3        v;
     float       s;
-    
+
     Quaternion(){}
     Quaternion( const Mat3& rot );
     Quaternion( const Vec3& axis, float angle );
     Quaternion( float vx, float vy, float vz, float _s ) : v( Vec3( vx, vy, vz ) ), s(_s) {}
-    
+
     float* buf() { return &v.x; }
     const float* buf() const { return &v.x; }
 
@@ -31,7 +31,7 @@ public:
     inline float norm2() const { return s * s + v.norm2(); }
 
     void slerp( const Quaternion& q1, const Quaternion& q2, float t );
-    
+
     inline void reverse()
     {
 	    s = -s;

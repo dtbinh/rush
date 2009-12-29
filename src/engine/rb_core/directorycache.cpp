@@ -42,11 +42,11 @@ void Directory::Update()
     Path searchPath( m_Path.c_str() );
     searchPath.SetFile( "*" );
     searchPath.SetExt ( "*" );
-    
+
     HANDLE h = FindFirstFile( searchPath.GetFullPath(), &fData );
-    DWORD err = GetLastError();
+    uint32_t err = GetLastError();
     if (h == INVALID_HANDLE_VALUE) return;
-    
+
     AddFile( fData );
     while (FindNextFile( h, &fData ))
     {
@@ -59,11 +59,11 @@ void Directory::AddFile( WIN32_FIND_DATA& fData )
 {
     const char* fname = fData.cFileName;
     if (fname[0] == '.') return;
-    DWORD flags = fData.dwFileAttributes;
+    uint32_t flags = fData.dwFileAttributes;
     if (flags & FILE_ATTRIBUTE_SYSTEM) return;
-    if (flags & FILE_ATTRIBUTE_DIRECTORY) 
+    if (flags & FILE_ATTRIBUTE_DIRECTORY)
     {
-        char path[_MAX_PATH]; 
+        char path[_MAX_PATH];
         _makepath( path, NULL, m_Path.c_str(), fname, NULL );
         m_Subdirs.push_back( Directory( fname, path ) );
         m_Subdirs.back().Update();
@@ -75,9 +75,9 @@ void Directory::AddFile( WIN32_FIND_DATA& fData )
 /***********************************************************************************/
 /*  DirectoryCache implementation
 /***********************************************************************************/
-DirectoryCache::DirectoryCache( const char* root ) 
-{ 
-    AddRoot( root ); 
+DirectoryCache::DirectoryCache( const char* root )
+{
+    AddRoot( root );
 } // DirectoryCache::DirectoryCache
 
 void DirectoryCache::AddRoot( const char* path )
@@ -89,8 +89,8 @@ void DirectoryCache::AddRoot( const char* path )
             return;
         }
     }
-    m_Roots.push_back( Directory( path, path ) ); 
-    UpdateCache(); 
+    m_Roots.push_back( Directory( path, path ) );
+    UpdateCache();
 } // DirectoryCache::AddRoot
 
 bool DirectoryCache::FindFile( const char* name, const char* ext, char* path )

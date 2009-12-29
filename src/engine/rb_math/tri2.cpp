@@ -2,8 +2,8 @@
 //  File:  Tri2.cpp
 //****************************************************************************/
 #include "stdafx.h"
-#include "Tri2.h"
-#include "MathConst.h"
+#include "tri2.h"
+#include "mathconst.h"
 
 //****************************************************************************/
 /*	Tri2 implementation

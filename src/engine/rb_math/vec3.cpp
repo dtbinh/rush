@@ -3,9 +3,9 @@
 //  Desc:  3D vector
 //****************************************************************************/
 #include "stdafx.h"
-#include "Vec3.h"
-#include "Rand.h"
-#include "MathConst.h"
+#include "vec3.h"
+#include "rand.h"
+#include "mathconst.h"
 
 //****************************************************************************/
 /*	Vec3 implementation
@@ -25,13 +25,13 @@ void Vec3::random( float minX, float maxX, float minY, float maxY, float minZ, f
 
 bool Vec3::ortonormalize( Vec3& a, Vec3& b )
  {
-     normalize();       
+     normalize();
      a.normalize();
      b.cross( *this, a );
      b.normalize();
      a.cross( b, *this );
-     
-     return (_fabs( norm2() ) > c_FltEpsilon && 
+
+     return (_fabs( norm2() ) > c_FltEpsilon &&
         _fabs( a.norm2() ) > c_FltEpsilon &&
         _fabs( b.norm2() ) > c_FltEpsilon);
  } // Vec3::ortonormalize

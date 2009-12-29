@@ -59,7 +59,7 @@ ScriptResource* JPersistServer::FindScriptResource( const JObject* pObject )
 JPersistFormat GetFormatByExt( const char* fileExt )
 {
     JPersistFormat fmt = PersistFmt_Unknown;
-    if (!stricmp( fileExt, "rxml" )) 
+    if (!stricmp( fileExt, "rxml" ))
     {
         fmt = PersistFmt_XML;
     }
@@ -74,14 +74,14 @@ JPersistFormat GetFormatByExt( const char* fileExt )
     {
         fmt = PersistFmt_Model;
     }
-        
+
     if (!stricmp( fileExt, "ranm" ) ||
         !stricmp( fileExt, "rba"  ))
     {
         fmt = PersistFmt_Anim;
     }
-    
-    if (!stricmp( fileExt, "rbin" )) 
+
+    if (!stricmp( fileExt, "rbin" ))
     {
         fmt = PersistFmt_Bin;
     }
@@ -114,7 +114,7 @@ JObject* JPersistServer::LoadObject( const char* fname, JObject* pSrc )
     FInStream is;
     JString fullPath = path.GetFullPath();
     if (!is.OpenFile( fname ))
-    {  
+    {
         if (g_pFileServer->FindMedia( path.GetFile(), path.GetExt(), &fullPath ))
         {
             is.OpenFile( fullPath );
@@ -126,13 +126,13 @@ JObject* JPersistServer::LoadObject( const char* fname, JObject* pSrc )
         }
     }
 
-    DWORD hash = 0;
+    uint32_t hash = 0;
     JObject* pObj = Load( is, fmt, pSrc, &hash );
 
     //  register loaded script resource
     m_ScriptResReg.push_back( ScriptResource() );
     ScriptResource* pRes = &m_ScriptResReg.back();
-    
+
     pRes->m_Hash    = hash;
     pRes->m_Name    = fname;
     pRes->m_pRoot   = pObj;
@@ -153,13 +153,13 @@ JObject* JPersistServer::LoadObject( const char* fname, JObject* pSrc )
     }
 
     return pObj;
-} 
+}
 
 const char* c_BinDataFOURCC = "RAWD";
 
-JObject* JPersistServer::Load( InStream& is, JPersistFormat fmt, JObject* pSrc, DWORD* pHash )
+JObject* JPersistServer::Load( InStream& is, JPersistFormat fmt, JObject* pSrc, uint32_t* pHash )
 {
-    if (is.GetTotalSize() <= 0) 
+    if (is.GetTotalSize() <= 0)
     {
         return NULL;
     }
@@ -168,8 +168,8 @@ JObject* JPersistServer::Load( InStream& is, JPersistFormat fmt, JObject* pSrc, 
     Buffer buf;
     InStream* pBinStream = NULL;
     JObject* pObj = NULL;
-    
-    if (fmt == PersistFmt_Bin) 
+
+    if (fmt == PersistFmt_Bin)
     {
         pObj = LoadBin( is, pSrc );
         pBinStream = &is;
@@ -187,17 +187,17 @@ JObject* JPersistServer::Load( InStream& is, JPersistFormat fmt, JObject* pSrc, 
             *pHash = PHHash( buf.GetData(), size - 1 );
         }
 
-        if (fmt == PersistFmt_XML) 
+        if (fmt == PersistFmt_XML)
         {
             pObj = LoadXML( pBuf, pSrc );
         }
-        if (fmt == PersistFmt_JML   || 
+        if (fmt == PersistFmt_JML   ||
             fmt == PersistFmt_Model ||
-            fmt == PersistFmt_Anim ) 
+            fmt == PersistFmt_Anim )
         {
             pObj = LoadJML( pBuf, pSrc );
         }
-        
+
         int cChar = 0;
         while (pBuf[cChar] && cChar < size)
         {
@@ -215,7 +215,7 @@ JObject* JPersistServer::Load( InStream& is, JPersistFormat fmt, JObject* pSrc, 
     }
 
     //  read binary data
-    DWORD id = 0;
+    uint32_t id = 0;
     (*pBinStream) >> id;
     const char* pCharID = (const char*)(&id);
     if (strncmp( c_BinDataFOURCC, pCharID, 4 ) || !(*pBinStream))
@@ -240,7 +240,7 @@ JObject* JPersistServer::Load( InStream& is, JPersistFormat fmt, JObject* pSrc, 
         JObject* pCurObj = g_pObjectServer->FindObject( name.c_str(), pObj );
         if (pCurObj == NULL)
         {
-            rlog.warn( "Could not find object %s while unserializing binary data in subtree: %s", 
+            rlog.warn( "Could not find object %s while unserializing binary data in subtree: %s",
                 name.c_str(), pObj->GetName() );
             (*pBinStream).Rewind( nBytes );
         }
@@ -256,15 +256,15 @@ JObject* JPersistServer::Load( InStream& is, JPersistFormat fmt, JObject* pSrc, 
 bool JPersistServer::Save( JObject* pObject, OutStream& os, JPersistFormat fmt )
 {
     bool bRes = false;
-    if (fmt == PersistFmt_XML) 
+    if (fmt == PersistFmt_XML)
     {
         bRes = SaveXML( os, pObject );
     }
-    if (fmt == PersistFmt_JML) 
+    if (fmt == PersistFmt_JML)
     {
         bRes = SaveJML( os, pObject );
     }
-    if (fmt == PersistFmt_Bin) 
+    if (fmt == PersistFmt_Bin)
     {
         bRes = SaveBin( os, pObject );
     }
@@ -280,7 +280,7 @@ bool JPersistServer::Save( JObject* pObject, OutStream& os, JPersistFormat fmt )
     {
         JObject* pObj = *it;
         ++it;
-        
+
         CountStream cs;
         pObj->Serialize( cs );
         cs.Close();
@@ -295,7 +295,7 @@ bool JPersistServer::Save( JObject* pObject, OutStream& os, JPersistFormat fmt )
         JString name( pObj->GetName() );
         if (name.size() == 0)
         {
-            rlog.warn( "Trying to serialize binary data for unnamed object, while saving object tree: %s", 
+            rlog.warn( "Trying to serialize binary data for unnamed object, while saving object tree: %s",
                 pObject->GetName() );
             continue;
         }
@@ -320,13 +320,13 @@ JObject* JPersistServer::FromJML( const JMLNode& jml, JObject* pSrc, JObject* pP
     }
 
     const char* name = jml.GetName();
-    const char* className = jml.GetClass(); 
+    const char* className = jml.GetClass();
     if (className[0] == '$')
     {
         //  template declaration
         className++;
     }
-    
+
     if (pObj)
     {
         pObj->RemoveChildren();
@@ -349,13 +349,13 @@ JObject* JPersistServer::FromJML( const JMLNode& jml, JObject* pSrc, JObject* pP
         rlog.err( "Could not create object of class <%s>", className );
         return NULL;
     }
-    
-    pObj->SetName( name );    
-    className = pObj->ClassName(); 
-    
+
+    pObj->SetName( name );
+    className = pObj->ClassName();
+
     //  create child nodes
     const JMLNode* pChild = jml.FirstChild();
-    while (pChild) 
+    while (pChild)
     {
         JObject* pChildObj = FromJML( *pChild, NULL, pObj );
         pObj->AddChild( pChildObj );
@@ -364,10 +364,10 @@ JObject* JPersistServer::FromJML( const JMLNode& jml, JObject* pSrc, JObject* pP
 
     //  assign attribute values
     const JMLNode*  pAttr = jml.FirstAttr();
-    JMetaClass*     pMeta = g_pObjectServer->FindClass( className );  
+    JMetaClass*     pMeta = g_pObjectServer->FindClass( className );
     if (!pMeta) return NULL;
-    JString strAttr;        
-    while (pAttr) 
+    JString strAttr;
+    while (pAttr)
     {
         const char* attrName = pAttr->GetName();
         if (attrName[0] == '$')
@@ -383,7 +383,7 @@ JObject* JPersistServer::FromJML( const JMLNode& jml, JObject* pSrc, JObject* pP
             if (!strncmp( attrVal, "<<", 2 ))
             {
                 JSignalServer::s_pInstance->ConnectDst( pObj, pCA, attrVal + 2 );
-            } 
+            }
             else if (!strncmp( attrVal, ">>", 2 ))
             {
                 JSignalServer::s_pInstance->ConnectSrc( pObj, pCA, attrVal + 2 );
@@ -393,7 +393,7 @@ JObject* JPersistServer::FromJML( const JMLNode& jml, JObject* pSrc, JObject* pP
                 JSignalServer::s_pInstance->ConnectSrc( pObj, pCA, attrVal + 2 );
                 JSignalServer::s_pInstance->ConnectDst( pObj, pCA, attrVal + 2 );
             }
-            else 
+            else
             {
                 strAttr = attrVal;
                 pCA->Set( pObj, strAttr );
@@ -402,21 +402,21 @@ JObject* JPersistServer::FromJML( const JMLNode& jml, JObject* pSrc, JObject* pP
         pAttr = pAttr->NextSibling();
     }
     return pObj;
-}  
+}
 
 JObject* JPersistServer::LoadJML( char* text, JObject* pSrc )
 {
     JMLNode jml( text );
     return FromJML( jml, pSrc );
-}  
+}
 
 JMLNode* JPersistServer::ToJML( const JObject* pObject, bool bRoot )
 {
-    JMetaClass* pMeta = g_pObjectServer->FindClass( pObject->ClassName() );  
+    JMetaClass* pMeta = g_pObjectServer->FindClass( pObject->ClassName() );
     if (!pMeta) return NULL;
 
     JMLNode* pNode = new JMLNode();
-    
+
     JString className = pObject->ClassName();
     _strlwr( (char*)className.c_str() );
     pNode->SetClass( className[0] == 'j' ? className.c_str() + 1 : className.c_str() );
@@ -436,7 +436,7 @@ JMLNode* JPersistServer::ToJML( const JObject* pObject, bool bRoot )
     JAttrIterator it( pMeta );
     while (it)
     {
-        JClassAttr* pAttr = *it;   
+        JClassAttr* pAttr = *it;
         ++it;
         if (pAttr->HasName( "name" ) || pAttr->IsDerived()) continue;
         pAttr->Get( (void*)pObject, val );
@@ -445,16 +445,16 @@ JMLNode* JPersistServer::ToJML( const JObject* pObject, bool bRoot )
         JString attrName( pAttr->GetName() );
         _strlwr( (char*)attrName.c_str() );
         JMLNode* pNodeAttr = pNode->AddAttr( attrName.c_str() );
-        
+
         if (pAttr->GetTypeID() == ::GetTypeID<const char*>() ||
-            pAttr->GetTypeID() == ::GetTypeID<JString>() || 
+            pAttr->GetTypeID() == ::GetTypeID<JString>() ||
             pAttr->GetTypeID() == ::GetTypeID<std::string>())
         {
             val.insert( 0, "\"" );
             val += "\"";
         }
         pNodeAttr->SetValue( val.c_str() );
-        
+
     }
 
     //  add signals
@@ -486,7 +486,7 @@ JObject* JPersistServer::FromXML( const TiXmlElement* pNode, JObject* pSrc )
     }
     JObject* pObj = pSrc;
     const char* className = pNode->Value();
-    
+
     if (!pObj) pObj = g_pObjectServer->Create( className );
     if (!pObj)
     {
@@ -495,7 +495,7 @@ JObject* JPersistServer::FromXML( const TiXmlElement* pNode, JObject* pSrc )
     }
     pObj->RemoveChildren();
     const char* name = pNode->Attribute( "name" );
-    if (name && name[0]) 
+    if (name && name[0])
     {
         pObj->SetName( name );
     }
@@ -506,7 +506,7 @@ JObject* JPersistServer::FromXML( const TiXmlElement* pNode, JObject* pSrc )
 
     //  create child nodes
     const TiXmlElement* pChild = pNode->FirstChildElement();
-    while (pChild) 
+    while (pChild)
     {
         if (!stricmp( pChild->Value(), "signal" ))
         {
@@ -519,7 +519,7 @@ JObject* JPersistServer::FromXML( const TiXmlElement* pNode, JObject* pSrc )
             if (!stricmp( type, "in" ))
             {
                 JSignalServer::s_pInstance->ConnectDst( pObj, pCA, path );
-            } 
+            }
             else if(!stricmp( type, "out" ))
             {
                 JSignalServer::s_pInstance->ConnectSrc( pObj, pCA, path );
@@ -540,10 +540,10 @@ JObject* JPersistServer::FromXML( const TiXmlElement* pNode, JObject* pSrc )
 
     //  assign attribute values
     const TiXmlAttribute* pAttr = pNode->FirstAttribute();
-    JMetaClass* pMeta = g_pObjectServer->FindClass( className );  
+    JMetaClass* pMeta = g_pObjectServer->FindClass( className );
     if (!pMeta) return NULL;
-    JString strAttr;        
-    while (pAttr) 
+    JString strAttr;
+    while (pAttr)
     {
         JClassAttr* pCA = g_pObjectServer->FindClassAttr( className, pAttr->Name() );
         if (pCA)
@@ -572,12 +572,12 @@ JObject* JPersistServer::LoadXML( char* text, JObject* pSrc )
 
 TiXmlElement* JPersistServer::ToXML( const JObject* pObject, bool bRoot )
 {
-    JMetaClass* pMeta = g_pObjectServer->FindClass( pObject->ClassName() );  
+    JMetaClass* pMeta = g_pObjectServer->FindClass( pObject->ClassName() );
     if (!pMeta) return NULL;
 
     JString className = pObject->ClassName();
     _strlwr( (char*)className.c_str() );
-    
+
     TiXmlElement* pNode = new TiXmlElement( className[0] == 'j' ? className.c_str() + 1 : className.c_str() );
 
     //  assign attributes
@@ -586,7 +586,7 @@ TiXmlElement* JPersistServer::ToXML( const JObject* pObject, bool bRoot )
     JAttrIterator it( pMeta );
     while (it)
     {
-        JClassAttr* pAttr = *it;   
+        JClassAttr* pAttr = *it;
         ++it;
         if (pAttr->IsDerived())
         {
@@ -633,7 +633,7 @@ bool JPersistServer::SaveBin( OutStream& os, const JObject* pObject, bool bWithC
     const char* className = pObject->ClassName();
     JMetaClass* pMeta = g_pObjectServer->FindClass( className );
     if (!pMeta) return false;
-    
+
     //  serialize class name
     os << className;
 
@@ -655,12 +655,12 @@ bool JPersistServer::SaveBin( OutStream& os, const JObject* pObject, bool bWithC
 
     //  serialize attributes
     int nA = pMeta->GetNAttr();
-    
+
     BYTE saveMode = SaveMode_BYTEIdx;
     if (nA >= 255) saveMode = SaveMode_WORDIdx;
 
     os << saveMode;
-    
+
     JString val, defVal;
     JAttrIterator it( pMeta );
     if (saveMode == SaveMode_SaveAll)
@@ -805,7 +805,7 @@ JObject* JPersistServer::LoadBin( InStream& is, JObject* pSrc )
 
     //  unserialize custom data
     pObj->Unserialize( is );
-    
+
     //  unserialize signals
     LoadSignalsBin( pObj, is );
 
@@ -830,7 +830,7 @@ int JPersistServer::LoadSignalsBin( JObject* pObj, InStream& is )
         if (cn.m_Type == Signal_In)
         {
             JSignalServer::s_pInstance->ConnectDst( pObj, pCA, path.c_str() );
-        } 
+        }
         else if (cn.m_Type == Signal_Out)
         {
             JSignalServer::s_pInstance->ConnectSrc( pObj, pCA, path.c_str() );
@@ -872,7 +872,7 @@ int JPersistServer::SaveSignalsBin( const JObject* pObj, OutStream& os )
             os << cn.m_pSrcAttr->GetName();
             os << cn.m_Type;
             os << cn.m_DstPath;
-        } 
+        }
         else if (cn.m_pDstObj == pObj && !cn.m_bSrcInit)
         {
             os << cn.m_pDstAttr->GetName();
@@ -934,7 +934,7 @@ int JPersistServer::SaveSignalsXML( const JObject* pObj, TiXmlElement* pNode )
     {
         return 0;
     }
-    
+
     for (int i = 0; i < nSig; i++)
     {
         JSignal& cn = *(sigList[i]);
@@ -949,12 +949,12 @@ int JPersistServer::SaveSignalsXML( const JObject* pObj, TiXmlElement* pNode )
 
             pSigNode->SetAttribute( "attr", cn.m_pSrcAttr->GetName() );
             pSigNode->SetAttribute( "path", cn.m_DstPath.c_str() );
-            
-            if (cn.m_Type == Signal_In) 
+
+            if (cn.m_Type == Signal_In)
             {
                 pSigNode->SetAttribute( "dir", "in" );
             }
-            else if (cn.m_Type == Signal_Out) 
+            else if (cn.m_Type == Signal_Out)
             {
                 pSigNode->SetAttribute( "dir", "out" );
             }
@@ -967,15 +967,15 @@ int JPersistServer::SaveSignalsXML( const JObject* pObj, TiXmlElement* pNode )
         {
             TiXmlElement* pSigNode = new TiXmlElement( "signal" );
             pNode->LinkEndChild( pSigNode );
-            
+
             pSigNode->SetAttribute( "attr", cn.m_pDstAttr->GetName() );
             pSigNode->SetAttribute( "path", cn.m_SrcPath.c_str() );
-            
-            if (cn.m_Type == Signal_In) 
+
+            if (cn.m_Type == Signal_In)
             {
                 pSigNode->SetAttribute( "dir", "in" );
             }
-            else if (cn.m_Type == Signal_Out) 
+            else if (cn.m_Type == Signal_Out)
             {
                 pSigNode->SetAttribute( "dir", "out" );
             }
@@ -1016,7 +1016,7 @@ void JPersistServer::SaveMetaTable( OutStream& os ) const
             }
         }
     }
-    
+
     //  write xml tree
     TiXmlPrinter printer;
 	bool bRes = pNode->Accept( &printer );
@@ -1072,11 +1072,11 @@ void JPersistServer::ReloadScripts()
         {
             continue;
         }
-        
+
         int size = is.GetTotalSize();
         Buffer buf( size );
         is.Read( buf.GetData(), size );
-        DWORD hash = PHHash( buf.GetData(), size );
+        uint32_t hash = PHHash( buf.GetData(), size );
         if (hash == res.m_Hash)
         {
             //  file did not change
@@ -1093,7 +1093,7 @@ void JPersistServer::ReloadScripts()
     }
 }
 
-void JPersistServer::SaveScripts() 
+void JPersistServer::SaveScripts()
 {
     int nRes = m_ScriptResReg.size();
     for (int i = 0; i < nRes; i++)

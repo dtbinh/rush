@@ -6,16 +6,16 @@
 #ifndef __POLYLINE2_H__
 #define __POLYLINE2_H__
 
-#include "Vec2.h"
-#include "Seg2.h"
-#include "Frame.h"
+#include "vec2.h"
+#include "seg2.h"
+#include "frame.h"
 #include <vector>
 
 class TriMesh2;
 
 /***********************************************************************************/
 //  Class:  PolyLine2
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class PolyLine2
 {
@@ -54,11 +54,11 @@ public:
 }; // class PolyLine2
 
 /***********************************************************************************/
-//  PolyLine2 inlines 
+//  PolyLine2 inlines
 /***********************************************************************************/
-inline Seg2 PolyLine2::GetEdge( int idx ) const 
-{ 
-    return Seg2( m_Points[idx], m_Points[(idx + 1)%m_Points.size()] ); 
+inline Seg2 PolyLine2::GetEdge( int idx ) const
+{
+    return Seg2( m_Points[idx], m_Points[(idx + 1)%m_Points.size()] );
 }
 
 #endif //__POLYLINE2_H__

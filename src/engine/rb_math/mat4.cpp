@@ -3,18 +3,18 @@
 //  Desc:  4x4 Matrix
 //****************************************************************************/
 #include "stdafx.h"
-#include "Mat4.h"
-#include "Frame.h"
-#include "MathConst.h"
-#include "Plane.h"
+#include "mat4.h"
+#include "frame.h"
+#include "mathconst.h"
+#include "plane.h"
 
 Mat4 FlattenMatrix( const Plane& p, const Vec4& dir )
 {
     float d = dir.x*p.a + dir.y*p.b + dir.z*p.c + dir.w*p.d;
     Mat4 m;
-    m.e00 = d - p.a*dir.x; m.e01 =   - p.a*dir.y;  m.e02 =   - p.a*dir.z;  m.e03 =   - p.a*dir.w;  
-    m.e10 =   - p.b*dir.x; m.e11 = d - p.b*dir.y;  m.e12 =   - p.b*dir.z;  m.e13 =   - p.b*dir.w;  
-    m.e20 =   - p.c*dir.x; m.e21 =   - p.c*dir.y;  m.e22 = d - p.c*dir.z;  m.e23 =   - p.c*dir.w;  
+    m.e00 = d - p.a*dir.x; m.e01 =   - p.a*dir.y;  m.e02 =   - p.a*dir.z;  m.e03 =   - p.a*dir.w;
+    m.e10 =   - p.b*dir.x; m.e11 = d - p.b*dir.y;  m.e12 =   - p.b*dir.z;  m.e13 =   - p.b*dir.w;
+    m.e20 =   - p.c*dir.x; m.e21 =   - p.c*dir.y;  m.e22 = d - p.c*dir.z;  m.e23 =   - p.c*dir.w;
     m.e30 =   - p.d*dir.x; m.e31 =   - p.d*dir.y;  m.e32 =   - p.d*dir.z;  m.e33 = d - p.d*dir.w;
     return m;
 } // FlattenMatrix
@@ -25,7 +25,7 @@ bool OrthoProjTM( Mat4& m, float viewVolW, float zn, float zf, float aspect )
     float	  h = viewVolW / aspect;
     float	  dz = zf - zn;
     if (_fabs( dz ) < c_FltEpsilon ||
-        _fabs( w  ) < c_FltEpsilon || 
+        _fabs( w  ) < c_FltEpsilon ||
         _fabs( h  ) < c_FltEpsilon) return false;
 
     m.e00 = 2.0f/w; m.e01 = 0.0f;	m.e02 = 0.0f;			m.e03 = 0.0f;
@@ -39,13 +39,13 @@ bool OrthoProjTM( Mat4& m, const Frame& vp, float zn, float zf )
 {
     float	  dz = zf - zn;
     if (_fabs( dz    ) < c_FltEpsilon ||
-        _fabs( vp.w  ) < c_FltEpsilon || 
+        _fabs( vp.w  ) < c_FltEpsilon ||
         _fabs( vp.h  ) < c_FltEpsilon) return false;
 
     m.e00 = 2.0f/vp.w;  m.e01 = 0.0f;	    m.e02 = 0.0f;			m.e03 = 0.0f;
     m.e10 = 0.0f;	    m.e11 = 2.0f/vp.h;  m.e12 = 0.0f;			m.e13 = 0.0f;
     m.e20 = 0.0f;	    m.e21 = 0.0f;	    m.e22 = 1.0f/(zf - zn); m.e23 = 0.0f;
-    m.e30 = -(vp.x + vp.r())/vp.w;	m.e31 = -(vp.y + vp.b())/vp.h;	
+    m.e30 = -(vp.x + vp.r())/vp.w;	m.e31 = -(vp.y + vp.b())/vp.h;
     m.e32 = -zn/(zf - zn);	m.e33 = 1.0f;
     return true;
 } // OrthoProjTM
@@ -69,7 +69,7 @@ bool PerspProjTM( Mat4& m, float fovx, float zn, float zf, float aspect )
 
 bool FactorPerspProjTM( const Mat4& tm, float& fovx, float& zn, float& zf, float& aspect )
 {
-    if (_fabs( tm.e22 ) < c_Epsilon || 
+    if (_fabs( tm.e22 ) < c_Epsilon ||
         _fabs( tm.e32 ) < c_Epsilon ||
         _fabs( tm.e22 - 1.0f ) < c_Epsilon)
     {
@@ -79,7 +79,7 @@ bool FactorPerspProjTM( const Mat4& tm, float& fovx, float& zn, float& zf, float
     float w  = 2.0f*zn/tm.e00;
     float h  = 2.0f*zn/tm.e11;
     zf = tm.e22*zn/(tm.e22 - 1.0f);
-    
+
     aspect = w/h;
     fovx = 2.0f*atanf( w/(2.0f*zn) );
     return true;
@@ -91,55 +91,55 @@ bool ScreenToProjTM( Mat4& m, const Frame& vp )
     {
         return false;
     }
-    m.e00 = 2.0f/vp.w; 
-    m.e01 = 0.0f; 
-    m.e02 = 0.0f; 
-    m.e03 = 0.0f;        
+    m.e00 = 2.0f/vp.w;
+    m.e01 = 0.0f;
+    m.e02 = 0.0f;
+    m.e03 = 0.0f;
 
-    m.e10 = 0.0f; 
+    m.e10 = 0.0f;
     m.e11 = -2.0f/vp.h;
-    m.e12 = 0.0f; 
-    m.e13 = 0.0f; 
+    m.e12 = 0.0f;
+    m.e13 = 0.0f;
 
-    m.e20 = 0.0f; 
-    m.e21 = 0.0f; 
-    m.e22 = 1.0f; 
-    m.e23 = 0.0f;        
+    m.e20 = 0.0f;
+    m.e21 = 0.0f;
+    m.e22 = 1.0f;
+    m.e23 = 0.0f;
 
-    m.e30 = -2.0f*vp.x/vp.w - 1.0f; 
+    m.e30 = -2.0f*vp.x/vp.w - 1.0f;
     m.e31 =  2.0f*vp.y/vp.h + 1.0f;
-    m.e32 = 0.0f; 
-    m.e33 = 1.0f; 
+    m.e32 = 0.0f;
+    m.e33 = 1.0f;
     return true;
 } // ScreenToProjTM
 
 bool ProjToScreenTM( Mat4& m, const Frame& vp )
 {
-    m.e00 = vp.w*0.5f; 
-    m.e01 = 0.0f; 
-    m.e02 = 0.0f; 
-    m.e03 = 0.0f;        
+    m.e00 = vp.w*0.5f;
+    m.e01 = 0.0f;
+    m.e02 = 0.0f;
+    m.e03 = 0.0f;
 
-    m.e10 = 0.0f; 
-    m.e11 = -vp.h*0.5f; 
-    m.e12 = 0.0f; 
-    m.e13 = 0.0f; 
+    m.e10 = 0.0f;
+    m.e11 = -vp.h*0.5f;
+    m.e12 = 0.0f;
+    m.e13 = 0.0f;
 
-    m.e20 = 0.0f; 
-    m.e21 = 0.0f; 
-    m.e22 = 1.0f; 
-    m.e23 = 0.0f;        
-    
-    m.e30 = vp.w*0.5f + vp.x; 
-    m.e31 = vp.h*0.5f + vp.y; 
-    m.e32 = 0.0f; 
-    m.e33 = 1.0f; 
+    m.e20 = 0.0f;
+    m.e21 = 0.0f;
+    m.e22 = 1.0f;
+    m.e23 = 0.0f;
+
+    m.e30 = vp.w*0.5f + vp.x;
+    m.e31 = vp.h*0.5f + vp.y;
+    m.e32 = 0.0f;
+    m.e33 = 1.0f;
     return true;
 } // ProjToScreenTM
 
 Mat4 IdentityMatrix()
 {
-    return Mat4( 1.0f, 0.0f, 0.0f, 0.0f, 
+    return Mat4( 1.0f, 0.0f, 0.0f, 0.0f,
                  0.0f, 1.0f, 0.0f, 0.0f,
                  0.0f, 0.0f, 1.0f, 0.0f,
                  0.0f, 0.0f, 0.0f, 1.0f );
@@ -154,24 +154,24 @@ float GetProjectedOBBArea( const Mat4& obb, const Mat4& projTM, const Vec3& eyeP
 //****************************************************************************/
 /*  Mat4 implementation
 //****************************************************************************/
-Mat4 Mat4::identity = Mat4( 1.0f, 0.0f, 0.0f, 0.0f, 
+Mat4 Mat4::identity = Mat4( 1.0f, 0.0f, 0.0f, 0.0f,
                             0.0f, 1.0f, 0.0f, 0.0f,
                             0.0f, 0.0f, 1.0f, 0.0f,
                             0.0f, 0.0f, 0.0f, 1.0f );
 
-Mat4 Mat4::null = Mat4( 0.0f, 0.0f, 0.0f, 0.0f, 
+Mat4 Mat4::null = Mat4( 0.0f, 0.0f, 0.0f, 0.0f,
                         0.0f, 0.0f, 0.0f, 0.0f,
                         0.0f, 0.0f, 0.0f, 0.0f,
                         0.0f, 0.0f, 0.0f, 0.0f );
 
 float Mat4::inverse( const Mat4& m )
 {
-    float t[12]; 
-    float s[16]; 
+    float t[12];
+    float s[16];
     const float* mat = m.buf();
     float* r = buf();
     float det = 0.0f;
-    for ( int i = 0; i < 4; i++) 
+    for ( int i = 0; i < 4; i++)
     {
         s[i		] = mat[i*4    ];
         s[i + 4	] = mat[i*4 + 1];
@@ -233,7 +233,7 @@ float Mat4::inverse( const Mat4& m )
 
     //  determinant
     det=s[0]*r[0] + s[1]*r[1] + s[2]*r[2] + s[3]*r[3];
-    //  matrix inverse 
+    //  matrix inverse
     float idet = 1.0f;
     if (_fabs( det ) >= c_FltEpsilon) idet = 1.0f/det;
     for (int j = 0; j < 16; j++) r[j] *= idet;
@@ -318,7 +318,7 @@ void Mat4::shearXY( float a, float b )
     e00 = 1.0f; e01 = 0.0f; e02 = 0.0f; e03 = 0.0f;
     e10 = 0.0f; e11 = 1.0f; e12 = 0.0f; e13 = 0.0f;
     e20 = a;    e21 = b;    e22 = 1.0f; e23 = 0.0f;
-    e30 = 0.0f; e31 = 0.0f; e32 = 0.0f; e33 = 1.0f; 
+    e30 = 0.0f; e31 = 0.0f; e32 = 0.0f; e33 = 1.0f;
 } // Mat4::shearXY
 
 

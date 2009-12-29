@@ -1,9 +1,9 @@
 //****************************************************************************/
 //  File:  FileReader.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "stdafx.h"
-#include "FileReader.h"
+#include "filereader.h"
 
 //****************************************************************************/
 //  FileReader implementation
@@ -25,16 +25,16 @@ FileReader::FileReader( const char* fileName )
 bool FileReader::OpenFile( const char* fileName )
 {
     m_FileName = fileName;
-    m_hFile = CreateFile(   fileName, 
-                            GENERIC_READ, 
-                            FILE_SHARE_READ, 0, 
-                            OPEN_EXISTING, 
-                            FILE_ATTRIBUTE_NORMAL, 
+    m_hFile = CreateFile(   fileName,
+                            GENERIC_READ,
+                            FILE_SHARE_READ, 0,
+                            OPEN_EXISTING,
+                            FILE_ATTRIBUTE_NORMAL,
                             NULL );
 
     if (m_hFile == INVALID_HANDLE_VALUE)
     {
-        DWORD err = GetLastError();
+        uint32_t err = GetLastError();
         m_TotalSize = 0;
         return false;
     }
@@ -48,7 +48,7 @@ bool FileReader::OpenFile( const char* fileName )
 int FileReader::ReadStream( void* buf, int nBytes )
 {
     if (m_hFile == INVALID_HANDLE_VALUE) return false;
-    DWORD readBytes;
+    uint32_t readBytes;
 
     if (buf == 0)
     {
@@ -59,7 +59,7 @@ int FileReader::ReadStream( void* buf, int nBytes )
     BOOL res = ReadFile( m_hFile, buf, nBytes, &readBytes, NULL );
     if (res == FALSE)
     {
-        DWORD err = GetLastError();
+        uint32_t err = GetLastError();
         return 0;
     }
     return readBytes;

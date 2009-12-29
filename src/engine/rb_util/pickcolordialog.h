@@ -11,22 +11,22 @@
 
 /***********************************************************************************/
 //  Class:  PickColorDialog
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class PickColorDialog
 {
     CHOOSECOLOR        m_ChooseColor;
 
 public:
-    PickColorDialog( DWORD color = 0xFFFFFFFF );
+    PickColorDialog( uint32_t color = 0xFFFFFFFF );
 
     bool                Show();
-    DWORD               GetColor() const { return FromColorRef( m_ChooseColor.rgbResult ); }
-    void                SetColor( DWORD color ) { m_ChooseColor.rgbResult = ToColorRef( color ); }
+    uint32_t               GetColor() const { return FromColorRef( m_ChooseColor.rgbResult ); }
+    void                SetColor( uint32_t color ) { m_ChooseColor.rgbResult = ToColorRef( color ); }
 
 
-    static DWORD        FromColorRef( COLORREF    clr );
-    static COLORREF     ToColorRef    ( DWORD        clr );
+    static uint32_t        FromColorRef( COLORREF    clr );
+    static COLORREF     ToColorRef    ( uint32_t        clr );
 
     typedef UINT_PTR (CALLBACK *LPCCHOOKPROC) (HWND, UINT, WPARAM, LPARAM);
 

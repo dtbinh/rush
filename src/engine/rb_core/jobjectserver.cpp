@@ -43,8 +43,8 @@ JObjectServer::~JObjectServer()
     }
 } // JObjectServer::JObjectServer
 
-JMetaClass* JObjectServer::GetClass( int idx ) 
-{ 
+JMetaClass* JObjectServer::GetClass( int idx )
+{
     JClassMap::iterator it = m_ClassMap.begin();
     for (int i = 0; i < idx; i++)
     {
@@ -64,7 +64,7 @@ JMetaClass* JObjectServer::FindClass( const char* cname )
     s_Key.set( cname );
     s_Key.to_lower();
     JClassMap::iterator it = m_ClassMap.find( s_Key );
-    if (it != m_ClassMap.end()) 
+    if (it != m_ClassMap.end())
     {
         return (*it).second;
     }
@@ -114,7 +114,7 @@ JMetaClass* JObjectServer::RegClass( const char* cname, ObjCreator creator )
     JMetaClass* pMeta = FindClass( key.c_str() );
     if (pMeta)
     {
-        rlog.warn( "Class <%s> was already registered!", cname ); 
+        rlog.warn( "Class <%s> was already registered!", cname );
         return pMeta;
     }
     key.to_lower();
@@ -131,7 +131,7 @@ JMetaClass* JObjectServer::RegClass( const char* cname, ObjCreator creator )
     JMetaClass* pParent = FindClass( pMeta->GetParentName() );
     if (pParent)
     {
-        pMeta->SetParent( pParent );   
+        pMeta->SetParent( pParent );
     }
 
     //  check whether some of the already register classes refer to this class as to parent
@@ -181,7 +181,7 @@ JObject* JObjectServer::CreateFromScript( const char* text, JObject* pSrc )
     return pObj;
 } // JObjectServer::CreateFromScript
 
-JObject* JObjectServer::CloneObject( const JObject* pObj, JObject* pParent, const char* name, 
+JObject* JObjectServer::CloneObject( const JObject* pObj, JObject* pParent, const char* name,
                                      bool bCloneSignals, bool bCloneChildren )
 {
     MemOutStream os;
@@ -213,7 +213,7 @@ bool JObjectServer::AreObjectsEqual( const JObject* pObj1, const JObject* pObj2,
 
     g_pPersistServer->SaveBin( os1, pObj1, bWithChildren, false );
     g_pPersistServer->SaveBin( os2, pObj2, bWithChildren, false );
-    
+
     if (os1.GetTotalSize() != os2.GetTotalSize())
     {
         return false;
@@ -246,7 +246,7 @@ int JObjectServer::Register( JObject* pObject )
     {
         return -1;
     }
-    if (pObject->GetName()[0] == 0) 
+    if (pObject->GetName()[0] == 0)
     {
         AutoNameObject( pObject );
     }
@@ -290,7 +290,7 @@ bool JObjectServer::Unregister( JObject* pObject )
 const JObject* FindCommonParent( const JObject* pObj1, const JObject* pObj2, int& len1, int& len2 )
 {
     len1 = 0;
-    const JObject* pParent1 = pObj1;    
+    const JObject* pParent1 = pObj1;
     while (pParent1)
     {
         const JObject* pParent2 = pObj2;
@@ -312,7 +312,7 @@ const JObject* FindCommonParent( const JObject* pObj1, const JObject* pObj2, int
 
 bool HasPath( JObject* pObj, const char* path )
 {
-    if (pObj == NULL) 
+    if (pObj == NULL)
     {
         return (!path || path[0] == 0);
     }
@@ -331,7 +331,7 @@ bool HasPath( JObject* pObj, const char* path )
 }
 
 JObject* JObjectServer::FindObject( const char* symPath, JObject* pRoot, JObject* pAnchor )
-{   
+{
     static JString s_Path;
     static JString s_Type;
     static JString s_Key;
@@ -376,7 +376,7 @@ JObject* JObjectServer::FindObject( const char* symPath, JObject* pRoot, JObject
         s_Key = s_Path;
         bCheckPath = false;
     }
-    
+
     if (!pAnchor)
     {
         pAnchor = pRoot;
@@ -490,8 +490,8 @@ void JObjectServer::DumpObjectMap()
     while (it != m_ObjectMap.end())
     {
         JObject* pObj = (*it).second;
-        rlog.msg( "%s(%s):%X, nref:%d, nchildren:%d, parent:%X", pObj->GetName(), pObj->ClassName(), 
-            (DWORD)pObj, pObj->GetNRef(), pObj->GetNChildren(), (DWORD)pObj->GetParent() );
+        rlog.msg( "%s(%s):%X, nref:%d, nchildren:%d, parent:%X", pObj->GetName(), pObj->ClassName(),
+            (uint32_t)pObj, pObj->GetNRef(), pObj->GetNChildren(), (uint32_t)pObj->GetParent() );
         nObj++;
         ++it;
     }

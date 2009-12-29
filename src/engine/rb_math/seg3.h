@@ -4,7 +4,7 @@
 //****************************************************************************/
 #ifndef __SEG_H__
 #define __SEG_H__
-#pragma once
+
 
 //****************************************************************************/
 //  Class:  Seg3
@@ -17,8 +17,8 @@ public:
 
     inline Seg3() {}
     inline Seg3( const Vec3& va, const Vec3& vb ) : a(va), b(vb) {}
-    
-    float  dist( Vec3& v ) const; 
+
+    float  dist( Vec3& v ) const;
 
 }; // class Seg3
 

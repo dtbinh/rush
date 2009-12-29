@@ -1,19 +1,19 @@
 //****************************************************************************/
 //  File:  Frustum.h
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #ifndef __FRUSTUM_H__
 #define __FRUSTUM_H__
-#pragma once
 
-#include "Vec3.h"
-#include "Plane.h"
+
+#include "vec3.h"
+#include "plane.h"
 
 class Plane;
 class Mat4;
 //****************************************************************************/
-//  Class:  Frustum                                              
-//  Desc:                          
+//  Class:  Frustum
+//  Desc:
 //****************************************************************************/
 class Frustum
 {
@@ -31,7 +31,7 @@ public:
     const Vec3&     lbf() const { return vLBF; }
     const Vec3&     rbf() const { return vRBF; }
 
-    void            FromCameraMatrix( const Mat4& cm ); 
+    void            FromCameraMatrix( const Mat4& cm );
     bool            PtIn            ( const Vec3& pt ) const;
 	const Plane&    GetPlane        ( int idx ) const { return (&plNear)[idx]; }
     bool            GetTop          ( Vec3& top ) const;

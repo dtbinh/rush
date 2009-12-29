@@ -1,6 +1,6 @@
 #ifndef __RB_REFLECT_PCH_H__
 #define __RB_REFLECT_PCH_H__
-#pragma once
+
 
 #include "rb_common.h"
 

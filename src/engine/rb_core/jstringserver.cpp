@@ -24,7 +24,7 @@ JStringServer::JStringServer()
 
 JStringServer::~JStringServer()
 {
-}  
+}
 
 const char* JStringServer::GetString( const char* id ) const
 {
@@ -52,7 +52,7 @@ const char* c_LineBreakSymbols = "\n\r\0";
 void JStringServer::LoadDictionary( const char* pFileName )
 {
     FInStream is;
-    if (!g_pFileServer->OpenMedia( pFileName, "txt", is )) 
+    if (!g_pFileServer->OpenMedia( pFileName, "txt", is ))
     {
         return;
     }
@@ -64,14 +64,14 @@ void JStringServer::LoadDictionary( const char* pFileName )
     while (*pStr)
     {
         pStr += strspn( pStr, c_DividerSymbols );
-        int nChar = strcspn( pStr, c_DividerSymbols ); 
+        int nChar = strcspn( pStr, c_DividerSymbols );
         JString key( pStr, nChar  );
         pStr += nChar;
         pStr += strspn( pStr, c_DividerSymbols );
-        nChar = strcspn( pStr, c_LineBreakSymbols ); 
+        nChar = strcspn( pStr, c_LineBreakSymbols );
         JString value( pStr, nChar );
         pStr += nChar;
-        pStr += strcspn( pStr, c_LineBreakSymbols ); 
+        pStr += strcspn( pStr, c_LineBreakSymbols );
         m_Dictionary[key] = value;
     }
 }
@@ -84,7 +84,7 @@ void JStringServer::Reset()
 void HashString( const char* str, JString& hash )
 {
     hash = "XXXX";
-    DWORD nHash = PHHash( (const BYTE*)str, strlen( str ) );
+    uint32_t nHash = PHHash( (const BYTE*)str, strlen( str ) );
     const BYTE* pHash = (const BYTE*)&nHash;
     for (int i = 0; i < 4; i++)
     {

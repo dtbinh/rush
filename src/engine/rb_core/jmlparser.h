@@ -28,7 +28,7 @@ public:
     void            SetFileName     ( const char* fname         );
 
 	void			SetErrorTokenPtr( char* pErrToken )	{ m_pErrToken = pErrToken; }
-	void			SetCurLine		( int line		  )	{ m_CurLine = line; } 
+	void			SetCurLine		( int line		  )	{ m_CurLine = line; }
 	const char*		GetCurLocation	() const;
 
 
@@ -36,7 +36,7 @@ public:
 	virtual void	EndObject       ( bool bComplete = true );
 	virtual void	StartAttribute  ( const char* name );
     virtual void	AddAttrValue    ( const char* val );
-	
+
     virtual void	Init()			{ if (!m_bInited) OnInit(); m_bInited = true; }
 
 protected:
@@ -55,11 +55,11 @@ private:
 	char*			        m_pErrToken;
 	int				        m_CurLine;
 	char			        m_FileName[_MAX_PATH];
-    
+
 }; // class JMLParser
 
-const char* GetPooledString( DWORD id );
-DWORD       CreatePooledString( const char* pStr, int len );
+const char* GetPooledString( uint32_t id );
+uint32_t       CreatePooledString( const char* pStr, int len );
 void        ClearStringPool();
 
 #endif // __JMLPARSER_H__

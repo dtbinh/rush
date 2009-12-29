@@ -4,7 +4,7 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "stdafx.h"
-#include "time.h" 
+#include "time.h"
 #include "Logger.h"
 #include "windows.h"
 
@@ -16,7 +16,7 @@ Logger         rlog;
 /***********************************************************************************/
 Logger::Logger()
 {
-    m_LogFileName = "engine.log"; 
+    m_LogFileName = "engine.log";
 
     m_StartTick = GetTickCount();
     time_t long_time;
@@ -37,7 +37,7 @@ Logger::~Logger()
     sprintf( s_Buffer, "*    Ended logging: %.19s", asctime( newtime ) );
     m_Lines.push_back( s_Buffer );
     m_Lines.push_back( "**********************************************************************************" );
-    
+
     //  write log file
     //DumpLog();
 } // Logger::~Logger
@@ -62,7 +62,7 @@ void Logger::addmsg( LogMessageType type, const char* msg )
 {
     char buf[c_LogBufferSize];
     char* pBuf = buf;
-    DWORD cTick = GetTickCount() - m_StartTick;
+    uint32_t cTick = GetTickCount() - m_StartTick;
     cTick /= 1000;
     int h = cTick/(60*60);
     int m = cTick/60;
@@ -87,7 +87,7 @@ void Logger::err( const char* format, ... )
     va_list argList;
     va_start( argList, format );
     vsprintf( s_Buffer, format, argList );
-    addmsg( lmtError, s_Buffer );      
+    addmsg( lmtError, s_Buffer );
     va_end( argList );
 } // Logger::warn
 
@@ -96,7 +96,7 @@ void Logger::warn( const char* format, ... )
     va_list argList;
     va_start( argList, format );
     vsprintf( s_Buffer, format, argList );
-    addmsg( lmtWarning, s_Buffer );      
+    addmsg( lmtWarning, s_Buffer );
     va_end( argList );
 } // Logger::warn
 
@@ -105,6 +105,6 @@ void Logger::msg( const char* format, ... )
     va_list argList;
     va_start( argList, format );
     vsprintf( s_Buffer, format, argList );
-    addmsg( lmtMessage, s_Buffer );    
+    addmsg( lmtMessage, s_Buffer );
     va_end( argList );
 } // Logger::warn

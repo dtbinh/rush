@@ -9,7 +9,7 @@
 //****************************************************************************/
 /*    PickColorDialog implementation
 //****************************************************************************/
-COLORREF PickColorDialog::s_CustomColors[16] = 
+COLORREF PickColorDialog::s_CustomColors[16] =
 {
     RGB(0x00, 0x00, 0x00),
     RGB(0xA5, 0x2A, 0x00),
@@ -26,13 +26,13 @@ COLORREF PickColorDialog::s_CustomColors[16] =
     RGB(0x7F, 0xFF, 0xD4),
     RGB(0x80, 0x00, 0x80),
 
-    RGB(0xFF, 0xFF, 0x00),   
+    RGB(0xFF, 0xFF, 0x00),
     RGB(0xC0, 0xC0, 0xC0),
     RGB(0xFF, 0xE4, 0xE1),
     RGB(0xFF, 0xFF, 0xFF)
 };
 
-PickColorDialog::PickColorDialog( DWORD color ) 
+PickColorDialog::PickColorDialog( uint32_t color )
 {
     memset( &m_ChooseColor, 0, sizeof(m_ChooseColor) );
     m_ChooseColor.lStructSize = sizeof(m_ChooseColor);
@@ -55,12 +55,12 @@ bool PickColorDialog::Show()
     return (res != FALSE);
 }
 
-DWORD PickColorDialog::FromColorRef( COLORREF clr )
+uint32_t PickColorDialog::FromColorRef( COLORREF clr )
 {
     return 0xFF000000 | ((clr & 0x000000FF) << 16) | ((clr & 0x00FF0000) >> 16) | (clr & 0x0000FF00);
 }
 
-COLORREF PickColorDialog::ToColorRef( DWORD clr )
+COLORREF PickColorDialog::ToColorRef( uint32_t clr )
 {
     return 0xFF000000 | ((clr & 0x000000FF) << 16) | ((clr & 0x00FF0000) >> 16) | (clr & 0x0000FF00);
 }

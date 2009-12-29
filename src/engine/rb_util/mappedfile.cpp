@@ -1,6 +1,6 @@
 //****************************************************************************/
 //  File:  MappedFile.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "stdafx.h"
 #include "MappedFile.h"
@@ -8,7 +8,7 @@
 //****************************************************************************/
 /*  MappedFile implementation
 //****************************************************************************/
-MappedFile::MappedFile() : 
+MappedFile::MappedFile() :
     m_pBuffer           ( NULL ),
     m_MappedSize        ( 0 ),
     m_FileSize          ( 0 ),
@@ -26,7 +26,7 @@ MappedFile::~MappedFile()
     }
 } // MappedFile::~MappedFile
 
-DWORD MappedFile::GetPageSize() const
+uint32_t MappedFile::GetPageSize() const
 {
     SYSTEM_INFO sysInfo;
     GetSystemInfo( &sysInfo );
@@ -40,16 +40,16 @@ bool MappedFile::Map( const char* fileName, int startPage, int nBytes )
         Unmap();
     }
 
-	m_hFile = CreateFile( fileName, GENERIC_READ, FILE_SHARE_READ, 0, 
+	m_hFile = CreateFile( fileName, GENERIC_READ, FILE_SHARE_READ, 0,
 							OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL );
-	if (m_hFile == INVALID_HANDLE_VALUE) 
+	if (m_hFile == INVALID_HANDLE_VALUE)
 	{
         rlog.err( "Could not open file for mapping: %s", fileName );
         return false;
 	}
 
 	m_FileSize = ::GetFileSize( m_hFile, NULL );
-	
+
     //  create mapping name
 	char mapName[_MAX_PATH];
 	strcpy( mapName, fileName );
@@ -61,8 +61,8 @@ bool MappedFile::Map( const char* fileName, int startPage, int nBytes )
 	}
 
 	m_hMapping = CreateFileMapping( m_hFile, NULL, PAGE_READONLY, 0, 0, mapName );
-	DWORD err = GetLastError();
-	if (m_hMapping == NULL) 
+	uint32_t err = GetLastError();
+	if (m_hMapping == NULL)
     {
         rlog.err( "Could not memory-map file: %s", fileName );
         m_hMapping = INVALID_HANDLE_VALUE;
@@ -70,9 +70,9 @@ bool MappedFile::Map( const char* fileName, int startPage, int nBytes )
     }
 
 	m_pBuffer = (BYTE*)MapViewOfFile( m_hMapping, FILE_MAP_READ, 0, startPage*GetPageSize(), nBytes );
-    if (m_pBuffer == NULL) 
+    if (m_pBuffer == NULL)
     {
-        DWORD errCode = GetLastError();
+        uint32_t errCode = GetLastError();
         rlog.err( "Could not memory-map view of file: %s. Error code: %X", fileName );
         return false;
     }

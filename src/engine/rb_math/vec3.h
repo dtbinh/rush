@@ -4,9 +4,9 @@
 //****************************************************************************/
 #ifndef __VEC3_H__
 #define __VEC3_H__
-#pragma once
 
-#include "Scalar.h"
+
+#include "scalar.h"
 
 //****************************************************************************/
 //  Class:  Vec3
@@ -80,11 +80,11 @@ public:
         z = -z;
     }
 
-    inline float dist( const Vec3& v ) const 
-    { 
+    inline float dist( const Vec3& v ) const
+    {
         Vec3 d = *this - v;
         return d.norm();
-    } 
+    }
 
     friend inline Vec3 operator -( const Vec3& a, const Vec3& b ) { return Vec3( a.x - b.x, a.y - b.y, a.z - b.z ); }
     friend inline Vec3 operator +( const Vec3& a, const Vec3& b ) { return Vec3( a.x + b.x, a.y + b.y, a.z + b.z ); }
@@ -93,9 +93,9 @@ public:
     friend inline Vec3 operator -( const Vec3& v ) { return Vec3( -v.x, -v.y, -v.z ); }
 
 
-    inline void cross( const Vec3& a, const Vec3& b ) 
+    inline void cross( const Vec3& a, const Vec3& b )
     {
-        x = a.y * b.z - a.z * b.y; 
+        x = a.y * b.z - a.z * b.y;
         y = a.z * b.x - a.x * b.z;
         z = a.x * b.y - a.y * b.x;
     }

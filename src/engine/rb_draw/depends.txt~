@@ -1,0 +1,1 @@
+int_libs = rb_core, rb_math, rb_extmath, rb_util, rb_resource, rb_texture

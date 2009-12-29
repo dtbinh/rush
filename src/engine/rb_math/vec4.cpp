@@ -3,9 +3,9 @@
 //  Desc:  4D vector
 //****************************************************************************/
 #include "stdafx.h"
-#include "Vec4.h"
-#include "Rand.h"
-#include "MathConst.h"
+#include "vec4.h"
+#include "rand.h"
+#include "mathconst.h"
 
 //****************************************************************************/
 /*	Vec4 implementation

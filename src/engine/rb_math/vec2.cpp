@@ -3,8 +3,8 @@
 //  Desc:  3D vector
 //****************************************************************************/
 #include "stdafx.h"
-#include "Frame.h"
-#include "Vec2.h"
+#include "frame.h"
+#include "vec2.h"
 
 //****************************************************************************/
 /*	Vec2 implementation
@@ -24,10 +24,10 @@ void Vec2::rotate( float ang )
 {
     float cs = cosf( ang );
     float ss = sinf( ang );
-    
+
     float cx = x*cs - y*ss;
     float cy = x*ss + y*cs;
-    
+
     x = cx;
     y = cy;
 } // Vec2::rotate

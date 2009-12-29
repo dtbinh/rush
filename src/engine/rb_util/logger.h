@@ -6,7 +6,7 @@
 #ifndef __LOG_H__
 #define __LOG_H__
 
-#include "JString.h"
+#include "jstring.h"
 
 enum LogMessageType
 {
@@ -18,12 +18,12 @@ enum LogMessageType
 
 /***********************************************************************************/
 //  Class:  Logger
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class Logger
 {
     JStringList     m_Lines;
-    DWORD           m_StartTick;
+    uint32_t        m_StartTick;
     JString         m_LogFileName;
 
 public:

@@ -1,6 +1,6 @@
 //****************************************************************************/
 //  File:  FStream.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "stdafx.h"
 #include "FStream.h"
@@ -18,7 +18,7 @@ void Load( std::wstring& s, FILE* fp )
 {
     int strSize = 0;
     fread( &strSize, sizeof( strSize ), 1, fp );
-    if (strSize > 0) 
+    if (strSize > 0)
     {
         s.resize( strSize );
         fread( &(s[0]), sizeof( s[0] )*strSize, 1, fp );
@@ -40,16 +40,16 @@ bool FInStream::OpenFile( const char* fname )
     m_FileName = fname;
     char cwd[_MAX_PATH];
     getcwd( cwd, _MAX_PATH );
-    m_hFile = CreateFile(   fname, 
-                            GENERIC_READ, 
-                            FILE_SHARE_READ, 0, 
-                            OPEN_EXISTING, 
-                            FILE_ATTRIBUTE_NORMAL, 
+    m_hFile = CreateFile(   fname,
+                            GENERIC_READ,
+                            FILE_SHARE_READ, 0,
+                            OPEN_EXISTING,
+                            FILE_ATTRIBUTE_NORMAL,
                             NULL );
 
     if (m_hFile == INVALID_HANDLE_VALUE)
     {
-        DWORD err = GetLastError();
+        uint32_t err = GetLastError();
         m_TotalSize = 0;
         return false;
     }
@@ -63,7 +63,7 @@ bool FInStream::OpenFile( const char* fname )
 int FInStream::ReadStream( void* buf, int nBytes )
 {
     if (m_hFile == INVALID_HANDLE_VALUE) return false;
-    DWORD readBytes;
+    uint32_t readBytes;
 
     if (buf == 0)
     {
@@ -74,7 +74,7 @@ int FInStream::ReadStream( void* buf, int nBytes )
     BOOL res = ReadFile( m_hFile, buf, nBytes, &readBytes, NULL );
     if (res == FALSE)
     {
-        DWORD err = GetLastError();
+        uint32_t err = GetLastError();
         return 0;
     }
     return readBytes;
@@ -100,14 +100,14 @@ FOutStream::FOutStream( const char* fname )
 
 bool FOutStream::OpenFile( const char* fname )
 {
-    m_hFile = CreateFile(   fname, 
-                            FILE_WRITE_DATA, 
-                            FILE_SHARE_READ, 
+    m_hFile = CreateFile(   fname,
+                            FILE_WRITE_DATA,
+                            FILE_SHARE_READ,
                             NULL,
-                            CREATE_ALWAYS, 
-                            FILE_ATTRIBUTE_NORMAL, 
+                            CREATE_ALWAYS,
+                            FILE_ATTRIBUTE_NORMAL,
                             NULL );
-    DWORD err = GetLastError();
+    uint32_t err = GetLastError();
 
     return (m_hFile != INVALID_HANDLE_VALUE);
 } // FOutStream::OpenFile
@@ -124,11 +124,11 @@ void FOutStream::OnClose()
 int FOutStream::Flush( const void* buf, int nBytes )
 {
     if (m_hFile == INVALID_HANDLE_VALUE) return 0;
-    DWORD wBytes;
+    uint32_t wBytes;
     BOOL res = WriteFile( m_hFile, buf, nBytes, &wBytes, NULL );
     if (res == FALSE)
     {
-        DWORD err = GetLastError();
+        uint32_t err = GetLastError();
         return 0;
     }
     return (int)wBytes;

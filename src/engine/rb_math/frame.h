@@ -5,9 +5,9 @@
 #ifndef __FRAME_H__
 #define __FRAME_H__
 
-#include "Scalar.h"
-#include "Vec2.h"
-#include "Rand.h"
+#include "scalar.h"
+#include "vec2.h"
+#include "rand.h"
 
 //****************************************************************************/
 //  Class:  Frame
@@ -40,9 +40,9 @@ public:
 
     inline bool IsOutside( const Frame& rct ) const
     {
-        return	(r() < rct.x) || (x > rct.r()) || 
+        return	(r() < rct.x) || (x > rct.r()) ||
                 (b() < rct.y) || (y > rct.b());
-    } 
+    }
 
     void AddPoint( const Vec2& pt )
     {
@@ -69,7 +69,7 @@ public:
         y = tmin( y, rct.y );
         w = tmax( w, rct.w, rct.r() - x, r() - rct.x );
         h = tmax( h, rct.h, rct.b() - y, b() - rct.y );
-    } 
+    }
 
     inline void Inflate( float v )
     {
@@ -108,7 +108,7 @@ public:
         x -= v.x; y -= v.y;
         return *this;
     }
-    
+
     static Frame null;
 }; // class Frame
 

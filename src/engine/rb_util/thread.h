@@ -9,7 +9,7 @@
 
 //****************************************************************************/
 /*  Enum:   ThreadState
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 enum ThreadState
 {
@@ -43,7 +43,7 @@ public:
 
     ThreadState     GetState    () const { return m_State; }
 
-    friend DWORD WINAPI ThreadStarter( LPVOID lpParameter );
+    friend uint32_t WINAPI ThreadStarter( LPVOID lpParameter );
 
 protected:
     virtual void    OnStart     () = 0;

@@ -1,0 +1,2 @@
+int_libs = rb_util, rb_resource, rb_math
+ext_libs = tinyxml

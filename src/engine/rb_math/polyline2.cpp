@@ -4,22 +4,17 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "stdafx.h"
-#include "PolyLine2.h"
-#include "TriMesh2.h"
-#include "windows.h"
+#include "polyline2.h"
 #include "float.h"
-#include <gl/glu.h>
-
-#pragma comment(lib,"glu32.lib")
 
 /***********************************************************************************/
 /*  PolyLine2 implementation
 /***********************************************************************************/
-int PolyLine2::GetNSegments() const 
-{ 
+int PolyLine2::GetNSegments() const
+{
     if (m_Points.size() > 1) return m_Points.size();
     return 0;
-} // PolyLine2::GetNSegments
+}
 
 bool PolyLine2::Intersects( const Seg2& seg, bool bClosed ) const
 {
@@ -30,7 +25,7 @@ bool PolyLine2::Intersects( const Seg2& seg, bool bClosed ) const
         if (seg.intersects( GetEdge( i ), true )) return true;
     }
     return false;
-} // PolyLine2::Intersects
+}
 
 Vec2 PolyLine2::GetCenter() const
 {
@@ -42,13 +37,13 @@ Vec2 PolyLine2::GetCenter() const
     }
     res /= float( nP );
     return res;
-} // PolyLine2::GetCenter
+}
 
 void PolyLine2::DeletePoint( int idx )
 {
     if (idx < 0 || idx >= m_Points.size()) return;
     m_Points.erase( m_Points.begin() + idx );
-} // PolyLine2::DeletePoint 
+}
 
 bool PolyLine2::AddPoint( const Vec2& pt, bool bNoSelfCross )
 {
@@ -64,7 +59,7 @@ bool PolyLine2::AddPoint( const Vec2& pt, bool bNoSelfCross )
     }
     m_Points.push_back( pt );
     return true;
-} // PolyLine2::AddPoint
+}
 
 int PolyLine2::PickPt( const Vec2& pt, float radius ) const
 {
@@ -79,14 +74,14 @@ int PolyLine2::PickPt( const Vec2& pt, float radius ) const
         }
     }
     return minPt;
-} // PolyLine2::PickPt
+}
 
 int PolyLine2::GetNearestEdge( const Vec2& pt, bool bClosed ) const
 {
     int minEdge = -1;
     float minDist = FLT_MAX;
     int nPt = m_Points.size();
-    if (!bClosed) 
+    if (!bClosed)
     {
         nPt--;
     }
@@ -100,7 +95,7 @@ int PolyLine2::GetNearestEdge( const Vec2& pt, bool bClosed ) const
         }
     }
     return minEdge;
-} // PolyLine2::GetNearestEdge
+}
 
 bool PolyLine2::PtIn( const Vec2& pt ) const
 {
@@ -109,146 +104,33 @@ bool PolyLine2::PtIn( const Vec2& pt ) const
     int nW = 0;
 
     //  loop through all edges of the polygon
-    for (int i = 0; i < nP; i++) 
-    {   
+    for (int i = 0; i < nP; i++)
+    {
         const Vec2& a = m_Points[i];
         const Vec2& b = GetPoint( i + 1 );
-        if (a.y <= pt.y) 
+        if (a.y <= pt.y)
         {
-            if (b.y > pt.y)  
+            if (b.y > pt.y)
             {
-                if (pt.leftof( a, b ) > 0.0f)  
+                if (pt.leftof( a, b ) > 0.0f)
                 {
-                    nW++;           
+                    nW++;
                 }
             }
         }
-        else 
-        {                       
-            if (b.y <= pt.y)     
+        else
+        {
+            if (b.y <= pt.y)
             {
-                if (pt.leftof( a, b ) < 0.0f)  
+                if (pt.leftof( a, b ) < 0.0f)
                 {
-                    nW--;            
+                    nW--;
                 }
             }
         }
     }
     return (nW != 0);
-} // PolyLine2::PtIn
-
-static GLenum s_TriType;
-static int    s_cIdx = -1;
-
-void __stdcall VertexCallBack( int idx, TriMesh2* pMesh )
-{
-    if (!pMesh) return;
-    static Face f;
-    if (s_TriType == GL_TRIANGLES) 
-    {
-        if (s_cIdx == -1) s_cIdx = 0;
-        ((int*)&f)[s_cIdx] = idx;
-        s_cIdx++;
-        if (s_cIdx == 3)
-        {
-            pMesh->AddFace( f );
-            s_cIdx = 0;
-        }
-    }
-    else if (s_TriType == GL_TRIANGLE_STRIP)
-    {
-        if (s_cIdx == -1) s_cIdx = 1;
-        if (s_cIdx < 3)
-        {
-            ((int*)&f)[s_cIdx] = idx;
-            s_cIdx++;
-        }
-        else
-        {
-            f.va = f.vb;
-            f.vb = f.vc;
-            f.vc = idx;
-            pMesh->AddFace( f );
-        }
-    }
-    else if (s_TriType == GL_TRIANGLE_FAN)
-    {
-        if (s_cIdx == -1)
-        {
-            f.va = idx;
-            s_cIdx = 2;
-        }
-        else if (s_cIdx < 3)
-        {
-            f.vb = idx;
-            f.vc = idx;
-            s_cIdx++;
-        }
-        else
-        {
-            f.vb = f.vc;
-            f.vc = idx;
-            pMesh->AddFace( f );
-        }
-    }
-} // VertexCallBack
-
-void __stdcall BeginCallBack( GLenum type, TriMesh2* pMesh )
-{
-    s_TriType = type;
-    s_cIdx    = -1;
 }
-
-typedef void (__stdcall *GluTessCallbackType)();
-
-bool PolyLine2::Tesselate( TriMesh2& mesh ) const
-{
-    int nP = GetNPoints();
-    if (nP < 3) return false;
-    if (nP == 3)
-    {
-        mesh.AddVert( m_Points[0] );
-        mesh.AddVert( m_Points[1] );
-        mesh.AddVert( m_Points[2] );
-        mesh.AddFace( 0, 1, 2 );
-        return true;
-    }
-    GLUtesselator* tess = gluNewTess();
-    if (tess == NULL) return false;
-
-    mesh.Clear();
-    gluTessCallback( tess, GLU_TESS_VERTEX_DATA, 
-        reinterpret_cast<GluTessCallbackType>( VertexCallBack ) );
-
-    gluTessCallback( tess, GLU_TESS_BEGIN_DATA , 
-        reinterpret_cast<GluTessCallbackType>( BeginCallBack ) );
-
-    gluTessProperty( tess, GLU_TESS_BOUNDARY_ONLY, FALSE );
-    gluTessProperty( tess, GLU_TESS_WINDING_RULE, GLU_TESS_WINDING_ODD );  
-
-
-    gluTessBeginPolygon( tess, reinterpret_cast<void*>( &mesh ) ); 
-    gluTessBeginContour( tess );
-
-    Vec2 p[4] = { Vec2( 0, 0 ), Vec2( 0, 1 ), Vec2( 1, 1 ), Vec2( 1, 0 ) };
-
-    GLdouble v[3];
-    for (int i = 0; i < nP; i++)
-    {
-        const Vec2& pt = GetPoint( i );
-        v[0] = pt.x;
-        v[1] = pt.y;
-        v[2] = 0.0;
-        gluTessVertex( tess, &v[0], reinterpret_cast<void*>( i ) ); 
-        mesh.AddVert( pt );
-    }   
-
-    gluTessEndContour( tess );
-    gluTessEndPolygon( tess ); 
-
-    gluDeleteTess( tess );
-    return true;
-} // PolyLine2::Tesselate
 
 float PolyLine2::Distance( const PolyLine2& p ) const
 {
@@ -266,7 +148,7 @@ float PolyLine2::Distance( const PolyLine2& p ) const
         }
     }
     return sqrtf( res );
-} // PolyLine2::Distance
+}
 
 void PolyLine2::Refine()
 {
@@ -275,16 +157,16 @@ void PolyLine2::Refine()
     {
         const Vec2& pc = GetPoint( cP );
         const Vec2& pn = GetPoint( cP + 1 );
-        if (pc.equal( pn )) 
+        if (pc.equal( pn ))
         {
             DeletePoint( cP );
         }
-        else 
+        else
         {
             cP++;
         }
     }
-} // PolyLine2::Refine
+}
 
 Frame PolyLine2::GetBound() const
 {
@@ -303,19 +185,19 @@ Frame PolyLine2::GetBound() const
     rect.w -= rect.x;
     rect.h -= rect.y;
     return rect;
-} // PolyLine2::GetBound
+}
 
 void PolyLine2::InsertPoint( int pos, const Vec2& pt )
 {
     if (pos < 0) pos = 0;
     if (pos > GetNPoints()) pos = GetNPoints();
     m_Points.insert( m_Points.begin() + pos, pt );
-} // PolyLine2::InsertPoint
+}
 
 void PolyLine2::SmoothHermite( int numSubPoints )
 {
 
-} // PolyLine2::SmoothHermite
+}
 
 bool PolyLine2::GetSubPoly( int ptBeg, int ptEnd, PolyLine2& poly, bool bCW ) const
 {
@@ -353,7 +235,7 @@ float PolyLine2::GetLength( bool bClosed ) const
         res += m_Points[0].dist( m_Points.back() );
     }
     return res;
-} // PolyLine2::GetLength
+}
 
 bool PolyLine2::FindPath( const Seg2& moveSeg, PolyLine2& path ) const
 {
@@ -388,7 +270,7 @@ bool PolyLine2::FindPath( const Seg2& moveSeg, PolyLine2& path ) const
             nEnd2   = i;
         }
     }
-    
+
     GetSubPoly( nBeg1, nEnd1, path, false );
     path.InsertPoint( 0, a );
     path.AddPoint( b );
@@ -397,26 +279,26 @@ bool PolyLine2::FindPath( const Seg2& moveSeg, PolyLine2& path ) const
     GetSubPoly( nBeg2, nEnd2, path, true );
     path.InsertPoint( 0, a );
     path.AddPoint( b );
-    
+
     if (path.GetLength( false ) > len)
     {
         GetSubPoly( nBeg1, nEnd1, path, false );
         path.InsertPoint( 0, a );
         path.AddPoint( b );
     }
-    
+
     return true;
-} // PolyLine2::FindPath
+}
 
 Vec2 PolyLine2::GetParamPoint( float t, bool bClosed, Vec2* pTangent ) const
 {
     float tlen = t*GetLength( bClosed );
-    if (m_Points.size() == 0) 
+    if (m_Points.size() == 0)
     {
         if (!pTangent) *pTangent = Vec2::null;
         return Vec2::null;
     }
-    if (m_Points.size() == 1) 
+    if (m_Points.size() == 1)
     {
         if (!pTangent) *pTangent = Vec2::null;
         return m_Points[0];
@@ -435,7 +317,7 @@ Vec2 PolyLine2::GetParamPoint( float t, bool bClosed, Vec2* pTangent ) const
         {
             Vec2 ab = b - a;
             ab.normalize();
-            if (pTangent) *pTangent = ab; 
+            if (pTangent) *pTangent = ab;
             return a + (tlen - cDist)*ab;
         }
         cDist += cLen;
@@ -448,7 +330,7 @@ Vec2 PolyLine2::GetParamPoint( float t, bool bClosed, Vec2* pTangent ) const
         pTangent->normalize();
     }
     return GetPoint( lastPt );
-} // PolyLine2::GetParamPoint
+}
 
 float PolyLine2::GetPointParam( const Vec2& pt, bool bClosed ) const
 {
@@ -456,7 +338,7 @@ float PolyLine2::GetPointParam( const Vec2& pt, bool bClosed ) const
     float minDist = FLT_MAX;
     float minLen  = 0.0f;
     int nPt = m_Points.size();
-    if (!bClosed) 
+    if (!bClosed)
     {
         nPt--;
     }
@@ -474,7 +356,7 @@ float PolyLine2::GetPointParam( const Vec2& pt, bool bClosed ) const
         }
         len += (a - b).norm();
     }
-    
+
     const Vec2& a = GetPoint( minEdge );
     const Vec2& b = GetPoint( minEdge + 1 );
     Vec2 dir = b - a;
@@ -490,6 +372,6 @@ void PolyLine2::Move( const Vec2&  delta )
     {
         m_Points[i] += delta;
     }
-} // PolyLine2::Move
+}
 
 

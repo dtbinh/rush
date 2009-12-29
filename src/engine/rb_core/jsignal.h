@@ -9,13 +9,13 @@
 enum JSignalType
 {
     Signal_None    = 0,
-    Signal_In      = 1, 
+    Signal_In      = 1,
     Signal_Out     = 2,
     Signal_InOut   = 3,
 }; // enum JSignalType
 
 class JObject;
-class JClassAttr; 
+class JClassAttr;
 //****************************************************************************/
 //  Class:  JSignal
 //  Desc:
@@ -35,16 +35,16 @@ public:
 
     bool            m_bSrcInit;         //  whether connection is initiated by source
     bool            m_bConnected;
-    DWORD           m_Token;
+    uint32_t           m_Token;
 
-    JSignal() : 
-        m_pSrcObj   ( NULL ), 
-        m_pDstObj   ( NULL ), 
-        m_pSrcAttr  ( NULL ), 
+    JSignal() :
+        m_pSrcObj   ( NULL ),
+        m_pDstObj   ( NULL ),
+        m_pSrcAttr  ( NULL ),
         m_pDstAttr  ( NULL ),
         m_Type      ( Signal_None ),
         m_bSrcInit  ( true ),
-        m_bConnected( false ), 
+        m_bConnected( false ),
         m_Token     ( 0 )
     {}
 
@@ -57,7 +57,7 @@ public:
     void            SetDst  ( JObject* pDstObj );
     JObject*        GetSrc  () const { return m_pSrcObj; }
     JObject*        GetDst  () const { return m_pDstObj; }
-    
+
 }; // class JSignal
 
 #endif // __JSIGNAL_H__

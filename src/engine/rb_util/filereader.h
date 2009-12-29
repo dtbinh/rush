@@ -1,16 +1,16 @@
 //****************************************************************************/
 //  File:  FileReader.h
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #ifndef __FILEREADER_H__
 #define __FILEREADER_H__
 
-#include "InputStream.h"
+#include "inputstream.h"
 #include "windows.h"
 
 //****************************************************************************/
 //  Class:  FileReader
-//  Desc:    
+//  Desc:
 //****************************************************************************/
 class FileReader : public IStreamReader
 {

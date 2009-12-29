@@ -2,8 +2,8 @@
 //  File:  Plane.cpp
 //****************************************************************************/
 #include "stdafx.h"
-#include "MathConst.h"
-#include "Plane.h"
+#include "mathconst.h"
+#include "plane.h"
 
 //****************************************************************************/
 /*  Plane implementation
@@ -56,7 +56,7 @@ void Plane::Transform( const Mat4& tm )
 {
     Vec4 v( a, b, c, d );
     transpose( inverse( tm ) ).tm( v );
-    
+
     a = v.x;
     b = v.y;
     c = v.z;

@@ -3,19 +3,19 @@
 //  Desc:  4x4 Matrix
 //****************************************************************************/
 #include "stdafx.h"
-#include "Vec2.h"
-#include "Mat3.h"
-#include "Quaternion.h"
-#include "MathConst.h"
+#include "vec2.h"
+#include "mat3.h"
+#include "quaternion.h"
+#include "mathconst.h"
 
 //****************************************************************************/
 /*  Mat3 implementation
 //****************************************************************************/
-Mat3 Mat3::identity = Mat3( 1.0f, 0.0f, 0.0f, 
-                            0.0f, 1.0f, 0.0f, 
+Mat3 Mat3::identity = Mat3( 1.0f, 0.0f, 0.0f,
+                            0.0f, 1.0f, 0.0f,
                             0.0f, 0.0f, 1.0f );
-Mat3 Mat3::null = Mat3( 0.0f, 0.0f, 0.0f, 
-                        0.0f, 0.0f, 0.0f, 
+Mat3 Mat3::null = Mat3( 0.0f, 0.0f, 0.0f,
+                        0.0f, 0.0f, 0.0f,
                         0.0f, 0.0f, 0.0f );
 
 Mat3::Mat3( const Mat4& m )

@@ -4,9 +4,9 @@
 //****************************************************************************/
 #ifndef __MAT3_H__
 #define __MAT3_H__
-#pragma once
 
-#include "Vec3.h"
+
+#include "vec3.h"
 
 class Quaternion;
 class Mat4;
@@ -21,14 +21,14 @@ public:
     float           e00, e01, e02;
     float           e10, e11, e12;
     float           e20, e21, e22;
-    
+
     Mat3(){}
     Mat3( const Quaternion& q );
     Mat3( const Mat4& m );
     Mat3( const Vec3& axis, float angle );
 
-    Mat3(   float v00, float v01, float v02, 
-            float v10, float v11, float v12, 
+    Mat3(   float v00, float v01, float v02,
+            float v10, float v11, float v12,
             float v20, float v21, float v22 )
     {
         e00 = v00; e01 = v01; e02 = v02;
@@ -43,8 +43,8 @@ public:
     void srt( float s, float angle, const Vec2& trans );
     void srt( const Vec2& s, float angle, const Vec2& trans );
 
-    inline Mat3( const Vec3& row0, const Vec3& row1, const Vec3& row2 ) 
-    { 
+    inline Mat3( const Vec3& row0, const Vec3& row1, const Vec3& row2 )
+    {
         e00 = row0.x; e01 = row0.y; e02 = row0.z;
         e10 = row1.x; e11 = row1.y; e12 = row1.z;
         e20 = row2.x; e21 = row2.y; e22 = row2.z;
@@ -62,9 +62,9 @@ public:
 
     void transpose( const Mat3& m )
     {
-        e00 = m.e00; e01 = m.e10; e02 = m.e20; 
-        e10 = m.e01; e11 = m.e11; e12 = m.e21; 
-        e20 = m.e02; e21 = m.e12; e22 = m.e22; 
+        e00 = m.e00; e01 = m.e10; e02 = m.e20;
+        e10 = m.e01; e11 = m.e11; e12 = m.e21;
+        e20 = m.e02; e21 = m.e12; e22 = m.e22;
     }
 
     void transpose()
@@ -84,7 +84,7 @@ public:
         e20 = matr.e20; e21 = matr.e21; e22 = matr.e22;
         return *this;
     }
-    
+
     inline Mat3& operator *=( const Mat3& r )
     {
         Mat3 l = *this;
@@ -94,12 +94,12 @@ public:
 
     inline Mat3& operator *=( float w )
     {
-        e00 *= w; e01 *= w; e02 *= w; 
-        e10 *= w; e11 *= w; e12 *= w; 
-        e20 *= w; e21 *= w; e22 *= w; 
+        e00 *= w; e01 *= w; e02 *= w;
+        e10 *= w; e11 *= w; e12 *= w;
+        e20 *= w; e21 *= w; e22 *= w;
         return *this;
     }
-    
+
     inline Mat3& operator +=( const Mat3& r )
     {
         e00 += r.e00; e01 += r.e01; e02 += r.e02;;
@@ -142,7 +142,7 @@ public:
     inline bool is_equal( const Mat3& m, float eps = c_FltEpsilon )
     {
         return (_fabs( e00 - m.e00 ) < eps && _fabs( e01 - m.e01 ) < eps && _fabs( e02 - m.e02 ) < eps &&
-                _fabs( e10 - m.e10 ) < eps && _fabs( e11 - m.e11 ) < eps && _fabs( e12 - m.e12 ) < eps && 
+                _fabs( e10 - m.e10 ) < eps && _fabs( e11 - m.e11 ) < eps && _fabs( e12 - m.e12 ) < eps &&
                 _fabs( e20 - m.e20 ) < eps && _fabs( e21 - m.e21 ) < eps && _fabs( e22 - m.e22 ) < eps);
     }
 
@@ -153,9 +153,9 @@ public:
 
     inline void scaling( const Vec3& v )
     {
-        e00 = v.x; e01 = 0.0f; e02 = 0.0f; 
-        e10 = 0.0f; e11 = v.y; e12 = 0.0f; 
-        e20 = 0.0f; e21 = 0.0f; e22 = v.z; 
+        e00 = v.x; e01 = 0.0f; e02 = 0.0f;
+        e10 = 0.0f; e11 = v.y; e12 = 0.0f;
+        e20 = 0.0f; e21 = 0.0f; e22 = v.z;
     }
 
     friend inline Mat3 operator *( const Mat3& a, const Mat3&b )

@@ -4,7 +4,11 @@
 #ifndef __JSTRING_H__
 #define __JSTRING_H__
 
-__forceinline int ToLower( int c )
+#include <stdio.h>
+#include <string.h>
+#include <vector>
+
+inline int ToLower( int c )
 {
     if (c >= 'A' && c <= 'Z') c += 'a' - 'A';
     return c;
@@ -16,7 +20,7 @@ const int c_ExpectedMaxStringLen = 31;
 //  Desc:   String value wrapper, used as hashing key
 /*          Also it keeps short names locally
 //****************************************************************************/
-class JString 
+class JString
 {
     char        m_Pool[c_ExpectedMaxStringLen + 1];
     char*       m_pBuf;
@@ -42,7 +46,7 @@ public:
 
     ~JString()
     {
-        if (m_pBuf != m_Pool) 
+        if (m_pBuf != m_Pool)
         {
             delete []m_pBuf;
             m_pBuf = m_Pool;
@@ -53,7 +57,7 @@ public:
 
     void clear()
     {
-        if (m_pBuf != m_Pool) 
+        if (m_pBuf != m_Pool)
         {
             delete []m_pBuf;
         }
@@ -62,13 +66,13 @@ public:
         m_Pool[0] = 0;
     }
 
-    __forceinline const char* c_str() const 
-    {  
+    inline const char* c_str() const
+    {
         return m_pBuf;
     }
 
-    __forceinline int size() const 
-    {  
+    inline int size() const
+    {
         return m_Size;
     }
 
@@ -86,7 +90,7 @@ public:
         }
         m_pBuf[m_Size] = 0;
     }
-    
+
     void set( const char* pStr, int nChar = -1 )
     {
         if (m_pBuf != m_Pool)
@@ -96,7 +100,7 @@ public:
             m_Size    = 0;
             m_pBuf[0] = 0;
         }
-        if (!pStr) 
+        if (!pStr)
         {
             m_pBuf    = m_Pool;
             m_Size    = 0;
@@ -108,7 +112,7 @@ public:
             nChar = strlen( pStr );
         }
         resize( nChar );
-        if (nChar > 0) 
+        if (nChar > 0)
         {
             strncpy( m_pBuf, pStr, nChar );
             m_pBuf[nChar] = 0;
@@ -122,14 +126,14 @@ public:
 
     void operator += ( const char* text )
     {
-        if (!text || text[0] == 0) 
+        if (!text || text[0] == 0)
         {
             return;
         }
 
         int addSize = strlen( text );
         int newSize = m_Size + addSize;
-        if (newSize > c_ExpectedMaxStringLen) 
+        if (newSize > c_ExpectedMaxStringLen)
         {
             char* pNewBuf = new char[newSize + 1];
             memcpy( pNewBuf, m_pBuf, m_Size );
@@ -139,7 +143,7 @@ public:
             }
             m_pBuf = pNewBuf;
         }
-        
+
         memcpy( m_pBuf + m_Size, text, addSize );
         m_Size = newSize;
         m_pBuf[m_Size] = 0;
@@ -163,7 +167,7 @@ public:
         set( text );
     }
 
-    inline bool operator ==( const char* str ) const 
+    inline bool operator ==( const char* str ) const
     {
         if (str == m_pBuf) return true;
         if (!m_pBuf || !str) return false;
@@ -179,7 +183,7 @@ public:
         return (str[i] == pStr1[i]);
     }
 
-    inline bool is_equal_ci( const char* str ) const 
+    inline bool is_equal_ci( const char* str ) const
     {
         if (str == m_pBuf) return true;
         if (!m_pBuf || !str) return false;
@@ -211,18 +215,18 @@ public:
     void erase( int pos, int nChar )
     {
         JString temp;
-        if (pos < 0) 
+        if (pos < 0)
         {
             nChar += pos;
             pos = 0;
         }
-        if (pos + nChar > m_Size) 
+        if (pos + nChar > m_Size)
         {
             nChar = m_Size - pos;
         }
         if (nChar <= 0) return;
         if (pos > 0) temp.set( c_str(), pos );
-        if (pos + nChar > m_Size) 
+        if (pos + nChar > m_Size)
         {
             nChar = m_Size - pos;
         }
@@ -233,17 +237,17 @@ public:
         set( temp.c_str() );
     }
 
-    __forceinline bool operator ==( const JString& key ) const
+    inline bool operator ==( const JString& key ) const
     {
         return operator ==( key.m_pBuf );
     }
 
-    __forceinline bool operator !=( const JString& key ) const
+    inline bool operator !=( const JString& key ) const
     {
         return !(operator ==( key.m_pBuf ));
     }
 
-    __forceinline bool operator !=( const char* str ) const
+    inline bool operator !=( const char* str ) const
     {
         return !(operator ==( str ));
     }
@@ -286,8 +290,8 @@ typedef std::vector<JString> JStringList;
 inline JString ToString( int val )
 {
     char buf[64];
-    JString str = itoa( val, buf, 10 );
-    return str;
+    sprintf( buf, "%d", val );
+    return JString( buf );
 }
 
 

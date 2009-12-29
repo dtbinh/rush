@@ -4,22 +4,22 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "stdafx.h"
-#include "Mesh.h"
+#include "mesh.h"
 
 /***********************************************************************************/
 /*  Mesh implementation
 /***********************************************************************************/
 Mesh::Mesh()
 {
-    m_dRHW          = -1;       
-    m_dNormal       = -1;    
-    m_dTangent      = -1;   
-    m_dBinormal     = -1;   
-    m_dUV           = -1;        
-    m_dBlendWeight  = -1; 
-    m_dBlendIdx     = -1;   
-    m_dDiffuse      = -1;   
-    m_dSpecular     = -1;  
+    m_dRHW          = -1;
+    m_dNormal       = -1;
+    m_dTangent      = -1;
+    m_dBinormal     = -1;
+    m_dUV           = -1;
+    m_dBlendWeight  = -1;
+    m_dBlendIdx     = -1;
+    m_dDiffuse      = -1;
+    m_dSpecular     = -1;
 } // Mesh::Mesh
 
 void Mesh::Clear()
@@ -92,17 +92,17 @@ float Mesh::GetBlendWeight( int idx, int wIdx ) const
     return 0.0f;
 } // Mesh::GetBlendWeight
 
-BYTE Mesh::GetBlendIdx( int idx, int wIdx ) const
+uint8_t Mesh::GetBlendIdx( int idx, int wIdx ) const
 {
     return 255;
 } // Mesh::GetBlendIdx
 
-DWORD Mesh::GetDiffuse( int idx ) const
+uint32_t Mesh::GetDiffuse( int idx ) const
 {
     return 0;
 } // Mesh::GetDiffuse
 
-DWORD Mesh::GetSpecular( int idx ) const
+uint32_t Mesh::GetSpecular( int idx ) const
 {
     return 0;
 } // Mesh::GetSpecular
@@ -152,17 +152,17 @@ bool Mesh::SetBlendWeight( int idx, int wIdx, float w ) const
     return true;
 } // Mesh::SetBlendWeight
 
-bool Mesh::SetBlendIdx( int idx, int wIdx, BYTE blendIdx ) const
+bool Mesh::SetBlendIdx( int idx, int wIdx, uint8_t blendIdx ) const
 {
     return true;
 } // Mesh::SetBlendIdx
 
-bool Mesh::SetDiffuse( int idx, DWORD diffuse ) const
+bool Mesh::SetDiffuse( int idx, uint32_t diffuse ) const
 {
     return true;
 } // Mesh::SetDiffuse
 
-bool Mesh::SetSpecular( int idx, DWORD specular ) const
+bool Mesh::SetSpecular( int idx, uint32_t specular ) const
 {
     return true;
 } // Mesh::SetSpecular

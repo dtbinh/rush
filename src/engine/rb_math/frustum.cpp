@@ -1,11 +1,11 @@
 //****************************************************************************/
 //  File:  Frustum.cpp
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 #include "stdafx.h"
-#include "Mat4.h"
-#include "MathConst.h"
-#include "Frustum.h"
+#include "mat4.h"
+#include "mathconst.h"
+#include "frustum.h"
 
 //****************************************************************************/
 /*  Frustum implementation
@@ -13,32 +13,32 @@
 void Frustum::FromCameraMatrix( const Mat4& cm )
 {
     plLeft.a = cm.e03 + cm.e00;
-    plLeft.b = cm.e13 + cm.e10; 
+    plLeft.b = cm.e13 + cm.e10;
     plLeft.c = cm.e23 + cm.e20;
-    plLeft.d = cm.e33 + cm.e30; 
+    plLeft.d = cm.e33 + cm.e30;
 
-    plRight.a = cm.e03 - cm.e00; 
-    plRight.b = cm.e13 - cm.e10; 
+    plRight.a = cm.e03 - cm.e00;
+    plRight.b = cm.e13 - cm.e10;
     plRight.c = cm.e23 - cm.e20;
-    plRight.d = cm.e33 - cm.e30; 
+    plRight.d = cm.e33 - cm.e30;
 
-    plBottom.a = cm.e03 + cm.e01; 
-    plBottom.b = cm.e13 + cm.e11; 
+    plBottom.a = cm.e03 + cm.e01;
+    plBottom.b = cm.e13 + cm.e11;
     plBottom.c = cm.e23 + cm.e21;
-    plBottom.d = cm.e33 + cm.e31; 
+    plBottom.d = cm.e33 + cm.e31;
 
-    plTop.a = cm.e03 - cm.e01; 
-    plTop.b = cm.e13 - cm.e11; 
+    plTop.a = cm.e03 - cm.e01;
+    plTop.b = cm.e13 - cm.e11;
     plTop.c = cm.e23 - cm.e21;
-    plTop.d = cm.e33 - cm.e31; 
+    plTop.d = cm.e33 - cm.e31;
 
-    plNear.a = cm.e02; 
-    plNear.b = cm.e12; 
+    plNear.a = cm.e02;
+    plNear.b = cm.e12;
     plNear.c = cm.e22;
     plNear.d = cm.e32;
 
-    plFar.a = cm.e03 - cm.e02; 
-    plFar.b = cm.e13 - cm.e12; 
+    plFar.a = cm.e03 - cm.e02;
+    plFar.b = cm.e13 - cm.e12;
     plFar.c = cm.e23 - cm.e22;
     plFar.d = cm.e33 - cm.e32;
 

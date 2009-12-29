@@ -4,10 +4,10 @@
 //****************************************************************************/
 #ifndef __VEC2_H__
 #define __VEC2_H__
-#pragma once
 
-#include "MathConst.h"
-#include "Scalar.h"
+
+#include "mathconst.h"
+#include "scalar.h"
 
 class Frame;
 //****************************************************************************/
@@ -36,10 +36,10 @@ public:
 
     inline float dot( const Vec2& v ) const { return x*v.x + y*v.y; }
     inline float perp( const Vec2& v ) const { return x*v.y - y*v.x; }
-    inline bool  equal( const Vec2& v ) const 
-    { 
-        return _fabs( x - v.x ) < c_FltEpsilon && 
-            _fabs( y - v.y ) < c_FltEpsilon; 
+    inline bool  equal( const Vec2& v ) const
+    {
+        return _fabs( x - v.x ) < c_FltEpsilon &&
+            _fabs( y - v.y ) < c_FltEpsilon;
     }
 
     inline float norm2() const
@@ -78,17 +78,17 @@ public:
         return Vec2( -v.x, -v.y );
     }
 
-    inline float dist( const Vec2& v ) const 
-    { 
+    inline float dist( const Vec2& v ) const
+    {
         Vec2 d = *this - v;
         return d.norm();
-    } 
+    }
 
-    inline float dist2( const Vec2& v ) const 
-    { 
+    inline float dist2( const Vec2& v ) const
+    {
         Vec2 d = *this - v;
         return d.norm2();
-    } 
+    }
 
     inline float dist_line( const Vec2& a, const Vec2& b ) const
     {
@@ -115,10 +115,10 @@ public:
     }
 
     void rotate( float ang );
-    
+
     Vec2 normal() const
     {
-        return Vec2( y, -x );    
+        return Vec2( y, -x );
     }
 
     void remap( const Frame& from, const Frame& to );

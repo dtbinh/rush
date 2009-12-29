@@ -26,14 +26,14 @@ struct ScriptResource
     JString             m_Name;
     JString             m_Path;
     JWeakRef<JObject>   m_pRoot;
-    DWORD               m_Hash;
+    uint32_t               m_Hash;
     JPersistFormat      m_Format;
 };
 
 typedef std::vector<ScriptResource> ScriptResReg;
 
 //****************************************************************************/
-//  Class:  JPersistServer 
+//  Class:  JPersistServer
 //  Desc:
 //****************************************************************************/
 class JPersistServer : public JObject, public IPersistServer
@@ -45,7 +45,7 @@ public:
     JObject*    LoadObject      ( const char* fname, JObject* pSrc = NULL );
     bool        SaveObject      ( JObject* pObject, const char* fname, JPersistFormat fmt = PersistFmt_JML );
 
-    JObject*    Load            ( InStream& is, JPersistFormat fmt = PersistFmt_Unknown, JObject* pSrc = NULL, DWORD* pHash = NULL );
+    JObject*    Load            ( InStream& is, JPersistFormat fmt = PersistFmt_Unknown, JObject* pSrc = NULL, uint32_t* pHash = NULL );
     bool        Save            ( JObject* pObject, OutStream& os, JPersistFormat fmt = PersistFmt_JML );
     bool        Save            ( JObject* pObject );
 
@@ -68,7 +68,7 @@ private:
     JObject*        LoadJML ( char* text, JObject* pSrc = NULL );
     JObject*        FromJML ( const JMLNode& jml, JObject* pSrc = NULL, JObject* pParent = NULL );
     JMLNode*        ToJML   ( const JObject* pObject, bool bRoot = false );
-    bool            SaveJML ( OutStream& os, const JObject* pObject );   
+    bool            SaveJML ( OutStream& os, const JObject* pObject );
 
     JObject*        LoadXML ( char* text, JObject* pSrc = NULL );
     TiXmlElement*   ToXML   ( const JObject* pObject, bool bRoot = false );

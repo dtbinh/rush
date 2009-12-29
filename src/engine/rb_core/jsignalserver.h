@@ -16,7 +16,7 @@ typedef stdext::hash_multimap<JObject*, JSignal*> JSignalReg;
 //****************************************************************************/
 //  Class:  JSignalServer, singleton
 //  Desc:   Tracks and manages connections between object's slots.
-/*              Any class attribute declared in by class' expose macro could be 
+/*              Any class attribute declared in by class' expose macro could be
 /*              used as slot.
 //****************************************************************************/
 class JSignalServer : public JObject, public ISignalServer
@@ -24,12 +24,12 @@ class JSignalServer : public JObject, public ISignalServer
     JSignalPool                 m_SignalPool;
     JSignalReg                  m_SignalReg;
 
-    DWORD                       m_CurToken;
+    uint32_t                       m_CurToken;
     JObject*                    m_pCurSrcObj;
     JString                     m_CurSrcAttr;
 
     bool                        m_bLogSignals;
-    
+
 
 public:
                                 JSignalServer   ();
@@ -37,10 +37,10 @@ public:
 
     virtual void                Render          ();
 
-    bool                        Connect         ( JObject* pSrcObj, JClassAttr* pSrcAttr, 
+    bool                        Connect         ( JObject* pSrcObj, JClassAttr* pSrcAttr,
                                                   JObject* pDstObj, JClassAttr* pDstAttr );
 
-    bool                        Connect         ( JObject* pSrcObj, const char* pSrcAttr, 
+    bool                        Connect         ( JObject* pSrcObj, const char* pSrcAttr,
                                                   JObject* pDstObj, const char* pDstAttr );
 
     //!  tries to connect all registered in/out signals for the given object
@@ -53,7 +53,7 @@ public:
 
     int                         GetNumSignals   () const { return m_SignalPool.GetNElem(); }
     int                         GetNumObjEntries() const { return m_SignalReg.size(); }
-    
+
 
     int                         ClearSignals    ( JObject* pObj );
     void                        CloneSignals    ( JObject* pSrc, JObject* pDst );
@@ -66,7 +66,7 @@ public:
 
     void                        GetSignalList   ( const JObject* pObj, std::vector<JSignal*>& sigList ) const;
 
-    static JSignalServer*       s_pInstance;    
+    static JSignalServer*       s_pInstance;
 
     expose( JSignalServer )
     {

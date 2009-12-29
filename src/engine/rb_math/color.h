@@ -1,27 +1,27 @@
 //****************************************************************************/
 //  File:  Color.h
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #ifndef __COLOR_H__
 #define __COLOR_H__
-#pragma once
 
-#include "Scalar.h"
+
+#include "scalar.h"
 
 const float c_ClrEpsilon = 1.0f/512.f;
 //****************************************************************************/
 //  Class:  ColorF
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 class ColorF
 {
 public:
     float a, r, g, b;
-    
+
     ColorF() {}
     ColorF( float ca, float cr, float cg, float cb ) : r(cr), g(cg), b(cb), a(ca) {}
 
-    ColorF( DWORD c )
+    ColorF( uint32_t c )
     {
          a = float( (c&0xFF000000) >> 24 )/255.0f;
          r = float( (c&0x00FF0000) >> 16 )/255.0f;
@@ -29,7 +29,7 @@ public:
          b = float( (c&0x000000FF)       )/255.0f;
     }
 
-    ColorF( BYTE ba, BYTE br, BYTE bg, BYTE bb )
+    ColorF( uint8_t ba, uint8_t br, uint8_t bg, uint8_t bb )
     {
          a = float( ba )/255.0f;
          r = float( br )/255.0f;
@@ -37,7 +37,7 @@ public:
          b = float( bb )/255.0f;
     }
 
-    operator DWORD() const
+    operator uint32_t() const
     {
         float fa = a;
         float fr = r;
@@ -49,20 +49,20 @@ public:
 	    fg = clamp( fg, 0.0f, 1.0f );
 	    fb = clamp( fb, 0.0f, 1.0f );
 
-	    BYTE ba, br, bg, bb;
-	    ba = (BYTE)(fa*255.0f);
-	    br = (BYTE)(fr*255.0f);
-	    bg = (BYTE)(fg*255.0f);
-	    bb = (BYTE)(fb*255.0f);
+	    uint8_t ba, br, bg, bb;
+	    ba = (uint8_t)(fa*255.0f);
+	    br = (uint8_t)(fr*255.0f);
+	    bg = (uint8_t)(fg*255.0f);
+	    bb = (uint8_t)(fb*255.0f);
         return  (
-				((ba & 0xFF) << 24) | 
+				((ba & 0xFF) << 24) |
 				((br & 0xFF) << 16) |
 				((bg & 0xFF) << 8)  |
 				(bb & 0xFF)
 				);
-    } // operator DWORD
+    } // operator uint32_t
 
-    friend DWORD lerp( const ColorF& c1, const ColorF& c2, float t )
+    friend uint32_t lerp( const ColorF& c1, const ColorF& c2, float t )
     {
         ColorF c;
         c.lerp( c1, c2, t );
@@ -76,7 +76,7 @@ public:
 	    g = (c2.g - c1.g)*t + c1.g;
 	    r = (c2.r - c1.r)*t + c1.r;
     } // lerp
-    
+
     void toGreyScale()
     {
         float grey = 0.2125f*r + 0.7154f*g + 0.0721f*b;
@@ -182,17 +182,17 @@ enum ColorFormat
 {
     ColorFormat_ARGB4444    = 0,
     ColorFormat_ARGB8888    = 1,
-    ColorFormat_RGB565      = 2,  
-    ColorFormat_RGB888      = 3,  
+    ColorFormat_RGB565      = 2,
+    ColorFormat_RGB888      = 3,
     ColorFormat_A8          = 4,
     ColorFormat_XRGB1555    = 5,
     ColorFormat_XRGB8888    = 6,
-    ColorFormat_V8U8        = 7,    
-    ColorFormat_R16F        = 8,    
-    ColorFormat_GR16F       = 9,   
-    ColorFormat_ABGR16F     = 10, 
-    ColorFormat_R32F        = 11,    
-    ColorFormat_GR32F       = 12,   
+    ColorFormat_V8U8        = 7,
+    ColorFormat_R16F        = 8,
+    ColorFormat_GR16F       = 9,
+    ColorFormat_ABGR16F     = 10,
+    ColorFormat_R32F        = 11,
+    ColorFormat_GR32F       = 12,
     ColorFormat_ABGR32F     = 13,
     ColorFormat_ARGB32F     = 14,
     ColorFormat_Last        = 15,
@@ -205,11 +205,11 @@ inline int GetBytesPerPixel( ColorFormat cf )
 {
     switch (cf)
     {
-    case ColorFormat_ARGB4444:    return 2;    
+    case ColorFormat_ARGB4444:    return 2;
     case ColorFormat_ARGB8888:    return 4;
-    case ColorFormat_RGB565:      return 2;  
+    case ColorFormat_RGB565:      return 2;
     case ColorFormat_RGB888:      return 3;
-    case ColorFormat_A8:          return 1;  
+    case ColorFormat_A8:          return 1;
     case ColorFormat_XRGB1555:    return 2;
     case ColorFormat_XRGB8888:    return 4;
     case ColorFormat_V8U8:        return 2;
@@ -218,7 +218,7 @@ inline int GetBytesPerPixel( ColorFormat cf )
     case ColorFormat_ABGR16F:     return 8;
     case ColorFormat_R32F:        return 4;
     case ColorFormat_GR32F:       return 8;
-    case ColorFormat_ARGB32F:     return 32;    
+    case ColorFormat_ARGB32F:     return 32;
     }
     return 0;
 } // GetBytesPerPixel

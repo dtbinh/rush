@@ -36,17 +36,17 @@ bool JMLParser::ParseFile( const char* fName )
 	FILE* fp = fopen( m_FileName, "rb" );
 	if (!fp) return false;
 	fseek( fp, 0, SEEK_END );
-	int fileSize = ftell( fp ); 
+	int fileSize = ftell( fp );
 	fseek( fp, 0, SEEK_SET );
 	char* buf = new char[fileSize + 1];
 	fread( buf, fileSize, 1, fp );
 	fclose( fp );
 	buf[fileSize] = 0;
-    
+
     ClearStringPool();
 
 	ParseBuffer( buf );
-    
+
     ClearStringPool();
 	delete []buf;
 	return true;
@@ -77,7 +77,7 @@ int	JMLParser::yyInput( char* buf, int max_size )
 	{
 		buf[nSym++] = '\n';
 		m_BufPtr++;
-	} 
+	}
 
 	return nSym;
 } // JMLParser::yyInput
@@ -133,31 +133,31 @@ void JMLParser::SetFileName( const char* fname )
 //****************************************************************************/
 
 static std::vector<const char*>    s_StrPool;
-const char* GetPooledString( DWORD id )
+const char* GetPooledString( uint32_t id )
 {
     if (id >= s_StrPool.size()) return "";
     return s_StrPool[id];
 }
 
-DWORD CreatePooledString( const char* pStr, int len )
+uint32_t CreatePooledString( const char* pStr, int len )
 {
-    if (len == -1) 
+    if (len == -1)
     {
-        DWORD id = s_StrPool.size();
+        uint32_t id = s_StrPool.size();
         s_StrPool.push_back( "" );
         return id;
     }
     char* pAllocStr = new char[len + 1];
     strncpy( pAllocStr, pStr, len );
     pAllocStr[len] = 0;
-    DWORD id = s_StrPool.size();
+    uint32_t id = s_StrPool.size();
     s_StrPool.push_back( pAllocStr );
     return id;
 }
 
 void ClearStringPool()
 {
-    int nStr = s_StrPool.size(); 
+    int nStr = s_StrPool.size();
     for (int i = 0; i < nStr; i++) delete []s_StrPool[i];
     s_StrPool.clear();
 }

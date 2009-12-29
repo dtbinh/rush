@@ -3,9 +3,9 @@
 //****************************************************************************/
 #ifndef __AABOX_H__
 #define __AABOX_H__
-#pragma once
 
-#include "Vec3.h"
+
+#include "vec3.h"
 class Frame;
 class Mat4;
 //****************************************************************************/
@@ -17,8 +17,8 @@ class AABox
 public:
     Vec3    minv;
     Vec3    maxv;
-    
-    
+
+
             AABox(){}
             AABox( const Vec3& pmin, const Vec3& pmax ) : minv(pmin), maxv(pmax) {}
             AABox( const Vec3& c, float dx, float dy, float dz );
@@ -50,7 +50,7 @@ public:
     Vec3 XyZ() const { return Vec3( maxv.x, minv.y, maxv.z ); }
     Vec3 XYz() const { return Vec3( maxv.x, maxv.y, minv.z ); }
     Vec3 XYZ() const { return maxv; }
-            
+
 }; // class AABox
 
 #endif // __AABox_H__

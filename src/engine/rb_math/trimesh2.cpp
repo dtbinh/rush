@@ -4,8 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "stdafx.h"
-#include "TriMesh2.h"
-#include "Tri2.h"
+#include "trimesh2.h"
+#include "tri2.h"
 
 /***********************************************************************************/
 /*  TriMesh2 implementation
@@ -35,7 +35,7 @@ bool TriMesh2::PtIn( const Vec2& pt ) const
     {
         const Face& f = m_Faces[i];
         Tri2 tri( m_Verts[f.va], m_Verts[f.vb], m_Verts[f.vc] );
-        if (tri.contains( pt )) 
+        if (tri.contains( pt ))
         {
             return true;
         }

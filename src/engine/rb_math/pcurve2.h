@@ -6,12 +6,12 @@
 #ifndef __PCURVE2_H__
 #define __PCURVE2_H__
 
-#include "Vec2.h"
+#include "vec2.h"
 #include <vector>
 
 /***********************************************************************************/
 //  Class:  PCurve2
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class PCurve2
 {
@@ -23,7 +23,7 @@ public:
     int         GetNPoints  () const { return static_cast<int>( m_Points.size() ); }
     const Vec2& GetPoint    ( int idx ) const { return m_Points[idx%m_Points.size()]; }
     float       GetTime     ( int idx ) const { return m_Times[idx%m_Points.size()]; }
-    
+
     void        AddPoint    ( float t, const Vec2& pt );
     void        InsertPoint ( int idx, float t, const Vec2& pt );
     void        DeletePoint ( int idx );

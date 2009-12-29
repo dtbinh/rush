@@ -18,7 +18,7 @@ enum VertexType
     VertexType_XYZUV        = 5,
     VertexType_XYZD         = 6,
     VertexType_XYZDNUV      = 7,
-    VertexType_XYZNUVW4     = 8,      
+    VertexType_XYZNUVW4     = 8,
 
     VertexType_Last         = 9
 }; // enum VertexType
@@ -34,9 +34,9 @@ public:
     float					y;
     float					z;
 
-    DWORD					diffuse;	
-    float					u, v;		
-    float					u2, v2;	
+    uint32_t					diffuse;
+    float					u, v;
+    float					u2, v2;
 
     static const VertexType Type = VertexType_XYZDUV2;
 }; // class VertexW
@@ -48,13 +48,13 @@ public:
 class VertexS
 {
 public:
-    float				x, y;		
-    float				z;			
-    float				w;			
+    float				x, y;
+    float				z;
+    float				w;
 
-    DWORD				diffuse;	
-    DWORD				specular;	
-    float				u, v;		
+    uint32_t				diffuse;
+    uint32_t				specular;
+    float				u, v;
 
     static const VertexType Type = VertexType_XYZWDSUV;
 }; // class VertexS
@@ -66,9 +66,9 @@ public:
 class VertexN
 {
 public:
-    float				x, y, z;			
-    float				nx, ny, nz;	
-    float				u, v;		
+    float				x, y, z;
+    float				nx, ny, nz;
+    float				u, v;
 
     static const VertexType Type = VertexType_XYZNUV;
 }; // class VertexN
@@ -80,11 +80,11 @@ public:
 class VertexW4
 {
 public:
-    float				x, y, z;			
-    float				nx, ny, nz;			
-    float				u, v;	
-    BYTE                weights[4];
-    BYTE                boneIdx[4];
+    float				x, y, z;
+    float				nx, ny, nz;
+    float				u, v;
+    uint8_t             weights[4];
+    uint8_t             boneIdx[4];
 
     int GetNBones() const
     {
@@ -93,7 +93,7 @@ public:
         if (boneIdx[2] == 0xFF) return 2;
         if (boneIdx[3] == 0xFF) return 3;
         return 4;
-    }   
+    }
 
     static const VertexType Type = VertexType_XYZNUVW4;
 }; // class VertexS

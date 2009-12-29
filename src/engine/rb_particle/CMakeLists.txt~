@@ -1,0 +1,3 @@
+INCLUDE_DIRECTORIES(${RUSH_SOURCE_DIR}/include)
+
+ADD_LIBRARY(rb_particle .)

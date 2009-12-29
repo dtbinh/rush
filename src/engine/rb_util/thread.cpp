@@ -1,14 +1,14 @@
 //****************************************************************************/
 //  File:  Thread.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "stdafx.h"
 #include "Thread.h"
 
-DWORD WINAPI ThreadStarter( LPVOID lpParameter )
+uint32_t WINAPI ThreadStarter( LPVOID lpParameter )
 {
     Thread* pThread = (Thread*)lpParameter;
-    if (pThread) 
+    if (pThread)
     {
         pThread->OnStart();
         pThread->Terminate();
@@ -36,7 +36,7 @@ void Thread::Start()
     if (m_State != ThreadState_Idle) return;
     if (m_hThread != NULL) return;
 
-    DWORD threadID = 0;
+    uint32_t threadID = 0;
     m_hThread = CreateThread( NULL, 0, ThreadStarter, this, 0, &threadID );
     SetThreadPriority( m_hThread, m_Priority );
 
@@ -55,7 +55,7 @@ void Thread::OnEnd()
 void Thread::Terminate()
 {
     if (m_State == ThreadState_Suspended) Resume();
-    if (m_State == ThreadState_Running) 
+    if (m_State == ThreadState_Running)
     {
         m_State = ThreadState_Terminating;
     }

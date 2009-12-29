@@ -1,6 +1,6 @@
 //****************************************************************************/
 //  File:  MappedFile.h
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #ifndef __MAPPEDFILE_H__
 #define __MAPPEDFILE_H__
@@ -9,9 +9,9 @@
 
 //****************************************************************************/
 //  Class:  MappedFile
-//  Desc:   Wrapper around Windows file-mapping 
+//  Desc:   Wrapper around Windows file-mapping
 //****************************************************************************/
-class MappedFile  
+class MappedFile
 {
     BYTE*       m_pBuffer;
     int         m_MappedSize;
@@ -29,7 +29,7 @@ public:
     bool        IsMapped        () const { return (m_pBuffer != NULL); }
     BYTE*       GetDataPtr      () const { return m_pBuffer; }
     BYTE        Warmup          ( int startPage = 0, int nBytes = 0 );
-    DWORD       GetPageSize     () const;
+    uint32_t       GetPageSize     () const;
 
 }; // class MappedFile
 

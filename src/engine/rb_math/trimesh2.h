@@ -7,7 +7,7 @@
 #define __TRIMESH2_H__
 
 #include <vector>
-#include "Vec2.h"
+#include "vec2.h"
 
 struct Face
 {
@@ -19,7 +19,7 @@ struct Face
 
 /***********************************************************************************/
 //  Class:  TriMesh2
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class TriMesh2
 {
@@ -35,12 +35,12 @@ public:
     void                AddFace     ( int va, int vb, int vc ) { m_Faces.push_back( Face( va, vb, vc ) ); }
     void                AddVert     ( const Vec2& v ) { m_Verts.push_back( v ); }
 
-    int                 GetNVerts   () const { return (int)m_Verts.size(); } 
-    int                 GetNFaces   () const { return (int)m_Faces.size(); } 
-    const Vec2&         GetVert     ( int idx ) const { return m_Verts[idx]; } 
-    const Face&         GetFace     ( int idx ) const { return m_Faces[idx]; } 
+    int                 GetNVerts   () const { return (int)m_Verts.size(); }
+    int                 GetNFaces   () const { return (int)m_Faces.size(); }
+    const Vec2&         GetVert     ( int idx ) const { return m_Verts[idx]; }
+    const Face&         GetFace     ( int idx ) const { return m_Faces[idx]; }
     bool                PtIn        ( const Vec2& pt ) const;
-    
+
     bool                IndicesAreCorrect();
 
 }; // class TriMesh2

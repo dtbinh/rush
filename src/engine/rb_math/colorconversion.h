@@ -1,57 +1,57 @@
 //****************************************************************************/
 //  File:  ColorConversion.h
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #ifndef __COLORCONVERSION_H__
 #define __COLORCONVERSION_H__
-#pragma once
 
-#include "Color.h"
 
-bool ConvertPixels( BYTE* pDst, ColorFormat dstFmt, 
-                    const BYTE* pSrc, ColorFormat srcFmt, 
+#include "color.h"
+
+bool ConvertPixels( uint8_t* pDst, ColorFormat dstFmt,
+                    const uint8_t* pSrc, ColorFormat srcFmt,
                     int nPixels );
 
 template<ColorFormat CTo, ColorFormat CFrom>
-__forceinline void ConvertPixel( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel( uint8_t* &dst, const uint8_t* &src )
 {
     assert( false );
 }
 
 template<>
-__forceinline void ConvertPixel<ColorFormat_ARGB8888, ColorFormat_ARGB4444>( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel<ColorFormat_ARGB8888, ColorFormat_ARGB4444>( uint8_t* &dst, const uint8_t* &src )
 {
-    DWORD a = DWORD(src[1]&0xF0);
-    DWORD r = DWORD(src[1]&0x0F);
-    DWORD g = DWORD(src[0]&0xF0);
-    DWORD b = DWORD(src[0]&0x0F);
-    DWORD clr = (   (a<<24) | (a<<20) |
+    uint32_t a = uint32_t(src[1]&0xF0);
+    uint32_t r = uint32_t(src[1]&0x0F);
+    uint32_t g = uint32_t(src[0]&0xF0);
+    uint32_t b = uint32_t(src[0]&0x0F);
+    uint32_t clr = (   (a<<24) | (a<<20) |
                     (r<<20) | (r<<16) |
                     (g<<8)  | (g<<4)  |
                     (b<<4)  | b);
-    *((DWORD*)dst) = clr;
+    *((uint32_t*)dst) = clr;
     dst += 4;
     src += 2;
 }
 
 template<>
-__forceinline void ConvertPixel<ColorFormat_ARGB8888, ColorFormat_RGB565>( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel<ColorFormat_ARGB8888, ColorFormat_RGB565>( uint8_t* &dst, const uint8_t* &src )
 {
-    DWORD r   = DWORD(src[1]&0xF8);
+    uint32_t r   = uint32_t(src[1]&0xF8);
     r |= (r>>5);
-    DWORD g   = (DWORD(src[1]&0x07)<<5) | 
-                (DWORD(src[0]&0xE0)>>3);
+    uint32_t g   = (uint32_t(src[1]&0x07)<<5) |
+                (uint32_t(src[0]&0xE0)>>3);
     g |= (g>>6);
-    DWORD b   = DWORD(src[0]&0x1F)<<3;
+    uint32_t b   = uint32_t(src[0]&0x1F)<<3;
     g |= (g>>5);
-    DWORD clr = (0xFF000000 | (r<<16) | (g<<8) | b);
-    *((DWORD*)dst) = clr;
+    uint32_t clr = (0xFF000000 | (r<<16) | (g<<8) | b);
+    *((uint32_t*)dst) = clr;
     dst += 4;
     src += 2;
 }
 
 template<>
-__forceinline void ConvertPixel<ColorFormat_ARGB8888, ColorFormat_RGB888>( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel<ColorFormat_ARGB8888, ColorFormat_RGB888>( uint8_t* &dst, const uint8_t* &src )
 {
     dst[0] = src[0];
     dst[1] = src[1];
@@ -62,35 +62,35 @@ __forceinline void ConvertPixel<ColorFormat_ARGB8888, ColorFormat_RGB888>( BYTE*
 }
 
 template<>
-__forceinline void ConvertPixel<ColorFormat_ARGB8888, ColorFormat_A8>( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel<ColorFormat_ARGB8888, ColorFormat_A8>( uint8_t* &dst, const uint8_t* &src )
 {
-    *((DWORD*)dst) = (((DWORD)(*src))<<24)|0x00FFFFFF;
+    *((uint32_t*)dst) = (((uint32_t)(*src))<<24)|0x00FFFFFF;
     dst += 4;
     src += 1;
 }
 
 template<>
-__forceinline void ConvertPixel<ColorFormat_ARGB8888, ColorFormat_ARGB32F>( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel<ColorFormat_ARGB8888, ColorFormat_ARGB32F>( uint8_t* &dst, const uint8_t* &src )
 {
     const float* fc = (const float*)src;
-    DWORD ba = (DWORD( fc[0]*255.0f )) << 24;
-    DWORD br = (DWORD( fc[1]*255.0f )) << 16;
-    DWORD bg = (DWORD( fc[2]*255.0f )) << 8;
-    DWORD bb = (DWORD( fc[3]*255.0f ));
-    *((DWORD*)dst) = ba|br|bg|bb;
+    uint32_t ba = (uint32_t( fc[0]*255.0f )) << 24;
+    uint32_t br = (uint32_t( fc[1]*255.0f )) << 16;
+    uint32_t bg = (uint32_t( fc[2]*255.0f )) << 8;
+    uint32_t bb = (uint32_t( fc[3]*255.0f ));
+    *((uint32_t*)dst) = ba|br|bg|bb;
     dst += 4;
     src += 16;
 }
 
 template<>
-__forceinline void ConvertPixel<ColorFormat_ARGB32F, ColorFormat_ARGB8888>( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel<ColorFormat_ARGB32F, ColorFormat_ARGB8888>( uint8_t* &dst, const uint8_t* &src )
 {
     float* fdst = (float*)dst;
-    DWORD clr = *((const DWORD*)src);
-    DWORD ba = (clr&0xFF000000)>>24;
-    DWORD br = (clr&0x00FF0000)>>16;
-    DWORD bg = (clr&0x0000FF00)>>8;
-    DWORD bb = (clr&0x000000FF);
+    uint32_t clr = *((const uint32_t*)src);
+    uint32_t ba = (clr&0xFF000000)>>24;
+    uint32_t br = (clr&0x00FF0000)>>16;
+    uint32_t bg = (clr&0x0000FF00)>>8;
+    uint32_t bb = (clr&0x000000FF);
     const float c_InvByte = 1.0f/255.0f;
     fdst[0] = float( ba )*c_InvByte;
     fdst[1] = float( br )*c_InvByte;
@@ -101,15 +101,15 @@ __forceinline void ConvertPixel<ColorFormat_ARGB32F, ColorFormat_ARGB8888>( BYTE
 }
 
 template<>
-__forceinline void ConvertPixel<ColorFormat_ARGB32F, ColorFormat_RGB565>( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel<ColorFormat_ARGB32F, ColorFormat_RGB565>( uint8_t* &dst, const uint8_t* &src )
 {
     float* fdst = (float*)dst;
-    DWORD r   = DWORD(src[1]&0xF8);
+    uint32_t r   = uint32_t(src[1]&0xF8);
     r |= (r>>5);
-    DWORD g   = (DWORD(src[1]&0x07)<<5) | 
-                (DWORD(src[0]&0xE0)>>3);
+    uint32_t g   = (uint32_t(src[1]&0x07)<<5) |
+                (uint32_t(src[0]&0xE0)>>3);
     g |= (g>>6);
-    DWORD b   = DWORD(src[0]&0x1F)<<3;
+    uint32_t b   = uint32_t(src[0]&0x1F)<<3;
     g |= (g>>5);
 
     const float c_InvByte = 1.0f/255.0f;
@@ -122,68 +122,68 @@ __forceinline void ConvertPixel<ColorFormat_ARGB32F, ColorFormat_RGB565>( BYTE* 
 }
 
 template<>
-__forceinline void ConvertPixel<ColorFormat_ARGB4444, ColorFormat_RGB565>( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel<ColorFormat_ARGB4444, ColorFormat_RGB565>( uint8_t* &dst, const uint8_t* &src )
 {
-    WORD br = WORD(src[1]&0xF8);
-    WORD bg = (WORD(src[1]&0x07)<<5) | (WORD(src[0]&0xE0)>>3);
-    WORD bb = WORD(src[0]&0x1F)<<3;
-    *((WORD*)dst) = 0xF0|br|bg|bb;
+    uint16_t br = uint16_t(src[1]&0xF8);
+    uint16_t bg = (uint16_t(src[1]&0x07)<<5) | (uint16_t(src[0]&0xE0)>>3);
+    uint16_t bb = uint16_t(src[0]&0x1F)<<3;
+    *((uint16_t*)dst) = 0xF0|br|bg|bb;
     dst += 2;
     src += 2;
 }
 
 template<>
-__forceinline void ConvertPixel<ColorFormat_ARGB4444, ColorFormat_ARGB8888>( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel<ColorFormat_ARGB4444, ColorFormat_ARGB8888>( uint8_t* &dst, const uint8_t* &src )
 {
-    WORD ba = (WORD(src[3]&0xF0))<<8;
-    WORD br = (WORD(src[2]&0xF0))<<4;
-    WORD bg = (WORD(src[1]&0xF0));
-    WORD bb = (WORD(src[0]&0xF0))>>4;
-    *((WORD*)dst) = ba|br|bg|bb;
+    uint16_t ba = (uint16_t(src[3]&0xF0))<<8;
+    uint16_t br = (uint16_t(src[2]&0xF0))<<4;
+    uint16_t bg = (uint16_t(src[1]&0xF0));
+    uint16_t bb = (uint16_t(src[0]&0xF0))>>4;
+    *((uint16_t*)dst) = ba|br|bg|bb;
     dst += 2;
     src += 4;
 }
 
 template<>
-__forceinline void ConvertPixel<ColorFormat_ARGB4444, ColorFormat_ARGB32F>( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel<ColorFormat_ARGB4444, ColorFormat_ARGB32F>( uint8_t* &dst, const uint8_t* &src )
 {
     const float* fc = (const float*)src;
-    WORD ba = (WORD( fc[0]*15.0f )) << 12;
-    WORD br = (WORD( fc[1]*15.0f )) << 8;
-    WORD bg = (WORD( fc[2]*15.0f )) << 4;
-    WORD bb = (WORD( fc[3]*15.0f ));
-    *((WORD*)dst) = ba|br|bg|bb;
+    uint16_t ba = (uint16_t( fc[0]*15.0f )) << 12;
+    uint16_t br = (uint16_t( fc[1]*15.0f )) << 8;
+    uint16_t bg = (uint16_t( fc[2]*15.0f )) << 4;
+    uint16_t bb = (uint16_t( fc[3]*15.0f ));
+    *((uint16_t*)dst) = ba|br|bg|bb;
     dst += 2;
     src += 16;
 }
 
 template<>
-__forceinline void ConvertPixel<ColorFormat_RGB565, ColorFormat_ARGB8888>( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel<ColorFormat_RGB565, ColorFormat_ARGB8888>( uint8_t* &dst, const uint8_t* &src )
 {
-    WORD br = (WORD(src[2]&0xF8))<<8;
-    WORD bg = (WORD(src[1]&0xFC))<<3;
-    WORD bb = (WORD(src[0]&0xF8))>>3;
-    *((WORD*)dst) = br|bg|bb;
+    uint16_t br = (uint16_t(src[2]&0xF8))<<8;
+    uint16_t bg = (uint16_t(src[1]&0xFC))<<3;
+    uint16_t bb = (uint16_t(src[0]&0xF8))>>3;
+    *((uint16_t*)dst) = br|bg|bb;
     dst += 2;
     src += 4;
 }
 
 template<>
-__forceinline void ConvertPixel<ColorFormat_RGB565, ColorFormat_ARGB32F>( BYTE* &dst, const BYTE* &src )
+inline void ConvertPixel<ColorFormat_RGB565, ColorFormat_ARGB32F>( uint8_t* &dst, const uint8_t* &src )
 {
     const float* fc = (const float*)src;
-    WORD br = (WORD( fc[1]*31.0f )) << 11;
-    WORD bg = (WORD( fc[2]*63.0f )) << 5;
-    WORD bb = (WORD( fc[3]*31.0f ));
+    uint16_t br = (uint16_t( fc[1]*31.0f )) << 11;
+    uint16_t bg = (uint16_t( fc[2]*63.0f )) << 5;
+    uint16_t bb = (uint16_t( fc[3]*31.0f ));
 
-    *((WORD*)dst) = br|bg|bb;
+    *((uint16_t*)dst) = br|bg|bb;
     dst += 2;
     src += 4;
 }
 
 
 template<ColorFormat CTo, ColorFormat CFrom>
-__forceinline void ConvertPixels( BYTE* &dst, const BYTE* &src, int nPixels )
+inline void ConvertPixels( uint8_t* &dst, const uint8_t* &src, int nPixels )
 {
     for (int i = 0; i < nPixels; i++)
     {
