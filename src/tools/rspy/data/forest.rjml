@@ -1,0 +1,150 @@
+location "forest"
+{
+    widget "clouds";
+      
+    picture "Background"
+    {
+        xalign          = Parent;
+        yalign          = Parent;
+        skinpack        = "forest";
+        skinframe       = 0;
+        tile            = false;
+        Stretch         = false;
+    }
+
+
+
+     widget "cut_wolf1";
+
+ animation
+   {
+     autoplay = true;
+     visible  = true;
+     anmsound { looped = true; parallel = true; file = "forest.ogg"; }
+   }
+
+    picture "Foreground"
+    {
+        xalign          = Parent;
+        yalign          = Parent;
+        skinpack        = "forest";
+        skinframe       = 1;
+        tile            = false;
+        Stretch         = false;
+    }
+
+
+
+    hotspot "lepry"
+    {
+        contour  = { { 180, 320 } , { 180, 500 }, { 360, 500 }, { 360, 320 } };
+        cursor   = "look";
+        unpress  = >>anmlepry.Play;
+
+        animation "anmlepry"
+        {
+            reentrant   = false;
+            anmsprite
+            {
+                pos             = { 180, 295 };
+                package         = "forest1lepry";
+                startframe      = 0;
+                fps             = 10;
+                anmsound { file = "forest1lepry.ogg"; }
+            }
+         }
+    }
+
+    areacontrol "redhatmove"
+    {
+        char            = "MainChar";
+        rotspeed        = 500.0f;
+        movespeed       = 6.0f;
+        runspeed        = 12.0f;
+        rundistance     = 12.0f;
+        is3d            = true;
+         
+        contour         = { { 511, 437}, {433, 456}, {405, 613}, {453, 673}, { 418, 769 }, { 730, 764 }, { 611, 595 },  { 582, 448 } };
+        drawbounds      = false;
+        
+
+        hotspot "hsgoinforest"
+        {
+            contour         = { { 441, 681 } , { 408, 765 }, { 762, 764 }, { 688, 681 }};
+            cursor          = "down";
+            pivot           = { 559, 695 };
+            drawbounds      = false;
+            oncharin        = >>anmgoinforest.Play;
+            
+            animation "anmgoinforest"
+            {
+                reentrant  = false;
+                fade        { mode = out; duration = 1.0; }
+                setlocation { location = "inforest"; charpos = { 760, 400 , 0 }; chardir = 90; }
+            }  
+        }
+
+        hotspot "hsgoforest2"
+        {
+            contour         = { { 493, 303 } , { 480, 436 }, { 593, 468 }, { 656, 316 } };
+            cursor          = "up";
+            pivot           = { 503, 453 };
+            drawbounds      = false;
+            oncharin        = >>anmgoforest2.Play;
+            
+            animation "anmgoforest2"
+            {
+                reentrant  = false;
+                fade        { mode = out; duration = 1.0; }
+                setlocation { location = "forest2"; charpos = { 88, 582, 0 }; chardir = 320; }
+            }  
+        }
+     } 
+   
+   
+    shadowpass {}
+
+    hotspot "crow"
+    {
+        contour  = { { 600, 100 } , { 600, 250 }, { 800, 250 }, { 800, 100 } };
+        cursor   = "look";
+        unpress  = >>anmcrow.Play;
+
+        animation "anmcrow"
+        {
+            playmode    = playone;
+            reentrant   = false;
+            anmsprite   "crow1"
+            {
+                pos             = { 0, 30 };
+                package         = "crow1";
+                startframe      = 0;
+                fps             = 10;
+                anmsound { file = "crow1.ogg"; }
+            }
+
+            anmsprite   "crow2"
+            {
+                pos             = { 0, 30 };
+                package         = "crow2";
+                startframe      = 0;
+                fps             = 10;
+                anmsound { file = "crow2.ogg"; }
+            }
+         }
+    } 
+
+
+   label "wolfspeak"
+   {
+        fgcolor     = 0xFFF6F319;
+        shadowcolor = 0xFF000000;
+        extents     = { 50, 30, 950, 100 };
+        font        = "font_speech";
+        filterfont  = true;
+        wraptext    = true;
+        textxalign  = center;
+        fontheight  = 35;
+    }   
+
+}

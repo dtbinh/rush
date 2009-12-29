@@ -1,0 +1,35 @@
+widget "test_signals"
+{
+	propertyeditor "Vec3"
+    {
+        vec3editor "Vec3Edit"
+        {
+            xalign          = parent;
+            yalign          = parent;
+            value           = <>InVal;
+            editbox "xbox"
+            {
+                extents         = { 0, 0, 40, 12 };
+                font            = "font_small";
+                bgcolor         = 0x00000000;
+                text            = <>Vec3Edit.x;
+            }
+            
+            editbox "ybox"
+            {
+                extents         = { 40, 0, 40, 12 };
+                font            = "font_small";
+                bgcolor         = 0x00000000;
+                text            = <>Vec3Edit.y;
+            }
+            
+            editbox "zbox"
+            {
+                extents         = { 80, 0, 40, 12 };
+                font            = "font_small";
+                bgcolor         = 0x00000000;
+                text            = <>Vec3Edit.z;
+            }
+        }
+    }
+}

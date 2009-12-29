@@ -1,0 +1,61 @@
+shader "base_model"
+{
+
+    renderstate "rs"
+    {
+        alphablendenable        = true;
+        srcblend                = srcalpha;
+        destblend               = invsrcalpha;
+        alphatestenable         = true;
+        alphafunc               = greaterequal;
+        alpharef                = 0x01;
+        ditherenable            = true;
+        lighting                = false;
+        zenable                 = true;
+        zwriteenable            = true;
+        zfunc                   = lessequal;
+        fillmode                = solid;
+        cullmode                = cw;
+        texturefactor           = 0xFFFFFFFF;
+        
+        normalizenormals        = true;
+        shademode               = gouraud;
+        colorvertex             = true;
+        diffusematerialsource   = material;
+        
+        fogenable               = true;
+        fogstart                = 1500.0f;
+        fogend                  = 5000.0f;
+        fogcolor                = 0xFF000000;
+        fogvertexmode           = linear;
+        rangefogenable          = true;
+    }
+    
+    texturepass 
+    {
+        pass                = 0;
+        colorop             = modulate;
+        colorarg1           = texture;
+        colorarg2           = diffuse;
+        
+        alphaop             = modulate;
+        alphaarg1           = texture;
+        alphaarg2           = diffuse;
+        
+        addressu            = mirror;
+        addressv            = mirror;
+        magfilter           = linear;
+        minfilter           = linear;
+        mipfilter           = linear;
+		
+		texturetransformflags = Count2;
+        texcoordindex         = 0;   
+    }
+    
+    texturepass 
+    {
+        pass                = 1;
+        colorop             = disable;
+        alphaop             = disable; 
+    }
+}

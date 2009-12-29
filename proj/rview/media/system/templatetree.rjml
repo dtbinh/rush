@@ -1,0 +1,48 @@
+widget "templatetree"
+{
+    xalign = parent;
+    yalign = parent;
+    
+    objecttree "templatetreebrowser"
+    {
+        visible             = true;
+        xalign              = Parent;
+        yalign              = Parent;
+        font                = "font_small";
+        rootpath            = "templates";    
+        fgcolor             = 0xAAFFFFEE;
+        bgcolor             = 0xBBCCCCFF;
+        hoverfgcolor        = 0xAAFFFFFF;
+        hoverbgcolor        = 0xDDDDDDFF;
+        draggable           = true;
+        defaultrootpos      = { 800, 600 };
+        nodecaptionpos      = { 3.0f, 2.0f };
+    }
+        
+    group "templates"
+    {
+        visible             = false;
+        group "base"
+        {
+            group "group" {}
+            locator "locator" {}
+            glyph "glyph" {}
+        }
+        group "widgets"
+        {
+            widget "widget" { xalign = parent; yalign = parent; }
+            panel "panel" { extents = { 300, 300, 400, 300 }; }
+            button "button" { extents = { 500, 300, 100, 40 }; }
+            label "label"
+            {
+                text        = L"Text";
+                extents     = { 500, 300, 100, 40 };
+                textxalign  = center;
+                font        = "font_speech";
+                fontheight  = 40;
+                fgcolor     = 0xFFFF2222;
+                shadowcolor = 0xFF000000;
+            }
+        }
+    }
+}

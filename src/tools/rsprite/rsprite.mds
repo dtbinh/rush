@@ -1,0 +1,16 @@
+<Combine name="rsprite" fileversion="2.0">
+  <Configurations active="Debug|Any CPU">
+    <Configuration name="Debug|Any CPU" ctype="CombineConfiguration">
+      <Entry build="True" name="rsprite" configuration="Debug|Any CPU" />
+    </Configuration>
+    <Configuration name="Release|Any CPU" ctype="CombineConfiguration">
+      <Entry build="True" name="rsprite" configuration="Release|Any CPU" />
+    </Configuration>
+  </Configurations>
+  <StartMode startupentry="rsprite" single="True">
+    <Execute type="None" entry="rsprite" />
+  </StartMode>
+  <Entries>
+    <Entry filename="./rsprite.csproj" />
+  </Entries>
+</Combine>

@@ -1,0 +1,42 @@
+object "testlayout"
+{
+    widget "black_window"
+    {
+        extents = { 1, 2, 150, 250 };
+        group "nice"
+        {
+            button "buttonA"
+            {
+                extents = { -100, 20, 15, 25 };
+                button "buttonC"
+                {
+                    extents = { 10, 20, 50, 50 };
+                }
+            }
+            button "buttonB"
+            {
+                extents = { 18, 4, 5, 5 };
+            }
+        }
+    }
+    dialog "white_window"
+    {
+        extents = { -1, -2, 150, 250 };
+        widget "nice"
+        {
+            extents = { -11, 7, 130, 260 };
+            combobox "comboA"
+            {
+                extents = { 5, 5, 5, 5 };
+            }
+            button "buttonAB"
+            {
+                extents = { 3, 3, 3, 3 };
+            }
+            combobox "comboB"
+            {
+                extents = { 2, 2, 2, 2 };
+            }
+        }
+    }
+}

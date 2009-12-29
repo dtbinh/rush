@@ -1,0 +1,111 @@
+boundseditor "boundseditor"
+{
+    visible     = false;
+    xalign      = Parent;
+    yalign      = Parent;
+    rootpath    = <<core.RootObject;
+    signalsink  = true;
+	cursor 				= "system";
+
+    
+    panel "fadeback"
+    {
+        visible     = true;
+        xalign      = Parent;
+        yalign      = Parent; 
+        bgcolor     = 0x33000000;
+        consumeevents = true;
+    }
+    
+    group "templates"
+    {
+        polylineeditor "polybutton"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;
+            text        = "contour";
+        }
+        
+        polylineeditor "areacontrol"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;
+            text        = "contour";
+        }
+        
+        polylineeditor "path"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;
+            text        = "path";
+            closed      = false;
+        }
+        
+        pivoteditor "locator"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;                        
+            text        = "position";
+        }
+        
+        pivoteditor "anmsprite"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;                        
+            text        = "position";
+        }
+        
+        pivoteditor "waypoint"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;                        
+            text        = "position";
+        }
+        
+        frameeditor "widget"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;
+            text        = "extentsabs";
+        }   
+        pivoteditor "widget"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;                        
+            text        = "pivotabs";
+        }        
+		
+		angleeditor "hotspot"
+		{
+		    signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;                        
+            text        = "direction<angle|pivot<pivot";
+		}
+		
+		picture "effectinstance"
+		{
+		    signalsink  = true;
+			skinpack  = "sys_gizmos";
+			skinframe = 4;
+			text      = "position<positionabs|effect<name";
+		}
+		
+		pivoteditor "effectinstance"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;                        
+            text        = "position";
+        }    
+    }
+    
+}

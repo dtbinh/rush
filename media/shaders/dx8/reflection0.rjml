@@ -1,0 +1,50 @@
+shader "reflection0"
+{
+    renderstate "rs"
+    {
+        alphablendenable    = true;
+        srcblend            = srcalpha;
+        destblend           = invsrcalpha;
+        alphatestenable     = true;
+        alphafunc           = greaterequal;
+        alpharef            = 0x01;
+        ditherenable        = true;
+        lighting            = true;
+        zenable             = false;
+        zwriteenable        = false;
+        zfunc               = lessequal;
+        fillmode            = solid;
+        cullmode            = cw;
+        texturefactor       = 0x22FFFFFF;
+        
+        normalizenormals    = true;
+        shademode           = gouraud;
+        colorvertex         = false;
+        diffusematerialsource= material;
+    }
+    
+    texturepass 
+    {
+        pass                = 0;
+        colorop             = modulate;
+        colorarg1           = texture;
+        colorarg2           = diffuse;
+        
+        alphaop             = modulate;
+        alphaarg1           = texture;
+        alphaarg2           = tfactor;
+        
+        addressu            = mirror;
+        addressv            = mirror;
+        magfilter           = linear;
+        minfilter           = linear;
+        mipfilter           = linear;
+    }
+    
+    texturepass 
+    {
+        pass                = 1;
+        colorop             = disable;
+        alphaop             = disable; 
+    }
+}

@@ -1,0 +1,9 @@
+shader "blend_additive"
+{
+    renderstate "rs"
+    {
+        alphablendenable    = true;
+        srcblend            = srcalpha;
+        destblend           = one;
+    }    
+}

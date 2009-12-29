@@ -1,0 +1,31 @@
+group "test_templates"
+{
+	crudget "cool_button"
+	{
+	    width = 40;
+	    height = 20;
+	    
+	    crudget "objpic"
+	    {
+	        color = 0xFFFFFFFF;    
+	    }
+	    crudget "objtext"
+	    {
+	        text = "deftext";
+	    }
+	}
+	
+	cool_button "btn1"
+	{
+	    objpic.color = 0xFFFF0000;
+	    objtext.text  = "mytext_btn1";
+	}
+	
+	object "btn2"
+	{
+	    prototype = "cool_button";
+	    objpic.color = 0xFFFF0000;
+	    objtext.text  = "mytext_btn2";
+	    width = 20;
+	}
+}

@@ -1,0 +1,94 @@
+boundseditor "boundseditor"
+{
+    visible     = false;
+    xalign      = Parent;
+    yalign      = Parent;
+    rootpath    = <<core.RootObject;
+    signalsink  = true;
+    
+    panel "fadeback"
+    {
+        visible     = true;
+        xalign      = Parent;
+        yalign      = Parent; 
+        bgcolor     = 0x33000000;
+        consumeevents = true;
+    }
+    
+    setprop "showsyscursor"
+    {
+        visible = true;
+        autoplay = true;
+        object = "rboot.game";
+        prop   = "showsyscursor"; 
+        value  = "true";
+    }
+    
+    group "templates"
+    {
+        polylineeditor "polybutton"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;
+            text        = "contour";
+        }
+        
+        polylineeditor "areacontrol"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;
+            text        = "contour";
+        }
+        
+        polylineeditor "path"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;
+            text        = "path";
+            closed      = false;
+        }
+        
+        pivoteditor "locator"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;                        
+            text        = "position";
+        }
+        
+        pivoteditor "anmsprite"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;                        
+            text        = "position";
+        }
+        
+        pivoteditor "waypoint"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;                        
+            text        = "position";
+        }
+        
+        frameeditor "widget"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;
+            text        = "extentsabs";
+        }   
+        pivoteditor "widget"
+        {
+            signalsink  = true;
+            xalign      = Parent;
+            yalign      = Parent;                        
+            text        = "pivotabs";
+        }        
+    }
+    
+}

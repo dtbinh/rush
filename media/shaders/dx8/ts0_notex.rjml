@@ -1,0 +1,11 @@
+shader "ts0_notex"
+{
+    texturepass 
+    {
+        pass                = 0;
+        colorop             = selectarg1;
+        colorarg1           = diffuse;
+        alphaop             = selectarg1;
+        alphaarg1           = diffuse;
+    }
+}

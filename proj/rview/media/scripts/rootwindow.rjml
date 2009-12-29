@@ -1,0 +1,47 @@
+windowserver "rootwindow"
+{
+    text				= "RushEngine Previewer";
+    xalign				= Parent;
+    yalign				= Parent; 
+    screenmode			= window;  
+    
+    bitdepth			= bpp32;
+	displaywidth		= 800;
+	displayheight		= 600;
+	
+	fpscap              = 40;
+    drawfps             = true;
+    
+    
+    widget "system";
+    
+    shortcut "shExit"
+    {
+        xkey        = ESCAPE;
+        action      = >>RootWindow.Exit;
+    }
+    
+    shortcut "shSaveModel"
+    {
+        key         = "S";
+        control     = true;
+        action       = >>rboot.SaveModel;
+    }
+    
+    shortcut "shSortTransparent"
+    {
+        key         = "T";
+        control     = true;
+        action       = >>rboot.SortTransparent;
+    }
+    
+    shortcut "shReload"
+    {
+        key         = "R";
+        control     = true;
+        action      = >>srv.persist.ReloadScripts;
+        action      = >>srv.particle.ReloadScripts;
+        action      = >>srv.lua.ReloadScripts;
+    }
+    
+};

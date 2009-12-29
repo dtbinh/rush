@@ -1,0 +1,2 @@
+int_libs = rb_core, rb_util, rb_math, rb_draw, rb_scene
+ext_libs = ode

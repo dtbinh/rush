@@ -1,0 +1,14 @@
+objecttree "ObjectTree"
+{
+    visible             = true;
+    xalign              = Parent;
+    yalign              = Parent;
+    font                = "font_small";
+    rootpath            = <<core.rootobject;    
+    fgcolor             = 0xAAFFFFEE;
+    bgcolor             = 0xBBCCCCFF;
+    hoverfgcolor        = 0xAAFFFFFF;
+    hoverbgcolor        = 0xDDDDDDFF;
+    draggable           = true;
+    nodecaptionpos      = { 3.0f, 2.0f };
+}

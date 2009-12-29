@@ -1,0 +1,176 @@
+modelviewer "rboot"
+{
+    xalign       = Parent;
+    yalign       = Parent;
+    
+    onshow = >>uiscript.play;
+    
+    script "uiscript"
+    {
+        script = "ui";
+    }
+    
+    panel "SandboxPanel"
+    {
+		visible		= true;        
+        bgcolor     = 0xFF646464;
+        xalign      = Parent;
+		yalign      = Parent;
+		focusable   = false;
+			
+        camera "PerspCamera"
+		{
+    	    RestoreState    = true;
+    	    znear			= 0.01f;
+    	    zfar			= 1000.0f;   
+            fovx  			= 45.0f;
+		}
+			
+        editcamera "CamControl"
+    	{
+    	    hometilt        = -60.0f;
+    	    homeroll        = 60.0f;
+    	    camera			= "PerspCamera";
+    	    focusdist       = 10.0f;
+    	    rollspeed       = 0.2f;
+    	    tiltspeed       = 0.2f;
+    	    zoomspeed       = 0.01f;
+    	    homezoom        = 20.0f;
+    	    minzoom         = 0.1f;
+    	    maxzoom         = 50.0f;
+    	    usecontrolkey   = false;
+        }
+    }
+    
+    gridplane "TestGrid"
+    {
+        linescolor  = 0xFF444444;
+        cellside    = 1.0f;
+		xcolor 		= 0xAAAA4444;
+		ycolor 		= 0xAA44AA44;
+    }
+    
+    modelinstance "PlayedModel"
+    {
+        scale           = 1.0f;
+        position        = { 0.0f, 0.0f, 0.0f }; 
+        rotation        = { 0.0f, 0.0f, 0.0f };
+        visible         = true;
+        autoplay        = true;
+        hasshadow       = true;
+    }
+    
+    animinstance "PlayedAnim"
+    {
+        modelinstance   = "PlayedModel";
+        visible         = true;
+        autoplay        = true;
+    }
+    
+    bevel "panel_cameras"
+    {
+        extents     = { 5, 15, 150, 40 };
+        fgcolor     = 0xAAFFFFFF;
+        
+        label "caption"
+        {
+            visible     = true;
+            text        = L"Cameras";
+            extents     = { 20, 2, 100, 14 };
+            wrap        = true;
+            font        = "font_base";
+            fontheight  = 10;
+            filterfont  = false;
+            fgcolor     = 0xFFFFFFFF
+            shadowcolor = 0xFF000000;
+            shadowshiftx = 1;
+            shadowshifty = 1;
+        }
+        
+        button "template"
+        {
+            extents         = { 10, 20, 135, 14 };
+            font            = "font_small";
+            skinpack        = "button";
+            normalframe 	= 17;
+            pressedframe	= 18;
+            bgcolor         = 0xAAFFFFFF;
+            text            = "Camera0";
+            visible         = false;
+        }
+        
+        widget "controls"
+        {
+            xalign       = Parent;
+            yalign       = Parent;
+        }
+    }
+    
+    bevel "panel_animset"
+    {
+        extents     = { 5, 55, 150, 250 };
+        fgcolor     = 0xAAFF0000;
+        visible     = false;
+        
+        label "caption"
+        {
+            visible     = true;
+            text        = L"Animation Set";
+            extents     = { 20, 2, 100, 14 };
+            wrap        = true;
+            font        = "font_base";
+            fontheight  = 10;
+            filterfont  = false;
+            fgcolor     = 0xFFFFFFFF
+            shadowcolor = 0xFF000000;
+            shadowshiftx = 1;
+            shadowshifty = 1;
+        }
+        
+        checkbox "template"
+        {
+            extents         = { 10, 20, 130, 14 };
+            font            = "font_small";
+            skinpack        = "button";
+            normalframe 	= 15;
+            pressedframe	= 16;
+            text            = "Idle_Animation0";
+            visible         = false;
+        }
+        
+        widget "controls"
+        {
+            xalign       = Parent;
+            yalign       = Parent;
+        }
+    }
+    
+    bevel "panel_playback"
+    {
+        visible     = true;
+        extents     = { 5, 305, 150, 150 };
+        fgcolor     = 0xAAFFFFFF;
+        
+        label "caption"
+        {
+            visible     = true;
+            text        = L"Playback";
+            extents     = { 20, 2, 100, 14 };
+            wrap        = true;
+            font        = "font_base";
+            fontheight  = 10;
+            filterfont  = false;
+            fgcolor     = 0xFFFFFFFF
+            shadowcolor = 0xFF000000;
+            shadowshiftx = 1;
+            shadowshifty = 1;
+        }
+        
+        widget "checkboxes"
+        {
+            xalign       = Parent;
+            yalign       = Parent;
+        }
+    }
+    
+};

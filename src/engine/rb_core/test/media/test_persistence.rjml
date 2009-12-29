@@ -1,0 +1,35 @@
+object "test_persistence"
+{
+	object "Vec3"
+    {
+        vec3editor "Vec3Edit"
+        {
+            xalign          = parent;
+            yalign          = parent;
+            x               = 1;
+            y               = 2;
+            z               = 3;
+            
+            editbox "xbox"
+            {
+                extents         = { 0, 0, 40, 12 };
+                font            = <<ybox.font;
+                bgcolor         = 0x00000000;
+            }
+            
+            editbox "ybox"
+            {
+                extents         = { 40, 0, 40, 12 };
+                font            = "font_small";
+                bgcolor         = <<xbox.bgcolor;
+            }
+            
+            editbox "zbox"
+            {
+                extents         = { 80, 0, 40, 12 };
+                font            = <<ybox.font;
+                bgcolor         = <<ybox.bgcolor;
+            }
+        }
+    }
+}

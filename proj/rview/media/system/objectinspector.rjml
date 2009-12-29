@@ -1,0 +1,220 @@
+objectinspector "ObjectInspector"
+{
+    left               = 790;
+    top                = 5;
+    font               = "font_small";
+    LeftColWidth       = 100;
+    RightColWidth      = 120; 
+    DefaultRowHeight   = 12;
+    evenrowcolor       = 0x55AAAAAA;
+    oddrowcolor        = 0x55444444;
+    fgcolor            = 0xFFAAAAAA;
+    labelscolor        = 0xFFEEEEFF;
+    draggable          = true;
+    
+    object             = <<ObjectTree.Selected;
+    
+    bevel "block_template"
+    {
+        extents     = { 0, 0, 225, 18 };
+        fgcolor     = 0xAAFFFFFF;
+        visible     = false;
+        
+        label "classname"
+        {
+            visible     = true;
+            text        = L"Cameras";
+            extents     = { 20, 2, 100, 14 };
+            wrap        = true;
+            font        = "font_base";
+            fontheight  = 10;
+            filterfont  = false;
+            fgcolor     = 0xFFFFFFFF
+            shadowcolor = 0xFF000000;
+            shadowshiftx = 1;
+            shadowshifty = 1;
+        }
+        
+        widget "controls"
+        {
+            extents     = { 5, 15, 220, 0 };
+        }
+    }
+    
+    widget "editors"
+    {
+        visible        = false;
+        
+        propertyeditor "bool"
+        {
+            checkbox "boolbox"
+            {
+                extents         = { 0, 0, 14, 11 };
+                font            = "font_small";
+                skinpack        = "button";
+                normalframe 	= 15;
+                pressedframe	= 16;
+                pressed         = <>InVal;
+            }
+        }
+       
+        propertyeditor "method"
+        {
+            method          = true;
+            button "methodbutton"
+            {
+                extents         = { 0, 0, 120, 12 };
+                xalign          = left;
+                skinpack        = "button";
+                bgcolor         = 0xAAFFFFFF;
+                normalframe 	= 17;
+                pressedframe	= 18;
+                unpress         = >>CallMethod;
+            }
+        }
+        
+        propertyeditor "string"
+        {
+            editbox "stringbox"
+            {
+                xalign          = parent;
+                yalign          = parent;
+                font            = "font_small";
+                bgcolor         = 0x00000000;
+                text            = <>InVal;
+            }
+        }
+        
+        propertyeditor "int"
+        {
+            editbox  "intbox"
+            {
+                xalign          = parent;
+                yalign          = parent;
+                font            = "font_small";
+                bgcolor         = 0x00000000;
+                text            = <>InVal;
+            }
+        }
+        
+        propertyeditor "float"
+        {
+            editbox "floatbox"
+            {
+                xalign          = parent;
+                yalign          = parent;
+                font            = "font_small";
+                bgcolor         = 0x00000000;
+                text            = <>InVal;
+            }
+        }
+        
+        propertyeditor "Vec3"
+        {
+            vec3editor "Vec3Edit"
+            {
+                xalign          = parent;
+                yalign          = parent;
+                value           = <>InVal;
+                editbox "xbox"
+                {
+                    extents         = { 0, 0, 40, 12 };
+                    font            = "font_small";
+                    bgcolor         = 0x00000000;
+                    text            = <>Vec3Edit.x;
+                }
+                
+                editbox "ybox"
+                {
+                    extents         = { 40, 0, 40, 12 };
+                    font            = "font_small";
+                    bgcolor         = 0x00000000;
+                    text            = <>Vec3Edit.y;
+                }
+                
+                editbox "zbox"
+                {
+                    extents         = { 80, 0, 40, 12 };
+                    font            = "font_small";
+                    bgcolor         = 0x00000000;
+                    text            = <>Vec3Edit.z;
+                }
+            }
+        }
+        
+        propertyeditor "enum"
+        {
+            combobox "cbEnum"
+            {
+                extents         = { 0, 0, 120, 12 };
+            	skinpack        = "button";
+                skinframe       = 6;
+            	textxalign      = left;
+            	filterfont		= true;
+            	twostate        = true;
+            	caretcolor      = 0xFF000000;
+            	bgcolor         = 0x55FFFFFF;
+            	hoverfgcolor    = 0xFF000000;
+                selecteditem    = <>InVal;
+                cliptoext       = false;
+                
+                listbox "droplist"
+            	{
+            	    extents         = { 0, 12, 120, 12 };
+                    strings         = <<EnumList;	     
+                    selectonhover   = true;   
+                    visible         = false;
+                    autosize        = true;
+                    bgcolor         = 0x33000000;
+                    template        = "droplisttemplate";
+                    
+                    label "droplisttemplate"
+                    {
+                        visible         = false;
+                        extents         = { 0, 0, 120, 12 };
+                        font            = "font_system";
+                        margin          = 5;
+            	        fontheight      = 11;
+            	        fgcolor         = 0xFF000000;
+            	        bgcolor         = 0x88FFFFFF;
+                    }
+            	}
+            	
+            	button "thumb"
+            	{
+            	    skinpack        = "button";
+            	    extents         = { 0, 0, 16, 12 };
+                    normalframe     = 7;
+                    pressedframe    = 8;
+                    pressdx         = 0;
+                    pressdy         = 0;
+            	    bgcolor         = 0xAAFFFFFF;
+            	}
+            }  
+        }
+        
+        propertyeditor "dword"
+        {
+            editbox "coloredit"
+            {
+                visible         = false;
+                extents         = { 65, 0, 120, 12 };
+                yalign          = parent;
+                font            = "font_small";
+                bgcolor         = 0x00000000;
+                text            = <>colorbox.colortextval;
+            }
+            colorbox "colorbox"
+            {
+                extents         = { 0, 0, 60, 12 };
+                xalign          = left;
+                yalign          = parent;
+                font            = "font_small";
+                skinpack        = "button";
+                skinframe       = 19;
+                bgcolor         = 0x00000000;
+                colorval        = <>InVal;
+            }
+        }
+    }
+}

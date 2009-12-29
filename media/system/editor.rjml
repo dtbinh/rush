@@ -1,0 +1,228 @@
+widget "Editor"
+{
+    visible     = false;
+    xalign      = Parent;
+    yalign      = Parent;
+    
+    cursor 		= "system";
+
+    
+    shortcut "shClose"
+    {
+        key         = "O";
+        control     = true;
+        action       = >>Editor.Close;
+    }
+    
+    panel "fadeback"
+    {
+        visible     = true;
+        xalign      = Parent;
+        yalign      = Parent; 
+        bgcolor     = 0x33000000;
+        consumeevents = true;
+    }
+    
+    objecttree      "ObjectTree";
+    objectinspector "ObjectInspector";
+    
+    shortcut "shLoadNode"
+    {
+        key         = "L";
+        control     = true;
+        action       = >>ObjectTree.LoadAsChild;
+    }
+    
+    shortcut "shSaveNode"
+    {
+        key         = "S";
+        control     = true;
+        action       = >>ObjectTree.SaveSelected;
+    }
+    
+    shortcut "shCenterLocation"
+    {
+        key         = "K";
+        control     = true;
+        action      = >>anmCenterLoc.Play;
+        setprop "anmCenterLoc"
+        {
+            object = "ObjectTree";
+            prop = "rootpath";
+            srcobject = "game";
+            srcprop = "CurLocation";
+        }
+    }
+    
+    shortcut "shCenterRoot"
+    {
+        key         = "E";
+        control     = true;
+        action      = >>anmCenterRoot.Play;
+        setprop "anmCenterRoot"
+        {
+            object = "ObjectTree";
+            prop   = "rootpath";
+            value  = "core";
+        }
+    }
+    
+    label "MouseXLabel"
+    {
+        visible     = true;
+        text        = L"MouseX:";
+        extents     = { 2, 20, 100, 14 };
+        wrap        = true;
+        font        = "font_base";
+        fontheight  = 10;
+        filterfont  = false;
+        fgcolor     = 0xFFAACCAA;
+        shadowcolor = 0xFF000000;
+        ShadowShiftX = 2;
+        ShadowShiftY = 2;
+        label "val"
+        {
+            text        = <<core.srv.wnd.mousex;
+            signalsink  = true;
+            extents     = { 40, 0, 100, 14 };
+            wrap        = true;
+            font        = "font_base";
+            fontheight  = 10;
+            filterfont  = false;
+            fgcolor     = 0xFF779977;
+            shadowcolor = 0xFF000000;
+            ShadowShiftX = 2;
+            ShadowShiftY = 2;
+        } 
+    } 
+    
+    label "MouseYLabel"
+    {
+        visible     = true;
+        text        = L"MouseY:";
+        extents     = { 2, 35, 100, 14 };
+        wrap        = true;
+        font        = "font_base";
+        fontheight  = 10;
+        filterfont  = false;
+        fgcolor     = 0xFFAACCAA;
+        shadowcolor = 0xFF000000;
+        ShadowShiftX = 2;
+        ShadowShiftY = 2;
+        label "val"
+        {
+            text        = <<core.srv.wnd.mousey;
+            signalsink  = true;
+            extents     = { 40, 0, 100, 14 };
+            wrap        = true;
+            font        = "font_base";
+            fontheight  = 10;
+            filterfont  = false;
+            fgcolor     = 0xFF779977;
+            shadowcolor = 0xFF000000;
+            ShadowShiftX = 2;
+            ShadowShiftY = 2;
+        } 
+    } 
+	
+	boundseditor "objboundseditor"
+	{
+	    xalign      = Parent;
+	    yalign      = Parent;
+	    rootpath    = <<ObjectTree.Selected;
+	    signalsink  = true;
+		cursor 		= "system";
+		rootonly    = true;
+	    
+	    group "templates"
+	    {
+	        polylineeditor "polybutton"
+	        {
+	            signalsink  = true;
+	            xalign      = Parent;
+	            yalign      = Parent;
+	            text        = "contour";
+	        }
+	        
+	        polylineeditor "areacontrol"
+	        {
+	            signalsink  = true;
+	            xalign      = Parent;
+	            yalign      = Parent;
+	            text        = "contour";
+	        }
+	        
+	        polylineeditor "path"
+	        {
+	            signalsink  = true;
+	            xalign      = Parent;
+	            yalign      = Parent;
+	            text        = "path";
+	            closed      = false;
+	        }
+	        
+	        pivoteditor "locator"
+	        {
+	            signalsink  = true;
+	            xalign      = Parent;
+	            yalign      = Parent;                        
+	            text        = "position";
+	        }
+	        
+	        pivoteditor "anmsprite"
+	        {
+	            signalsink  = true;
+	            xalign      = Parent;
+	            yalign      = Parent;                        
+	            text        = "position";
+	        }
+	        
+	        pivoteditor "waypoint"
+	        {
+	            signalsink  = true;
+	            xalign      = Parent;
+	            yalign      = Parent;                        
+	            text        = "position";
+	        }
+	        
+	        frameeditor "widget"
+	        {
+	            signalsink  = true;
+	            xalign      = Parent;
+	            yalign      = Parent;
+	            text        = "extentsabs";
+	        }   
+	        pivoteditor "widget"
+	        {
+	            signalsink  = true;
+	            xalign      = Parent;
+	            yalign      = Parent;                        
+	            text        = "pivotabs";
+	        }        
+			
+			angleeditor "hotspot"
+			{
+			    signalsink  = true;
+	            xalign      = Parent;
+	            yalign      = Parent;                        
+	            text        = "direction<angle|pivot<pivot";
+			}
+			
+			picture "effectinstance"
+			{
+			    signalsink  = true;
+				skinpack  = "sys_gizmos";
+				skinframe = 4;
+				text      = "position<positionabs|effect<name";
+			}
+			
+			pivoteditor "effectinstance"
+	        {
+	            signalsink  = true;
+	            xalign      = Parent;
+	            yalign      = Parent;                        
+	            text        = "position";
+	        }    
+	    }
+	}
+}

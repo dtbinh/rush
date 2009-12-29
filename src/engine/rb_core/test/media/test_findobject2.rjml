@@ -1,0 +1,39 @@
+group "test_findobject2"
+{
+    tag = 40;
+    group "object_tree"
+    {
+        group "thumb"
+    	{
+    	    tag = 188;
+    	}
+    	group "droplist"
+    	{
+            tag = 14;
+    	    group "pic"
+    	    {
+    	        group "thumb"
+    	        {
+    	            tag = 303;
+    	        }
+    	    }
+            object "thumb"
+    	    {
+    	        tag = -31;
+    	    }
+    	}
+    	
+    	group "anotherpic"
+    	{
+    	    object "thumb"
+    	    {
+    	        tag = 108;
+    	    }
+    	}
+    	
+    	group "thumb"
+    	{
+    	    tag = 118;
+    	}
+    }
+}

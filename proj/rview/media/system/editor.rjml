@@ -1,0 +1,135 @@
+widget "Editor"
+{
+    visible     = false;
+    xalign      = Parent;
+    yalign      = Parent;
+    
+    setprop "showsyscursor"
+    {
+        visible = true;
+        autoplay = true;
+        object = "rboot.game";
+        prop   = "showsyscursor"; 
+        value  = "true";
+    }
+    
+    shortcut "shClose"
+    {
+        key         = "O";
+        control     = true;
+        action       = >>Editor.Close;
+    }
+    
+    panel "fadeback"
+    {
+        visible     = true;
+        xalign      = Parent;
+        yalign      = Parent; 
+        bgcolor     = 0x33000000;
+        consumeevents = true;
+    }
+    
+    objecttree      "ObjectTree";
+    objectinspector "ObjectInspector";
+    //widget          "TemplateTree";
+    
+    shortcut "shLoadNode"
+    {
+        key         = "L";
+        control     = true;
+        action       = >>ObjectTree.LoadAsChild;
+    }
+    
+    shortcut "shSaveNode"
+    {
+        key         = "S";
+        control     = true;
+        action       = >>ObjectTree.SaveSelected;
+    }
+    
+    shortcut "shCenterLocation"
+    {
+        key         = "K";
+        control     = true;
+        action      = >>anmCenterLoc.Play;
+        setprop "anmCenterLoc"
+        {
+            object = "ObjectTree";
+            prop = "rootpath";
+            srcobject = "game";
+            srcprop = "CurLocation";
+        }
+    }
+    
+    shortcut "shCenterRoot"
+    {
+        key         = "E";
+        control     = true;
+        action      = >>anmCenterRoot.Play;
+        setprop "anmCenterRoot"
+        {
+            object = "ObjectTree";
+            prop   = "rootpath";
+            value  = "core";
+        }
+    }
+    
+    label "MouseXLabel"
+    {
+        visible     = true;
+        text        = L"MouseX:";
+        extents     = { 2, 20, 100, 14 };
+        wrap        = true;
+        font        = "font_base";
+        fontheight  = 10;
+        filterfont  = false;
+        fgcolor     = 0xFFAACCAA;
+        shadowcolor = 0xFF000000;
+        ShadowShiftX = 2;
+        ShadowShiftY = 2;
+        label "val"
+        {
+            text        = <<core.srv.wnd.mousex;
+            signalsink  = true;
+            extents     = { 40, 0, 100, 14 };
+            wrap        = true;
+            font        = "font_base";
+            fontheight  = 10;
+            filterfont  = false;
+            fgcolor     = 0xFF779977;
+            shadowcolor = 0xFF000000;
+            ShadowShiftX = 2;
+            ShadowShiftY = 2;
+        } 
+    } 
+    
+    label "MouseYLabel"
+    {
+        visible     = true;
+        text        = L"MouseY:";
+        extents     = { 2, 35, 100, 14 };
+        wrap        = true;
+        font        = "font_base";
+        fontheight  = 10;
+        filterfont  = false;
+        fgcolor     = 0xFFAACCAA;
+        shadowcolor = 0xFF000000;
+        ShadowShiftX = 2;
+        ShadowShiftY = 2;
+        label "val"
+        {
+            text        = <<core.srv.wnd.mousey;
+            signalsink  = true;
+            extents     = { 40, 0, 100, 14 };
+            wrap        = true;
+            font        = "font_base";
+            fontheight  = 10;
+            filterfont  = false;
+            fgcolor     = 0xFF779977;
+            shadowcolor = 0xFF000000;
+            ShadowShiftX = 2;
+            ShadowShiftY = 2;
+        } 
+    } 
+    
+}

@@ -1,0 +1,8 @@
+shader "enablez"
+{
+    renderstate "rs"
+    {
+        zenable             = true;
+        zwriteenable        = true;
+    }    
+}

@@ -1,0 +1,161 @@
+widget "system"
+{
+    xalign              = Parent;
+    yalign              = Parent; 
+    
+    boundseditor "boundseditor";
+    dialog       "statpanel"
+    widget       "editor";
+    
+    shortcut "ShowEditor"
+    {
+        key         = "O";
+        control     = true;
+        action      = >>anm.Play;
+        animation "anm"
+        {
+            toggleprop 
+            {
+                object = "editor";
+                prop   = "visible"; 
+            }
+        }
+    }
+    
+    shortcut "ToggleFullscreen"
+    {
+        xkey        = "RETURN";
+        control     = true;
+        action      = >>anm.Play;
+        toggleprop "anm"
+        {
+            object = "core.srv.render";
+            prop   = "fullscreen"; 
+        }
+    }
+    
+    shortcut "ToggleWireframe"
+    {
+        key         = "W";
+        control     = true;
+        action      = >>anm.Play;
+        toggleprop "anm"
+        {
+            object = "core.srv.render";
+            prop   = "wireframe"; 
+        }
+    }
+    
+    shortcut "ToggleBoundsEditor"
+    {
+        key         = "B";
+        control     = true;
+        visible     = true;
+        action      = >>anm.Play;
+        animation "anm"
+        {
+            toggleprop 
+            {
+                object = "boundseditor";
+                prop   = "visible"; 
+            }
+            
+            call { object = "boundseditor"; method = "refresh"; }
+        }
+    }
+    
+    shortcut "ToggleStats"
+    {
+        key         = "F";
+        control     = true;
+        visible     = true;
+        action      = >>anm.Play;
+        animation "anm"
+        {
+            toggleprop 
+            {
+                object = "statpanel";
+                prop   = "visible"; 
+            }
+        }
+    }
+    
+    shortcut "shReload"
+    {
+        key         = "R";
+        control     = true;
+        action      = >>srv.persist.ReloadScripts;
+        action      = >>srv.particle.ReloadScripts;
+        action      = >>srv.lua.ReloadScripts;
+    } 
+    
+    shortcut "shPause"
+    {
+        key         = "P";
+        control     = true;
+        action      = >>anm.Play;
+        toggleprop "anm"
+        {
+            object = "core.srv.anim";
+            prop   = "paused"; 
+        }
+    }
+    
+    label "dbg"
+    {
+        fgcolor     = 0xFFF6F319;
+        shadowcolor = 0xFF000000;
+        extents     = { 10, 40, 500, 30 };
+        font        = "font_speech";
+        filterfont  = true;
+        wraptext    = true;
+        textxalign  = center;
+        fontheight  = 30;
+    }
+    
+    shortcut "shSaveRoot"
+    {
+        key         = "S";
+        control     = true;
+        shift       = true;
+        consumeevents = true;
+        action      = >>anm.Play;
+        animation "anm"
+        {
+            call { object = "core"; method = "SaveRoot"; }
+            setprop { object = "SavedStatusLabel"; prop = "visible"; value = "true"; }
+            animation "pause" { duration = 3; }
+            setprop { object = "SavedStatusLabel"; prop = "visible"; value = "false"; }
+        }
+    }
+    
+    label "SavedStatusLabel"
+    {
+        visible     = false;
+        text        = L"Saved";
+        extents     = { 2, 30, 100, 14 };
+        wrap        = true;
+        font        = "font_base";
+        fontheight  = 10;
+        filterfont  = false;
+        fgcolor     = 0xFFFF3333;
+        shadowcolor = 0xFF000000;
+        ShadowShiftX = 1;
+        ShadowShiftY = 1;
+        label "val"
+        {
+            text        = <<core.rootobject;
+            signalsink  = true;
+            extents     = { 35, 0, 100, 14 };
+            wrap        = true;
+            font        = "font_base";
+            fontheight  = 10;
+            filterfont  = false;
+            fgcolor     = 0xFFFF3333;
+            shadowcolor = 0xFF000000;
+            ShadowShiftX = 1;
+            ShadowShiftY = 1;
+        } 
+    } 
+}
+   

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<UserCombinePreferences filename="/home/silver/work/rush/src/tools/rsprite/rsprite.mds">
+  <Files>
+    <File filename="Welcome" />
+    <File filename="./Main.cs" />
+  </Files>
+  <Views>
+    <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ProjectPad">
+      <TreeView>
+        <Node expanded="True">
+          <Node name="rsprite" expanded="True">
+            <Node name="Main.cs" expanded="False" selected="True" />
+          </Node>
+        </Node>
+      </TreeView>
+    </ViewMemento>
+    <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ClassPad">
+      <TreeView>
+        <Node expanded="True" />
+      </TreeView>
+    </ViewMemento>
+    <ViewMemento Id="MonoQuery.DatabasePad">
+      <TreeView>
+        <Node expanded="False" />
+      </TreeView>
+    </ViewMemento>
+    <ViewMemento Id="MonoDevelop.NUnit.TestPad">
+      <TreeView>
+        <Node expanded="False" />
+      </TreeView>
+    </ViewMemento>
+  </Views>
+  <Properties>
+    <Properties>
+      <Property key="ActiveConfiguration" value="Debug|Any CPU" />
+      <Property key="ActiveWindow" value="/home/silver/work/rush/src/tools/rsprite/Main.cs" />
+    </Properties>
+  </Properties>
+</UserCombinePreferences>

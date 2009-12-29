@@ -1,0 +1,4 @@
+int_libs = rb_core, rb_util, rb_math, rb_draw, rb_ui, rb_scene, rb_sound, 
+           rb_video, rb_texture, rb_script_lua, rb_extmath, rb_extui, rb_logic, 
+           rb_nature, rb_particle, rb_physics, rb_quest, rb_render8, rb_render9, rb_resource, rb_legacy
+ext_libs = lua, ode, tinyxml, libogg, libvorbis, libtheora

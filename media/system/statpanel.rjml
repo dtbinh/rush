@@ -1,0 +1,131 @@
+dialog "statpanel"
+{
+    visible     = false;
+    xalign      = Parent;
+    yalign      = Parent;
+	cursor 		= "system";
+
+    
+    panel "fadeback"
+    {
+        visible     = true;
+        xalign      = Parent;
+        yalign      = Parent; 
+        bgcolor     = 0x33000000;
+        consumeevents = false;
+    }
+    
+    heartbit "hbFPS"
+    {
+        extents = { 5, 5, 200, 100 };
+        fgcolor = 0xAAFF0000;
+        bgcolor = 0x11222222;
+        signalsink = true;
+        value = <<core.srv.render.fps;
+        
+        panel "fadeback"
+        {
+            visible     = true;
+            xalign      = Parent;
+            yalign      = Parent; 
+            bgcolor     = 0x33000000;
+        }
+    }
+    
+    label "FPSLabel"
+    {
+        visible     = true;
+        text        = L"FPS:";
+        extents     = { 5, 5, 100, 14 };
+        wrap        = true;
+        font        = "font_base";
+        fontheight  = 10;
+        filterfont  = false;
+        fgcolor     = 0xFFFF0000;
+        shadowcolor = 0xFF000000;
+        ShadowShiftX = 2;
+        ShadowShiftY = 2;
+        label "FPSVal"
+        {
+            text        = <<render.fps;
+            signalsink  = true;
+            extents     = { 20, 0, 100, 14 };
+            wrap        = true;
+            font        = "font_base";
+            fontheight  = 10;
+            filterfont  = false;
+            fgcolor     = 0xFFFF0000;
+            shadowcolor = 0xFF000000;
+            ShadowShiftX = 2;
+            ShadowShiftY = 2;
+        } 
+    } 
+    
+    checkbox "cbLogSignals"
+    {
+        extents         = { 7, 110, 100, 14 };
+        font            = "font_small";
+        skinpack        = "button";
+        normalframe 	= 15;
+        pressedframe	= 16;
+        pressdx         = 0;
+        pressdy         = 0;
+        text            = "log signals";
+        unpress         = >>action.Play;
+        toggleprop "action"
+        {
+            object = "core.srv.signal";
+            prop   = "LogSignals"; 
+        }
+    }
+    
+    button "btnLogConnections"
+    {
+        extents         = { 7, 125, 100, 14 };
+        font            = "font_small";
+        skinpack        = "button";
+        normalframe 	= 17;
+        pressedframe	= 18;
+        bgcolor         = 0xAAFFFFFF;
+        text            = "log connections";
+        unpress         = >>core.srv.signal.DumpConnections;
+    }
+	
+	
+	checkbox "cbThumb"
+    {
+        extents         = { 7, 140, 100, 14 };
+        font            = "font_small";
+        skinpack        = "button";
+        normalframe 	= 15;
+        pressedframe	= 16;
+        pressdx         = 0;
+        pressdy         = 0;
+        text            = "create thumbnail";
+        unpress         = >>action.Play;
+		toggleprop "action"
+        {
+            object = "thumbEnable";
+            prop   = "visible"; 
+        }
+    }
+    
+	animation "thumbEnable"
+	{
+		visible = false;
+		autoplay = true;
+		call
+        {
+            object   = "game";
+            method   = "createthumbnail"; 
+        }
+	}
+	
+	textureview "texthumb4"
+    {
+        extents = { 700, 100, 256, 192 };
+        texname = "BackBufferCopy";
+    }
+    
+}
+
