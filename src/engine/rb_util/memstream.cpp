@@ -1,6 +1,6 @@
 //****************************************************************************/
 //  File:  MemStream.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "stdafx.h"
 #include "MemStream.h"
@@ -16,8 +16,8 @@ MemInStream::MemInStream()
     m_bOwnBuffer = true;
 }
 
-MemInStream::MemInStream ( void* pBuffer, int bufSize ) 
-    :   m_pBuffer( (uint8_t*)pBuffer ), 
+MemInStream::MemInStream ( void* pBuffer, int bufSize )
+    :   m_pBuffer( (uint8_t*)pBuffer ),
         m_BufSize( bufSize )
 {
     m_TotalSize = bufSize;
@@ -26,19 +26,19 @@ MemInStream::MemInStream ( void* pBuffer, int bufSize )
 
 MemInStream::~MemInStream()
 {
-    if (m_bOwnBuffer) 
+    if (m_bOwnBuffer)
     {
         delete []m_pBuffer;
     }
 }
 
-int MemInStream::ReadStream( void* buf, int nuint8_ts )
+int MemInStream::ReadStream( void* buf, int nBytes )
 {
-    if (buf != NULL) 
+    if (buf != NULL)
     {
-        memcpy( buf, m_pBuffer + m_Readuint8_ts, nuint8_ts );
+        memcpy( buf, m_pBuffer + m_ReadBytes, nBytes );
     }
-    return nuint8_ts;
+    return nBytes;
 } // MemInStream::ReadStream
 
 //****************************************************************************/
@@ -47,7 +47,7 @@ int MemInStream::ReadStream( void* buf, int nuint8_ts )
 MemOutStream::MemOutStream( int bufSize )
 {
     m_BufSize = bufSize;
-    m_uint8_tsWritten = 0;
+    m_BytesWritten = 0;
     m_pBuffer = new uint8_t[bufSize];
 }
 
@@ -57,19 +57,19 @@ MemOutStream::~MemOutStream()
 }
 
 const int c_BufChunkSize = 1024;
-int MemOutStream::Flush( const void* buf, int nuint8_ts )
+int MemOutStream::Flush( const void* buf, int nBytes )
 {
-    if (m_uint8_tsWritten + nuint8_ts > m_BufSize)
+    if (m_BytesWritten + nBytes > m_BufSize)
     {
-        int newSize = m_uint8_tsWritten + nuint8_ts + c_BufChunkSize;
+        int newSize = m_BytesWritten + nBytes + c_BufChunkSize;
         uint8_t* pNewBuf = new uint8_t[newSize];
-        memcpy( pNewBuf, m_pBuffer, m_uint8_tsWritten );
+        memcpy( pNewBuf, m_pBuffer, m_BytesWritten );
         delete []m_pBuffer;
         m_pBuffer = pNewBuf;
         m_BufSize = newSize;
     }
 
-    memcpy( m_pBuffer + m_uint8_tsWritten, buf, nuint8_ts );
-    m_uint8_tsWritten += nuint8_ts;
-    return nuint8_ts;
+    memcpy( m_pBuffer + m_BytesWritten, buf, nBytes );
+    m_BytesWritten += nBytes;
+    return nBytes;
 } // MemOutStream::ReadStream
