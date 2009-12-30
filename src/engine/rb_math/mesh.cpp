@@ -52,9 +52,9 @@ void Mesh::Create( const VertexDeclaration& vd )
 
 const Vec3& Mesh::GetPos( int idx ) const
 {
-    int vByte = idx*GetStride();
-    assert( vByte < m_VertexData.size() );
-    return *((Vec3*)&m_VertexData[vByte]);
+    int vuint8_t = idx*GetStride();
+    assert( vuint8_t < m_VertexData.size() );
+    return *((Vec3*)&m_VertexData[vuint8_t]);
 } // Mesh::GetVertPos
 
 float Mesh::GetRHW( int idx ) const

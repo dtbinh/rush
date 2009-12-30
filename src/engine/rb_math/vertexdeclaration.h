@@ -64,7 +64,7 @@ enum  VCompType
      VCompType_Color        = 5,
      VCompType_Short2       = 6,
      VCompType_Short4       = 7,
-     VCompType_UByte4       = 8,
+     VCompType_Uuint8_t4       = 8,
 }; // enum  VCompType
 
 inline int GetVertexElementSize( VCompType type )
@@ -78,7 +78,7 @@ inline int GetVertexElementSize( VCompType type )
     case  VCompType_Color:  return 4;
     case  VCompType_Short2: return 4;
     case  VCompType_Short4: return 8;
-    case  VCompType_UByte4: return 4;
+    case  VCompType_Uuint8_t4: return 4;
     }
     return 0;
 } // GetVertexElementSize
@@ -89,16 +89,16 @@ inline VCompType GetDefaultElementType( VertexComponent usage )
     {
         case VertexComponent_Position:      return  VCompType_Float3;
         case VertexComponent_PositionRHW:   return  VCompType_Float4;
-        case VertexComponent_Blend:         return  VCompType_UByte4;
+        case VertexComponent_Blend:         return  VCompType_Uuint8_t4;
         case VertexComponent_Blend0:        return  VCompType_Float1;
         case VertexComponent_Blend1:        return  VCompType_Float1;
         case VertexComponent_Blend2:        return  VCompType_Float1;
         case VertexComponent_Blend3:        return  VCompType_Float1;
-        case VertexComponent_BlendIdx:      return  VCompType_UByte4;
-        case VertexComponent_BlendIdx0:     return  VCompType_UByte4;
-        case VertexComponent_BlendIdx1:     return  VCompType_UByte4;
-        case VertexComponent_BlendIdx2:     return  VCompType_UByte4;
-        case VertexComponent_BlendIdx3:     return  VCompType_UByte4;
+        case VertexComponent_BlendIdx:      return  VCompType_Uuint8_t4;
+        case VertexComponent_BlendIdx0:     return  VCompType_Uuint8_t4;
+        case VertexComponent_BlendIdx1:     return  VCompType_Uuint8_t4;
+        case VertexComponent_BlendIdx2:     return  VCompType_Uuint8_t4;
+        case VertexComponent_BlendIdx3:     return  VCompType_Uuint8_t4;
         case VertexComponent_Normal:        return  VCompType_Float3;
         case VertexComponent_Diffuse:       return  VCompType_Color;
         case VertexComponent_Specular:      return  VCompType_Color;
@@ -154,7 +154,7 @@ struct VertexDeclaration
 {
     VertexElement       m_Element[c_MaxVertDeclElements];   //  array of the vertex elements
     int                 m_NElements;                        //  number of vertex elements
-    int                 m_VertexSize;                       //  size of the vertex, in bytes
+    int                 m_VertexSize;                       //  size of the vertex, in uint8_ts
     int                 m_TypeID;                           //  id in the render system vtype registry
 
     VertexDeclaration() : m_NElements(0), m_VertexSize(0), m_TypeID(-1) {}

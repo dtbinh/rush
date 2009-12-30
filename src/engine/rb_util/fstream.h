@@ -26,7 +26,7 @@ public:
     virtual const char* GetName() const { return m_FileName.c_str(); }
 private:
     virtual void    OnClose     ();
-    virtual int     Flush       ( const void* buf, int nBytes );
+    virtual int     Flush       ( const void* buf, int nuint8_ts );
     bool            OpenFile    ( const char* fname );
     virtual bool    IsValid     () const { return (m_hFile != INVALID_HANDLE_VALUE); } 
 }; // class FOutStream
@@ -51,7 +51,7 @@ public:
 
 private:
     virtual bool    IsValid     () const { return (m_hFile != INVALID_HANDLE_VALUE); } 
-    virtual int     ReadStream  ( void* buf, int nBytes );
+    virtual int     ReadStream  ( void* buf, int nuint8_ts );
 
 
 }; // class FInStream

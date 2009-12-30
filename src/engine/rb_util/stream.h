@@ -12,46 +12,46 @@ const int c_OutStreamBufferSize = 4096;
 //****************************************************************************/
 class OutStream
 {
-    BYTE        m_Buf[c_OutStreamBufferSize];
-    int         m_NTotalBytes;
+    uint8_t        m_Buf[c_OutStreamBufferSize];
+    int         m_NTotaluint8_ts;
 
 protected:
-    int         m_NBytes;
+    int         m_Nuint8_ts;
 
 public:
-                OutStream() : m_NBytes(0), m_NTotalBytes(0) {}
+                OutStream() : m_Nuint8_ts(0), m_NTotaluint8_ts(0) {}
     virtual     ~OutStream();
     
     void        Close() { FlushStream(); OnClose(); }
     void        FlushStream()
     {
-        Flush( m_Buf, m_NBytes );
-        m_NTotalBytes += m_NBytes;
-        m_NBytes = 0;
+        Flush( m_Buf, m_Nuint8_ts );
+        m_NTotaluint8_ts += m_Nuint8_ts;
+        m_Nuint8_ts = 0;
     }
 
-    int GetTotalSize() const { return m_NTotalBytes; }
+    int GetTotalSize() const { return m_NTotaluint8_ts; }
 
-    void Write( const BYTE* buf, int nBytes ) 
+    void Write( const uint8_t* buf, int nuint8_ts ) 
     { 
-        if (nBytes == 0) return;
-        if (m_NBytes + nBytes > c_OutStreamBufferSize) FlushStream();
-        if (nBytes > c_OutStreamBufferSize)
+        if (nuint8_ts == 0) return;
+        if (m_Nuint8_ts + nuint8_ts > c_OutStreamBufferSize) FlushStream();
+        if (nuint8_ts > c_OutStreamBufferSize)
         {
-            if (m_NBytes > 0) Flush( m_Buf, m_NBytes );
-            Flush( buf, nBytes );
-            m_NTotalBytes += nBytes + m_NBytes;
-            m_NBytes = 0;
+            if (m_Nuint8_ts > 0) Flush( m_Buf, m_Nuint8_ts );
+            Flush( buf, nuint8_ts );
+            m_NTotaluint8_ts += nuint8_ts + m_Nuint8_ts;
+            m_Nuint8_ts = 0;
             return;
         }
-        memcpy( &(m_Buf[m_NBytes]), buf, nBytes );
-        m_NBytes        += nBytes;
+        memcpy( &(m_Buf[m_Nuint8_ts]), buf, nuint8_ts );
+        m_Nuint8_ts        += nuint8_ts;
     } // Write
 
     template <class T> OutStream& operator <<( const std::vector<T>& arr ) 
     { 
         int nV = arr.size();
-        Write( (BYTE*)&nV, sizeof( int ) );
+        Write( (uint8_t*)&nV, sizeof( int ) );
         for (int i = 0; i < nV; i++) operator<<( arr[i] );
         return *this; 
     }
@@ -59,30 +59,30 @@ public:
     OutStream& operator <<( const char* val ) 
     { 
         int nCh = strlen( val );
-        Write( (BYTE*)&nCh, sizeof( int ) );
-        Write( (BYTE*)val, nCh );
+        Write( (uint8_t*)&nCh, sizeof( int ) );
+        Write( (uint8_t*)val, nCh );
         return *this; 
     }
 
     OutStream& operator <<( const std::string& val ) 
     { 
         int nCh = val.size();
-        Write( (BYTE*)&nCh, sizeof( int ) );
-        Write( (BYTE*)val.c_str(), nCh );
+        Write( (uint8_t*)&nCh, sizeof( int ) );
+        Write( (uint8_t*)val.c_str(), nCh );
         return *this; 
     }
     
     operator bool() { return IsValid(); }
     template <class T> OutStream& operator <<( const T& val ) 
     { 
-        Write( (BYTE*)&val, sizeof( val ) ); 
+        Write( (uint8_t*)&val, sizeof( val ) ); 
         return *this; 
     }
 
 
 private:
     virtual void        OnClose     () {}
-    virtual int         Flush       ( const void* buf, int nBytes ) { return 0; }
+    virtual int         Flush       ( const void* buf, int nuint8_ts ) { return 0; }
     virtual bool        IsValid     () const { return false; } 
 }; // class OutStream
 
@@ -94,28 +94,28 @@ class InStream
 {
 protected:
     int         m_TotalSize;
-    int         m_ReadBytes;
+    int         m_Readuint8_ts;
 
 public:
-    InStream() : m_TotalSize(0), m_ReadBytes(0) {}
+    InStream() : m_TotalSize(0), m_Readuint8_ts(0) {}
 
-    bool Read( void* buf, int nBytes ) 
+    bool Read( void* buf, int nuint8_ts ) 
     { 
-        const int nRead = ReadStream( buf, nBytes );
-        m_ReadBytes += nRead;
-        return (nRead == nBytes);
+        const int nRead = ReadStream( buf, nuint8_ts );
+        m_Readuint8_ts += nRead;
+        return (nRead == nuint8_ts);
     }
 
-    bool Rewind( int nBytes ) 
+    bool Rewind( int nuint8_ts ) 
     { 
-        const int nRead = ReadStream( NULL, nBytes );
-        m_ReadBytes += nRead; 
-        return (nRead == nBytes);
+        const int nRead = ReadStream( NULL, nuint8_ts );
+        m_Readuint8_ts += nRead; 
+        return (nRead == nuint8_ts);
     }
 
     operator bool()
     {
-        return IsValid() && (m_ReadBytes < m_TotalSize);
+        return IsValid() && (m_Readuint8_ts < m_TotalSize);
     }
 
     template <class T> InStream& operator >>( std::vector<T>& arr ) 
@@ -159,13 +159,13 @@ public:
     }
 
     int     GetTotalSize() const { return m_TotalSize; }
-    int     GetReadBytes() const { return m_ReadBytes; }
+    int     GetReaduint8_ts() const { return m_Readuint8_ts; }
 
     virtual void        Close  () {}
     virtual const char* GetName() const { return ""; }
 
 private:
-    virtual int     ReadStream  ( void* buf, int nBytes ) { return 0; }
+    virtual int     ReadStream  ( void* buf, int nuint8_ts ) { return 0; }
     virtual bool    IsValid     () const { return false; } 
 
 }; // class InStream

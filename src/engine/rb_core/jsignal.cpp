@@ -76,7 +76,7 @@ bool JSignal::Fire()
     else if (srcTypeID == dstTypeID)
     {
         const int c_CloneAttrBufferSize = 1024;
-        BYTE buf[c_CloneAttrBufferSize];
+        uint8_t buf[c_CloneAttrBufferSize];
         if (m_pSrcAttr->GetSizeOf() < c_CloneAttrBufferSize)
         {
             m_pSrcAttr->Get( m_pSrcObj, (void*)buf, m_pDstObj->GetTag() );

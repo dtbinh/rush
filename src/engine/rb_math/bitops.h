@@ -6,7 +6,7 @@
 #define __BITOPS_H__
 #pragma once
 
-inline DWORD ReverseBits( DWORD n )
+inline uint32_t ReverseBits( uint32_t n )
 {
     n = n - ((n >> 1) & 0x55555555);
 	n = ((n >> 2) & 0x33333333) + (n & 0x33333333);
@@ -14,7 +14,7 @@ inline DWORD ReverseBits( DWORD n )
 	return (n * 0x01010101) >> 24;
 } // ReverseBits
 
-inline DWORD CountBits( DWORD n )
+inline uint32_t CountBits( uint32_t n )
 {
     n = (n & 0x55555555) + ((n & 0xaaaaaaaa) >> 1);
     n = (n & 0x33333333) + ((n & 0xcccccccc) >> 2);
@@ -24,7 +24,7 @@ inline DWORD CountBits( DWORD n )
     return n;
 } // CountBits
 
-inline DWORD NextPow2( DWORD n )
+inline uint32_t NextPow2( uint32_t n )
 {
     n |= (n >> 1);
     n |= (n >> 2);
@@ -34,12 +34,12 @@ inline DWORD NextPow2( DWORD n )
     return n + 1;
 } // NextPow2
 
-inline bool IsPowerOfTwo( DWORD n )
+inline bool IsPowerOfTwo( uint32_t n )
 { 
     return ((n&(n - 1)) == 0);					
 } // IsPowerOfTwo
 
-inline int GetPow2( DWORD p )
+inline int GetPow2( uint32_t p )
 {
     int res = 0;
     int np = (int)p;

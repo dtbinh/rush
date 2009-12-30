@@ -8,28 +8,28 @@
 #include "Stream.h"
 //****************************************************************************/
 //  Class:  CountStream
-//  Desc:   Simple stream stub, which just counts number of bytes passed in
+//  Desc:   Simple stream stub, which just counts number of uint8_ts passed in
 //****************************************************************************/
 class CountStream : public OutStream
 {   
-    int             m_BytesWritten;
+    int             m_uint8_tsWritten;
 
     virtual bool    IsValid     () const 
     { 
         return true; 
     }
 
-    virtual int     Flush       ( void* buf, int nBytes )
+    virtual int     Flush       ( void* buf, int nuint8_ts )
     { 
-        m_BytesWritten += nBytes; 
-        return nBytes; 
+        m_uint8_tsWritten += nuint8_ts; 
+        return nuint8_ts; 
     }
 
 public:
-    CountStream() : m_BytesWritten(0) {}
+    CountStream() : m_uint8_tsWritten(0) {}
     int GetSize() const 
     { 
-        return m_BytesWritten; 
+        return m_uint8_tsWritten; 
     }
 }; // class CountStream
 

@@ -38,8 +38,8 @@ inline bool cast<JString, std::string>( JString& to, const std::string& from )
 inline OutStream& operator <<( OutStream& os, const JString& val )
 {
     int nCh = val.size();
-    os.Write( (BYTE*)&nCh, sizeof( int ) );
-    os.Write( (BYTE*)val.c_str(), nCh );
+    os.Write( (uint8_t*)&nCh, sizeof( int ) );
+    os.Write( (uint8_t*)val.c_str(), nCh );
     return os;
 }
 
@@ -118,10 +118,10 @@ inline bool cast<int, std::wstring>( int& to, const std::wstring& from )
 }
 
 //****************************************************************************/
-/*	JString <=> DWORD
+/*	JString <=> uint32_t
 //****************************************************************************/
 template <>
-inline bool cast<JString, DWORD>( JString& to, const DWORD& from )
+inline bool cast<JString, uint32_t>( JString& to, const uint32_t& from )
 {
     char buf[c_ConvBufSize];
     sprintf( buf, "%#x", from );
@@ -130,7 +130,7 @@ inline bool cast<JString, DWORD>( JString& to, const DWORD& from )
 }
 
 template <>
-inline bool cast<DWORD, JString>( DWORD& to, const JString& from )
+inline bool cast<uint32_t, JString>( uint32_t& to, const JString& from )
 {
     int val = 0;
     if (sscanf( from.c_str(), "%X", &val ) == 0) return false;
@@ -138,13 +138,13 @@ inline bool cast<DWORD, JString>( DWORD& to, const JString& from )
     return true;
 }
 
-template <> inline const char* type_name<DWORD>() { return "dword"; }
+template <> inline const char* type_name<uint32_t>() { return "uint32_t"; }
 
 //****************************************************************************/
-/*	JString <=> WORD
+/*	JString <=> uint16_t
 //****************************************************************************/
 template <>
-inline bool cast<JString, WORD>( JString& to, const WORD& from )
+inline bool cast<JString, uint16_t>( JString& to, const uint16_t& from )
 {
     char buf[c_ConvBufSize];
     sprintf( buf, "%#x", from );
@@ -153,7 +153,7 @@ inline bool cast<JString, WORD>( JString& to, const WORD& from )
 }
 
 template <>
-inline bool cast<WORD, JString>( WORD& to, const JString& from )
+inline bool cast<uint16_t, JString>( uint16_t& to, const JString& from )
 {
     int val = 0;
     if (sscanf( from.c_str(), "%X", &val ) == 0) return false;
@@ -161,13 +161,13 @@ inline bool cast<WORD, JString>( WORD& to, const JString& from )
     return true;
 }
 
-template <> inline const char* type_name<WORD>() { return "word"; }
+template <> inline const char* type_name<uint16_t>() { return "uint16_t"; }
 
 //****************************************************************************/
-/*	JString <=> BYTE
+/*	JString <=> uint8_t
 //****************************************************************************/
 template <>
-inline bool cast<JString, BYTE>( JString& to, const BYTE& from )
+inline bool cast<JString, uint8_t>( JString& to, const uint8_t& from )
 {
     char buf[c_ConvBufSize];
     sprintf( buf, "%#x", from );
@@ -176,7 +176,7 @@ inline bool cast<JString, BYTE>( JString& to, const BYTE& from )
 }
 
 template <>
-inline bool cast<BYTE, JString>( BYTE& to, const JString& from )
+inline bool cast<uint8_t, JString>( uint8_t& to, const JString& from )
 {
     int val = 0;
     if (sscanf( from.c_str(), "%X", &val ) == 0) return false;
@@ -184,7 +184,7 @@ inline bool cast<BYTE, JString>( BYTE& to, const JString& from )
     return true;
 }
 
-template <> inline const char* type_name<BYTE>() { return "byte"; }
+template <> inline const char* type_name<uint8_t>() { return "uint8_t"; }
 
 //****************************************************************************/
 /*	JString <=> float
@@ -421,7 +421,7 @@ inline OutStream& operator <<( OutStream& os, const JFloatList& lst )
 {
     int nElem = lst.size();
     os << nElem;
-    os.Write( (BYTE*)&lst[0], nElem*sizeof( float ) );
+    os.Write( (uint8_t*)&lst[0], nElem*sizeof( float ) );
     return os;
 }
 
@@ -496,7 +496,7 @@ inline OutStream& operator <<( OutStream& os, const JIntList& lst )
 {
     int nElem = lst.size();
     os << nElem;
-    os.Write( (BYTE*)&lst[0], nElem*sizeof( int ) );
+    os.Write( (uint8_t*)&lst[0], nElem*sizeof( int ) );
     return os;
 }
 

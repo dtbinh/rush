@@ -17,8 +17,8 @@ class TiXmlElement;
 enum JAttrSaveMode
 {
     SaveMode_SaveAll = 0,
-    SaveMode_BYTEIdx = 1,
-    SaveMode_WORDIdx = 2
+    SaveMode_uint8_tIdx = 1,
+    SaveMode_uint16_tIdx = 2
 }; // enum JAttrSaveMode
 
 struct ScriptResource

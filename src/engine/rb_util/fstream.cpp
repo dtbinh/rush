@@ -60,24 +60,24 @@ bool FInStream::OpenFile( const char* fname )
     }
 } // FInStream::OpenFile
 
-int FInStream::ReadStream( void* buf, int nBytes )
+int FInStream::ReadStream( void* buf, int nuint8_ts )
 {
     if (m_hFile == INVALID_HANDLE_VALUE) return false;
-    uint32_t readBytes;
+    uint32_t readuint8_ts;
 
     if (buf == 0)
     {
-        SetFilePointer( m_hFile, nBytes, NULL, FILE_CURRENT );
-        return nBytes;
+        SetFilePointer( m_hFile, nuint8_ts, NULL, FILE_CURRENT );
+        return nuint8_ts;
     }
 
-    BOOL res = ReadFile( m_hFile, buf, nBytes, &readBytes, NULL );
+    BOOL res = ReadFile( m_hFile, buf, nuint8_ts, &readuint8_ts, NULL );
     if (res == FALSE)
     {
         uint32_t err = GetLastError();
         return 0;
     }
-    return readBytes;
+    return readuint8_ts;
 } // FInStream::ReadStream
 
 void FInStream::Close()
@@ -121,16 +121,16 @@ void FOutStream::OnClose()
     m_hFile = INVALID_HANDLE_VALUE;
 } // FOutStream::CloseFile
 
-int FOutStream::Flush( const void* buf, int nBytes )
+int FOutStream::Flush( const void* buf, int nuint8_ts )
 {
     if (m_hFile == INVALID_HANDLE_VALUE) return 0;
-    uint32_t wBytes;
-    BOOL res = WriteFile( m_hFile, buf, nBytes, &wBytes, NULL );
+    uint32_t wuint8_ts;
+    BOOL res = WriteFile( m_hFile, buf, nuint8_ts, &wuint8_ts, NULL );
     if (res == FALSE)
     {
         uint32_t err = GetLastError();
         return 0;
     }
-    return (int)wBytes;
+    return (int)wuint8_ts;
 } // FOutStream::Flush
 

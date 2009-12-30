@@ -45,24 +45,24 @@ bool FileReader::OpenFile( const char* fileName )
     }
 } // FileReader::OpenFile
 
-int FileReader::ReadStream( void* buf, int nBytes )
+int FileReader::ReadStream( void* buf, int nuint8_ts )
 {
     if (m_hFile == INVALID_HANDLE_VALUE) return false;
-    uint32_t readBytes;
+    uint32_t readuint8_ts;
 
     if (buf == 0)
     {
-        SetFilePointer( m_hFile, nBytes, NULL, FILE_CURRENT );
-        return nBytes;
+        SetFilePointer( m_hFile, nuint8_ts, NULL, FILE_CURRENT );
+        return nuint8_ts;
     }
 
-    BOOL res = ReadFile( m_hFile, buf, nBytes, &readBytes, NULL );
+    BOOL res = ReadFile( m_hFile, buf, nuint8_ts, &readuint8_ts, NULL );
     if (res == FALSE)
     {
         uint32_t err = GetLastError();
         return 0;
     }
-    return readBytes;
+    return readuint8_ts;
 } // FileReader::ReadStream
 
 void FileReader::Close()

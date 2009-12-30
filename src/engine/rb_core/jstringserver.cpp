@@ -84,8 +84,8 @@ void JStringServer::Reset()
 void HashString( const char* str, JString& hash )
 {
     hash = "XXXX";
-    uint32_t nHash = PHHash( (const BYTE*)str, strlen( str ) );
-    const BYTE* pHash = (const BYTE*)&nHash;
+    uint32_t nHash = PHHash( (const uint8_t*)str, strlen( str ) );
+    const uint8_t* pHash = (const uint8_t*)&nHash;
     for (int i = 0; i < 4; i++)
     {
         hash[i] = 'A' + pHash[i]%('Z' - 'A');
@@ -94,7 +94,7 @@ void HashString( const char* str, JString& hash )
 
 bool HasCyrillics( const char* str )
 {
-    const BYTE* pStr = (const BYTE*)str;
+    const uint8_t* pStr = (const uint8_t*)str;
     while (*pStr != 0)
     {
         if (*pStr > 0xBF)

@@ -13,7 +13,7 @@ class IStreamReader
 {
 public:
     virtual void    Close       () = 0;
-    virtual int     ReadStream  ( void* buf, int nBytes ) = 0;
+    virtual int     ReadStream  ( void* buf, int nuint8_ts ) = 0;
     virtual bool    IsValid     () const = 0;
     virtual int     GetTotalSize() const = 0;
 }; // class IStreamReader
@@ -26,14 +26,14 @@ class InputStream
 {
 protected:
     int             m_TotalSize;
-    int             m_ReadBytes;
+    int             m_Readuint8_ts;
     bool            m_bDeleteReader;
     IStreamReader*  m_pReader;
 
 public:
     InputStream() :   
       m_TotalSize       ( 0 ), 
-      m_ReadBytes       ( 0 ), 
+      m_Readuint8_ts       ( 0 ), 
       m_pReader         ( NULL ),
       m_bDeleteReader   ( false )
     {}
@@ -58,22 +58,22 @@ public:
         {
             m_TotalSize = 0;
         }
-        m_ReadBytes = 0;
+        m_Readuint8_ts = 0;
     }
 
-    int Read( void* buf, int nBytes ) 
+    int Read( void* buf, int nuint8_ts ) 
     { 
         if (m_pReader == NULL) return 0;
-        int nRead = m_pReader->ReadStream( buf, nBytes ); 
-        m_ReadBytes += nRead;
+        int nRead = m_pReader->ReadStream( buf, nuint8_ts ); 
+        m_Readuint8_ts += nRead;
         return nRead;
     }
 
-    int Rewind( int nBytes ) 
+    int Rewind( int nuint8_ts ) 
     { 
         if (m_pReader == NULL) return 0;
-        int nRead = m_pReader->ReadStream( NULL, nBytes ); 
-        m_ReadBytes += nRead;
+        int nRead = m_pReader->ReadStream( NULL, nuint8_ts ); 
+        m_Readuint8_ts += nRead;
         return nRead;
     }
 
@@ -81,7 +81,7 @@ public:
     {
         return  m_pReader && 
                 m_pReader->IsValid() && 
-                (m_ReadBytes < m_TotalSize);
+                (m_Readuint8_ts < m_TotalSize);
     }
 
     template <class T> InputStream& operator >>( std::vector<T>& arr ) 
@@ -125,7 +125,7 @@ public:
     }
 
     int     GetTotalSize() const { return m_TotalSize; }
-    int     GetReadBytes() const { return m_ReadBytes; }
+    int     GetReaduint8_ts() const { return m_Readuint8_ts; }
 
     void Close() 
     { 

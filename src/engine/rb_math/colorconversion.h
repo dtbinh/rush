@@ -91,11 +91,11 @@ inline void ConvertPixel<ColorFormat_ARGB32F, ColorFormat_ARGB8888>( uint8_t* &d
     uint32_t br = (clr&0x00FF0000)>>16;
     uint32_t bg = (clr&0x0000FF00)>>8;
     uint32_t bb = (clr&0x000000FF);
-    const float c_InvByte = 1.0f/255.0f;
-    fdst[0] = float( ba )*c_InvByte;
-    fdst[1] = float( br )*c_InvByte;
-    fdst[2] = float( bg )*c_InvByte;
-    fdst[3] = float( bb )*c_InvByte;
+    const float c_Invuint8_t = 1.0f/255.0f;
+    fdst[0] = float( ba )*c_Invuint8_t;
+    fdst[1] = float( br )*c_Invuint8_t;
+    fdst[2] = float( bg )*c_Invuint8_t;
+    fdst[3] = float( bb )*c_Invuint8_t;
     dst += 16;
     src += 4;
 }
@@ -112,11 +112,11 @@ inline void ConvertPixel<ColorFormat_ARGB32F, ColorFormat_RGB565>( uint8_t* &dst
     uint32_t b   = uint32_t(src[0]&0x1F)<<3;
     g |= (g>>5);
 
-    const float c_InvByte = 1.0f/255.0f;
+    const float c_Invuint8_t = 1.0f/255.0f;
     fdst[0] = 1.0f;
-    fdst[1] = float( r )*c_InvByte;
-    fdst[2] = float( g )*c_InvByte;
-    fdst[3] = float( b )*c_InvByte;
+    fdst[1] = float( r )*c_Invuint8_t;
+    fdst[2] = float( g )*c_Invuint8_t;
+    fdst[3] = float( b )*c_Invuint8_t;
     dst += 16;
     src += 2;
 }

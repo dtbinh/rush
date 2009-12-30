@@ -1,7 +1,6 @@
 #ifndef __RB_REFLECT_PCH_H__
 #define __RB_REFLECT_PCH_H__
 
-
 #include "rb_common.h"
 
 #include "Logger.h"

@@ -92,7 +92,7 @@ void JMLNode::Write( OutStream& os, int level )
     char* pBuf = (char*)s_SaveBuffer.GetData();
     *pBuf = 0;
     Write( pBuf, level );
-    os.Write( (BYTE*)pBuf, strlen( pBuf ) );
+    os.Write( (uint8_t*)pBuf, strlen( pBuf ) );
     s_SaveBuffer.Resize( 0 );
 } // JMLNode::Write
 

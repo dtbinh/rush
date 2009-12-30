@@ -45,21 +45,21 @@ public:
         float fb = b;
 
         fa = clamp( fa, 0.0f, 1.0f );
-	    fr = clamp( fr, 0.0f, 1.0f );
-	    fg = clamp( fg, 0.0f, 1.0f );
-	    fb = clamp( fb, 0.0f, 1.0f );
+        fr = clamp( fr, 0.0f, 1.0f );
+        fg = clamp( fg, 0.0f, 1.0f );
+        fb = clamp( fb, 0.0f, 1.0f );
 
-	    uint8_t ba, br, bg, bb;
-	    ba = (uint8_t)(fa*255.0f);
-	    br = (uint8_t)(fr*255.0f);
-	    bg = (uint8_t)(fg*255.0f);
-	    bb = (uint8_t)(fb*255.0f);
+        uint8_t ba, br, bg, bb;
+        ba = (uint8_t)(fa*255.0f);
+        br = (uint8_t)(fr*255.0f);
+        bg = (uint8_t)(fg*255.0f);
+        bb = (uint8_t)(fb*255.0f);
         return  (
-				((ba & 0xFF) << 24) |
-				((br & 0xFF) << 16) |
-				((bg & 0xFF) << 8)  |
-				(bb & 0xFF)
-				);
+            ((ba & 0xFF) << 24) |
+            ((br & 0xFF) << 16) |
+            ((bg & 0xFF) << 8)  |
+            (bb & 0xFF)
+            );
     } // operator uint32_t
 
     friend uint32_t lerp( const ColorF& c1, const ColorF& c2, float t )
@@ -71,10 +71,10 @@ public:
 
     void lerp( const ColorF& c1, const ColorF& c2, float t )
     {
-        a = (c2.a - c1.a)*t + c1.a;
-	    b = (c2.b - c1.b)*t + c1.b;
-	    g = (c2.g - c1.g)*t + c1.g;
-	    r = (c2.r - c1.r)*t + c1.r;
+      a = (c2.a - c1.a)*t + c1.a;
+      b = (c2.b - c1.b)*t + c1.b;
+      g = (c2.g - c1.g)*t + c1.g;
+      r = (c2.r - c1.r)*t + c1.r;
     } // lerp
 
     void toGreyScale()
@@ -201,7 +201,7 @@ enum ColorFormat
 
 }; // enum ColorFormat
 
-inline int GetBytesPerPixel( ColorFormat cf )
+inline int Getuint8_tsPerPixel( ColorFormat cf )
 {
     switch (cf)
     {
@@ -221,7 +221,7 @@ inline int GetBytesPerPixel( ColorFormat cf )
     case ColorFormat_ARGB32F:     return 32;
     }
     return 0;
-} // GetBytesPerPixel
+} // Getuint8_tsPerPixel
 
 #endif // __COLOR_H__
 

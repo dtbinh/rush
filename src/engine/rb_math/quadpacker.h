@@ -4,7 +4,7 @@
 #ifndef __QUADPACKER_H__
 #define __QUADPACKER_H__
 
-const WORD	c_PowSide[]  = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768 };
+const uint16_t	c_PowSide[]  = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768 };
 const int 	c_MaxQuadLevels	= 16; //  maximal powers of m_Quad side in texture layout
 
 struct QuadPos
@@ -19,7 +19,7 @@ struct QuadPos
 struct QuadPackerLevel
 {
     QuadPos		m_Quad[3];
-    WORD		m_NQuads;
+    uint16_t		m_NQuads;
 };  // struct QuadPackerLevel
 
 /****************************************************************************/
@@ -36,7 +36,7 @@ class QuadPacker
 
 public:
     QuadPacker		() : m_MaxLevel( c_MaxQuadLevels ) {}
-    inline bool	AllocateQuad( int sidePow, WORD& allocx, WORD& allocy )
+    inline bool	AllocateQuad( int sidePow, uint16_t& allocx, uint16_t& allocy )
     {
         if (sidePow > m_CurLevel) return false;
 
@@ -46,7 +46,7 @@ public:
         //  no free place - split parent greater free chunks
         if (m_Level[sidePow].m_NQuads == 0) 
         {
-            WORD idx = sidePow;
+            uint16_t idx = sidePow;
             while (m_Level[idx].m_NQuads == 0) 
             {
                 idx++;
@@ -57,8 +57,8 @@ public:
             QuadPackerLevel* parentLevel = &m_Level[idx];
             parentLevel->m_NQuads--;
             const QuadPos& pos = parentLevel->m_Quad[parentLevel->m_NQuads];
-            WORD x = pos.x;
-            WORD y = pos.y;
+            uint16_t x = pos.x;
+            uint16_t y = pos.y;
             //  now do descending splitting of the last free chunk on levels
             for (int i = idx - 1; i >= sidePow; i--)
             {

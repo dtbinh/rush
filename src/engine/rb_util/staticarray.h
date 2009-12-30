@@ -44,7 +44,7 @@ public:
         return m_Buf[idx]; 
     }
 
-	int     size_bytes  () const 
+	int     size_uint8_ts  () const 
     { 
         return MaxSz * sizeof( TElem ) + sizeof( *this ); 
     }

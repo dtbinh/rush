@@ -32,7 +32,7 @@ struct UniformPoolPage
 
 private:
 
-    BYTE    m_Elem[PageSize*sizeof(TElem)];
+    uint8_t    m_Elem[PageSize*sizeof(TElem)];
     TPage*  m_pNextPage;
 }; // class UniformPoolPage
 

@@ -24,11 +24,11 @@ void MemoryManager::OnFrame()
     FrameStat& stat = m_Stats[m_CurStatEntry];
 
     m_TotalStat.m_NAllocs      += stat.m_NAllocs;
-    m_TotalStat.m_AllocBytes   += stat.m_AllocBytes;
+    m_TotalStat.m_Allocuint8_ts   += stat.m_Allocuint8_ts;
     m_TotalStat.m_MaxAlloc     += stat.m_MaxAlloc;
     m_TotalStat.m_MinAlloc     += stat.m_MinAlloc;
     m_TotalStat.m_NDeletes     += stat.m_NDeletes;
-    m_TotalStat.m_DeletedBytes += stat.m_DeletedBytes;
+    m_TotalStat.m_Deleteduint8_ts += stat.m_Deleteduint8_ts;
     m_TotalStat.m_MaxDelete    += stat.m_MaxDelete;
     m_TotalStat.m_MinDelete    += stat.m_MinDelete;
 
@@ -59,7 +59,7 @@ void MemoryManager::OnAllocate( void* p, size_t size )
         stat.m_MaxAlloc = size;
     }
     stat.m_NAllocs++;
-    stat.m_AllocBytes += size;
+    stat.m_Allocuint8_ts += size;
     if (stat.m_MinAlloc > size) stat.m_MinAlloc = size;
     if (stat.m_MaxAlloc < size) stat.m_MaxAlloc = size;
 } // MemoryManager::OnAllocate

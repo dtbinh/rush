@@ -18,12 +18,12 @@ struct FrameStat
     int     m_Frame;
 
     int     m_NAllocs;
-    int     m_AllocBytes;
+    int     m_Allocuint8_ts;
     int     m_MaxAlloc;
     int     m_MinAlloc;
 
     int     m_NDeletes;
-    int     m_DeletedBytes;
+    int     m_Deleteduint8_ts;
     int     m_MaxDelete;
     int     m_MinDelete;
 
@@ -31,11 +31,11 @@ struct FrameStat
     {
         m_Frame         = 0;
         m_NAllocs       = 0;
-        m_AllocBytes    = 0;
+        m_Allocuint8_ts    = 0;
         m_MaxAlloc      = 0;
         m_MinAlloc      = 0;
         m_NDeletes      = 0;
-        m_DeletedBytes  = 0;
+        m_Deleteduint8_ts  = 0;
         m_MaxDelete     = 0;
         m_MinDelete     = 0;
     }

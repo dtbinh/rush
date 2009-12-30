@@ -8,7 +8,7 @@
 
 #include "TrackQuat.h"
 #include "TrackVec3.h"
-#include "TrackByte.h"
+#include "Trackuint8_t.h"
 
 enum PRSFlags
 {   
@@ -27,8 +27,8 @@ struct TrackPRS
     TrackQuat       m_Rot;          //  rotation track
     TrackVec3       m_Pos;          //  position track
     TrackVec3       m_Scale;        //  scale track
-    TrackByte       m_Visibility;   //  visibility track
-    WORD            m_Flags;        //  flag set
+    Trackuint8_t       m_Visibility;   //  visibility track
+    uint16_t            m_Flags;        //  flag set
     Mat4            m_TM;           //  pose transform, if constant
     int             m_Tag;          //  some tag value, usually bone index
 

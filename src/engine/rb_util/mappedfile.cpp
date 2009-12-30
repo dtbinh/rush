@@ -33,7 +33,7 @@ uint32_t MappedFile::GetPageSize() const
     return sysInfo.dwAllocationGranularity;
 } // MappedFile::GetPageSize
 
-bool MappedFile::Map( const char* fileName, int startPage, int nBytes )
+bool MappedFile::Map( const char* fileName, int startPage, int nuint8_ts )
 {
     if (m_hMapping != INVALID_HANDLE_VALUE)
     {
@@ -69,7 +69,7 @@ bool MappedFile::Map( const char* fileName, int startPage, int nBytes )
         return false;
     }
 
-	m_pBuffer = (BYTE*)MapViewOfFile( m_hMapping, FILE_MAP_READ, 0, startPage*GetPageSize(), nBytes );
+	m_pBuffer = (uint8_t*)MapViewOfFile( m_hMapping, FILE_MAP_READ, 0, startPage*GetPageSize(), nuint8_ts );
     if (m_pBuffer == NULL)
     {
         uint32_t errCode = GetLastError();
@@ -79,7 +79,7 @@ bool MappedFile::Map( const char* fileName, int startPage, int nBytes )
 	CloseHandle( m_hFile );
 	m_hFile = INVALID_HANDLE_VALUE;
 
-    m_MappedSize        = nBytes;
+    m_MappedSize        = nuint8_ts;
     m_FirstMappedPage   = startPage;
 
     return true;
@@ -110,16 +110,16 @@ bool MappedFile::Unmap()
 } // MappedFile::Unmap
 
 const int c_WarmupStep = 4096;
-BYTE MappedFile::Warmup( int startPage, int nBytes )
+uint8_t MappedFile::Warmup( int startPage, int nuint8_ts )
 {
-    if (nBytes == 0)
+    if (nuint8_ts == 0)
     {
-        nBytes = m_MappedSize;
+        nuint8_ts = m_MappedSize;
     }
-	const BYTE* pData = m_pBuffer + startPage*GetPageSize();
-	BYTE res = 0;
+	const uint8_t* pData = m_pBuffer + startPage*GetPageSize();
+	uint8_t res = 0;
 	int nTouched = 0;
-	while (nTouched < nBytes)
+	while (nTouched < nuint8_ts)
 	{
 		res      += m_pBuffer[nTouched];
 		nTouched += c_WarmupStep;

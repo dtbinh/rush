@@ -599,14 +599,14 @@ inline bool cast<JString, ColorRamp>( JString& to, const ColorRamp& from )
     for (i = 0; i < nPt - 1; i++)
     {
         float cT = from.GetTime ( i );
-        DWORD cV = from.GetValue( i );
+        uint32_t cV = from.GetValue( i );
         cast( strX, cT );
         cast( strY, cV );
         sprintf( buf, "{%s, %s}, ", strX.c_str(), strY.c_str() );
         to += buf;
     }
     float cT = from.GetTime ( i );
-    DWORD cV = from.GetValue( i );
+    uint32_t cV = from.GetValue( i );
     cast( strX, cT );
     cast( strY, cV );
     sprintf( buf, "{%s, %s}}", strX.c_str(), strY.c_str() );
@@ -626,7 +626,7 @@ inline bool cast<ColorRamp, JString>( ColorRamp& to, const JString& from )
     while (pC - pFrom < len)
     {
         float cT;
-        DWORD cV;
+        uint32_t cV;
         pC += strspn( pC, "{ \t\n\r" );
         if (pC - pFrom >= len) return false;
         if (sscanf( pC, "%f", &cT ) == 0) return false;
@@ -660,7 +660,7 @@ inline InStream& operator >>( InStream& is, ColorRamp& pl )
     is >> nElem;
     pl.Clear();
     float cT;
-    DWORD cV;
+    uint32_t cV;
     for (int i = 0; i < nElem; i++)
     {
         is >> cT >> cV;

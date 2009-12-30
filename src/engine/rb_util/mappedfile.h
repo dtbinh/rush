@@ -13,7 +13,7 @@
 //****************************************************************************/
 class MappedFile
 {
-    BYTE*       m_pBuffer;
+    uint8_t*       m_pBuffer;
     int         m_MappedSize;
     int         m_FileSize;
     int         m_FirstMappedPage;
@@ -24,11 +24,11 @@ public:
                 MappedFile      ();
                 ~MappedFile     ();
 
-    bool        Map             ( const char* fileName, int startPage = 0, int nBytes = 0 );
+    bool        Map             ( const char* fileName, int startPage = 0, int nuint8_ts = 0 );
     bool        Unmap           ();
     bool        IsMapped        () const { return (m_pBuffer != NULL); }
-    BYTE*       GetDataPtr      () const { return m_pBuffer; }
-    BYTE        Warmup          ( int startPage = 0, int nBytes = 0 );
+    uint8_t*       GetDataPtr      () const { return m_pBuffer; }
+    uint8_t        Warmup          ( int startPage = 0, int nuint8_ts = 0 );
     uint32_t       GetPageSize     () const;
 
 }; // class MappedFile

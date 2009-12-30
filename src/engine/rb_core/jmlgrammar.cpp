@@ -490,7 +490,7 @@ yynewstate:
 
 #ifdef yyoverflow
       /* Each stack pointer address is followed by the size of
-	 the data in use in that stack, in bytes.  */
+	 the data in use in that stack, in uint8_ts.  */
 #ifdef YYLSP_NEEDED
       /* This used to be a conditional around just the two extra args,
 	 but that might be undefined if yyoverflow is a macro.  */
@@ -1089,7 +1089,7 @@ struct yy_buffer_state
 	char *yy_ch_buf;		/* input buffer */
 	char *yy_buf_pos;		/* current position in input buffer */
 
-	/* Size of input buffer in bytes, not including room for EOB
+	/* Size of input buffer in uint8_ts, not including room for EOB
 	 * characters.
 	 */
 	yy_size_t yy_buf_size;
@@ -1178,7 +1178,7 @@ void yy_flush_buffer YY_PROTO(( YY_BUFFER_STATE b ));
 
 YY_BUFFER_STATE yy_scan_buffer YY_PROTO(( char *base, yy_size_t size ));
 YY_BUFFER_STATE yy_scan_string YY_PROTO(( yyconst char *str ));
-YY_BUFFER_STATE yy_scan_bytes YY_PROTO(( yyconst char *bytes, int len ));
+YY_BUFFER_STATE yy_scan_uint8_ts YY_PROTO(( yyconst char *uint8_ts, int len ));
 
 static void *yy_flex_alloc YY_PROTO(( yy_size_t ));
 static void *yy_flex_realloc YY_PROTO(( void *, yy_size_t ));
@@ -2460,17 +2460,17 @@ yyconst char *str;
 	for ( len = 0; str[len]; ++len )
 		;
 
-	return yy_scan_bytes( str, len );
+	return yy_scan_uint8_ts( str, len );
 	}
 #endif
 
 
-#ifndef YY_NO_SCAN_BYTES
+#ifndef YY_NO_SCAN_uint8_tS
 #ifdef YY_USE_PROTOS
-YY_BUFFER_STATE yy_scan_bytes( yyconst char *bytes, int len )
+YY_BUFFER_STATE yy_scan_uint8_ts( yyconst char *uint8_ts, int len )
 #else
-YY_BUFFER_STATE yy_scan_bytes( bytes, len )
-yyconst char *bytes;
+YY_BUFFER_STATE yy_scan_uint8_ts( uint8_ts, len )
+yyconst char *uint8_ts;
 int len;
 #endif
 	{
@@ -2483,16 +2483,16 @@ int len;
 	n = len + 2;
 	buf = (char *) yy_flex_alloc( n );
 	if ( ! buf )
-		YY_FATAL_ERROR( "out of dynamic memory in yy_scan_bytes()" );
+		YY_FATAL_ERROR( "out of dynamic memory in yy_scan_uint8_ts()" );
 
 	for ( i = 0; i < len; ++i )
-		buf[i] = bytes[i];
+		buf[i] = uint8_ts[i];
 
 	buf[len] = buf[len+1] = YY_END_OF_BUFFER_CHAR;
 
 	b = yy_scan_buffer( buf, n );
 	if ( ! b )
-		YY_FATAL_ERROR( "bad buffer in yy_scan_bytes()" );
+		YY_FATAL_ERROR( "bad buffer in yy_scan_uint8_ts()" );
 
 	/* It's okay to grow etc. this buffer, and we should throw it
 	 * away when we're done.

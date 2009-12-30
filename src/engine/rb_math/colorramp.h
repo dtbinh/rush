@@ -30,7 +30,7 @@ public:
         m_G.Clear();
         m_B.Clear();
     }
-    void        AddKey  ( float keyTime, DWORD keyVal ) 
+    void        AddKey  ( float keyTime, uint32_t keyVal ) 
     { 
         ColorF clr( keyVal );
         m_R.AddKey( keyTime, clr.r );
@@ -46,17 +46,17 @@ public:
     }
 
     float       GetTime ( int keyIdx ) const { return m_R.GetTime( keyIdx ); }
-    DWORD       GetValue( int keyIdx ) const 
+    uint32_t       GetValue( int keyIdx ) const 
     { 
         ColorF clr( 1.0f, m_R.GetValue( keyIdx ), m_G.GetValue( keyIdx ), m_B.GetValue( keyIdx ) );
         return clr; 
     }
-    DWORD       GetValue( float cTime ) const
+    uint32_t       GetValue( float cTime ) const
     {
         ColorF clr( 1.0f, m_R.GetValue( cTime ), m_G.GetValue( cTime ), m_B.GetValue( cTime ) );
         return clr; 
     }
-    void        SetKey  ( int idx, float keyTime, DWORD keyVal )
+    void        SetKey  ( int idx, float keyTime, uint32_t keyVal )
     {
         ColorF clr( keyVal );
         m_R.SetKey( idx, keyTime, clr.r );

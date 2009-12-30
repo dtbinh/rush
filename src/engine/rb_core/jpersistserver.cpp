@@ -231,9 +231,9 @@ JObject* JPersistServer::Load( InStream& is, JPersistFormat fmt, JObject* pSrc, 
         {
             break;
         }
-        int nBytes = 0;
-        (*pBinStream) >> nBytes;
-        if (nBytes == 0)
+        int nuint8_ts = 0;
+        (*pBinStream) >> nuint8_ts;
+        if (nuint8_ts == 0)
         {
             break;
         }
@@ -242,7 +242,7 @@ JObject* JPersistServer::Load( InStream& is, JPersistFormat fmt, JObject* pSrc, 
         {
             rlog.warn( "Could not find object %s while unserializing binary data in subtree: %s",
                 name.c_str(), pObj->GetName() );
-            (*pBinStream).Rewind( nBytes );
+            (*pBinStream).Rewind( nuint8_ts );
         }
         else
         {
@@ -284,12 +284,12 @@ bool JPersistServer::Save( JObject* pObject, OutStream& os, JPersistFormat fmt )
         CountStream cs;
         pObj->Serialize( cs );
         cs.Close();
-        int nBytes = cs.GetTotalSize();
-        if (nBytes == 0) continue;
+        int nuint8_ts = cs.GetTotalSize();
+        if (nuint8_ts == 0) continue;
         if (nSaved == 0)
         {
-            os << BYTE( 0 );
-            os.Write( (const BYTE*)c_BinDataFOURCC, 4 );
+            os << uint8_t( 0 );
+            os.Write( (const uint8_t*)c_BinDataFOURCC, 4 );
         }
         nSaved++;
         JString name( pObj->GetName() );
@@ -300,7 +300,7 @@ bool JPersistServer::Save( JObject* pObject, OutStream& os, JPersistFormat fmt )
             continue;
         }
         os << name;
-        os << nBytes;
+        os << nuint8_ts;
         pObj->Serialize( os );
     }
     return true;
@@ -623,7 +623,7 @@ bool JPersistServer::SaveXML( OutStream& os, const JObject* pObject )
     {
         return false;
     }
-    os.Write( (const BYTE*)printer.CStr(), strlen( printer.CStr() ) );
+    os.Write( (const uint8_t*)printer.CStr(), strlen( printer.CStr() ) );
     delete pNode;
     return true;
 } // JPersistServer::SaveXML
@@ -656,8 +656,8 @@ bool JPersistServer::SaveBin( OutStream& os, const JObject* pObject, bool bWithC
     //  serialize attributes
     int nA = pMeta->GetNAttr();
 
-    BYTE saveMode = SaveMode_BYTEIdx;
-    if (nA >= 255) saveMode = SaveMode_WORDIdx;
+    uint8_t saveMode = SaveMode_uint8_tIdx;
+    if (nA >= 255) saveMode = SaveMode_uint16_tIdx;
 
     os << saveMode;
 
@@ -676,9 +676,9 @@ bool JPersistServer::SaveBin( OutStream& os, const JObject* pObject, bool bWithC
             attr->Serialize( (void*)pObject, os );
         }
     }
-    else if (saveMode == SaveMode_BYTEIdx)
+    else if (saveMode == SaveMode_uint8_tIdx)
     {
-        BYTE idx = 0;
+        uint8_t idx = 0;
         JObject* pDefault = pMeta->GetTemplate();
         while (it)
         {
@@ -701,9 +701,9 @@ bool JPersistServer::SaveBin( OutStream& os, const JObject* pObject, bool bWithC
         idx = 0xFF;
         os << idx;
     }
-    else if (saveMode == SaveMode_WORDIdx)
+    else if (saveMode == SaveMode_uint16_tIdx)
     {
-        WORD idx = 0;
+        uint16_t idx = 0;
         JObject* pDefault = pMeta->GetTemplate();
         while (it)
         {
@@ -764,7 +764,7 @@ JObject* JPersistServer::LoadBin( InStream& is, JObject* pSrc )
     }
 
     //  unserialize attributes
-    BYTE saveMode = SaveMode_BYTEIdx;
+    uint8_t saveMode = SaveMode_uint8_tIdx;
     is >> saveMode;
 
     int nAttr = pMeta->GetNAttr();
@@ -780,9 +780,9 @@ JObject* JPersistServer::LoadBin( InStream& is, JObject* pSrc )
             ++it;
         }
     }
-    else if (saveMode == SaveMode_BYTEIdx)
+    else if (saveMode == SaveMode_uint8_tIdx)
     {
-        BYTE idx = 0;
+        uint8_t idx = 0;
         for (int i = 0; i < nAttr; i++)
         {
             is >> idx;
@@ -791,9 +791,9 @@ JObject* JPersistServer::LoadBin( InStream& is, JObject* pSrc )
             attr->Unserialize( (void*)pObj, is );
         }
     }
-    else if (saveMode == SaveMode_WORDIdx)
+    else if (saveMode == SaveMode_uint16_tIdx)
     {
-        WORD idx = 0;
+        uint16_t idx = 0;
         for (int i = 0; i < nAttr; i++)
         {
             is >> idx;
@@ -1024,7 +1024,7 @@ void JPersistServer::SaveMetaTable( OutStream& os ) const
     {
         return;
     }
-    os.Write( (const BYTE*)printer.CStr(), strlen( printer.CStr() ) );
+    os.Write( (const uint8_t*)printer.CStr(), strlen( printer.CStr() ) );
     delete pNode;
 } // JPersistServer::SaveMetaTable
 

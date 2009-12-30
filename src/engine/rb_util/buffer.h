@@ -16,15 +16,15 @@ class Buffer
 public:
                 Buffer      ();
                 Buffer      ( int size );
-                Buffer      ( const BYTE* pData, int size );
+                Buffer      ( const uint8_t* pData, int size );
                 ~Buffer     ();
 
-    const BYTE* GetData     () const;
-    BYTE*       GetData     ();
+    const uint8_t* GetData     () const;
+    uint8_t*       GetData     ();
     int         GetSize     () const;
 
-    void        SetData     ( const BYTE* pData, int size );
-    void        AddData     ( const BYTE* pData, int size );
+    void        SetData     ( const uint8_t* pData, int size );
+    void        AddData     ( const uint8_t* pData, int size );
     void        Clear       ();
 
     void        Write       ( OutStream& os ) const; 
@@ -32,7 +32,7 @@ public:
     void        Resize      ( int size );
     
 private:
-    BYTE*       m_pData;
+    uint8_t*       m_pData;
     int         m_Size;
 }; // class Buffer
 
@@ -49,7 +49,7 @@ inline Buffer::Buffer( int size )
     Resize( size ); 
 }
 
-inline Buffer::Buffer( const BYTE* pData, int size )
+inline Buffer::Buffer( const uint8_t* pData, int size )
 { 
     m_pData = NULL; 
     SetData( pData, size ); 
@@ -60,12 +60,12 @@ inline Buffer::~Buffer()
     delete []m_pData; 
 }
 
-inline const BYTE* Buffer::GetData() const 
+inline const uint8_t* Buffer::GetData() const 
 { 
     return m_pData; 
 }
 
-inline BYTE* Buffer::GetData() 
+inline uint8_t* Buffer::GetData() 
 { 
     return m_pData; 
 }
@@ -75,15 +75,15 @@ inline int Buffer::GetSize() const
     return m_Size; 
 }
 
-inline void Buffer::SetData( const BYTE* pData, int size )
+inline void Buffer::SetData( const uint8_t* pData, int size )
 {
     Resize( size );
     memcpy( m_pData, pData, size );
 }
 
-inline void Buffer::AddData( const BYTE* pData, int size )
+inline void Buffer::AddData( const uint8_t* pData, int size )
 {
-    BYTE* pNewData = new BYTE[m_Size + size]; 
+    uint8_t* pNewData = new uint8_t[m_Size + size]; 
     memcpy( pNewData, m_pData, m_Size );
     memcpy( pNewData + m_Size, pData, size );
     m_Size += size;
@@ -117,7 +117,7 @@ inline bool Buffer::Read( InStream& is )
 inline void Buffer::Resize( int size )
 {
     delete []m_pData;
-    m_pData = new BYTE[size];
+    m_pData = new uint8_t[size];
     m_Size = size;
 }
 

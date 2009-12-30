@@ -1,4 +1,6 @@
-include_directories(./ ${rb_include})
+include_directories(. ../../include ../rb_util ../rb_math)
 
-aux_source_directory(. rb_core_files)
-add_library(rb_core STATIC ${rb_core_files})
+file (GLOB HEADER_FILES "*.h")
+file (GLOB SOURCE_FILES "*.cpp")
+
+add_library(rb_core STATIC ${HEADER_FILES} ${SOURCE_FILES})

@@ -1,35 +1,35 @@
 /***********************************************************************************/
-//  File:   TrackByte.h
+//  File:   Trackuint8_t.h
 //  Date:   12.08.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#ifndef __TRACKBYTE_H__
-#define __TRACKBYTE_H__
+#ifndef __TRACKuint8_t_H__
+#define __TRACKuint8_t_H__
 
 #include "Track.h"
 
 /***********************************************************************************/
-//  Class:  TrackByteTraits
+//  Class:  Trackuint8_tTraits
 //  Desc:   8-bit unsigned track traits
 /***********************************************************************************/
-struct TrackByteTraits
+struct Trackuint8_tTraits
 {
     static inline float defaultVal() 
     {
         return 0;
     }
 
-    static inline float norm( const BYTE& val ) 
+    static inline float norm( const uint8_t& val ) 
     {
         return (val == 0) ? 0.0f : 1.0f;
     }
 
-    static inline BYTE interpolate( const BYTE& a, const BYTE& b, float t )
+    static inline uint8_t interpolate( const uint8_t& a, const uint8_t& b, float t )
     {
-        return BYTE( float( a ) + float( b - a )*t );
+        return uint8_t( float( a ) + float( b - a )*t );
     }
-}; // struct TrackByteTraits
+}; // struct Trackuint8_tTraits
 
-typedef Track<BYTE, TrackByteTraits> TrackByte;
+typedef Track<uint8_t, Trackuint8_tTraits> Trackuint8_t;
 
-#endif // __TRACKBYTE_H__
+#endif // __TRACKuint8_t_H__
