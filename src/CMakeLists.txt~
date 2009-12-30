@@ -1,4 +1,0 @@
-add_subdirectory( engine )
-add_subdirectory( tools )
-
-set(rush_include ./include)

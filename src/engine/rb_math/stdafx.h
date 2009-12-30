@@ -1,9 +1,8 @@
 #ifndef __RB_MATH_PCH_H__
 #define __RB_MATH_PCH_H__
 
-//#include "rb_common.h"
+#include "rb_common.h"
 
-#include <stdint.h>
 #include <assert.h>
 
 #include "math.h"
