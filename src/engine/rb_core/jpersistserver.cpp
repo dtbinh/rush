@@ -231,9 +231,9 @@ JObject* JPersistServer::Load( InStream& is, JPersistFormat fmt, JObject* pSrc, 
         {
             break;
         }
-        int nuint8_ts = 0;
-        (*pBinStream) >> nuint8_ts;
-        if (nuint8_ts == 0)
+        int nBytes = 0;
+        (*pBinStream) >> nBytes;
+        if (nBytes == 0)
         {
             break;
         }
@@ -242,7 +242,7 @@ JObject* JPersistServer::Load( InStream& is, JPersistFormat fmt, JObject* pSrc, 
         {
             rlog.warn( "Could not find object %s while unserializing binary data in subtree: %s",
                 name.c_str(), pObj->GetName() );
-            (*pBinStream).Rewind( nuint8_ts );
+            (*pBinStream).Rewind( nBytes );
         }
         else
         {
@@ -284,8 +284,8 @@ bool JPersistServer::Save( JObject* pObject, OutStream& os, JPersistFormat fmt )
         CountStream cs;
         pObj->Serialize( cs );
         cs.Close();
-        int nuint8_ts = cs.GetTotalSize();
-        if (nuint8_ts == 0) continue;
+        int nBytes = cs.GetTotalSize();
+        if (nBytes == 0) continue;
         if (nSaved == 0)
         {
             os << uint8_t( 0 );
@@ -300,7 +300,7 @@ bool JPersistServer::Save( JObject* pObject, OutStream& os, JPersistFormat fmt )
             continue;
         }
         os << name;
-        os << nuint8_ts;
+        os << nBytes;
         pObj->Serialize( os );
     }
     return true;

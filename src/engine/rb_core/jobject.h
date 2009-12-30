@@ -4,7 +4,7 @@
 #ifndef __JOBJECT_H__
 #define __JOBJECT_H__
 
-#include "JString.h"
+#include "jstring.h"
 
 class JMetaClass;
 class JObject;
@@ -14,9 +14,9 @@ class JEvent;
 
 //****************************************************************************/
 //  Class:  JObject
-//  Desc:   
+//  Desc:
 //****************************************************************************/
-class JObject 
+class JObject
 {
 public:
                             JObject         ();
@@ -41,7 +41,7 @@ public:
     inline int              GetNRef         () const;
     inline const char*      GetName         () const;
     void                    SetName         ( const char* name );
-    void                    AddChild        ( JObject* pObj, int idxBefore = -1 ); 
+    void                    AddChild        ( JObject* pObj, int idxBefore = -1 );
     void                    RemoveChild     ( JObject* pObj );
     void                    RemoveChildren  ();
     void                    SwapChildren    ( int idx1, int idx2 );
@@ -49,7 +49,7 @@ public:
 
     inline int              GetTag          () const;
     void                    SetTag          ( int tag, bool bRecursive = false );
-    
+
     inline JObject*         GetChild        ( int idx ) const;
     inline int              GetNChildren    () const;
     inline JObject*         GetParent       () const;
@@ -126,86 +126,86 @@ private:
 //  JObject inlines
 //****************************************************************************/
 inline int JObject::GetNRef() const
-{ 
-    return m_RefCount; 
+{
+    return m_RefCount;
 }
 
-inline const char* JObject::GetName() const 
-{ 
-    return m_Name.c_str(); 
+inline const char* JObject::GetName() const
+{
+    return m_Name.c_str();
 }
 
-inline bool JObject::HasName( const char* name ) 
-{ 
-    return m_Name.is_equal_ci( name ); 
+inline bool JObject::HasName( const char* name )
+{
+    return m_Name.is_equal_ci( name );
 }
 
-inline int JObject::GetTag() const 
-{ 
-    return m_Tag; 
+inline int JObject::GetTag() const
+{
+    return m_Tag;
 }
 
-inline int JObject::GetNChildren() const 
-{ 
-    return m_Children.size(); 
+inline int JObject::GetNChildren() const
+{
+    return m_Children.size();
 }
 
-inline bool JObject::IsVisible() const 
-{ 
-    return m_bVisible; 
+inline bool JObject::IsVisible() const
+{
+    return m_bVisible;
 }
 
-inline void JObject::SetVisible( bool bVisible ) 
-{ 
-    m_bVisible = bVisible; 
+inline void JObject::SetVisible( bool bVisible )
+{
+    m_bVisible = bVisible;
     SendSignal( "Visible" );
 }
 
-inline bool JObject::IsEnabled() const 
-{ 
-    return m_bEnabled; 
+inline bool JObject::IsEnabled() const
+{
+    return m_bEnabled;
 }
 
-inline void JObject::SetEnabled( bool bEnabled ) 
-{ 
-    m_bEnabled = bEnabled; 
+inline void JObject::SetEnabled( bool bEnabled )
+{
+    m_bEnabled = bEnabled;
     SendSignal( "Enabled" );
 }
 
-inline bool JObject::IsDrawBounds() const 
-{ 
-    return m_bDrawBounds; 
+inline bool JObject::IsDrawBounds() const
+{
+    return m_bDrawBounds;
 }
 
-inline void JObject::SetDrawBounds( bool bDraw ) 
-{ 
-    m_bDrawBounds = bDraw; 
+inline void JObject::SetDrawBounds( bool bDraw )
+{
+    m_bDrawBounds = bDraw;
 }
 
-inline bool JObject::IsSignalSink() const 
-{ 
-    return m_bSignalSink; 
+inline bool JObject::IsSignalSink() const
+{
+    return m_bSignalSink;
 }
 
-inline void JObject::SetSignalSink( bool bSignalSink ) 
-{ 
-    m_bSignalSink = bSignalSink; 
+inline void JObject::SetSignalSink( bool bSignalSink )
+{
+    m_bSignalSink = bSignalSink;
 }
 
-inline JObject* JObject::GetParent() const 
-{ 
-    return m_pParent; 
+inline JObject* JObject::GetParent() const
+{
+    return m_pParent;
 }
 
-inline void JObject::SetParent( JObject* pParent ) 
-{ 
-    m_pParent = pParent; 
+inline void JObject::SetParent( JObject* pParent )
+{
+    m_pParent = pParent;
 }
 
-inline JObject* JObject::GetChild( int idx ) const 
+inline JObject* JObject::GetChild( int idx ) const
 {
     if (idx < 0 || idx >= m_Children.size()) return NULL;
-    return m_Children[idx]; 
+    return m_Children[idx];
 }
 
 inline bool JObject::IsPathVisible() const
@@ -227,7 +227,7 @@ template <class T> int GetTypeID(...)
     return typeID;
 }
 
-#include "JReflect.h"
+#include "jreflect.h"
 
 void TunnelEvent( JObject* pRoot, JEvent* evt );
 void BubbleEvent( JObject* pRoot, JEvent* evt );

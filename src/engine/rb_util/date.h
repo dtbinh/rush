@@ -6,7 +6,7 @@
 #ifndef __DATE_H__
 #define __DATE_H__
 
-#include "Stream.h"
+#include "stream.h"
 
 /***********************************************************************************/
 //  Class:  Date
@@ -23,7 +23,7 @@ class Date
     int         m_Seconds;
 
 public:
-                Date            ();       
+                Date            ();
     void        SetToCurrent    ();
 
     int         GetYear         () const { return m_Year; }
@@ -53,7 +53,7 @@ public:
         is >> d.m_Year >> d.m_Month >> d.m_Day >> d.m_Hour >> d.m_Minutes >> d.m_Seconds;
         return is;
     }
-                 
+
     bool        operator == ( const Date& d ) const
     {
         return  (m_Year == d.m_Year) && (m_Month == d.m_Month) && (m_Day == d.m_Day) &&

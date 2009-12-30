@@ -21,7 +21,7 @@ public:
                     FileReader  ();
                     FileReader  ( const char* fileName );
     virtual void    Close       ();
-    virtual int     ReadStream  ( void* buf, int nuint8_ts );
+    virtual int     ReadStream  ( void* buf, int nBytes );
     virtual bool    IsValid     () const;
     virtual int     GetTotalSize() const { return m_TotalSize; }
 

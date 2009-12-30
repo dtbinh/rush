@@ -4,18 +4,18 @@
 #ifndef __JPROPERTYMAP_H__
 #define __JPROPERTYMAP_H__
 
-#include "JTypeCast.h"
-#include "JClassAttr.h"
-#include "JFieldAttr.h"
-#include "JPropertyAttr.h"
-#include "JTagPropertyAttr.h"
-#include "JTagMethodAttr.h"
-#include "JMethodAttr.h"
+#include "jtypecast.h"
+#include "jclassattr.h"
+#include "jfieldattr.h"
+#include "jpropertyattr.h"
+#include "jtagpropertyattr.h"
+#include "jtagmethodattr.h"
+#include "jmethodattr.h"
 
 class JMetaClass;
 
 //****************************************************************************/
-//  Class: JAttrIterator 
+//  Class: JAttrIterator
 //****************************************************************************/
 class JAttrIterator
 {
@@ -24,17 +24,17 @@ public:
     inline void         operator++      ();
     inline JClassAttr*  operator *      () const;
     inline              operator bool   () const;
-    
+
 private:
     JMetaClass*         m_pClass;
     int                 m_CurAttr;
 }; // class JAttrIterator
 
 class JObject;
-typedef std::vector<JClassAttr*>    JAttrList; 
+typedef std::vector<JClassAttr*>    JAttrList;
 typedef JObject* (*ObjCreator)();
 //****************************************************************************/
-//  Class: JMetaClass 
+//  Class: JMetaClass
 //****************************************************************************/
 class JMetaClass
 {
@@ -55,14 +55,14 @@ public:
     int             GetNOwnAttr     () const;
     JClassAttr*     GetAttr         ( int idx );
 
-    /*template <class FieldT> 
+    /*template <class FieldT>
     inline void Field( const char* name, std::vector<FieldT*>& field_arr )
     {
         JClassAttr* pExposed = new JPtrArrayAttr<FieldT>( name, offset, field_arr );
         m_Attr.push_back( pExposed );
     }*/
 
-    template <class FieldT> 
+    template <class FieldT>
     inline void Field( const char* name, FieldT& field, int offset )
     {
         JClassAttr* pExposed = new JFieldAttr<FieldT>( name, offset );
@@ -70,7 +70,7 @@ public:
     }
 
     template <class BaseT, class PropT>
-    inline void Property( const char* name, PropT (BaseT::*get)() const, 
+    inline void Property( const char* name, PropT (BaseT::*get)() const,
                     void  (BaseT::*set)( PropT val ) = NULL )
     {
         JClassAttr* pExposed = new JPropertyAttr<BaseT, PropT>( name, get, set );
@@ -78,31 +78,31 @@ public:
     }
 
     template <class BaseT, class PropT>
-    inline void Property( const char* name, PropT (BaseT::*get)(int tag) const, 
+    inline void Property( const char* name, PropT (BaseT::*get)(int tag) const,
         void  (BaseT::*set)( int tag, PropT val ) = NULL )
     {
         JClassAttr* pExposed = new JTagPropertyAttr<BaseT, PropT>( name, get, set );
         m_Attr.push_back( pExposed );
     }
 
-    template <class BaseT> 
+    template <class BaseT>
     inline void Method( const char* name, void (BaseT::*call)() )
     {
         JClassAttr* pExposed = new JMethodAttr<BaseT>( name, call );
         m_Attr.push_back( pExposed );
     }
 
-    template <class BaseT> 
+    template <class BaseT>
     inline void Method( const char* name, void (BaseT::*call)(int tag) )
     {
         JClassAttr* pExposed = new JTagMethodAttr<BaseT>( name, call );
         m_Attr.push_back( pExposed );
     }
 
-private:    
+private:
     JString         m_ParentName;
-    JMetaClass*     m_pParent; 
-    
+    JMetaClass*     m_pParent;
+
     JAttrList	    m_Attr;
 
     JString         m_Name;
@@ -116,15 +116,15 @@ private:
 //****************************************************************************/
 //  JMetaClass implementation
 //****************************************************************************/
-inline JMetaClass::JMetaClass() : 
+inline JMetaClass::JMetaClass() :
     m_pParent( NULL ),
     m_Creator( NULL ),
     m_pTemplate( NULL )
 {}
 
-inline JMetaClass::~JMetaClass() 
+inline JMetaClass::~JMetaClass()
 {
-    for (int i = 0; i < m_Attr.size(); i++) 
+    for (int i = 0; i < m_Attr.size(); i++)
     {
         delete m_Attr[i];
     }
@@ -173,8 +173,8 @@ inline JMetaClass* JMetaClass::GetParent() const
     return m_pParent;
 }
 
-inline void JMetaClass::SetParent( const char* parentName ) 
-{ 
+inline void JMetaClass::SetParent( const char* parentName )
+{
     if (parentName[0] == 'j' || parentName[0] == 'J')
     {
         parentName++;
@@ -183,8 +183,8 @@ inline void JMetaClass::SetParent( const char* parentName )
     m_ParentName.to_lower();
 }
 
-inline int JMetaClass::GetNAttr() const 
-{ 
+inline int JMetaClass::GetNAttr() const
+{
     int nAttr = m_Attr.size();
     if (m_pParent)
     {
@@ -193,18 +193,18 @@ inline int JMetaClass::GetNAttr() const
     return nAttr;
 }
 
-inline int JMetaClass::GetNOwnAttr() const 
-{ 
+inline int JMetaClass::GetNOwnAttr() const
+{
     return m_Attr.size();
 }
 
-inline JClassAttr* JMetaClass::GetAttr( int idx ) 
-{ 
+inline JClassAttr* JMetaClass::GetAttr( int idx )
+{
     if (idx < m_Attr.size())
     {
         return m_Attr[idx];
     }
-    return m_pParent ? m_pParent->GetAttr( idx - m_Attr.size() ) : NULL; 
+    return m_pParent ? m_pParent->GetAttr( idx - m_Attr.size() ) : NULL;
 }
 
 //****************************************************************************/
@@ -217,8 +217,8 @@ inline JAttrIterator::JAttrIterator( JMetaClass* pClass )
     operator ++();
 }
 
-inline void JAttrIterator::operator++() 
-{ 
+inline void JAttrIterator::operator++()
+{
     m_CurAttr++;
     if (m_CurAttr < m_pClass->GetNOwnAttr())
     {
@@ -236,14 +236,14 @@ inline void JAttrIterator::operator++()
     }
 }
 
-inline JClassAttr* JAttrIterator::operator *() const 
-{ 
-    return m_CurAttr >= 0 ? m_pClass->GetAttr( m_CurAttr ) : NULL; 
+inline JClassAttr* JAttrIterator::operator *() const
+{
+    return m_CurAttr >= 0 ? m_pClass->GetAttr( m_CurAttr ) : NULL;
 }
 
-inline JAttrIterator::operator bool() const 
-{ 
-    return (m_CurAttr >= 0); 
+inline JAttrIterator::operator bool() const
+{
+    return (m_CurAttr >= 0);
 }
 
 #endif // __JPROPERTYMAP_H__

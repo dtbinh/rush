@@ -1,11 +1,11 @@
 //****************************************************************************/
 //  File:  FStream.h
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #ifndef __FSTREAM_H__
 #define __FSTREAM_H__
 
-#include "Stream.h"
+#include "stream.h"
 #include <vector>
 #include <set>
 #include <windows.h>
@@ -13,10 +13,10 @@
 
 //****************************************************************************/
 //  Class:  FOutStream
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 class FOutStream : public OutStream
-{   
+{
     std::string     m_FileName;
     HANDLE			m_hFile;
 
@@ -26,9 +26,9 @@ public:
     virtual const char* GetName() const { return m_FileName.c_str(); }
 private:
     virtual void    OnClose     ();
-    virtual int     Flush       ( const void* buf, int nuint8_ts );
+    virtual int     Flush       ( const void* buf, int nBytes );
     bool            OpenFile    ( const char* fname );
-    virtual bool    IsValid     () const { return (m_hFile != INVALID_HANDLE_VALUE); } 
+    virtual bool    IsValid     () const { return (m_hFile != INVALID_HANDLE_VALUE); }
 }; // class FOutStream
 
 //****************************************************************************/
@@ -50,8 +50,8 @@ public:
 
 
 private:
-    virtual bool    IsValid     () const { return (m_hFile != INVALID_HANDLE_VALUE); } 
-    virtual int     ReadStream  ( void* buf, int nuint8_ts );
+    virtual bool    IsValid     () const { return (m_hFile != INVALID_HANDLE_VALUE); }
+    virtual int     ReadStream  ( void* buf, int nBytes );
 
 
 }; // class FInStream
@@ -59,7 +59,7 @@ private:
 void Save( const std::wstring& s, FILE* fp );
 void Load( std::wstring& s, FILE* fp );
 
-template <class T> 
+template <class T>
 void Save( const std::vector<T> v, FILE* fp )
 {
     int sz = v.size();
@@ -67,7 +67,7 @@ void Save( const std::vector<T> v, FILE* fp )
     for (int i = 0; i < sz; i++) Save( v[i], fp );
 } // Save
 
-template <class T> 
+template <class T>
 void Load( std::vector<T>& v, FILE* fp )
 {
     int sz = 0;
@@ -76,27 +76,27 @@ void Load( std::vector<T>& v, FILE* fp )
     for (int i = 0; i < sz; i++) Load( v[i], fp );
 } // Load
 
-template <class T> 
+template <class T>
 void Save( const std::set<T> v, FILE* fp )
 {
     int sz = v.size();
     Save( sz, fp );
     std::set<T>::const_iterator it = v.begin();
-    for (int i = 0; i < sz; i++) 
+    for (int i = 0; i < sz; i++)
     {
         Save( *it, fp );
         ++it;
     }
 } // Save
 
-template <class T> 
+template <class T>
 void Load( std::set<T>& v, FILE* fp )
 {
     int sz = 0;
     Load( sz, fp );
     v.clear();
     T val;
-    for (int i = 0; i < sz; i++) 
+    for (int i = 0; i < sz; i++)
     {
         Load( val, fp );
         v.insert( val );

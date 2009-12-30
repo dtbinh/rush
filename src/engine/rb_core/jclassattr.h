@@ -4,7 +4,7 @@
 #ifndef __JCLASSATTR_H__
 #define __JCLASSATTR_H__
 
-#include "JString.h"
+#include "jstring.h"
 
 class OutStream;
 class InStream;
@@ -44,7 +44,7 @@ public:
 protected:
                     JClassAttr  ();
                     JClassAttr  ( const char* name, const char* type );
-            
+
     JString		    m_Name;		//  name of the attribute
     JString         m_Type;		//  type name
 
@@ -58,43 +58,43 @@ protected:
 //*****************************************************************************
 //	JClassAttr inlines
 //*****************************************************************************
-inline JClassAttr::JClassAttr() 
+inline JClassAttr::JClassAttr()
     :   m_pMeta     ( NULL ),
         m_bDerived  ( false )
 {
 }
 
-inline JClassAttr::JClassAttr( const char* name, const char* type ) 
-    :  m_Type( type ), 
+inline JClassAttr::JClassAttr( const char* name, const char* type )
+    :  m_Type( type ),
        m_pMeta( NULL ),
        m_bDerived  ( false )
 {
     SetName( name );
-} 
+}
 
 inline const char* JClassAttr::GetName() const
-{ 
-    return m_Name.c_str(); 
+{
+    return m_Name.c_str();
 }
 
-inline const char* JClassAttr::GetType() const 
-{ 
-    return m_Type.c_str(); 
+inline const char* JClassAttr::GetType() const
+{
+    return m_Type.c_str();
 }
 
-inline bool JClassAttr::HasName( const char* name ) const 
-{ 
-    return m_Name.is_equal_ci( name ); 
+inline bool JClassAttr::HasName( const char* name ) const
+{
+    return m_Name.is_equal_ci( name );
 }
 
-inline bool JClassAttr::HasType( const char* type ) const 
-{ 
-    return m_Type == type; 
+inline bool JClassAttr::HasType( const char* type ) const
+{
+    return m_Type == type;
 }
 
-inline bool JClassAttr::IsDerived() const 
-{ 
-    return m_bDerived; 
+inline bool JClassAttr::IsDerived() const
+{
+    return m_bDerived;
 }
 
 #endif // __JCLASSATTR_H__

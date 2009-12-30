@@ -4,7 +4,7 @@
 #ifndef __JENUM_H__
 #define __JENUM_H__
 
-#include "JTypeCast.h"
+#include "jtypecast.h"
 
 //****************************************************************************/
 /*  Struct: JEnumVal
@@ -20,7 +20,7 @@ inline bool EnumToString( JString& to, const int& from, const JEnumVal* pEnum )
 {
     if (!pEnum) return false;
     int cVal = 0;
-    while (pEnum[cVal].m_Name.size() != 0) 
+    while (pEnum[cVal].m_Name.size() != 0)
     {
         if (pEnum[cVal].m_Val == from)
         {
@@ -40,7 +40,7 @@ inline bool StringToEnum( int& to, const JString& from, const JEnumVal* pEnum )
         return true;
     }
     int cVal = 0;
-    while (pEnum[cVal].m_Name.size() != 0) 
+    while (pEnum[cVal].m_Name.size() != 0)
     {
         if (pEnum[cVal].m_Name.is_equal_ci( from.c_str() ))
         {
@@ -57,7 +57,7 @@ inline bool EnumValues( JStringList& to, const JEnumVal* pEnum )
     if (!pEnum) return false;
     int cVal = 0;
     to.clear();
-    while (pEnum[cVal].m_Name.size() != 0) 
+    while (pEnum[cVal].m_Name.size() != 0)
     {
         to.push_back( pEnum[cVal].m_Name.c_str() );
         cVal++;

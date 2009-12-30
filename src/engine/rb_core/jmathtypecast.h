@@ -1,23 +1,23 @@
 //****************************************************************************/
 //  File:   JMathTypeCast.h
-//  Desc:   There are declared math-needed typecasts 
+//  Desc:   There are declared math-needed typecasts
 //****************************************************************************/
 #ifndef __JMATHTYPECAST_H__
 #define __JMATHTYPECAST_H__
 
-#include "Vec2.h"
-#include "Vec3.h"
-#include "Mat3.h"
-#include "Mat4.h"
-#include "Frame.h"
-#include "Plane.h"
-#include "Date.h"
-#include "PolyLine2.h"
-#include "Ramp.h"
-#include "ColorRamp.h"
+#include "vec2.h"
+#include "vec3.h"
+#include "mat3.h"
+#include "mat4.h"
+#include "frame.h"
+#include "plane.h"
+#include "date.h"
+#include "polyline2.h"
+#include "ramp.h"
+#include "colorramp.h"
 
-#include "JObject.h"
-#include "JTypeCast.h"
+#include "jobject.h"
+#include "jtypecast.h"
 
 typedef const char* PCChar;
 inline bool extractFloat( PCChar& pFrom, float& val )
@@ -126,7 +126,7 @@ template <>
 inline bool cast<JString, Mat3>( JString& to, const Mat3& from )
 {
     char buf[c_ConvBufSize];
-    sprintf( buf, "{ %f, %f, %f,   %f, %f, %f,   %f, %f, %f }", 
+    sprintf( buf, "{ %f, %f, %f,   %f, %f, %f,   %f, %f, %f }",
                     from.e00, from.e01, from.e02,
                     from.e10, from.e11, from.e12,
                     from.e20, from.e21, from.e22 );
@@ -162,7 +162,7 @@ template <>
 inline bool cast<JString, Mat4>( JString& to, const Mat4& from )
 {
     char buf[c_ConvBufSize];
-    sprintf( buf, "{ %f, %f, %f, %f,   %f, %f, %f, %f,   %f, %f, %f, %f,   %f, %f, %f, %f }", 
+    sprintf( buf, "{ %f, %f, %f, %f,   %f, %f, %f, %f,   %f, %f, %f, %f,   %f, %f, %f, %f }",
                     from.e00, from.e01, from.e02, from.e03,
                     from.e10, from.e11, from.e12, from.e13,
                     from.e20, from.e21, from.e22, from.e23,
@@ -261,7 +261,7 @@ template <>
 inline bool cast<JString, JVec3List>( JString& to, const JVec3List& from )
 {
     int nPt = from.size();
-    if (nPt == 0) 
+    if (nPt == 0)
     {
         to = "{}";
         return true;
@@ -350,7 +350,7 @@ template <>
 inline bool cast<JString, Date>( JString& to, const Date& from )
 {
     char buf[c_ConvBufSize];
-    sprintf( buf, "%d.%d.%d %d:%d:%d", from.GetDay(), from.GetMonth(), from.GetYear(), 
+    sprintf( buf, "%d.%d.%d %d:%d:%d", from.GetDay(), from.GetMonth(), from.GetYear(),
                     from.GetHour(), from.GetMinutes(), from.GetSeconds() );
     to = buf;
     return true;
@@ -416,7 +416,7 @@ template <>
 inline bool cast<JString, PolyLine2>( JString& to, const PolyLine2& from )
 {
     int nPt = from.GetNPoints();
-    if (nPt == 0) 
+    if (nPt == 0)
     {
         to = "{}";
         return true;
@@ -500,7 +500,7 @@ template <>
 inline bool cast<JString, Ramp>( JString& to, const Ramp& from )
 {
     int nPt = from.GetNKeys();
-    if (nPt == 0) 
+    if (nPt == 0)
     {
         to = "{}";
         return true;
@@ -587,7 +587,7 @@ template <>
 inline bool cast<JString, ColorRamp>( JString& to, const ColorRamp& from )
 {
     int nPt = from.GetNKeys();
-    if (nPt == 0) 
+    if (nPt == 0)
     {
         to = "{}";
         return true;

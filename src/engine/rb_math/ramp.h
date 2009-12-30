@@ -6,7 +6,7 @@
 #ifndef __RAMP_H__
 #define __RAMP_H__
 
-#include "Track.h"
+#include "track.h"
 
 typedef Track<float> Ramp;
 

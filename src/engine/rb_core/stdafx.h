@@ -1,16 +1,17 @@
-#ifndef __RB_REFLECT_PCH_H__
-#define __RB_REFLECT_PCH_H__
+#ifndef __RB_CORE_PCH_H__
+#define __RB_CORE_PCH_H__
+
+#include <assert.h>
 
 #include "rb_common.h"
 
-#include "Logger.h"
-#include "JString.h"
-#include "JWeakRef.h"
-#include "JObject.h"
-#include "JReflect.h"
-#include "MemStream.h"
-#include "FStream.h"
-#include "assert.h"
+#include "logger.h"
+#include "jstring.h"
+#include "jweakref.h"
+#include "jobject.h"
+#include "jreflect.h"
+#include "memstream.h"
+#include "fstream.h"
 
-#endif // __RB_REFLECT_PCH_H__
+#endif // __RB_CORE_PCH_H__
 

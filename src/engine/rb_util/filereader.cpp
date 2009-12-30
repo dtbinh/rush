@@ -43,27 +43,27 @@ bool FileReader::OpenFile( const char* fileName )
         m_TotalSize = ::GetFileSize( m_hFile, NULL );
         return true;
     }
-} // FileReader::OpenFile
+}
 
-int FileReader::ReadStream( void* buf, int nuint8_ts )
+int FileReader::ReadStream( void* buf, int nBytes )
 {
     if (m_hFile == INVALID_HANDLE_VALUE) return false;
     uint32_t readuint8_ts;
 
     if (buf == 0)
     {
-        SetFilePointer( m_hFile, nuint8_ts, NULL, FILE_CURRENT );
-        return nuint8_ts;
+        SetFilePointer( m_hFile, nBytes, NULL, FILE_CURRENT );
+        return nBytes;
     }
 
-    BOOL res = ReadFile( m_hFile, buf, nuint8_ts, &readuint8_ts, NULL );
+    BOOL res = ReadFile( m_hFile, buf, nBytes, &readuint8_ts, NULL );
     if (res == FALSE)
     {
         uint32_t err = GetLastError();
         return 0;
     }
     return readuint8_ts;
-} // FileReader::ReadStream
+}
 
 void FileReader::Close()
 {
@@ -71,10 +71,10 @@ void FileReader::Close()
     BOOL res = CloseHandle( m_hFile );
     if (res == FALSE) return;
     m_hFile = INVALID_HANDLE_VALUE;
-} // FileReader::Close
+}
 
 bool FileReader::IsValid() const
 {
     return (m_hFile != INVALID_HANDLE_VALUE);
-} // FileReader::IsValid
+}
 

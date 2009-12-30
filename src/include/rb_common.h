@@ -1,11 +1,15 @@
 #ifndef __RB_COMMON_H__
 #define __RB_COMMON_H__
 
+#ifdef __GNUC__
+#include <stdint.h>
+#else
 typedef unsigned char   uint8_t;
 typedef unsigned short  uint16_t;
-typedef unsigned long		uint32_t;
-typedef unsigned int	  int_t;
-typedef long				    int32_t;
+typedef unsigned long	uint32_t;
+typedef unsigned int	int_t;
+typedef long int		int32_t;
+#endif
 
 #define NULL            0
 
@@ -30,11 +34,10 @@ typedef long				    int32_t;
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <hash_map>
 
-#include "assert.h"
-#include "math.h"
-#include "stdio.h"
+#include <assert.h>
+#include <math.h>
+#include <stdio.h>
 
 #ifndef SAFE_RELEASE
 #define SAFE_RELEASE(p)      { if(p) { (p)->Release(); (p)=NULL; } }

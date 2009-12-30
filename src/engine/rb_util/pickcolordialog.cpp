@@ -4,7 +4,7 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "stdafx.h"
-#include "PickColorDialog.h"
+#include "pickcolordialog.h"
 
 //****************************************************************************/
 /*    PickColorDialog implementation

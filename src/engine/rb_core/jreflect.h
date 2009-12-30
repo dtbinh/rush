@@ -4,9 +4,9 @@
 #ifndef __JREFLECT_H__
 #define __JREFLECT_H__
 
-#include "JEnum.h"
-#include "JTypeCast.h"
-#include "JMetaClass.h"
+#include "jenum.h"
+#include "jtypecast.h"
+#include "jmetaclass.h"
 
 #define expose( CName )             public: virtual const char* ClassName() const { return s_pMetaClass ? s_pMetaClass->GetName() : #CName; } \
                                     static JMetaClass* s_pMetaClass;\
@@ -14,7 +14,7 @@
                                     typedef CName MyType;\
                                     virtual void Expose( JMetaClass& mc )
 
-//  decl_class macro should be used for the class we want to register 
+//  decl_class macro should be used for the class we want to register
 //    at the object factory - insert it after class declaration
 #define decl_class( CName ) JObject* __##CName##Creator() { return (JObject*)(new CName); } \
     JMetaClass* CName##::s_pMetaClass = NULL;\

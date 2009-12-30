@@ -3,7 +3,7 @@
 //  Desc:
 //****************************************************************************/
 #include "stdafx.h"
-#include "Thread.h"
+#include "thread.h"
 
 uint32_t WINAPI ThreadStarter( LPVOID lpParameter )
 {

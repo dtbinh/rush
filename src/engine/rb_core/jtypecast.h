@@ -4,8 +4,11 @@
 #ifndef __JTYPECAST_H__
 #define __JTYPECAST_H__
 
-#include "Stream.h"
-#include "JString.h"
+#include <string.h>
+
+
+#include "stream.h"
+#include "jstring.h"
 
 template <class TTo, class TFrom>
 inline bool cast( TTo& to, const TFrom& from )
@@ -49,7 +52,7 @@ inline InStream& operator >>( InStream& is, JString& val )
    is.Read( &nCh, sizeof( int ) );
    val.resize( nCh );
    is.Read( (void*)val.c_str(), nCh );
-   return is; 
+   return is;
 }
 
 //  FIXME
@@ -211,8 +214,8 @@ inline bool cast<float, JString>( float& to, const JString& from )
 {
     char* pEnd = NULL;
     float val = float( strtod( from.c_str(), &pEnd ) );
-    if (pEnd && *pEnd != 'f' && *pEnd != 'F' && 
-        pEnd - from.c_str() < from.size()) 
+    if (pEnd && *pEnd != 'f' && *pEnd != 'F' &&
+        pEnd - from.c_str() < from.size())
     {
         return false;
     }
@@ -251,7 +254,7 @@ template <> inline const char* type_name<double>() { return "double"; }
 template <>
 inline bool cast<JString, bool>( JString& to, const bool& from )
 {
-    if (from) to = "true"; else to = "false";
+    to = from ? "true" : "false";
     return true;
 }
 
@@ -280,13 +283,13 @@ inline bool cast<JString, JStringList>( JString& to, const JStringList& from )
         to += from[i];
         to += "\", ";
     }
-    if (lastS >= 0) 
+    if (lastS >= 0)
     {
         to += "\"";
         to += from[lastS];
         to += "\"";
     }
-    to += " }"; 
+    to += " }";
     return true;
 }
 
@@ -335,16 +338,16 @@ inline InStream& operator >>( InStream& is, JStringList& lst )
 
 template <> inline const char* type_name<JStringList>() { return "stringlist"; }
 
-#include "JObject.h"
+#include "jobject.h"
 //****************************************************************************/
 /*	JString <=> JObject
 //****************************************************************************/
-#include "JObjectServer.h"
+#include "jobjectserver.h"
 typedef JObject* PObject;
 template <>
 inline bool cast<JString, PObject>( JString& to, const PObject& from )
 {
-    if (!from) 
+    if (!from)
     {
         to = "";
     }
@@ -373,7 +376,7 @@ template <>
 inline bool cast<JString, JFloatList>( JString& to, const JFloatList& from )
 {
     int nPt = from.size();
-    if (nPt == 0) 
+    if (nPt == 0)
     {
         to = "{}";
         return true;
@@ -447,7 +450,7 @@ template <>
 inline bool cast<JString, JIntList>( JString& to, const JIntList& from )
 {
     int nPt = from.size();
-    if (nPt == 0) 
+    if (nPt == 0)
     {
         to = "{}";
         return true;
@@ -514,7 +517,7 @@ inline InStream& operator >>( InStream& is, JIntList& lst )
 
 template <> inline const char* type_name<JIntList>() { return "JIntList"; }
 
-#include "JMathTypeCast.h"
+#include "jmathtypecast.h"
 
 #endif // __JTYPECAST_H__
 

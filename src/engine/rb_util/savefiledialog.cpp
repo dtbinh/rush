@@ -5,7 +5,7 @@
 /***********************************************************************************/
 #include "stdafx.h"
 #include "direct.h"
-#include "SaveFileDialog.h"
+#include "savefiledialog.h"
 
 /***********************************************************************************/
 /*  SaveFileDialog implementation

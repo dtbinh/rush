@@ -4,7 +4,7 @@
 #ifndef __JFIELDATTR_H__
 #define __JFIELDATTR_H__
 
-#include "Stream.h"
+#include "stream.h"
 
 //****************************************************************************/
 //  Class:	JFieldAttr
@@ -22,28 +22,28 @@ public:
         m_Type      = type_name<FieldT>();
     }
 
-    virtual int     GetTypeID   () const 
+    virtual int     GetTypeID   () const
     {
-        return ::GetTypeID<FieldT>(); 
+        return ::GetTypeID<FieldT>();
     }
 
     virtual int     GetSizeOf   () const { return sizeof( FieldT ); }
 
-    virtual bool Get( const void* pThis, JString& str, int tag = -1 ) const 
+    virtual bool Get( const void* pThis, JString& str, int tag = -1 ) const
     {
         FieldT val;
         if (!Get( pThis, &val )) return false;
         return cast( str, val );
     }
-    
-    virtual bool Set( void* pThis, const JString& str, int tag = -1 ) 
+
+    virtual bool Set( void* pThis, const JString& str, int tag = -1 )
     {
         FieldT val;
         if (!cast( val, str )) return false;
         return Set( pThis, &val );
     }
 
-    virtual bool Get( const void* pThis, void* pVal, int tag = -1 ) const 
+    virtual bool Get( const void* pThis, void* pVal, int tag = -1 ) const
     {
         if (!pThis || !pVal) return false;
         FieldT* pObj = new ( pVal )FieldT;
@@ -51,30 +51,30 @@ public:
         return true;
     }
 
-    virtual bool Set( void* pThis, const void* pVal, int tag = -1 ) 
+    virtual bool Set( void* pThis, const void* pVal, int tag = -1 )
     {
         if (!pVal || !pThis) return false;
         FieldRef( pThis ) = *((const FieldT*)pVal);
         return true;
     }
 
-    virtual int Serialize( void* pThis, OutStream& os ) 
-    { 
+    virtual int Serialize( void* pThis, OutStream& os )
+    {
         if (!pThis) return false;
         os << FieldRef( pThis );
         return sizeof( FieldT );
     }
 
-    virtual int Unserialize( void* pThis, InStream& is ) 
-    { 
+    virtual int Unserialize( void* pThis, InStream& is )
+    {
         if (!pThis) return false;
-        is >> FieldRef( pThis ); 
+        is >> FieldRef( pThis );
         return sizeof( FieldT );
     }
 
-    virtual bool Enumerate( JStringList& lst ) 
-    { 
-        return enumerate<FieldT>( lst ); 
+    virtual bool Enumerate( JStringList& lst )
+    {
+        return enumerate<FieldT>( lst );
     }
 
 protected:
@@ -83,7 +83,7 @@ protected:
         return *((FieldT*)((unsigned char*)pThis + m_Offset));
     }
 
-    const FieldT& FieldRef( const void* pThis ) const 
+    const FieldT& FieldRef( const void* pThis ) const
     {
         return *((FieldT*)((unsigned char*)pThis + m_Offset));
     }

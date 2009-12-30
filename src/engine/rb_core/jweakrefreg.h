@@ -5,7 +5,7 @@
 #define __JWeakRefReg_H__
 
 class JWeakRefHolder;
-#include "UniformPool.h"
+#include "uniformpool.h"
 
 typedef stdext::hash_map<void*, JWeakRefHolder*> JWeakRefHolderHash;
 typedef UniformPool<JWeakRefHolder>           JWeakRefHolderPool;
@@ -13,7 +13,7 @@ typedef UniformPool<JWeakRefHolder>           JWeakRefHolderPool;
 //  Class:  JWeakRefReg, singleton
 //  Desc:   Manages weak references
 //****************************************************************************/
-class JWeakRefReg  
+class JWeakRefReg
 {
 public:
                             JWeakRefReg     ();
