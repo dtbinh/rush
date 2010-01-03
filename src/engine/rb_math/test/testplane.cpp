@@ -25,15 +25,6 @@ TEST( PlaneTransform )
     Plane tplane = plane;
     tplane.Transform( tm ); 
     
-    Mat4 itm = transpose( inverse( tm ) );
-    D3DXPLANE out;
-    D3DXPlaneTransform( &out, (const D3DXPLANE *)(&plane), (const D3DXMATRIX *)(&itm) );
-    D3DXPlaneNormalize( &out, &out );
-    CHECK( equalf( out.a, tplane.a, c_Epsilon ) );
-    CHECK( equalf( out.b, tplane.b, c_Epsilon ) );
-    CHECK( equalf( out.c, tplane.c, c_Epsilon ) );
-    CHECK( equalf( out.d, tplane.d, c_Epsilon ) );
-    
     Vec3 tpos( pos );
     tm.tmproj( tpos );
     CHECK( tplane.ContainsPoint( tpos, c_Epsilon ) );

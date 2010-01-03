@@ -2,8 +2,8 @@
 #include "Color.h"
 #include "ColorConversion.h"
 
-DWORD c_TestColors[] = { 0xFF00FF00, 0x80FFFF00, 0x00FFFFFF, 0x00000000, 0xFF00FF00, 0xFF0000FF, 0xFFFF00FF, 
-                         0xFFFFFFFF, 0x80FFFF80, 0x80FFFFFF, 0x80000000, 0x8000FF00, 0xFF0080FF, 0x008080FF };
+uint32_t c_TestColors[] = { 0xFF00FF00, 0x80FFFF00, 0x00FFFFFF, 0x00000000, 0xFF00FF00, 0xFF0000FF, 0xFFFF00FF, 
+                            0xFFFFFFFF, 0x80FFFF80, 0x80FFFFFF, 0x80000000, 0x8000FF00, 0xFF0080FF, 0x008080FF };
 
 ColorFormat c_FormatPairs[][2] = {  
     {ColorFormat_ARGB8888, ColorFormat_RGB565}, 
