@@ -1,6 +1,6 @@
 include_directories(
     include
-    "${CMAKE_CURRENT_SOURCE_DIR}/../external/unittest++/src"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../external/unittest-cpp-1.4/src"
     )
     
 set(PCH_FILE_H "precompile.h")
