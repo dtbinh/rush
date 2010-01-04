@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "MathConst.h"
-#include "Mat4.h"
+#include "mathconst.h"
+#include "mat4.h"
 
 float GetOBBProjAreaBruteForce( const Mat4& obb, const Mat4& projTM )
 {
@@ -9,5 +9,5 @@ float GetOBBProjAreaBruteForce( const Mat4& obb, const Mat4& projTM )
 
 TEST( OBBProjectedArea )
 {
-    
+
 }

@@ -1,12 +1,12 @@
 #include "stdafx.h"
-#include "Color.h"
-#include "ColorConversion.h"
+#include "color.h"
+#include "colorconversion.h"
 
-uint32_t c_TestColors[] = { 0xFF00FF00, 0x80FFFF00, 0x00FFFFFF, 0x00000000, 0xFF00FF00, 0xFF0000FF, 0xFFFF00FF, 
+uint32_t c_TestColors[] = { 0xFF00FF00, 0x80FFFF00, 0x00FFFFFF, 0x00000000, 0xFF00FF00, 0xFF0000FF, 0xFFFF00FF,
                             0xFFFFFFFF, 0x80FFFF80, 0x80FFFFFF, 0x80000000, 0x8000FF00, 0xFF0080FF, 0x008080FF };
 
-ColorFormat c_FormatPairs[][2] = {  
-    {ColorFormat_ARGB8888, ColorFormat_RGB565}, 
+ColorFormat c_FormatPairs[][2] = {
+    {ColorFormat_ARGB8888, ColorFormat_RGB565},
     {ColorFormat_ARGB32F,  ColorFormat_RGB565},
 /*
     {ColorFormat_ARGB8888, ColorFormat_RGB888},
@@ -26,14 +26,14 @@ ColorFormat c_FormatPairs[][2] = {
 
 };
 
-ColorFormat c_FormatPairsA[][2] = { 
-    {ColorFormat_ARGB8888, ColorFormat_ARGB4444}, 
+ColorFormat c_FormatPairsA[][2] = {
+    {ColorFormat_ARGB8888, ColorFormat_ARGB4444},
     {ColorFormat_ARGB8888, ColorFormat_ARGB8888},
-    {ColorFormat_ARGB8888, ColorFormat_ARGB32F}, 
+    {ColorFormat_ARGB8888, ColorFormat_ARGB32F},
 /*
-    {ColorFormat_ARGB4444, ColorFormat_ARGB4444}, 
+    {ColorFormat_ARGB4444, ColorFormat_ARGB4444},
     {ColorFormat_ARGB4444, ColorFormat_ARGB8888},
-    {ColorFormat_ARGB4444, ColorFormat_ARGB32F}, 
+    {ColorFormat_ARGB4444, ColorFormat_ARGB32F},
 
     {ColorFormat_ARGB32F,  ColorFormat_ARGB8888},
     {ColorFormat_ARGB32F,  ColorFormat_ARGB32F}*/
@@ -66,7 +66,7 @@ TEST( ColorBufferConversion )
             CHECK( clrOrg.isEqual( clrDst, 0.06f ) );
         }
     }
-    
+
     int nPairsA = sizeof( c_FormatPairsA )/sizeof(ColorFormat)/2;
     for (int i = 0; i < nPairsA; i++)
     {

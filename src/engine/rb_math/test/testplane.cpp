@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "MathConst.h"
-#include "Mat4.h"
-#include "Plane.h"
+#include "mathconst.h"
+#include "mat4.h"
+#include "plane.h"
 
 TEST( PlaneTransform )
 {
@@ -9,7 +9,7 @@ TEST( PlaneTransform )
     Vec3 norm( 0.2f, 0.3f, -0.1f );
     norm.normalize();
     Plane plane( pos, norm );
-    
+
     float res = pos.x*plane.a + pos.y*plane.b + pos.z*plane.c + plane.d;
     CHECK( fabs( res ) < c_Epsilon );
 
@@ -23,8 +23,8 @@ TEST( PlaneTransform )
     tm *= ptm;
 
     Plane tplane = plane;
-    tplane.Transform( tm ); 
-    
+    tplane.Transform( tm );
+
     Vec3 tpos( pos );
     tm.tmproj( tpos );
     CHECK( tplane.ContainsPoint( tpos, c_Epsilon ) );
@@ -33,11 +33,11 @@ TEST( PlaneTransform )
     Vec3 planePt( 7.0f, -10.0f, 0.0f );
     planePt.z = -(plane.a*planePt.x + plane.b*planePt.y + plane.d)/plane.c;
     CHECK( plane.ContainsPoint( planePt, c_Epsilon ) );
-    
+
     tm.tmproj( planePt );
     CHECK( tplane.ContainsPoint( planePt, c_Epsilon ) );
     CHECK( !plane.ContainsPoint( planePt, c_Epsilon ) );
-    
+
     tplane.Transform( inverse( tm ) );
     CHECK( equalf( plane.a, tplane.a, c_Epsilon ) );
     CHECK( equalf( plane.b, tplane.b, c_Epsilon ) );

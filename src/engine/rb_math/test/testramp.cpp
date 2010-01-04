@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Ramp.h"
+#include "ramp.h"
 
 static Ramp ramp;
 static float cVal;

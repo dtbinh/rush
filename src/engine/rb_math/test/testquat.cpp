@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "Mat4.h"
-#include "Quaternion.h"
+#include "mat4.h"
+#include "quaternion.h"
 
 
 const float c_CheckEps = 0.00001f;
@@ -19,7 +19,7 @@ TEST( TestQuat )
     Quaternion rot1;
 
     tm.factorize( scale1, rot1, pos1 );
-    
+
     CHECK( scale.is_equal( scale1, c_CheckEps ) );
     CHECK( pos.is_equal( pos1, c_CheckEps ) );
     CHECK( rot.is_equal( rot1, c_CheckEps ) );
