@@ -2,7 +2,7 @@
 //  File:  Vec4.cpp
 //  Desc:  4D vector
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "vec4.h"
 #include "rand.h"
 #include "mathconst.h"

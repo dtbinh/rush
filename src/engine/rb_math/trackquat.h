@@ -6,8 +6,8 @@
 #ifndef __TRACKQUAT_H__
 #define __TRACKQUAT_H__
 
-#include "Track.h"
-#include "Quaternion.h"
+#include "track.h"
+#include "quaternion.h"
 
 /***********************************************************************************/
 //  Class:  TrackQuatTraits

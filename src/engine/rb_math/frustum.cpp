@@ -2,7 +2,7 @@
 //  File:  Frustum.cpp
 //  Desc:
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "mat4.h"
 #include "mathconst.h"
 #include "frustum.h"

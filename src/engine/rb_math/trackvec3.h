@@ -6,8 +6,8 @@
 #ifndef __TRACKVEC3_H__
 #define __TRACKVEC3_H__
 
-#include "Track.h"
-#include "Vec3.h"
+#include "track.h"
+#include "vec3.h"
 
 /***********************************************************************************/
 //  Class:  TrackVec3Traits

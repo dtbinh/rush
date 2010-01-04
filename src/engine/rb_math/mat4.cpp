@@ -2,7 +2,7 @@
 //  File:  Mat4.cpp
 //  Desc:  4x4 Matrix
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "mat4.h"
 #include "frame.h"
 #include "mathconst.h"

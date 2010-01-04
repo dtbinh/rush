@@ -1,6 +1,5 @@
 /***********************************************************************************/
 //  File:   Mesh.h
-//  Date:   3.09.2006
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #ifndef __MESH_H__
@@ -51,9 +50,9 @@ public:
     const Vec2&         GetUV           ( int idx ) const;
     const Vec2&         GetUV           ( int idx, int uvPair ) const;
     float               GetBlendWeight  ( int idx, int wIdx ) const;
-    uint8_t                GetBlendIdx     ( int idx, int wIdx ) const;
-    uint32_t               GetDiffuse      ( int idx ) const;
-    uint32_t               GetSpecular     ( int idx ) const;
+    uint8_t             GetBlendIdx     ( int idx, int wIdx ) const;
+    uint32_t            GetDiffuse      ( int idx ) const;
+    uint32_t            GetSpecular     ( int idx ) const;
 
 
     bool                SetPos          ( int idx, const Vec3& pos );

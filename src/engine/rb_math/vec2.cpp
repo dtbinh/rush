@@ -2,7 +2,7 @@
 //  File:  Vec2.cpp
 //  Desc:  3D vector
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "frame.h"
 #include "vec2.h"
 

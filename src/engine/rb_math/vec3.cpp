@@ -2,7 +2,7 @@
 //  File:  Vec3.cpp
 //  Desc:  3D vector
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "vec3.h"
 #include "rand.h"
 #include "mathconst.h"

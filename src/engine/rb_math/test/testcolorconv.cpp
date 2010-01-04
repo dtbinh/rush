@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "Color.h"
-#include "ColorConversion.h"
+#include "precompile.h"
+#include "color.h"
+#include "colorconversion.h"
 
 uint32_t c_TestColors[] = { 0xFF00FF00, 0x80FFFF00, 0x00FFFFFF, 0x00000000, 0xFF00FF00, 0xFF0000FF, 0xFFFF00FF, 
                             0xFFFFFFFF, 0x80FFFF80, 0x80FFFFFF, 0x80000000, 0x8000FF00, 0xFF0080FF, 0x008080FF };
@@ -42,21 +42,21 @@ ColorFormat c_FormatPairsA[][2] = {
 
 TEST( ColorBufferConversion )
 {
-    const int c_NColors = sizeof( c_TestColors )/sizeof( DWORD );
+    const int c_NColors = sizeof( c_TestColors )/sizeof( uint32_t );
 
     const int c_BufSize = c_NColors*16;
-    BYTE srcBuf[c_BufSize];
-    BYTE dstBuf[c_BufSize];
-    DWORD checkBuf[c_NColors];
+    uint8_t srcBuf[c_BufSize];
+    uint8_t dstBuf[c_BufSize];
+    uint32_t checkBuf[c_NColors];
 
     int nPairs = sizeof( c_FormatPairs )/sizeof(ColorFormat)/2;
     for (int i = 0; i < nPairs; i++)
     {
         ColorFormat dstFmt = c_FormatPairs[i][0];
         ColorFormat srcFmt = c_FormatPairs[i][1];
-        ConvertPixels( srcBuf, srcFmt, (const BYTE*)c_TestColors, ColorFormat_ARGB8888, c_NColors );
+        ConvertPixels( srcBuf, srcFmt, (const uint8_t*)c_TestColors, ColorFormat_ARGB8888, c_NColors );
         ConvertPixels( dstBuf, dstFmt, srcBuf, srcFmt, c_NColors );
-        ConvertPixels( (BYTE*)checkBuf, ColorFormat_ARGB8888, dstBuf, dstFmt, c_NColors );
+        ConvertPixels( (uint8_t*)checkBuf, ColorFormat_ARGB8888, dstBuf, dstFmt, c_NColors );
         for (int j = 0; j < c_NColors; j++)
         {
             checkBuf[j] &= 0x00FFFFFF;
@@ -72,9 +72,9 @@ TEST( ColorBufferConversion )
     {
         ColorFormat dstFmt = c_FormatPairsA[i][0];
         ColorFormat srcFmt = c_FormatPairsA[i][1];
-        ConvertPixels( srcBuf, srcFmt, (const BYTE*)c_TestColors, ColorFormat_ARGB8888, c_NColors );
+        ConvertPixels( srcBuf, srcFmt, (const uint8_t*)c_TestColors, ColorFormat_ARGB8888, c_NColors );
         ConvertPixels( dstBuf, dstFmt, srcBuf, srcFmt, c_NColors );
-        ConvertPixels( (BYTE*)checkBuf, ColorFormat_ARGB8888, dstBuf, dstFmt, c_NColors );
+        ConvertPixels( (uint8_t*)checkBuf, ColorFormat_ARGB8888, dstBuf, dstFmt, c_NColors );
         for (int j = 0; j < c_NColors; j++)
         {
             ColorF clrOrg( c_TestColors[j] );

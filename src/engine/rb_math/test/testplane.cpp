@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "MathConst.h"
-#include "Mat4.h"
-#include "Plane.h"
+#include "precompile.h"
+#include "mathconst.h"
+#include "mat4.h"
+#include "plane.h"
 
 TEST( PlaneTransform )
 {

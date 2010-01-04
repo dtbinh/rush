@@ -2,7 +2,7 @@
 //  File:  Quaternion.cpp
 //  Desc:  Quaternion class
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "quaternion.h"
 
 //****************************************************************************/

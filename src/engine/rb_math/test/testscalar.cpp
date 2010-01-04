@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "Scalar.h"
+#include "precompile.h"
+#include "scalar.h"
 
 TEST( TestFabs )
 {

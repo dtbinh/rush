@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "commandline.h"
 #include "rboot.h"
 

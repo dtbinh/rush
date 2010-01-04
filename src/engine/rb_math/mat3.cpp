@@ -2,7 +2,7 @@
 //  File:  Mat3.cpp
 //  Desc:  4x4 Matrix
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "vec2.h"
 #include "mat3.h"
 #include "quaternion.h"

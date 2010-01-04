@@ -4,7 +4,6 @@
 #ifndef __MAT4_H__
 #define __MAT4_H__
 
-
 #include "vec3.h"
 #include "vec4.h"
 #include "mat3.h"

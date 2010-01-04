@@ -1,6 +1,6 @@
-include_directories(. ../../include)
+include_directories(.)
 
-find_package(UnitTest++ REQUIRED)
+#find_package(UnitTest++ REQUIRED)
 
 file(GLOB HEADER_FILES "*.h")
 file(GLOB SOURCE_FILES "*.cpp")
@@ -12,11 +12,11 @@ source_group(tests FILES ${TEST_FILES})
 add_library(rb_math STATIC ${HEADER_FILES} ${SOURCE_FILES} ${TEST_FILES})
 
 if (MSVC)
-  add_definitions(/Yu${PCH_FILE_NAME})
+  add_definitions(/Yu${PCH_FILE_H})
   set_source_files_properties(${SOURCE_FILES}
-    PROPERTIES COMPILE_FLAGS /Yu${PCH_FILE_NAME} 
+    PROPERTIES COMPILE_FLAGS /Yu${PCH_FILE_H}
   )
-  set_source_files_properties("stdafx.cpp"
-    PROPERTIES COMPILE_FLAGS /Yc${PCH_FILE_NAME} 
+  set_source_files_properties(${PCH_FILE_CPP}
+    PROPERTIES COMPILE_FLAGS /Yc${PCH_FILE_H}
   )
 endif ()

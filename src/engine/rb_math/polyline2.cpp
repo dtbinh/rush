@@ -3,7 +3,7 @@
 //  Date:   12.08.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "polyline2.h"
 #include "float.h"
 

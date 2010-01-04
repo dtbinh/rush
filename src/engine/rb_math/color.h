@@ -5,7 +5,6 @@
 #ifndef __COLOR_H__
 #define __COLOR_H__
 
-
 #include "scalar.h"
 
 const float c_ClrEpsilon = 1.0f/512.f;

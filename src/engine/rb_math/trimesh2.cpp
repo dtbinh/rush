@@ -3,7 +3,7 @@
 //  Date:   12.08.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "trimesh2.h"
 #include "tri2.h"
 

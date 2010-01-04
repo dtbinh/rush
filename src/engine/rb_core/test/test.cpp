@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "windows.h"
 #include "JCore.h"
 #include "JReflect.h"

@@ -2,7 +2,7 @@
 //  File:  Seg3.cpp
 //  Desc:  3D segment
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "vec3.h"
 #include "seg3.h"
 

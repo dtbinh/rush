@@ -16,5 +16,7 @@
 #include "quaternion.h"
 #include "mathconst.h"
 
+#include "UnitTest++.h"
+
 #endif // __RB_MATH_PCH_H__
 

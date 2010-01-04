@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "Mat4.h"
+#include "precompile.h"
+#include "mat4.h"
 
 
 const float c_CheckEps = 0.00001f;

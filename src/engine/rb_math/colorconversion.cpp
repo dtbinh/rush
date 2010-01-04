@@ -2,7 +2,7 @@
 //  File:  ColorConversion.cpp
 //  Desc:
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "colorconversion.h"
 
 bool ConvertPixels( uint8_t* pDst, ColorFormat dstFmt,

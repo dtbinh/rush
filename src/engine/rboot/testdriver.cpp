@@ -3,7 +3,7 @@
 //  Date:   11.10.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Logger.h"
 #include "FStream.h"
 #include "Path.h"
@@ -28,13 +28,13 @@ TestDriver::~TestDriver()
 void TestDriver::Render()
 {
     SendSignal( "Render" );
-} // TestDriver::Render
+} 
 
 void TestDriver::PostRender()
 {
     SendSignal( "PostRender" );
     g_pModelServer->DrawShadows();
-} // TestDriver::PostRender
+}  
 
 void TestDriver::SaveSettings()
 {
@@ -85,18 +85,18 @@ void TestDriver::GatherTests()
     {
         m_TestNames.push_back( files[i].GetFile() );
     }
-} // TestDriver::GatherTests
+}  
 
 void TestDriver::Init()
 {
     GatherTests();
     LoadSettings();
-} // TestDriver::Init
+}  
 
 void TestDriver::Exit()
 {
     exit( 0 );
-} // TestDriver::Exit
+}  
 
 
 
