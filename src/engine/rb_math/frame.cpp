@@ -42,7 +42,7 @@ float Frame::dist( const Frame& rc ) const
         return pa.y - qd.y;
     }
     return 0.0f;
-} // dist
+}
 
 void Frame::Clip( const Frame& rct )
 {
@@ -59,4 +59,4 @@ void Frame::Clip( const Frame& rct )
 
     if (w < 0.0f) w = 0.0f;
     if (h < 0.0f) h = 0.0f;
-} // Frame::Clip
+}
