@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  JMetaClass.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JObjectServer.h"
 #include "JMetaClass.h"
 

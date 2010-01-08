@@ -2,7 +2,7 @@
 //  File:  FStream.cpp
 //  Desc:
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "FStream.h"
 #include "direct.h"
 

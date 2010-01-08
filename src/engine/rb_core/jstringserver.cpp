@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  JStringServer.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JStringServer.h"
 
 #include "IPersistServer.h"

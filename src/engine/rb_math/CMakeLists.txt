@@ -11,6 +11,8 @@ source_group(tests FILES ${TEST_FILES})
 
 add_library(rb_math STATIC ${HEADER_FILES} ${SOURCE_FILES} ${TEST_FILES})
 
+target_link_libraries(rb_math unittest++)
+
 if (MSVC)
   add_definitions(/Yu${PCH_FILE_H})
   set_source_files_properties(${SOURCE_FILES}

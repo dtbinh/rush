@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "JCore.h"
 #include "JObjectServer.h"
 

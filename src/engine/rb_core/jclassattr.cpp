@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  JClassAttr.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JClassAttr.h"
 
 void JClassAttr::SetName( const char* name )

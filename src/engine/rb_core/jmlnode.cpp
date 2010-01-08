@@ -3,7 +3,7 @@
 /*	Author:	Ruslan Shestopalyuk
 /*	Date:	04.04.2003
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Stream.h"
 #include "JMLNode.h"
 #include "JMLParser.h"

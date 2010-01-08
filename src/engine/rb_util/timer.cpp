@@ -2,7 +2,7 @@
 //  File:  timer.cpp
 //  Desc:  
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include <windows.h>
 #include "timer.h"
 

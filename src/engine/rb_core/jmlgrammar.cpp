@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 
 /*  A Bison parser, made from xgrammar.y with Bison version GNU Bison version 1.24
   */

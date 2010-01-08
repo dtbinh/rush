@@ -11,4 +11,5 @@ if (CMAKE_BUILD_TYPE STREQUAL "")
 endif ()
 
 add_subdirectory( src )
+add_subdirectory( external )
 

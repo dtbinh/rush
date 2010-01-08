@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  JObject.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JObject.h"
 #include "JSignalServer.h"
 #include "IPersistServer.h"

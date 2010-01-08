@@ -4,12 +4,14 @@
 #ifndef __JOBJECTSERVER_H__
 #define __JOBJECTSERVER_H__
 
-class JObject;
+#include <hash_map>
 
 #include "jmetaclass.h"
 #include "jweakrefreg.h"
 #include "jstring.h"
 #include "uniformpool.h"
+
+class JObject;
 
 class JClassAttr;
 

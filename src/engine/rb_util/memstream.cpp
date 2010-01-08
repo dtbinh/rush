@@ -2,7 +2,7 @@
 //  File:  MemStream.cpp
 //  Desc:
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "MemStream.h"
 #include "direct.h"
 

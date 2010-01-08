@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  JSignalServer.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JMLNode.h"
 #include "JSignalServer.h"
 

@@ -2,7 +2,7 @@
 //  File:  Path.cpp
 //  Desc:
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Path.h"
 #include "windows.h"
 

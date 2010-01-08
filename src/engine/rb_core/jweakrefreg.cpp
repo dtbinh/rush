@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  JWeakRefReg.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JWeakRef.h"
 #include "JWeakRefReg.h"
 

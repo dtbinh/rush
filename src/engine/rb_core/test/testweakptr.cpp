@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "JGroup.h"
 #include "JWeakRef.h"
 #include "JWeakRefReg.h"

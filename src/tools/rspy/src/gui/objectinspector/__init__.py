@@ -1,1 +1,0 @@
-from objectinspector import ObjectInspector

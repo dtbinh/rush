@@ -2,7 +2,7 @@
 //  File:  Thread.cpp
 //  Desc:
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "thread.h"
 
 uint32_t WINAPI ThreadStarter( LPVOID lpParameter )

@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  JFileServer.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Path.h"
 #include "FStream.h"
 #include "JFileServer.h"

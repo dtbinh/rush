@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  JObjectServer.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Path.h"
 #include "JMLNode.h"
 #include "IPersistServer.h"

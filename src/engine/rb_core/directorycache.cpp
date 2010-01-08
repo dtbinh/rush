@@ -3,7 +3,7 @@
 //  Date:   15.09.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Path.h"
 #include "DirectoryCache.h"
 

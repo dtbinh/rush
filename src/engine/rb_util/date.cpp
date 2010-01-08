@@ -3,7 +3,7 @@
 //  Date:   17.10.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Date.h"
 #include <time.h>
 
