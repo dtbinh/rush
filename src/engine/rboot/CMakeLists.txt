@@ -4,6 +4,7 @@ include(unittest++)
 include(rb_math)
 include(rb_util)
 include(rb_core)
+#include(rb_particle)
 
 set(SOURCE_FILES test.cpp precompile.h precompile.cpp)
 
@@ -13,6 +14,7 @@ target_link_libraries(rboot
     rb_math
     rb_util
     rb_core
+    rb_particle
     rb_script_lua
     
     unittest++

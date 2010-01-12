@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSAnmSprite_H__
-#define __PSAnmSprite_H__
+#ifndef __PSANMSPRITE_H__
+#define __PSANMSPRITE_H__
 
 //****************************************************************************/
 //  Class:  PSAnmSprite

@@ -6,7 +6,7 @@
 #ifndef __PSSHOTLINE_H__
 #define __PSSHOTLINE_H__
 
-#include "PSOperator.h"
+#include "psoperator.h"
 
 //****************************************************************************/
 //  Class:  PSShotLine

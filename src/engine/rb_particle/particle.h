@@ -6,7 +6,7 @@
 #ifndef __PARTICLE_H__
 #define __PARTICLE_H__
 
-#include "Vec3.h"
+#include "vec3.h"
 
 //****************************************************************************/
 //	Enum:  ParticleFlags
@@ -41,31 +41,31 @@ struct Particle
     Vec3                m_StartSize;        //  particle size at creation time
 
     int                 m_Frame;            //  current frame in framed animation
-    DWORD               m_Color;            //  particle alpha/color
-    DWORD               m_StartColor;       //  particle alpha/color at creation time
+    uint32_t               m_Color;            //  particle alpha/color
+    uint32_t               m_StartColor;       //  particle alpha/color at creation time
     
     float               m_Age;              //  current age
     float               m_TimeToLive;       //  total time to live
     
-    DWORD               m_Flags;            
+    uint32_t               m_Flags;            
 
     Vec3                m_Velocity;         //  velocity vector
     Vec3                m_AngVelocity;      //  angular velocity vector
-    DWORD               m_Index;            //  index of the particle inside it's emmiter
+    uint32_t               m_Index;            //  index of the particle inside it's emmiter
     
-    DWORD               pad[4];             //  padding to 128 bytes
+    uint32_t               pad[4];             //  padding to 128 bytes
 
 
     void SetAlpha( float alpha )
     {
-        DWORD ba = alpha*255.0f;
+        uint32_t ba = alpha*255.0f;
         m_Color &= 0x00FFFFFF;
         m_Color |= (ba << 24);
     }
 
     void SetStartAlpha( float alpha )
     {
-        DWORD ba = alpha*255.0f;
+        uint32_t ba = alpha*255.0f;
         m_StartColor &= 0x00FFFFFF;
         m_StartColor |= (ba << 24);
     }

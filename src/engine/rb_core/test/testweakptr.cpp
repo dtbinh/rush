@@ -7,7 +7,7 @@ TEST( JWeakRefIsWorkingProperly )
 {
     int nHolders = JWeakRefReg::s_pInstance->GetNHolders();
     JGroup* pDialog = new JGroup();
-    BYTE*    pData   = new BYTE[71];
+    uint8_t*    pData   = new uint8_t[71];
     {
         JWeakRef<JGroup> ptr;
         CHECK( ptr == NULL );
@@ -16,7 +16,7 @@ TEST( JWeakRefIsWorkingProperly )
         CHECK( ptr == pDialog );
         CHECK_EQUAL( nHolders + 1, JWeakRefReg::s_pInstance->GetNHolders() );
 
-        JWeakRef<BYTE> bptr = pData;
+        JWeakRef<uint8_t> bptr = pData;
         CHECK_EQUAL( nHolders + 2, JWeakRefReg::s_pInstance->GetNHolders() );
         CHECK( bptr == pData );
 

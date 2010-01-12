@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSBoxPlacer_H__
-#define __PSBoxPlacer_H__
+#ifndef __PSBOXPLACER_H__
+#define __PSBOXPLACER_H__
 
 //****************************************************************************/
 //  Class:  PSBoxPlacer
@@ -18,7 +18,7 @@ class PSBoxPlacer : public PSOperator
 
 public: 
     PSBoxPlacer();
-    virtual void  Update ( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    virtual void  Update ( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
 
     expose( PSBoxPlacer )
     {

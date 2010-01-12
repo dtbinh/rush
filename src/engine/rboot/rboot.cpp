@@ -37,7 +37,7 @@ bool RBoot::Init( const CommandLine& cmd )
         return false;
     }
 
-    DWORD hwnd = 0;
+    uint32_t hwnd = 0;
     const char* pHandle = cmd.GetValue( "window" );
     if (pHandle)
     {

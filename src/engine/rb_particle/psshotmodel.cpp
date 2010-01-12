@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
-#include "PSShotModel.h"
+#include "precompile.h"
+#include "psshotmodel.h"
 
 //****************************************************************************/
 /*  PSShotModel implementation

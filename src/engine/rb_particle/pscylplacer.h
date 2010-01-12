@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSCylPlacer_H__
-#define __PSCylPlacer_H__
+#ifndef __PSCYLPLACER_H__
+#define __PSCYLPLACER_H__
 
 //****************************************************************************/
 //  Class:  PSCylPlacer

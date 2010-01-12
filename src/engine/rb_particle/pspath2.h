@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSPath2_H__
-#define __PSPath2_H__
+#ifndef __PSPATH2_H__
+#define __PSPATH2_H__
 
 //****************************************************************************/
 //  Class:  PSPath2
@@ -18,7 +18,7 @@ class PSPath2 : public PSOperator
 
 public: 
     PSPath2();
-    void    Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    void    Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
 
     expose( PSPath2 )
     {

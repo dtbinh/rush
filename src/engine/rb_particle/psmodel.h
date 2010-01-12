@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSModel_H__
-#define __PSModel_H__
+#ifndef __PSMODEL_H__
+#define __PSMODEL_H__
 
 //****************************************************************************/
 //  Class:  PSModel

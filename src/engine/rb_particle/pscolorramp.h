@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSColorRamp_H__
-#define __PSColorRamp_H__
+#ifndef __PSCOLORRAMP_H__
+#define __PSCOLORRAMP_H__
 
 //****************************************************************************/
 //  Class:  PSColorRamp
@@ -19,7 +19,7 @@ class PSColorRamp : public PSOperator
 
 public: 
             PSColorRamp();
-    void    Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    void    Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
 
     expose( PSColorRamp )
     {

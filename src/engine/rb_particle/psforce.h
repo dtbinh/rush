@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSForce_H__
-#define __PSForce_H__
+#ifndef __PSFORCE_H__
+#define __PSFORCE_H__
 
 //****************************************************************************/
 //  Class:  PSForce
@@ -15,7 +15,7 @@ class PSForce : public PSOperator
     Vec3        m_Force;
 public: 
     PSForce();
-    virtual void Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    virtual void Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
     
 
     expose( PSForce )

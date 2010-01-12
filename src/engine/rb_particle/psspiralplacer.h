@@ -18,7 +18,7 @@ class PSSpiralPlacer : public PSOperator
 
 public: 
     PSSpiralPlacer();
-    virtual void  Update ( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    virtual void  Update ( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
 
     expose( PSSpiralPlacer )
     {

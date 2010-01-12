@@ -6,7 +6,7 @@
 #ifndef __PSSHOTSPHERE_H__
 #define __PSSHOTSPHERE_H__
 
-#include "PSOperator.h"
+#include "psoperator.h"
 
 //****************************************************************************/
 //  Class:  PSShotSphere

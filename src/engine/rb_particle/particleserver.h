@@ -6,8 +6,8 @@
 #ifndef __PARTICLESERVER_H__
 #define __PARTICLESERVER_H__
 
-#include "IParticleServer.h"
-#include "JObject.h"
+#include "iparticleserver.h"
+#include "jobject.h"
 
 class PSEmitter;
 
@@ -38,9 +38,9 @@ class ParticleServer : public JObject, public IParticleServer
     EmitterPool         m_Emitters;     //  emitter pool 
     float               m_InstTimeout;  //  timeout for instance before auto-delete?
     float               m_Delta;        //  maximal update time delta 
-    DWORD               m_ProcessMode;  //  current particle system processing mode (i.e. visual only, state only etc.)
+    uint32_t               m_ProcessMode;  //  current particle system processing mode (i.e. visual only, state only etc.)
     bool                m_bEnabled;     //  whether particle system enabled
-    DWORD               m_Stamp;        //  used for checking whether effect instance is outdated and needs to be recreated
+    uint32_t               m_Stamp;        //  used for checking whether effect instance is outdated and needs to be recreated
 
 public: 
                         ParticleServer  ();
@@ -56,12 +56,12 @@ public:
                                           float scale = 1.0f,
                                           float alpha = 1.0f, 
                                           const Mat3* pRot = NULL );
-    virtual void        SetProcessMode  ( DWORD mode ) { m_ProcessMode = mode; }
+    virtual void        SetProcessMode  ( uint32_t mode ) { m_ProcessMode = mode; }
     virtual void        SetFPS          ( float fps  ) { m_Delta = 1.0f/fps; }
     virtual void        ReloadScripts   ();
     virtual void        Enable          ( bool bEnable = true ) { m_bEnabled = bEnable; }
     virtual bool        IsEnabled       () const { return m_bEnabled; }
-    virtual DWORD       GetStamp        () const { return m_Stamp; }
+    virtual uint32_t       GetStamp        () const { return m_Stamp; }
 
     Particle*           CreateParticle  ( int num = 1, Particle* pPrev = NULL );
     int                 GetNParticles   () const { return m_Particles.GetNElem(); }

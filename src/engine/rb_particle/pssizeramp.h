@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSSizeRamp_H__
-#define __PSSizeRamp_H__
+#ifndef __PSSIZERAMP_H__
+#define __PSSIZERAMP_H__
 
 //****************************************************************************/
 //  Class:  PSSizeRamp
@@ -20,7 +20,7 @@ class PSSizeRamp : public PSOperator
 
 public: 
             PSSizeRamp();
-    void    Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    void    Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
 
     expose( PSSizeRamp )
     {

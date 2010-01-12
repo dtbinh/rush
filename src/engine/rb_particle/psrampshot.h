@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSRampShot_H__
-#define __PSRampShot_H__
+#ifndef __PSRAMPSHOT_H__
+#define __PSRAMPSHOT_H__
 
 //****************************************************************************/
 //  Class:  PSRampShot

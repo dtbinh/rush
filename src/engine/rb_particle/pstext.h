@@ -30,7 +30,7 @@ class PSText : public PSOperator
     JString         m_String;       //  string to render as particle
     JString         m_Font;         //  font name to render with
     PSTextMode      m_Mode;         //  text rendering mode 
-    DWORD           m_ShadowColor;  //  color of the shadow (if 0, no shadow rendered)
+    uint32_t           m_ShadowColor;  //  color of the shadow (if 0, no shadow rendered)
     Vec2            m_ShadowShift;  //  shift of the shadow relative to the main text
     bool            m_bFilter;      //  whether to filter text linearly
     bool            m_bAdditive;    //  whether to use additive blending
@@ -41,7 +41,7 @@ class PSText : public PSOperator
 public: 
     PSText();
 
-    virtual void Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    virtual void Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
     virtual void Init();
 
     expose( PSText )

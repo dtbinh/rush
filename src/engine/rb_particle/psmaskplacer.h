@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSMaskPlacer_H__
-#define __PSMaskPlacer_H__
+#ifndef __PSMASKPLACER_H__
+#define __PSMASKPLACER_H__
 
 //****************************************************************************/
 //  Class:  PSMaskPlacer

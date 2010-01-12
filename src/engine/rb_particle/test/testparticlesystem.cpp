@@ -1,10 +1,10 @@
-#include "stdafx.h"
+#include "precompile.h"
 
-#include "UniformPool.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "IParticleServer.h"
-#include "ParticleServer.h"
+#include "uniformpool.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "iparticleserver.h"
+#include "particleserver.h"
 
 /*
 static ParticleServer  ps;

@@ -3,13 +3,13 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "ParticleServer.h"
-#include "PSOperator.h"
-#include "PSEmitter.h"
-#include "PSSprite.h"
+#include "precompile.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "particleserver.h"
+#include "psoperator.h"
+#include "psemitter.h"
+#include "pssprite.h"
 
 //****************************************************************************/
 /*  PSSprite implementation
@@ -30,7 +30,7 @@ void PSSprite::Init()
     m_PackageID = g_pDrawServer->GetSpriteID( m_Package.c_str(), NULL, true );
 } // PSSprite::Init
 
-void PSSprite::Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps )
+void PSSprite::Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps )
 {
     if ((mode&ProcessMode_Visual) == 0) return;
 

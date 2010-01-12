@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSPolyPlacer_H__
-#define __PSPolyPlacer_H__
+#ifndef __PSPOLYPLACER_H__
+#define __PSPOLYPLACER_H__
 
 //****************************************************************************/
 //  Class:  PSPolyPlacer
@@ -22,7 +22,7 @@ public:
         field( "Surface",       m_bSurface      );
     }
 
-    void Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    void Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
 
 protected:
     PolyLine2                   m_Contour;

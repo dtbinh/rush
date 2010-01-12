@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSLinePlacer_H__
-#define __PSLinePlacer_H__
+#ifndef __PSLINEPLACER_H__
+#define __PSLINEPLACER_H__
 
 //****************************************************************************/
 //  Class:  PSLinePlacer
@@ -18,7 +18,7 @@ class PSLinePlacer : public PSOperator
 public: 
     PSLinePlacer();
 
-    void Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    void Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
 
     expose( PSLinePlacer )
     {

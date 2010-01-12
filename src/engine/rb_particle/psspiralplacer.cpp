@@ -3,7 +3,7 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Particle.h"
 #include "EmitterInstance.h"
 #include "ParticleServer.h"
@@ -21,7 +21,7 @@ PSSpiralPlacer::PSSpiralPlacer()
     m_bRelToDir  = true;
 } // PSSpiralPlacer::PSSpiralPlacer
 
-void PSSpiralPlacer::Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps )
+void PSSpiralPlacer::Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps )
 {
     if ((mode&ProcessMode_State) == 0) return;
 

@@ -26,12 +26,12 @@ public:
                                           float scale = 1.0f,
                                           float alpha = 1.0f, 
                                           const Mat3* pRot = NULL ) = 0;
-    virtual void        SetProcessMode  ( DWORD mode ) = 0;
+    virtual void        SetProcessMode  ( uint32_t mode ) = 0;
     virtual void        SetFPS          ( float fps  ) = 0;
     virtual void        ReloadScripts   () = 0;
     virtual void        Enable          ( bool bEnable = true ) = 0;
     virtual bool        IsEnabled       () const = 0;
-    virtual DWORD       GetStamp        () const = 0;
+    virtual uint32_t    GetStamp        () const = 0;
 }; // class IParticleServer
 
 extern IParticleServer* g_pParticleServer;

@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSRender_H__
-#define __PSRender_H__
+#ifndef __PSRENDER_H__
+#define __PSRENDER_H__
 
 //****************************************************************************/
 //  Class:  PSRender

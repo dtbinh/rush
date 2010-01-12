@@ -15,7 +15,7 @@ class PSSprite : public PSOperator
 public: 
     PSSprite();
 
-    virtual void Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    virtual void Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
     virtual void Init();
 
     expose( PSSprite )

@@ -3,13 +3,13 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "PSOperator.h"
-#include "PSEmitter.h"
-#include "IPersistServer.h"
-#include "ParticleServer.h"
+#include "precompile.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "psoperator.h"
+#include "psemitter.h"
+#include "ipersistserver.h"
+#include "particleserver.h"
 
 //****************************************************************************/
 /*  ParticleServer implementation
@@ -151,7 +151,7 @@ bool ParticleServer::Render( int instID, float cTime, const Vec3& pos,
     }
     else if (dTime > m_Delta)
     {
-        DWORD mode = ProcessMode_State;
+        uint32_t mode = ProcessMode_State;
         while (dTime > m_Delta)
         {
             pInst->m_pEmitter->Process( pInst, m_Delta, mode, this );

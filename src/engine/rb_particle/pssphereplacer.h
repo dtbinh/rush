@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSSpherePlacer_H__
-#define __PSSpherePlacer_H__
+#ifndef __PSSPHEREPLACER_H__
+#define __PSSPHEREPLACER_H__
 
 //****************************************************************************/
 //  Class:  PSSpherePlacer
@@ -18,7 +18,7 @@ class PSSpherePlacer : public PSOperator
 
 public: 
     PSSpherePlacer();
-    virtual void  Update ( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    virtual void  Update ( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
 
     expose( PSSpherePlacer )
     {

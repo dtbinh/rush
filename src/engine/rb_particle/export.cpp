@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "JReflect.h"
+#include "precompile.h"
+#include "jreflect.h"
 
 export(rb_particle)
 {

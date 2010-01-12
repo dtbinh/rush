@@ -18,7 +18,7 @@ public:
 
     float       m_Width; 
     float       m_Height;
-    DWORD       m_Color; 
+    uint32_t       m_Color; 
     JString     m_Text;  
 }; // class Crudget
 decl_class(Crudget);

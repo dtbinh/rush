@@ -33,7 +33,7 @@ public:
     virtual bool        SaveObject      ( JObject* pObject, const char* fname, JPersistFormat fmt = PersistFmt_JML ) = 0;
 
     virtual JObject*    Load            ( InStream& is, JPersistFormat fmt = PersistFmt_Unknown, 
-        JObject* pSrc = NULL, DWORD* pHash = NULL ) = 0;
+        JObject* pSrc = NULL, uint32_t* pHash = NULL ) = 0;
     virtual bool        Save            ( JObject* pObject, OutStream& os, JPersistFormat fmt = PersistFmt_JML ) = 0;
     virtual bool        Save            ( JObject* pObject ) = 0;
 

@@ -6,7 +6,7 @@
 #ifndef __PSSHOTCYL_H__
 #define __PSSHOTCYL_H__
 
-#include "PSOperator.h"
+#include "psoperator.h"
 
 //****************************************************************************/
 //  Class:  PSShotCyl

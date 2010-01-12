@@ -3,13 +3,13 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "ParticleServer.h"
-#include "PSOperator.h"
-#include "PSEmitter.h"
-#include "PSSelector.h"
+#include "precompile.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "particleserver.h"
+#include "psoperator.h"
+#include "psemitter.h"
+#include "psselector.h"
 
 //****************************************************************************/
 /*  PSSelector implementation

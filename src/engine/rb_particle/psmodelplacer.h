@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSModelPlacer_H__
-#define __PSModelPlacer_H__
+#ifndef __PSMODELPLACER_H__
+#define __PSMODELPLACER_H__
 
 //****************************************************************************/
 //  Class:  PSModelPlacer

@@ -6,7 +6,7 @@
 #ifndef __PSSHOTMODEL_H__
 #define __PSSHOTMODEL_H__
 
-#include "PSOperator.h"
+#include "psoperator.h"
 
 //****************************************************************************/
 //  Class:  PSShotModel

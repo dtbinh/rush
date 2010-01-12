@@ -8,6 +8,7 @@ add_subdirectory( engine/rb_util )
 add_subdirectory( engine/rb_core )
 
 add_subdirectory( engine/rb_script_lua )
+add_subdirectory( engine/rb_particle )
 
 # add_subdirectory( engine/rb_rendergl )
 # add_subdirectory( engine/rb_ui )

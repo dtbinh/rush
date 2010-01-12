@@ -57,11 +57,11 @@ public:
     virtual void            SetViewport     ( const Frame& rc ) = 0;
     virtual void            EndFrame        () = 0;
     virtual bool            StartFrame      () = 0;
-    virtual void            ClearViewport   ( DWORD color ) = 0;
+    virtual void            ClearViewport   ( uint32_t color ) = 0;
     virtual void            ClearDepthStencil( bool bDepth, bool bStencil ) = 0;
     virtual void            ShowCursor      ( bool bShow = true ) = 0;
     virtual int             GetFPS          () const = 0;
-    virtual DWORD           GetCurFrame     () const = 0;
+    virtual uint32_t           GetCurFrame     () const = 0;
 
     virtual void            Register        ( IRenderServerClient* pClient ) = 0;
     virtual void            Unregister      ( IRenderServerClient* pClient ) = 0;
@@ -71,7 +71,7 @@ public:
     virtual void            SetProjTM       ( const Mat4& tm ) = 0;
     virtual void            SetTextureTM    ( const Mat4& tm ) = 0;
 
-    virtual void            SetColorTint    ( DWORD color ) = 0;
+    virtual void            SetColorTint    ( uint32_t color ) = 0;
 
     virtual const Mat4&     GetViewTM       () const = 0;
     virtual const Mat4&     GetWorldTM      () const = 0;
@@ -84,7 +84,7 @@ public:
     virtual void            DeleteTexture   ( int texID ) = 0;
     virtual int             CreateTexture   ( const TextureProperties& texProp ) = 0;
     virtual bool            GetTextureProp  ( int texID, TextureProperties& texProp ) = 0;
-    virtual BYTE*           LockTexture     ( int texID, const Frame& rect, int level = 0, DWORD* pStride = NULL ) = 0;
+    virtual uint8_t*           LockTexture     ( int texID, const Frame& rect, int level = 0, uint32_t* pStride = NULL ) = 0;
     virtual bool            UnlockTexture   ( int texID, int level = 0 ) = 0;
     virtual bool            CopyTexture     ( int destID, int srcID, const Frame* rct = NULL, int nRect = 0 ) = 0;
 
@@ -98,7 +98,7 @@ public:
     //  vertex buffer operations
     virtual int             CreateVB        ( const char* name, int numBytes, bool bStatic = false ) = 0;
     virtual int             GetVBID         ( const char* name ) = 0;
-    virtual BYTE*           LockVB          ( int vbID, int firstByte, int numBytes ) = 0;        
+    virtual uint8_t*           LockVB          ( int vbID, int firstByte, int numBytes ) = 0;        
     virtual bool            UnlockVB        ( int vbID ) = 0;
     virtual bool            SetVB           ( int vbID, int vdeclID, int stream = 0 ) = 0;
     virtual int             ClearVB         ( int vbID ) = 0;
@@ -110,15 +110,15 @@ public:
     //  index buffer operations
     virtual int             CreateIB        ( const char* name, int numBytes, bool bStatic = false ) = 0;
     virtual int             GetIBID         ( const char* name ) = 0;
-    virtual BYTE*           LockIB          ( int ibID, int firstByte, int numBytes ) = 0;        
+    virtual uint8_t*           LockIB          ( int ibID, int firstByte, int numBytes ) = 0;        
     virtual bool            UnlockIB        ( int ibID ) = 0;
     virtual bool            SetIB           ( int ibID, int baseIndex = 0 ) = 0;
     virtual int             ClearIB         ( int ibID ) = 0;
     virtual int             GetIBIteration  ( int ibID ) = 0;
     virtual bool            DeleteIB        ( int ibID ) = 0;
 
-    virtual bool            CacheIB         ( int ibID, BYTE* pData, int size, int& iteration, int& firstByte ) = 0;
-    virtual bool            CacheVB         ( int vbID, BYTE* pData, int size, int stride, int& iteration, int& firstByte ) = 0;
+    virtual bool            CacheIB         ( int ibID, uint8_t* pData, int size, int& iteration, int& firstByte ) = 0;
+    virtual bool            CacheVB         ( int vbID, uint8_t* pData, int size, int stride, int& iteration, int& firstByte ) = 0;
     
     
     virtual bool            Draw            ( int firstIdx, int numIdx, int firstVert, int numVert, 
@@ -133,10 +133,10 @@ public:
 
     virtual void            SetShader       ( int shID ) = 0;
 
-    virtual void            SetAmbient      ( DWORD color ) = 0;
+    virtual void            SetAmbient      ( uint32_t color ) = 0;
     virtual int             AddPointLight   ( const Vec3& pos, float radius, float falloff, 
-                                               DWORD diffuse, DWORD specular, bool bPerPixel ) = 0;
-    virtual int             AddDirLight     ( const Vec3& dir, DWORD diffuse, DWORD specular, bool bPerPixel ) = 0;
+                                               uint32_t diffuse, uint32_t specular, bool bPerPixel ) = 0;
+    virtual int             AddDirLight     ( const Vec3& dir, uint32_t diffuse, uint32_t specular, bool bPerPixel ) = 0;
     
     virtual void*           GetRenderSurface() { return NULL; }
     virtual bool            ResizeBackBuffer( int w, int h ) { return false; }

@@ -6,7 +6,7 @@ class Clown : public JObject
 public:
     bool        m_bFunny;
     bool        m_bSmart;
-    DWORD       m_bHairColor;
+    uint32_t       m_bHairColor;
     int         m_Salary;
     float       m_Weight;
     JString     m_NickName;

@@ -23,16 +23,16 @@ public:
 
     virtual void Serialize( OutStream& os ) const
     {
-        os.Write( (BYTE*)m_Nums, sizeof( m_Nums ) );
+        os.Write( (uint8_t*)m_Nums, sizeof( m_Nums ) );
     }
 
     virtual bool Unserialize( InStream& is )
     {
-        is.Read( (BYTE*)m_Nums, sizeof( m_Nums ) );
+        is.Read( (uint8_t*)m_Nums, sizeof( m_Nums ) );
         return true;
     }
 
-    DWORD       m_Color;
+    uint32_t       m_Color;
     float       m_Length;
     int         m_Nums[10];
 };

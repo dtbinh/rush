@@ -3,12 +3,12 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "ParticleServer.h"
-#include "PSOperator.h"
-#include "PSForce.h"
+#include "precompile.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "particleserver.h"
+#include "psoperator.h"
+#include "psforce.h"
 
 //****************************************************************************/
 /*  PSForce implementation
@@ -19,7 +19,7 @@ PSForce::PSForce()
     m_Force = Vec3( 0.0f, 1.0f, 0.0f );
 } // PSForce::PSForce
 
-void PSForce::Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps )
+void PSForce::Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps )
 {
     if ((mode&ProcessMode_State) == 0) return;
 

@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSAttract_H__
-#define __PSAttract_H__
+#ifndef __PSATTRACT_H__
+#define __PSATTRACT_H__
 
 //****************************************************************************/
 //  Class:  PSAttract

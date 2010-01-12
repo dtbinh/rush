@@ -3,11 +3,11 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "ParticleServer.h"
-#include "PSOperator.h"
+#include "precompile.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "particleserver.h"
+#include "psoperator.h"
 
 //****************************************************************************/
 /*  PSOperator implementation

@@ -3,14 +3,14 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
-#include "ColorRamp.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "ParticleServer.h"
-#include "PSOperator.h"
-#include "PSEmitter.h"
-#include "PSColorRamp.h"
+#include "precompile.h"
+#include "colorramp.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "particleserver.h"
+#include "psoperator.h"
+#include "psemitter.h"
+#include "pscolorramp.h"
 
 //****************************************************************************/
 /*  PSColorRamp implementation
@@ -23,7 +23,7 @@ PSColorRamp::PSColorRamp()
     m_Usage     = RampUsage_Particle;
 } // PSColorRamp::PSColorRamp
 
-void PSColorRamp::Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps )
+void PSColorRamp::Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps )
 {
     if ((mode&ProcessMode_State) == 0) return;
 
@@ -33,7 +33,7 @@ void PSColorRamp::Update( EmitterInstance* pInst, float dt, DWORD mode, Particle
         while (p)
         {
             float ratio = fmodf( float( m_NRepeats )*p->m_Age/p->m_TimeToLive, 1.0f );
-            DWORD clr = m_Ramp.GetValue( ratio );
+            uint32_t clr = m_Ramp.GetValue( ratio );
             if (m_bRelative) 
             {
                 ColorF clrF( clr );
@@ -57,7 +57,7 @@ void PSColorRamp::Update( EmitterInstance* pInst, float dt, DWORD mode, Particle
         {
             if ((p->m_Flags&pfJustBorn) != 0)
             {
-                DWORD clr = m_Ramp.GetValue( ratio );
+                uint32_t clr = m_Ramp.GetValue( ratio );
                 if (m_bRelative) 
                 {
                     ColorF clrF( clr );
@@ -84,7 +84,7 @@ void PSColorRamp::Update( EmitterInstance* pInst, float dt, DWORD mode, Particle
             if ((p->m_Flags&pfJustBorn) != 0)
             {
                 float ratio = frand( 0.0f, 1.0f );
-                DWORD clr = m_Ramp.GetValue( ratio );
+                uint32_t clr = m_Ramp.GetValue( ratio );
                 if (m_bRelative) 
                 {
                     ColorF clrF( clr );

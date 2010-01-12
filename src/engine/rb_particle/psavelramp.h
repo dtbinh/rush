@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSAVelRamp_H__
-#define __PSAVelRamp_H__
+#ifndef __PSAVELRAMP_H__
+#define __PSAVELRAMP_H__
 
 //****************************************************************************/
 //  Class:  PSAVelRamp

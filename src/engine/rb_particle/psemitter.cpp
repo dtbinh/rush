@@ -3,12 +3,12 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "ParticleServer.h"
-#include "PSOperator.h"
-#include "PSEmitter.h"
+#include "precompile.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "particleserver.h"
+#include "psoperator.h"
+#include "psemitter.h"
 
 //****************************************************************************/
 /*  PSEmitter implementation
@@ -55,7 +55,7 @@ void PSEmitter::InitParticle( EmitterInstance* pInst, Particle* pParticle ) cons
 
 } // PSEmitter::InitParticle
 
-bool PSEmitter::Process( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps )
+bool PSEmitter::Process( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps )
 {
     PSEmitter* pEff = pInst->m_pEmitter;
     assert( pEff );
@@ -208,11 +208,11 @@ bool PSEmitter::Process( EmitterInstance* pInst, float dt, DWORD mode, ParticleS
     return true;
 } // PSEmitter::Process
 
-void PSEmitter::Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps )
+void PSEmitter::Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps )
 {
     //  create child emitter instance, if appropriate
     Particle* pParticle = pInst->m_pParticle;
-    DWORD mask = 0;
+    uint32_t mask = 0;
          if (m_CreateMode == CreateMode_OnBirth) mask = pfJustBorn;
     else if (m_CreateMode == CreateMode_OnDeath) mask = pfJustDied;
     else if (m_CreateMode == CreateMode_OnHit)   mask = pfJustHit;

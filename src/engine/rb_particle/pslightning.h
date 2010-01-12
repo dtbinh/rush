@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSLightning_H__
-#define __PSLightning_H__
+#ifndef __PSLIGHTNING_H__
+#define __PSLIGHTNING_H__
 
 //****************************************************************************/
 //  Class:  PSLightning

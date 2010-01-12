@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __EmitterInstance_H__
-#define __EmitterInstance_H__
+#ifndef __EMITTERINSTANCE_H__
+#define __EMITTERINSTANCE_H__
 
 class PSEmitter;
 //****************************************************************************/

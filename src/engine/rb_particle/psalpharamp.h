@@ -19,7 +19,7 @@ class PSAlphaRamp : public PSOperator
 
 public: 
             PSAlphaRamp();
-    void    Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    void    Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
 
     expose( PSAlphaRamp )
     {

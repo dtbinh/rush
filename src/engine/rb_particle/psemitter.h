@@ -92,7 +92,7 @@ class PSEmitter : public PSOperator
 {
     Vec3                m_Pos;          //  position of the emit centre, relative to parent frame
     
-    DWORD               m_Color;        //  default particles color
+    uint32_t               m_Color;        //  default particles color
     Vec3                m_Size;         //  default particles size
 
     float               m_LifeTime;     //  average paticles time-to-live
@@ -112,8 +112,8 @@ class PSEmitter : public PSOperator
 
 public: 
                         PSEmitter       ();
-    virtual void        Update          ( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
-    bool                Process         ( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps );
+    virtual void        Update          ( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
+    bool                Process         ( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps );
 
     void                InitParticle    ( EmitterInstance* pInst, Particle* pParticle ) const;
     bool                IsParentSpace   () const { return m_bParentSpace; }

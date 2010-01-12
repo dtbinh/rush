@@ -3,7 +3,7 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Particle.h"
 #include "EmitterInstance.h"
 #include "PSOperator.h"
@@ -19,7 +19,7 @@ PSVelRamp::PSVelRamp()
     m_NRepeats = 1;
 } // PSVelRamp::PSVelRamp
 
-void PSVelRamp::Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps )
+void PSVelRamp::Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps )
 {
     if ((mode&ProcessMode_State) == 0) return;
     Particle* p = pInst->m_pParticle;

@@ -6,7 +6,7 @@
 #ifndef __PSSHOTMASK_H__
 #define __PSSHOTMASK_H__
 
-#include "PSOperator.h"
+#include "psoperator.h"
 
 //****************************************************************************/
 //  Class:  PSShotMask

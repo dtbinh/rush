@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#ifndef __PSFlock_H__
-#define __PSFlock_H__
+#ifndef __PSFLOCK_H__
+#define __PSFLOCK_H__
 
 //****************************************************************************/
 //  Class:  PSFlock

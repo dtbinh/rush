@@ -3,8 +3,8 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
-#include "PSShotMask.h"
+#include "precompile.h"
+#include "psshotmask.h"
 
 //****************************************************************************/
 /*  PSShotMask implementation

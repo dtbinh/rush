@@ -3,12 +3,12 @@
 //  Date:   12.07.2006
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "ParticleServer.h"
-#include "PSOperator.h"
-#include "PSPolyPlacer.h"
+#include "precompile.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "particleserver.h"
+#include "psoperator.h"
+#include "pspolyplacer.h"
 
 //****************************************************************************/
 /*  PSPolyPlacer implementation
@@ -20,7 +20,7 @@ PSPolyPlacer::PSPolyPlacer()
 
 } // PSPolyPlacer::PSPolyPlacer
 
-void PSPolyPlacer::Update( EmitterInstance* pInst, float dt, DWORD mode, ParticleServer* ps )
+void PSPolyPlacer::Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleServer* ps )
 {
     if ((mode&ProcessMode_State) == 0) return;
 
