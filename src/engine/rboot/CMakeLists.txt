@@ -1,5 +1,11 @@
+include_directories(.)
 
-set(SOURCE_FILES "test.cpp")
+include(unittest++)
+include(rb_math)
+include(rb_util)
+include(rb_core)
+
+set(SOURCE_FILES test.cpp precompile.h precompile.cpp)
 
 add_executable(rboot ${SOURCE_FILES})
 
@@ -7,6 +13,8 @@ target_link_libraries(rboot
     rb_math
     rb_util
     rb_core
+    rb_script_lua
+    
     unittest++
     )
     

@@ -1,9 +1,9 @@
 #include "precompile.h"
-#include "MemStream.h"
-#include "JCore.h"
-#include "JObjectServer.h"
-#include "JSignalServer.h"
-#include "IPersistServer.h"
+#include "memstream.h"
+#include "jcore.h"
+#include "jobjectserver.h"
+#include "jsignalserver.h"
+#include "ipersistserver.h"
 
 TEST( Persistence )
 {

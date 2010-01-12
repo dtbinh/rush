@@ -1,5 +1,5 @@
 #include "precompile.h"
-#include "JReflect.h"
+#include "jreflect.h"
 
 class Parachute : public JObject
 {

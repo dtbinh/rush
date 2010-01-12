@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  JLuaServer.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "stdlib.h"
 #include "float.h"
 #include "JString.h"

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "Path.h"
 
 TEST( Path )

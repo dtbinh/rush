@@ -1,6 +1,5 @@
-#pragma once
-
-#define WIN32_LEAN_AND_MEAN	
+#ifndef __PRECOMPILE_H__
+#define __PRECOMPILE_H__
 
 #include "windows.h"
 #include "assert.h"
@@ -9,12 +8,14 @@
 #include "math.h"
 
 
-#include "MathUtil.h"
-#include "JReflect.h"
+#include "mathutil.h"
+#include "jreflect.h"
 
-#include "IRenderServer.h"
-#include "IDrawServer.h"
+#include "irenderserver.h"
+#include "idrawserver.h"
 #include "vec3.h"
 #include "mat3.h"
 #include "vec4.h"
 #include "mat4.h"
+
+#endif

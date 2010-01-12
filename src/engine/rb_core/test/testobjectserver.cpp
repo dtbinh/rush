@@ -1,6 +1,6 @@
 #include "precompile.h"
-#include "JCore.h"
-#include "JObjectServer.h"
+#include "jcore.h"
+#include "jobjectserver.h"
 
 TEST( CreateFromScript )
 {

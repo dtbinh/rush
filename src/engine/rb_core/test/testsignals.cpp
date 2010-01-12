@@ -1,5 +1,5 @@
 #include "precompile.h"
-#include "JSignalServer.h"
+#include "jsignalserver.h"
 
 
 TEST( SignalsAreConnected )

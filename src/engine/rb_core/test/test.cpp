@@ -1,11 +1,11 @@
 #include "precompile.h"
 #include "windows.h"
-#include "JCore.h"
-#include "JReflect.h"
-#include "CommandLine.h"
-#include "IFileServer.h"
+#include "jcore.h"
+#include "jreflect.h"
+#include "commandline.h"
+#include "ifileserver.h"
 
-int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow )
+void RunTest( const char* lpCmdLine )
 {
     import( rb_core );
 
@@ -17,6 +17,5 @@ int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
     g_pFileServer->AddMediaPath( mediaDir );
 
     UnitTest::RunAllTests();
-    return 0;
 }
 

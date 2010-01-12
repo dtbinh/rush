@@ -1,9 +1,9 @@
 #include "precompile.h"
-#include "JObject.h"
-#include "JString.h"
-#include "JReflect.h"
-#include "JMetaClass.h"
-#include "JObjectServer.h"
+#include "jobject.h"
+#include "jstring.h"
+#include "jreflect.h"
+#include "jmetaclass.h"
+#include "jobjectserver.h"
 
 #define struct_beg( CName ) namespace CName##_Reg{ typedef CName MyType;\
                                 void Expose(){\

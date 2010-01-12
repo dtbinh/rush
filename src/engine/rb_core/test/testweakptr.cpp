@@ -1,7 +1,7 @@
 #include "precompile.h"
-#include "JGroup.h"
-#include "JWeakRef.h"
-#include "JWeakRefReg.h"
+#include "jgroup.h"
+#include "jweakref.h"
+#include "jweakrefreg.h"
 
 TEST( JWeakRefIsWorkingProperly )
 {

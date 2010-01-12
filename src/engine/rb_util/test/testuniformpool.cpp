@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "UniformPool.h"
 
 const int c_Constructed = 13;

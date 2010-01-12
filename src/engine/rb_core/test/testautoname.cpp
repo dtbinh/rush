@@ -1,6 +1,6 @@
 #include "precompile.h"
-#include "JReflect.h"
-#include "JGroup.h"
+#include "jreflect.h"
+#include "jgroup.h"
 
 class Cherokee : public JObject
 {

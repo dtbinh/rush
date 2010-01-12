@@ -1,6 +1,6 @@
 #include "precompile.h"
-#include "IPersistServer.h"
-#include "JObject.h"
+#include "ipersistserver.h"
+#include "jobject.h"
 
 class Crudget : public JObject
 {

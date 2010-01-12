@@ -1,3 +1,5 @@
+project(tinyxml)
+
 include_directories(.)
 
 file(GLOB HEADER_FILES "*.h")

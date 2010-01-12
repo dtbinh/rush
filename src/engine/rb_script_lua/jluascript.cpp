@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  JLuaScript.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JLuaScript.h"
 #include "JLuaServer.h"
 #include "IFileServer.h"

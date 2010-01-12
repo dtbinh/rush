@@ -1,8 +1,8 @@
 #include "precompile.h"
-#include "MemStream.h"
-#include "JCore.h"
-#include "JObjectServer.h"
-#include "JObject.h"
+#include "memstream.h"
+#include "jcore.h"
+#include "jobjectserver.h"
+#include "jobject.h"
 
 class ClassA : public JObject
 {

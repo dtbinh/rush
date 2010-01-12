@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  LuaFunc.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "IPersistServer.h"
 #include "JLuaScript.h"
 #include "JLuaThread.h"

@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  JLuaThread.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JSignalServer.h"
 #include "JLuaScript.h"
 #include "JLuaServer.h"

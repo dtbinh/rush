@@ -1,6 +1,6 @@
 #include "precompile.h"
-#include "JObject.h"
-#include "JObjectServer.h"
+#include "jobject.h"
+#include "jobjectserver.h"
 
 static const char* c_TestScript = "\
 group \"g_root\"\n\

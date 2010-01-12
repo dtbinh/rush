@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "RegPool.h"
 
 TEST( RegPool )

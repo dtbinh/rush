@@ -1,3 +1,5 @@
+project(unittest++)
+
 include_directories(.)
 
 file(GLOB HEADER_FILES "*.h")

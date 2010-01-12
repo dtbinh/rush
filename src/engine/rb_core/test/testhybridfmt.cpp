@@ -1,8 +1,8 @@
 #include "precompile.h"
-#include "MemStream.h"
-#include "JObject.h"
-#include "JObjectServer.h"
-#include "IPersistServer.h"
+#include "memstream.h"
+#include "jobject.h"
+#include "jobjectserver.h"
+#include "ipersistserver.h"
 
 class Tomahawk : public JObject
 {

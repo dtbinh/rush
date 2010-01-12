@@ -12,7 +12,7 @@ const int c_OutStreamBufferSize = 4096;
 //****************************************************************************/
 class OutStream
 {
-    uint8_t        m_Buf[c_OutStreamBufferSize];
+    uint8_t     m_Buf[c_OutStreamBufferSize];
     int         m_NTotaluint8_ts;
 
 protected:

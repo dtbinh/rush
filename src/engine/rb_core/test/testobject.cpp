@@ -1,5 +1,5 @@
 #include "precompile.h"
-#include "JObject.h"
+#include "jobject.h"
 
 TEST(Object)
 {

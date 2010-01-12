@@ -1,6 +1,6 @@
 #include "precompile.h"
-#include "JPtr.h"
-#include "JGroup.h"
+#include "jptr.h"
+#include "jgroup.h"
 
 TEST( SmartPtrIsInitiallized )
 {
