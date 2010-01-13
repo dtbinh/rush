@@ -50,7 +50,7 @@ int g_NumTypes = 0;
 /*  JObject implementation
 //****************************************************************************/
 decl_class(JObject)
-JObject::JObject() : 
+JObject::JObject() :
     m_pParent       ( NULL ),
     m_RefCount      ( 0 ),
     m_bVisible      ( true ),
@@ -59,12 +59,12 @@ JObject::JObject() :
     m_Tag           ( -1 ),
     m_bDrawBounds   ( false )
 {
-} // JObject::JObject
+}
 
 JObject::~JObject()
 {
     Destroy();
-} // JObject::~JObject
+}
 
 
 void JObject::Expose( JMetaClass& mc )
@@ -86,8 +86,8 @@ void JObject::Expose( JMetaClass& mc )
     method( "Render",              DoRender         );
     method( "RenderTree",          DoRenderTree     );
     method( "InitTree",            InitTree         );
-    method( "SaveTree",            SaveTree         );        
-} // JObject::Expose
+    method( "SaveTree",            SaveTree         );
+}
 
 void JObject::SaveTree()
 {
@@ -105,9 +105,9 @@ void JObject::DoRenderTree()
     RenderTree();
 }
 
-JMetaClass* JObject::GetMetaClass () const 
-{ 
-    return s_pMetaClass; 
+JMetaClass* JObject::GetMetaClass () const
+{
+    return s_pMetaClass;
 }
 
 bool JObject::SetProperty( const char* prop, const char* val, int tag )
@@ -116,24 +116,24 @@ bool JObject::SetProperty( const char* prop, const char* val, int tag )
     if (!pAttr) return false;
     JString sval( val );
     return pAttr->Set( this, sval, tag );
-} // JObject::SetProperty
+}
 
 bool JObject::GetProperty( const char* prop, JString& val, int tag )
 {
     JClassAttr* pAttr = g_pObjectServer->FindClassAttr( ClassName(), prop );
     if (!pAttr) return false;
     return pAttr->Get( this, val, tag );
-} // JObject::GetProperty
+}
 
 bool JObject::CallMethod( const char* method, int tag )
 {
     JClassAttr* pAttr = g_pObjectServer->FindClassAttr( ClassName(), method );
-    if (!pAttr) 
+    if (!pAttr)
     {
         return OnSignal( NULL, "", method );
     }
     return pAttr->Call( this, tag );
-} // JObject::CallMethod
+}
 
 void JObject::Destroy()
 {
@@ -146,7 +146,7 @@ void JObject::Destroy()
 
     //  release children in reverse order
     int nCh = m_Children.size();
-    for (int i = nCh - 1; i >= 0; i--) 
+    for (int i = nCh - 1; i >= 0; i--)
     {
         JObject* pChild = m_Children[i];
         pChild->SetParent( NULL );
@@ -159,7 +159,7 @@ void JObject::Destroy()
     {
         for (int i = 0; i < m_pParent->GetNChildren(); i++)
         {
-            if (m_pParent->m_Children[i] == this) 
+            if (m_pParent->m_Children[i] == this)
             {
                 m_pParent->m_Children.erase( m_pParent->m_Children.begin() + i );
                 break;
@@ -168,20 +168,20 @@ void JObject::Destroy()
     }
 
     JWeakRefReg::s_pInstance->Invalidate( this );
-} // JObject::Destroy
+}
 
-void JObject::SetName( const char* name )         
-{ 
-    if (name == NULL) 
+void JObject::SetName( const char* name )
+{
+    if (name == NULL)
     {
         name = "";
     }
     //  objects in the factory are indexed by their name
     //  therefore, when name is changed, we have to reindex it
     g_pObjectServer->Unregister( this );
-    m_Name = name; 
+    m_Name = name;
     g_pObjectServer->Register( this );
-} // JObject::SetName
+}
 
 int JObject::GetLevel() const
 {
@@ -193,7 +193,7 @@ int JObject::GetLevel() const
         pParent = pParent->GetParent();
     }
     return level;
-} // JObject::GetLevel
+}
 
 void JObject::Release()
 {
@@ -203,7 +203,7 @@ void JObject::Release()
         m_RefCount = 0;
         delete this;
     }
-} // JObject::Release
+}
 
 void JObject::AddRef()
 {
@@ -224,7 +224,7 @@ void JObject::SetIndex( int idx )
     if (!m_pParent)
     {
         return;
-    }   
+    }
     int nCh = m_pParent->GetNChildren();
     idx = clamp( idx, 0, nCh - 1 );
     int curIdx = m_pParent->GetChildIndex( this );
@@ -239,10 +239,10 @@ void JObject::SwapChildren( int idx1, int idx2 )
     JObject* pTemp = m_Children[idx1];
     m_Children[idx1] = m_Children[idx2];
     m_Children[idx2] = pTemp;
-} // JObject::SwapChildren
+}
 
-void JObject::AddChild( JObject* pObj, int idxBefore ) 
-{ 
+void JObject::AddChild( JObject* pObj, int idxBefore )
+{
     if (!pObj) return;
     int nChildren = m_Children.size();
     for (int i = 0; i < nChildren; i++)
@@ -258,8 +258,8 @@ void JObject::AddChild( JObject* pObj, int idxBefore )
         m_Children.insert( m_Children.begin() + idxBefore, pObj );
     }
     pObj->AddRef();
-    pObj->m_pParent = this; 
-} // JObject::AddChild
+    pObj->m_pParent = this;
+}
 
 bool JObject::ReplaceChild( JObject* pOld, JObject* pNew )
 {
@@ -277,14 +277,14 @@ bool JObject::ReplaceChild( JObject* pOld, JObject* pNew )
         }
     }
     return false;
-} // JObject::ReplaceChild
+}
 
 void JObject::RenderTree()
 {
     Render();
-    //  make another check for visibility, in case 
+    //  make another check for visibility, in case
     //  that Render() has changed object's visibility status
-    if (!IsVisible()) 
+    if (!IsVisible())
     {
         PostRender();
         return;
@@ -302,9 +302,9 @@ void JObject::RenderTree()
         {
             GetChild( i )->RenderTree();
         }
-    }   
+    }
     PostRender();
-} // JObject::RenderTree
+}
 
 void JObject::SendSignals()
 {
@@ -314,17 +314,17 @@ void JObject::SendSignals()
 void JObject::PollSlots()
 {
     JSignalServer::s_pInstance->PollSlot( this );
-} // JObject::PollSlots
+}
 
 void JObject::SendSignal( const char* name )
 {
     JSignalServer::s_pInstance->SendSignal( this, name );
-} // JObject::SendSignal
+}
 
 bool JObject::PollSlot( const char* name )
 {
     return JSignalServer::s_pInstance->PollSlot( this, name );
-} // JObject::PollSlot
+}
 
 bool JObject::HasSymbolicPath( const char* path ) const
 {
@@ -334,26 +334,26 @@ bool JObject::HasSymbolicPath( const char* path ) const
     if (!GetParent()) return false;
     JString pName( path, pObjName - path );
     return GetParent()->HasSymbolicPath( pName.c_str() );
-} // JObject::HasSymbolicPath 
+}
 
 void JObject::RemoveChildren()
 {
     int nCh = m_Children.size();
-    for (int i = nCh - 1; i >= 0; i--) 
+    for (int i = nCh - 1; i >= 0; i--)
     {
         m_Children[i]->SetParent( NULL );
         m_Children[i]->Release();
         m_Children[i] = NULL;
     }
     m_Children.clear();
-} // JObject::RemoveChildren
+}
 
 void JObject::RemoveChild( JObject* pObj )
 {
     if (pObj == NULL) return;
     for (int i = 0; i < GetNChildren(); i++)
     {
-        if (m_Children[i] == pObj) 
+        if (m_Children[i] == pObj)
         {
             pObj->SetParent( NULL );
             m_Children.erase( m_Children.begin() + i );
@@ -361,7 +361,7 @@ void JObject::RemoveChild( JObject* pObj )
             return;
         }
     }
-} // JObject::RemoveChild
+}
 
 bool JObject::HasParent( JObject* pParent ) const
 {
@@ -372,7 +372,7 @@ bool JObject::HasParent( JObject* pParent ) const
         pCurParent = pCurParent->GetParent();
     }
     return false;
-} // JObject::HasParent
+}
 
 JObject* JObject::Clone( JObject* pParent, const char* name, bool bCloneSignals ) const
 {
@@ -382,7 +382,7 @@ JObject* JObject::Clone( JObject* pParent, const char* name, bool bCloneSignals 
         pRes->InitTree();
     }
     return pRes;
-} // JObject::Clone
+}
 
 void JObject::SetTag( int tag, bool bRecursive )
 {
@@ -394,20 +394,20 @@ void JObject::SetTag( int tag, bool bRecursive )
             GetChild( i )->SetTag( tag, true );
         }
     }
-} // JObject::SetTag
+}
 
 int JObject::GetChildIndex( const JObject* pChild ) const
 {
     int nCh = GetNChildren();
     for (int i = 0; i < nCh; i++)
     {
-        if (m_Children[i] == pChild) 
+        if (m_Children[i] == pChild)
         {
             return i;
         }
     }
     return -1;
-} // JObject::GetChildIndex
+}
 
 void JObject::InitTree()
 {
@@ -423,12 +423,12 @@ void JObject::InitTree()
 
     //  connect signals
     JSignalServer::s_pInstance->Connect( this );
-} // JObject::InitTree
+}
 
 void JObject::GetPath( JString& path ) const
 {
     path = GetName();
-    
+
     JObject* pParent = GetParent();
     while (pParent)
     {
@@ -436,8 +436,8 @@ void JObject::GetPath( JString& path ) const
         path.insert( 0, pParent->GetName() );
         pParent = pParent->GetParent();
     }
-} // JObject::GetPath
-    
+}
+
 
 
 

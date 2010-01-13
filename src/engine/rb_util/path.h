@@ -33,17 +33,17 @@ public:
     bool        SetFileExt      ( const char* val );
 
     bool        SameFolder      ( const Path& path ) const;
-    
+
     bool        IsDirectory     () const;
     int         GetDirDepth     () const { return m_DirDepth; }
-    
+
     void        Clear           ();
     bool        Exists          () const;
     int         GetFileSize     () const;
 
     //! converts path to the normalized name (replacing "..", ".", "\\")
     void        Normalize       ();
-    
+
     //! moves current path one directory up in the directory tree
     bool        DirUp           ();
 

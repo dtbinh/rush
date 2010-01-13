@@ -9,6 +9,7 @@ typedef unsigned short  uint16_t;
 typedef unsigned long	uint32_t;
 typedef unsigned int	int_t;
 typedef long int		int32_t;
+#define _MAX_PATH       256
 #endif
 
 #define NULL            0
