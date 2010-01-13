@@ -4,11 +4,11 @@
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "PSOperator.h"
-#include "ParticleServer.h"
-#include "PSVelRamp.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "psoperator.h"
+#include "particleserver.h"
+#include "psvelramp.h"
 
 //****************************************************************************/
 /*  PSVelRamp implementation

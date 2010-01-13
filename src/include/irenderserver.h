@@ -4,8 +4,8 @@
 #ifndef __IRENDERDEVICE_H__
 #define __IRENDERDEVICE_H__
 
-#include "VertexDeclaration.h"
-#include "TextureProperties.h"
+#include "vertexdeclaration.h"
+#include "textureproperties.h"
 
 class Frame;
 /*****************************************************************************/

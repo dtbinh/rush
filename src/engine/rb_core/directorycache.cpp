@@ -4,8 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "Path.h"
-#include "DirectoryCache.h"
+#include "path.h"
+#include "directorycache.h"
 
 /***********************************************************************************/
 /*  Directory implementation

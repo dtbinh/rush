@@ -2,7 +2,7 @@
 //  File:  JDrawServer.cpp
 //  Desc:  
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JDrawServer.h"
 
 #include "IDrawServer.h"
@@ -32,8 +32,8 @@
 //****************************************************************************/
 decl_class(JDrawServer);
 
-WORD                JDrawServer::s_QuadIdx[c_MaxVertDrawn*6/4];
-std::vector<BYTE>   JDrawServer::s_UnpackBuffer;
+uint16_t                JDrawServer::s_QuadIdx[c_MaxVertDrawn*6/4];
+std::vector<uint8_t>   JDrawServer::s_UnpackBuffer;
 
 JDrawServer::JDrawServer() 
 {
@@ -165,7 +165,7 @@ void JDrawServer::Init()
     //  allocate sprite cache memory pool
     if (!m_pBuffer)
     {
-        m_pBuffer = new BYTE[m_MemoryBudget];
+        m_pBuffer = new uint8_t[m_MemoryBudget];
     }
 } // JDrawServer::Init
 
@@ -190,7 +190,7 @@ void JDrawServer::OnFrame()
     m_CurFrame++;
 } // JDrawServer::OnFrame
 
-void JDrawServer::SetupRS( DWORD flags )
+void JDrawServer::SetupRS( uint32_t flags )
 {
     g_pRenderServer->SetShader( m_shBase );
     if (flags&rfAdditive) 
@@ -336,7 +336,7 @@ void JDrawServer::Flush()
         m_SortedRenderBits.push_back( &m_RenderBits[i] );
     }
     std::sort( m_SortedRenderBits.begin(), m_SortedRenderBits.end(), RBCompare );
-    DWORD flags = m_SortedRenderBits[0]->m_Flags;
+    uint32_t flags = m_SortedRenderBits[0]->m_Flags;
     int   cV    = 0;
     int   cPri  = 0;
 
@@ -481,7 +481,7 @@ void JDrawServer::ReloadSprites()
     assert( false );
 } // JDrawServer::ReloadSprites
 
-void JDrawServer::DrawLine( const Vec3& a, const Vec3& b, DWORD ca, DWORD cb )
+void JDrawServer::DrawLine( const Vec3& a, const Vec3& b, uint32_t ca, uint32_t cb )
 {
     if (m_RenderBits.size() == c_MaxRenderBits) Flush();
     RenderBit& rb = m_RenderBits.expand();
@@ -500,7 +500,7 @@ void JDrawServer::DrawLine( const Vec3& a, const Vec3& b, DWORD ca, DWORD cb )
     m_WorldTM.tm( rb.m_TM.v1() );
 } // JDrawServer::DrawLine
 
-void JDrawServer::DrawPoly( const Vec3& a, const Vec3& b, const Vec3& c, DWORD ca, DWORD cb, DWORD cc )
+void JDrawServer::DrawPoly( const Vec3& a, const Vec3& b, const Vec3& c, uint32_t ca, uint32_t cb, uint32_t cc )
 {
     if (m_RenderBits.size() == c_MaxRenderBits) Flush();
     RenderBit& rb = m_RenderBits.expand();
@@ -519,7 +519,7 @@ void JDrawServer::DrawPoly( const Vec3& a, const Vec3& b, const Vec3& c, DWORD c
     m_WorldTM.tm( rb.m_TM.v2() );
 } // JDrawServer::DrawPoly
 
-void JDrawServer::DrawPoly( const Vec2& a, const Vec2& b, const Vec2& c, DWORD ca, DWORD cb, DWORD cc )
+void JDrawServer::DrawPoly( const Vec2& a, const Vec2& b, const Vec2& c, uint32_t ca, uint32_t cb, uint32_t cc )
 {
     if (m_RenderBits.size() == c_MaxRenderBits) Flush();
     RenderBit& rb = m_RenderBits.expand();
@@ -539,7 +539,7 @@ void JDrawServer::DrawPoly( const Vec2& a, const Vec2& b, const Vec2& c, DWORD c
     m_WorldTM.tm( rb.m_TM.v2() );
 } // JDrawServer::DrawPoly
 
-void JDrawServer::DrawLine( int x1, int y1, int x2, int y2, DWORD ca, DWORD cb )
+void JDrawServer::DrawLine( int x1, int y1, int x2, int y2, uint32_t ca, uint32_t cb )
 {
     if (m_RenderBits.size() == c_MaxRenderBits) Flush();
     RenderBit& rb = m_RenderBits.expand();
@@ -559,7 +559,7 @@ void JDrawServer::DrawLine( int x1, int y1, int x2, int y2, DWORD ca, DWORD cb )
     m_WorldTM.tm( rb.m_TM.v1() );
 } // JDrawServer::DrawLine
 
-void JDrawServer::DrawRect( const Frame& rc, DWORD color )
+void JDrawServer::DrawRect( const Frame& rc, uint32_t color )
 {
     if (m_RenderBits.size() == c_MaxRenderBits) Flush();
     RenderBit& rb = m_RenderBits.expand();
@@ -581,7 +581,7 @@ void JDrawServer::DrawRect( const Frame& rc, DWORD color )
     m_WorldTM.tm( rb.m_TM.v3() );
 } // JDrawServer::DrawRect
 
-void JDrawServer::DrawFrame( const Frame& rc, DWORD color )
+void JDrawServer::DrawFrame( const Frame& rc, uint32_t color )
 {
     DrawLine( rc.x, rc.y, rc.x + rc.w, rc.y, color, color );
     DrawLine( rc.x + rc.w, rc.y, rc.x + rc.w, rc.y + rc.h, color, color );
@@ -644,7 +644,7 @@ Frame JDrawServer::GetFrameBounds( int sprID, int frameID )
     return sf.m_Frame;
 } // JDrawServer::GetFrameBounds
 
-DWORD JDrawServer::GetPixel( int sprID, int frameID, const Vec2& pt ) const
+uint32_t JDrawServer::GetPixel( int sprID, int frameID, const Vec2& pt ) const
 {
     if (sprID < 0 || sprID >= (int)m_SpritePacks.size()) return 0;
     const JSpritePack& sp = *(m_SpritePacks[sprID]);
@@ -674,32 +674,32 @@ DWORD JDrawServer::GetPixel( int sprID, int frameID, const Vec2& pt ) const
         }
         if (sf.m_ColorFormat == ColorFormat_ARGB4444)
         {
-            const BYTE* pPixel = ch.m_Pixels + (dx + dy*side)*2;
-            DWORD res  = 0;
-            BYTE* pRes = (BYTE*)&res;
+            const uint8_t* pPixel = ch.m_Pixels + (dx + dy*side)*2;
+            uint32_t res  = 0;
+            uint8_t* pRes = (uint8_t*)&res;
             ConvertPixel<ColorFormat_ARGB8888, ColorFormat_ARGB4444>( pRes, pPixel );
             return res;
         }
         else
         {
-            return DWORD( ((DWORD*)ch.m_Pixels)[dx + dy*side] );
+            return uint32_t( ((uint32_t*)ch.m_Pixels)[dx + dy*side] );
         }
     }
     return 0;
 } // JDrawServer::GetPixel
 
-BYTE* JDrawServer::AllocateBuffer( int nBytes, bool bAlwaysCache )
+uint8_t* JDrawServer::AllocateBuffer( int nBytes, bool bAlwaysCache )
 {
     if (bAlwaysCache)
     {
-        return new BYTE[nBytes];
+        return new uint8_t[nBytes];
     }
     if (!m_pBuffer) 
     {
-        m_pBuffer = new BYTE[m_MemoryBudget];
+        m_pBuffer = new uint8_t[m_MemoryBudget];
     }
 
-    BYTE* pData = &m_pBuffer[m_CurBytesAllocated];
+    uint8_t* pData = &m_pBuffer[m_CurBytesAllocated];
     m_CurBytesAllocated += nBytes;
 
     //  if no more place - drop the whole cache
@@ -755,15 +755,15 @@ int JDrawServer::GetSpriteID( const char* packageName, PSpriteUpdateCB updateCB,
     pSpritePack->m_bAlwaysCache   = bAlwaysCache;
 
     int curByte = 0;
-    WORD nSpr;
-    DWORD magic, rsrv1, rsrv2;
+    uint16_t nSpr;
+    uint32_t magic, rsrv1, rsrv2;
     is >> magic >> nSpr >> rsrv1 >> rsrv2;
     pSpritePack->m_Frames.resize( nSpr );
     pSpritePack->m_LastFrame = 0;
     for (int i = 0; i < nSpr; i++)
     {
-        WORD w, h, cf, fx, fy, fw, fh, nChunks, flags;
-        WORD pivotX, pivotY, shiftX, shiftY;
+        uint16_t w, h, cf, fx, fy, fw, fh, nChunks, flags;
+        uint16_t pivotX, pivotY, shiftX, shiftY;
         is >> w >> h >> cf >> fx >> fy >> fw >> fh >> 
             flags >> nChunks >> pivotX >> pivotY >> shiftX >> shiftY;
 
@@ -805,7 +805,7 @@ int JDrawServer::GetSpriteID( const char* packageName, PSpriteUpdateCB updateCB,
         for (int j = 0; j < nChunks; j++)
         {
             JFrameChunk& chunk = frame.m_Chunks[j];
-            WORD cx, cy, cside, flags;
+            uint16_t cx, cy, cside, flags;
             is >> cx >> cy >> cside >> flags;
             chunk.m_SprX        = cx;
             chunk.m_SprY        = cy;
@@ -876,7 +876,7 @@ void JDrawServer::LoadPixels( int packID, int firstSpr, int nSpr, InStream& is )
         int nBytesTotal = frame.m_NumPixelsTotal*dstBPP;
 
         //  allocate buffer for pixels
-        DWORD* pPixels = (DWORD*)AllocateBuffer( nBytesTotal, sp.m_bAlwaysCache );
+        uint32_t* pPixels = (uint32_t*)AllocateBuffer( nBytesTotal, sp.m_bAlwaysCache );
         assert( pPixels );
 
         frame.m_pPixels = pPixels;
@@ -895,17 +895,17 @@ void JDrawServer::LoadPixels( int packID, int firstSpr, int nSpr, InStream& is )
                 }
                 is.Read( &s_UnpackBuffer[0], nSrcBytes );
                 //  convert pixels to ARGB8888
-                ConvertPixels( (BYTE*)pPixels, ColorFormat_ARGB8888, 
+                ConvertPixels( (uint8_t*)pPixels, ColorFormat_ARGB8888, 
                     &s_UnpackBuffer[0], frame.m_ColorFormat, frame.m_NumPixelsTotal );
             }
         }
         else
         {
-            is.Read( (BYTE*)pPixels, nBytesTotal );
+            is.Read( (uint8_t*)pPixels, nBytesTotal );
         }
         
         //  assign pointers in chunks to pixel data
-        BYTE* pChunkPix = (BYTE*)pPixels;
+        uint8_t* pChunkPix = (uint8_t*)pPixels;
         for (int j = 0; j < nChunks; j++)
         {
             JFrameChunk& chunk = frame.m_Chunks[j];
@@ -917,7 +917,7 @@ void JDrawServer::LoadPixels( int packID, int firstSpr, int nSpr, InStream& is )
     }
 }
 
-void JDrawServer::DrawSprite( float x, float y, int spriteID, int frameID, DWORD color, float rot, bool bMirror )
+void JDrawServer::DrawSprite( float x, float y, int spriteID, int frameID, uint32_t color, float rot, bool bMirror )
 {
     DrawSprite( Frame( x, y, -1.0f, -1.0f ), spriteID, frameID, color, rot, bMirror ); 
 } // JDrawServer::DrawSprite
@@ -938,7 +938,7 @@ int JDrawServer::AllocateChunk( JFrameChunk& ch )
     if (pack.m_UpdateCB)
     {
         Frame ext( ch.m_SprX, ch.m_SprY, ch.m_Width, ch.m_Height );
-        (pack.m_UpdateCB)( ch.m_FrameIdx, ext, (BYTE*)ch.m_Pixels, colorFormat );
+        (pack.m_UpdateCB)( ch.m_FrameIdx, ext, (uint8_t*)ch.m_Pixels, colorFormat );
     }
 
     int lru      = 0;
@@ -953,7 +953,7 @@ int JDrawServer::AllocateChunk( JFrameChunk& ch )
     int sPow = GetPow2( side );
     for (int i = 0; i < m_Surfaces.size(); i++)
     {
-        WORD ax, ay;
+        uint16_t ax, ay;
         JSpriteSurface& surf = m_Surfaces[i];
         if (colorFormat != surf.m_ColorFormat)
         {
@@ -991,10 +991,10 @@ int JDrawServer::AllocateChunk( JFrameChunk& ch )
             ch.m_SurfID = i;
             if (surf.m_TexID < 0 || !ch.m_Pixels) return -1;
             Frame rct( ax, ay, w, h );
-            DWORD pitch = 0;
-            BYTE* pDBits = g_pRenderServer->LockTexture( surf.m_TexID, rct, 0, &pitch );
+            uint32_t pitch = 0;
+            uint8_t* pDBits = g_pRenderServer->LockTexture( surf.m_TexID, rct, 0, &pitch );
             if (!pDBits) return -1;
-            BYTE* pSBits = (BYTE*)ch.m_Pixels;
+            uint8_t* pSBits = (uint8_t*)ch.m_Pixels;
             
             for (int j = 0; j < h; j++)
             {
@@ -1024,7 +1024,7 @@ int JDrawServer::AllocateChunk( JFrameChunk& ch )
         firstSurf   = m_NSpriteSurfaces16;
     }
     
-    DWORD lastUsed = m_Surfaces[dropID].m_LastFrameUsed;
+    uint32_t lastUsed = m_Surfaces[dropID].m_LastFrameUsed;
     for (int i = 0; i < nSurf; i++)
     {
         int cSurf = i + firstSurf;
@@ -1052,7 +1052,7 @@ int JDrawServer::GetNFrames( int sprID ) const
     return m_SpritePacks[sprID]->m_Frames.size();
 } // JDrawServer::GetNFrames
 
-void JDrawServer::TileSprite( const Frame& rct, int spriteID, int frameID, DWORD color )
+void JDrawServer::TileSprite( const Frame& rct, int spriteID, int frameID, uint32_t color )
 {
     Frame vp = g_pRenderServer->GetViewport();
     g_pRenderServer->SetViewport( rct );
@@ -1073,7 +1073,7 @@ void JDrawServer::TileSprite( const Frame& rct, int spriteID, int frameID, DWORD
     g_pRenderServer->SetViewport( vp );
 } // JDrawServer::TileSprite
 
-void JDrawServer::DrawSprite( const Frame& rct, int spriteID, int frameID, DWORD color, float rot, bool bMirror )
+void JDrawServer::DrawSprite( const Frame& rct, int spriteID, int frameID, uint32_t color, float rot, bool bMirror )
 {
     if (spriteID < 0 || spriteID >= m_SpritePacks.size()) return;
     JSpritePack& sp = *(m_SpritePacks[spriteID]);
@@ -1146,7 +1146,7 @@ void JDrawServer::DrawSprite( const Frame& rct, int spriteID, int frameID, DWORD
         rb.m_Clr[2]         = color;
         rb.m_Clr[3]         = color;
         rb.m_pData          = (void*)&ch;
-        rb.m_Flags          = DWORD( ch.m_SurfID ) << 16;
+        rb.m_Flags          = uint32_t( ch.m_SurfID ) << 16;
         rb.m_Flags          |= rfSprite;
         rb.m_Flags          |= rfScreenSpace;
         if (m_bLinFilter)       rb.m_Flags |= rfLinearFilter;
@@ -1163,7 +1163,7 @@ void JDrawServer::DrawSprite( const Frame& rct, int spriteID, int frameID, DWORD
     m_NDrawnSprites++;
 } // JDrawServer::DrawSprite
 
-void JDrawServer::DrawSprite( const Mat4& tm, int spriteID, int frameID, DWORD color )
+void JDrawServer::DrawSprite( const Mat4& tm, int spriteID, int frameID, uint32_t color )
 {
     if (spriteID < 0 || spriteID >= m_SpritePacks.size()) return;
     JSpritePack& sp = *(m_SpritePacks[spriteID]);
@@ -1191,7 +1191,7 @@ void JDrawServer::DrawSprite( const Mat4& tm, int spriteID, int frameID, DWORD c
         rb.m_Clr[3]         = color;
         rb.m_pData          = (void*)&ch;
         rb.m_TM             = tm;
-        rb.m_Flags          = DWORD( ch.m_SurfID ) << 16;
+        rb.m_Flags          = uint32_t( ch.m_SurfID ) << 16;
         rb.m_Flags          |= rfSprite;
         if (m_bLinFilter)       rb.m_Flags |= rfLinearFilter;
         if (m_bZEnable)         rb.m_Flags |= rfZEnable;
@@ -1230,7 +1230,7 @@ int JDrawServer::GetTextWidth( int fontID, const char* str, float height, int nu
     int x = 0;
     for (int i = 0; i < nSym; i++)
     {
-        unsigned int cID = (BYTE)str[i] - 32;
+        unsigned int cID = (uint8_t)str[i] - 32;
         if (cID < 0) continue;
         JSpriteFrame& f = sp.m_Frames[cID];
         float w = float( f.m_Width )*scale;
@@ -1240,7 +1240,7 @@ int JDrawServer::GetTextWidth( int fontID, const char* str, float height, int nu
     return x;
 } // JDrawServer::GetTextWidth
 
-void JDrawServer::DrawString( int x, int y, int fontID, const char* str, DWORD color, float height, 
+void JDrawServer::DrawString( int x, int y, int fontID, const char* str, uint32_t color, float height, 
                               int nChar, int spacing )
 {
     if (fontID < 0 || fontID >= m_SpritePacks.size())
@@ -1268,13 +1268,13 @@ void JDrawServer::DrawString( int x, int y, int fontID, const char* str, DWORD c
     }
 } // JDrawServer::DrawString
 
-void JDrawServer::DrawQuad( const Vec3& lt, const Vec3& rt, const Vec3& lb, const Vec3& rb, DWORD color )
+void JDrawServer::DrawQuad( const Vec3& lt, const Vec3& rt, const Vec3& lb, const Vec3& rb, uint32_t color )
 {
     DrawPoly( lt, rt, lb, color, color, color );
     DrawPoly( lb, rt, rb, color, color, color );
 } // JDrawServer::DrawQuad
 
-void JDrawServer::DrawBox( const AABox& box, DWORD clrLines, DWORD clrFill )
+void JDrawServer::DrawBox( const AABox& box, uint32_t clrLines, uint32_t clrFill )
 {
     Vec3 ltn = Vec3( box.minv.x, box.minv.y, box.maxv.z );
     Vec3 rtn = Vec3( box.minv.x, box.maxv.y, box.maxv.z );
@@ -1314,7 +1314,7 @@ void JDrawServer::DrawBox( const AABox& box, DWORD clrLines, DWORD clrFill )
     }
 } // JDrawServer::DrawBox
 
-void JDrawServer::DrawSphere( const Vec3& center, float r, DWORD clrLines, DWORD clrFill, int nSegments )
+void JDrawServer::DrawSphere( const Vec3& center, float r, uint32_t clrLines, uint32_t clrFill, int nSegments )
 {
     float phiStep = c_DoublePI / float( nSegments  );
     float thetaStep = phiStep;
@@ -1350,7 +1350,7 @@ void JDrawServer::DrawSphere( const Vec3& center, float r, DWORD clrLines, DWORD
 } // JDrawServer::DrawSphere
 
 void JDrawServer::DrawSpherePart( const Vec3& center, float r, float startPhi, float dPhi, 
-    float startTheta, float dTheta, DWORD clrLines, DWORD clrFill, int nSegments )
+    float startTheta, float dTheta, uint32_t clrLines, uint32_t clrFill, int nSegments )
 {
     startPhi    = DegToRad( startPhi    );
     dPhi        = DegToRad( dPhi        );
@@ -1394,7 +1394,7 @@ void JDrawServer::DrawSpherePart( const Vec3& center, float r, float startPhi, f
     }
 } // JDrawServer::DrawSphereSegment
 
-void JDrawServer::DrawCylinder( const Vec3& base, float r, float h, DWORD clrLines, DWORD clrFill, bool bCapped, int nSegments )
+void JDrawServer::DrawCylinder( const Vec3& base, float r, float h, uint32_t clrLines, uint32_t clrFill, bool bCapped, int nSegments )
 {
     float phiStep = c_DoublePI / float( nSegments );
     Vec3 top( base.x, base.y, base.z + h );
@@ -1433,18 +1433,18 @@ void JDrawServer::DrawCylinder( const Vec3& base, float r, float h, DWORD clrLin
     } 
 } // JDrawServer::DrawCylinder
 
-void JDrawServer::DrawCapsule( const Vec3& base, float r, float h, DWORD clrLines, DWORD clrFill, int nSegments )
+void JDrawServer::DrawCapsule( const Vec3& base, float r, float h, uint32_t clrLines, uint32_t clrFill, int nSegments )
 {
 
 }
 
 void JDrawServer::DrawPlane( const Plane& plane, const Vec2& center, 
-                            DWORD clrLines, DWORD clrFill, float side, int nSegments )
+                            uint32_t clrLines, uint32_t clrFill, float side, int nSegments )
 {
     
 } // JDrawServer::DrawPlane
 
-void JDrawServer::DrawTriMesh( const TriMesh2& mesh, DWORD color, bool bScreenSpace )
+void JDrawServer::DrawTriMesh( const TriMesh2& mesh, uint32_t color, bool bScreenSpace )
 {
     int nF = mesh.GetNFaces();
     for (int i = 0; i < nF; i++)
@@ -1467,7 +1467,7 @@ void JDrawServer::DrawTriMesh( const TriMesh2& mesh, DWORD color, bool bScreenSp
 } // DrawTriMesh
 
 const float c_MinBendAngle = c_PI/20.0f;
-void JDrawServer::DrawPolyline( float width, const PolyLine2& pl, DWORD color, bool bClosed, bool bWorldSpace )
+void JDrawServer::DrawPolyline( float width, const PolyLine2& pl, uint32_t color, bool bClosed, bool bWorldSpace )
 {
     float hw        = width*0.5f;
     float rrad      = hw;
@@ -1600,7 +1600,7 @@ void JDrawServer::DrawPrimList( VertexW* pVert, int numVert, PrimitiveType priTy
     Draw( pVert, numVert, priType );
 }
 
-void JDrawServer::DrawFrustum( const Frustum& frustum,  DWORD clrLines, DWORD clrFill )
+void JDrawServer::DrawFrustum( const Frustum& frustum,  uint32_t clrLines, uint32_t clrFill )
 {
     DrawLine( frustum.ltn(), frustum.rtn(), clrLines, clrLines );
     DrawLine( frustum.rtn(), frustum.rbn(), clrLines, clrLines );

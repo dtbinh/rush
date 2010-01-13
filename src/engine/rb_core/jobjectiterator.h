@@ -4,7 +4,7 @@
 #ifndef __JOBJECTITERATOR_H__
 #define __JOBJECTITERATOR_H__
 
-#include "JObject.h"
+#include "jobject.h"
 
 //****************************************************************************/
 //  Class:  JObjectIterator

@@ -3,7 +3,7 @@
 //  Date:   18.09.2005
 //  Author: Ruslan Shestopalyuk 
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JProgress.h"
 
 //****************************************************************************/
@@ -74,7 +74,7 @@ void JProgress::OnMouse( JMouseEvent& m )
 void JProgress::Render()
 {   
     Frame ext = GetExt();
-    DWORD clr = GetFgColor();
+    uint32_t clr = GetFgColor();
     
     Frame vp = g_pRenderServer->GetViewport();
     g_pDrawServer->Flush();

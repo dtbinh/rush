@@ -14,7 +14,7 @@ class BitVector
 {
     static const int c_NumDW = Size/32 + 1;
 
-    DWORD m_DW[c_NumDW];
+    uint32_t m_DW[c_NumDW];
 
 public:
     BitVector() {}
@@ -32,7 +32,7 @@ public:
 
     inline void Clear() 
     { 
-        memset( &m_DW, 0, sizeof( DWORD )*c_NumDW ); 
+        memset( &m_DW, 0, sizeof( uint32_t )*c_NumDW ); 
     }
 
     inline void SetBit( int idx ) 
@@ -51,9 +51,9 @@ public:
         return (m_DW[idx>>5] & (0x1 << (idx&31))) != 0; 
     }
 
-    inline DWORD GetNBits() const
+    inline uint32_t GetNBits() const
     {
-        DWORD nB = 0;
+        uint32_t nB = 0;
         for (int i = 0; i < c_NumDW; i++) nB += CountBits( m_DW[i] );
         return nB;
     }
@@ -112,7 +112,7 @@ public:
 
     inline BitVector operator =( const BitVector &b )
     {
-        memcpy( m_DW, b.m_DW, sizeof( DWORD )*c_NumDW );
+        memcpy( m_DW, b.m_DW, sizeof( uint32_t )*c_NumDW );
         return *this;
     }
 

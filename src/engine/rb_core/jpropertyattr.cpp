@@ -2,4 +2,4 @@
 //  File:  JPropertyAttr.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "JPropertyAttr.h"
+#include "jpropertyattr.h"

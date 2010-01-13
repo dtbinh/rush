@@ -39,8 +39,8 @@ enum RenderModeFlags
 struct RenderBit
 {
     void*           m_pData;       
-    DWORD           m_Clr[4];        
-    DWORD           m_Flags;     
+    uint32_t           m_Clr[4];        
+    uint32_t           m_Flags;     
     Mat4            m_TM;               
 
     inline bool operator <( const RenderBit& r ) const
@@ -67,16 +67,16 @@ class JDrawServer : public JObject, public IDrawServer
 public:
                 JDrawServer     ();
     virtual     ~JDrawServer    ();
-    void        DrawRect        ( const Frame& rc, DWORD color );
-    void        DrawFrame       ( const Frame& rc, DWORD color );
-    void        DrawLine        ( int x1, int y1, int x2, int y2, DWORD ca, DWORD cb );
-    void        DrawLine        ( const Vec3& a, const Vec3& b, DWORD ca, DWORD cb );
-    void        DrawQuad        ( const Vec3& lt, const Vec3& rt, const Vec3& lb, const Vec3& rb, DWORD color );
+    void        DrawRect        ( const Frame& rc, uint32_t color );
+    void        DrawFrame       ( const Frame& rc, uint32_t color );
+    void        DrawLine        ( int x1, int y1, int x2, int y2, uint32_t ca, uint32_t cb );
+    void        DrawLine        ( const Vec3& a, const Vec3& b, uint32_t ca, uint32_t cb );
+    void        DrawQuad        ( const Vec3& lt, const Vec3& rt, const Vec3& lb, const Vec3& rb, uint32_t color );
     
-    void        DrawPoly        ( const Vec3& a, const Vec3& b, const Vec3& c, DWORD ca, DWORD cb, DWORD cc );
-    void        DrawPoly        ( const Vec2& a, const Vec2& b, const Vec2& c, DWORD ca, DWORD cb, DWORD cc );
+    void        DrawPoly        ( const Vec3& a, const Vec3& b, const Vec3& c, uint32_t ca, uint32_t cb, uint32_t cc );
+    void        DrawPoly        ( const Vec2& a, const Vec2& b, const Vec2& c, uint32_t ca, uint32_t cb, uint32_t cc );
 
-    void        DrawFrustum     ( const Frustum& frustum,  DWORD clrLines, DWORD clrFill );
+    void        DrawFrustum     ( const Frustum& frustum,  uint32_t clrLines, uint32_t clrFill );
 
     void        Init            ();
     void        OnResetDevice   ();
@@ -95,12 +95,12 @@ public:
     void        SetNSpriteSurf  ( int numTotalSurfaces, int num16BitSurfaces = 0 );
     int         GetSpriteID     ( const char* packageName, PSpriteUpdateCB updateCB = NULL, bool bAlwaysCache = false );
     int         GetNFrames      ( int sprID ) const;
-    void        DrawSprite      ( float x, float y, int spriteID, int frameID, DWORD color = 0xFFFFFFFF, float rot = 0.0f, bool bMirror = false );
-    void        DrawSprite      ( const Frame& rct, int spriteID, int frameID, DWORD color = 0xFFFFFFFF, 
+    void        DrawSprite      ( float x, float y, int spriteID, int frameID, uint32_t color = 0xFFFFFFFF, float rot = 0.0f, bool bMirror = false );
+    void        DrawSprite      ( const Frame& rct, int spriteID, int frameID, uint32_t color = 0xFFFFFFFF, 
                                   float rot = 0.0f, bool bMirror = false );
-    void        TileSprite      ( const Frame& rct, int spriteID, int frameID, DWORD color = 0xFFFFFFFF );
-    void        DrawSprite      ( const Mat4& tm, int spriteID, int frameID, DWORD color = 0xFFFFFFFF );
-    void        DrawString      ( int x, int y, int fontID, const char* str, DWORD color = 0xFFFFFFFF, 
+    void        TileSprite      ( const Frame& rct, int spriteID, int frameID, uint32_t color = 0xFFFFFFFF );
+    void        DrawSprite      ( const Mat4& tm, int spriteID, int frameID, uint32_t color = 0xFFFFFFFF );
+    void        DrawString      ( int x, int y, int fontID, const char* str, uint32_t color = 0xFFFFFFFF, 
                                     float height = -1.0f, int nChar = -1, int spacing = 0 );
     int         GetTextWidth    ( int fontID, const char* str, float height = -1.0f, int numChars = -1, int spacing = 0 );
 
@@ -108,7 +108,7 @@ public:
     int         GetFrameH       ( int sprID, int frameID );
     Vec2        GetFramePivot   ( int sprID, int frameID );
     Vec2        GetFrameShift   ( int sprID, int frameID );
-    DWORD       GetPixel        ( int sprID, int frameID, const Vec2& pt ) const;
+    uint32_t       GetPixel        ( int sprID, int frameID, const Vec2& pt ) const;
     Frame       GetFrameBounds  ( int sprID, int frameID );
 
     int         GetStatistics   ( DrawSystemStat stat ) const;
@@ -117,21 +117,21 @@ public:
     void        ResetSprite     ( int sprID );
     void        SetVertexCB     ( PVertProcessCB cb ) { VertProcessCB = cb; }
 
-    void        DrawBox         ( const AABox& box, DWORD clrLines, DWORD clrFill );
-    void        DrawSphere      ( const Vec3& center, float r,  DWORD clrLines, DWORD clrFill, 
+    void        DrawBox         ( const AABox& box, uint32_t clrLines, uint32_t clrFill );
+    void        DrawSphere      ( const Vec3& center, float r,  uint32_t clrLines, uint32_t clrFill, 
                                      int nSegments = c_NDefaultSegments );
     void        DrawSpherePart  ( const Vec3& center, float r, float startPhi, float dPhi, float startTheta, float dTheta, 
-                                     DWORD clrLines, DWORD clrFill, int nSegments = c_NDefaultSegments );
+                                     uint32_t clrLines, uint32_t clrFill, int nSegments = c_NDefaultSegments );
 
-    void        DrawCylinder    ( const Vec3& base, float r, float h, DWORD clrLines, DWORD clrFill, bool bCapped = true,
+    void        DrawCylinder    ( const Vec3& base, float r, float h, uint32_t clrLines, uint32_t clrFill, bool bCapped = true,
                                      int nSegments = c_NDefaultSegments );
-    void        DrawCapsule     ( const Vec3& base, float r, float h, DWORD clrLines, DWORD clrFill, 
+    void        DrawCapsule     ( const Vec3& base, float r, float h, uint32_t clrLines, uint32_t clrFill, 
                                      int nSegments = c_NDefaultSegments );
-    void        DrawPlane       ( const Plane& plane, const Vec2& center, DWORD clrLines, DWORD clrFill, float side,
+    void        DrawPlane       ( const Plane& plane, const Vec2& center, uint32_t clrLines, uint32_t clrFill, float side,
                                     int nSegments = c_NDefaultSegments );
 
-    void        DrawPolyline    ( float width, const PolyLine2& pl, DWORD color, bool bClosed, bool bWorldSpace );
-    void        DrawTriMesh     ( const TriMesh2& mesh, DWORD color, bool bScreenSpace = false );
+    void        DrawPolyline    ( float width, const PolyLine2& pl, uint32_t color, bool bClosed, bool bWorldSpace );
+    void        DrawTriMesh     ( const TriMesh2& mesh, uint32_t color, bool bScreenSpace = false );
 
     void        DrawPrimList    ( VertexS* pVert, int numVert, PrimitiveType priType );
     void        DrawPrimList    ( VertexW* pVert, int numVert, PrimitiveType priType );
@@ -147,7 +147,7 @@ public:
 private:
     int         AllocateChunk   ( JFrameChunk& ch );
     void        Flush           ();
-    void        SetupRS         ( DWORD flags );
+    void        SetupRS         ( uint32_t flags );
     void        LoadPixels      ( int packID, int firstSpr, int nSpr, InStream& is );
     void        LoadPixels      ( int packID, int sprID );
 
@@ -159,12 +159,12 @@ private:
         g_pRenderServer->SetVB( m_PrimVBID, TVert::Type, 0 );
         int numBytes = stride*numVert;
         int iter = -1;
-        g_pRenderServer->CacheVB( m_PrimVBID, (BYTE*)pVert, numBytes, stride, iter, m_CurVBPos );
+        g_pRenderServer->CacheVB( m_PrimVBID, (uint8_t*)pVert, numBytes, stride, iter, m_CurVBPos );
         g_pRenderServer->Draw( 0, 0, m_CurVBPos/stride, numVert, priType );
         m_CurVBPos += numBytes;
     }
 
-    BYTE*       AllocateBuffer   ( int nBytes, bool bAlwaysCache );
+    uint8_t*       AllocateBuffer   ( int nBytes, bool bAlwaysCache );
     void        Cleanup          ();
    
     int                         m_NSpriteSurfaces;      //  total number of the sprite surfaces
@@ -175,12 +175,12 @@ private:
     RenderBitsArray             m_RenderBits;
     PRenderBitsArray            m_SortedRenderBits;
 
-    DWORD                       m_CurFrame;
+    uint32_t                       m_CurFrame;
 
-    static WORD                 s_QuadIdx[c_MaxVertDrawn*6/4];
-    static std::vector<BYTE>    s_UnpackBuffer;
+    static uint16_t                 s_QuadIdx[c_MaxVertDrawn*6/4];
+    static std::vector<uint8_t>    s_UnpackBuffer;
 
-    BYTE*                       m_pBuffer;
+    uint8_t*                       m_pBuffer;
     int                         m_CurBufferByte;
     
     bool                        m_bLinFilter;

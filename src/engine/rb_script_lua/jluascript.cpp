@@ -2,9 +2,9 @@
 //  File:  JLuaScript.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "JLuaScript.h"
-#include "JLuaServer.h"
-#include "IFileServer.h"
+#include "jluascript.h"
+#include "jluaserver.h"
+#include "ifileserver.h"
 
 //****************************************************************************/
 /*  JLuaScript implementation

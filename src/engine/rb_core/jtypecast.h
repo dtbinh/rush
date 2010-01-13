@@ -6,7 +6,6 @@
 
 #include <string.h>
 
-
 #include "stream.h"
 #include "jstring.h"
 

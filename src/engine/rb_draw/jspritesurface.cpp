@@ -2,13 +2,13 @@
 //  File:  JSpriteSurface.cpp
 //  Desc:  
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JSpriteSurface.h"
 
 //****************************************************************************/
 /*	JSpriteSurface implementation
 //****************************************************************************/
-DWORD JSpriteSurface::s_Stamp = 1;
+uint32_t JSpriteSurface::s_Stamp = 1;
 JSpriteSurface::JSpriteSurface() : m_TexID(-1)
 {
     m_Layout.Init( c_SpriteSurfaceSide );

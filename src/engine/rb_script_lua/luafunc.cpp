@@ -2,10 +2,10 @@
 //  File:  LuaFunc.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "IPersistServer.h"
-#include "JLuaScript.h"
-#include "JLuaThread.h"
-#include "JLuaServer.h"
+#include "ipersistserver.h"
+#include "jluascript.h"
+#include "jluathread.h"
+#include "jluaserver.h"
 
 //****************************************************************************/
 /*  JLuaServer implementation

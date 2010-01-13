@@ -3,7 +3,7 @@
 //  Date:   16.08.2005
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JLabel.h"
 
 //****************************************************************************/
@@ -134,7 +134,7 @@ void JLabel::DrawSubstring( const Frame& ext, const char* text, int nChar )
 {
     if (!text) return;
     if (nChar == -1) nChar = strlen( text );
-    DWORD   clr  = GetFgColor();
+    uint32_t   clr  = GetFgColor();
     if (m_ShadowColor != 0)
     {
         g_pDrawServer->DrawString( ext.x + m_MarginX + m_ShadowShiftX, ext.y + m_MarginY + m_ShadowShiftY, 

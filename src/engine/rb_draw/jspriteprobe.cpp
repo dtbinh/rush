@@ -3,7 +3,7 @@
 //  Date:   10.08.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "IDrawServer.h"
 #include "JSpriteProbe.h"
 
@@ -24,7 +24,7 @@ float JSpriteProbe::GetAlpha() const
     return color.a;
 }
 
-DWORD JSpriteProbe::GetColor() const
+uint32_t JSpriteProbe::GetColor() const
 {
     int spID = g_pDrawServer->GetSpriteID( m_SkinPack.c_str() );
     return g_pDrawServer->GetPixel( spID, m_SkinFrame, m_Position );

@@ -60,7 +60,7 @@ protected:
     bool           m_bTwoState;     //  whether button stays in pressed state when mouse released
     bool           m_bPixelPrecise; //  point-in testing happens on per-pixel basis
 
-    DWORD          m_ShadowColor;   //  button text shadow color
+    uint32_t          m_ShadowColor;   //  button text shadow color
     int            m_ShadowShiftX;  //  button text shadow x shift
     int            m_ShadowShiftY;  //  button text shadow y shift
     

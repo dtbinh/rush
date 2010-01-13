@@ -2,18 +2,18 @@
 //  File:  JPersistServer.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "JPersistServer.h"
+#include "jpersistserver.h"
 
-#include "Path.h"
-#include "Buffer.h"
-#include "CountStream.h"
-#include "Hash.h"
+#include "path.h"
+#include "buffer.h"
+#include "countstream.h"
+#include "hash.h"
 #include "tinyxml.h"
-#include "JMLNode.h"
-#include "JSignalServer.h"
-#include "JObjectIterator.h"
-#include "IFileServer.h"
-#include "IStringServer.h"
+#include "jmlnode.h"
+#include "jsignalserver.h"
+#include "jobjectiterator.h"
+#include "ifileserver.h"
+#include "istringserver.h"
 
 //****************************************************************************/
 /*  JPersistServer implementation

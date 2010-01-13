@@ -26,7 +26,7 @@
 * REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY
 * OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
 */
-#include "stdafx.h"
+#include "precompile.h"
 #include "Voronoi.h"
 
 Voronoi::Voronoi()

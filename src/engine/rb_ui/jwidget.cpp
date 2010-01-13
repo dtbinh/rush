@@ -3,7 +3,7 @@
 //  Date:   18.09.2005
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "IWindowServer.h"
 #include "JWidget.h"
 

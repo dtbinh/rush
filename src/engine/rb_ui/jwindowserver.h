@@ -167,12 +167,12 @@ private:
     HWND                m_hWnd;
     WNDPROC             HookedWndProc;
 
-    DWORD               m_FPSThreadID;
+    uint32_t               m_FPSThreadID;
     HANDLE              m_hFPSThread;
     HANDLE              m_hFPSEvent;
 
-    static DWORD WINAPI FPSThreadProcStart  ( LPVOID lpParam );
-    DWORD WINAPI        FPSThreadProc       ( LPVOID lpParam );
+    static uint32_t WINAPI FPSThreadProcStart  ( LPVOID lpParam );
+    uint32_t WINAPI        FPSThreadProc       ( LPVOID lpParam );
 
 }; // class JWindowServer
 

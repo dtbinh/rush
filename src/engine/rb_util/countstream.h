@@ -5,7 +5,7 @@
 #ifndef __COUNTSTREAM_H__
 #define __COUNTSTREAM_H__
 
-#include "Stream.h"
+#include "stream.h"
 //****************************************************************************/
 //  Class:  CountStream
 //  Desc:   Simple stream stub, which just counts number of uint8_ts passed in

@@ -6,9 +6,9 @@
 #ifndef __TRACKPRS_H__
 #define __TRACKPRS_H__
 
-#include "TrackQuat.h"
-#include "TrackVec3.h"
-#include "TrackByte.h"
+#include "trackquat.h"
+#include "trackvec3.h"
+#include "trackbyte.h"
 
 enum PRSFlags
 {   

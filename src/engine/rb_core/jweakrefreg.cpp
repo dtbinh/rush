@@ -2,8 +2,8 @@
 //  File:  JWeakRefReg.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "JWeakRef.h"
-#include "JWeakRefReg.h"
+#include "jweakref.h"
+#include "jweakrefreg.h"
 
 JWeakRefReg* JWeakRefReg::s_pInstance = NULL;
 //****************************************************************************/

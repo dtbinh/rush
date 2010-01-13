@@ -3,7 +3,7 @@
 //  Date:   28.09.2005
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JPicture.h"
 
 //****************************************************************************/
@@ -39,9 +39,9 @@ bool JPicture::PtIn( int px, int py ) const
     else
     {
         Frame ext = GetExt();
-        DWORD clr = g_pDrawServer->GetPixel( GetSkinPackID(), GetSkinFrame(), 
+        uint32_t clr = g_pDrawServer->GetPixel( GetSkinPackID(), GetSkinFrame(), 
              Vec2( px - ext.x, py - ext.y ) );
-        DWORD alpha = (clr&0xFF000000)>>24;
+        uint32_t alpha = (clr&0xFF000000)>>24;
         return (alpha > 0x00);
     }
 }
@@ -64,7 +64,7 @@ void JPicture::Render()
     g_pDrawServer->SetLinFilter( IsFilterFont() );
     g_pDrawServer->SetZEnable( m_bZEnable );
 
-    DWORD color = GetFgColor();
+    uint32_t color = GetFgColor();
 
     if (IsBlendAdd())
     {

@@ -3,7 +3,7 @@
 //  Date:   17.10.2005
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include <windows.h>
 
 #include "JEditBox.h"
@@ -65,7 +65,7 @@ void JEditBox::Render()
 
     int     cx  = ext.x + m_TextLeftMargin + m_TextShift;
     int     cy  = ext.y;
-    DWORD   clr = GetFgColor();
+    uint32_t   clr = GetFgColor();
     if (HasFocus()) 
     {
         DrawSelection();
@@ -175,7 +175,7 @@ void JEditBox::OnKey( JKeyEvent& e )
     
     //  process control keys down events
     if (e.Action() != aKeyDown) return;
-    DWORD keyCode = e.Key();
+    uint32_t keyCode = e.Key();
     if (keyCode == VK_DELETE)
     {
         JString text = GetText(); 
@@ -246,7 +246,7 @@ void JEditBox::OnKey( JKeyEvent& e )
         return;
     }
 
-    DWORD charCode = e.GetChar();
+    uint32_t charCode = e.GetChar();
     if (charCode >= 32)
     {
         JString text = GetText(); 
@@ -272,7 +272,7 @@ void JEditBox::OnKey( JKeyEvent& e )
 
 void JEditBox::DrawCaret()
 {
-    DWORD tc = GetTickCount() - m_BlinkStart; // FIXME
+    uint32_t tc = GetTickCount() - m_BlinkStart; // FIXME
     Frame ext = GetExt();
     tc %= m_CaretBlinkOn + m_CaretBlinkOff;
     if (tc < m_CaretBlinkOn)

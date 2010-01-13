@@ -2,6 +2,6 @@
 //  File:  Functor.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "Functor.h"
+#include "functor.h"
 
 Functor Functor::null;

@@ -4,7 +4,7 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "OpenFileDialog.h"
+#include "openfiledialog.h"
 
 #include "direct.h"
 

@@ -4,8 +4,8 @@
 /*	Date:	04.04.2003
 //****************************************************************************/
 #include "precompile.h"
-#include "JMLNode.h"
-#include "JMLParser.h"
+#include "jmlnode.h"
+#include "jmlparser.h"
 
 //****************************************************************************/
 /*	JMLParser implementation

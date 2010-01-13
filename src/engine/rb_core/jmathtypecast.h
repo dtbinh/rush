@@ -1,6 +1,6 @@
 //****************************************************************************/
 //  File:   JMathTypeCast.h
-//  Desc:   There are declared math-needed typecasts
+//  Desc:   Math library specific typecasts
 //****************************************************************************/
 #ifndef __JMATHTYPECAST_H__
 #define __JMATHTYPECAST_H__

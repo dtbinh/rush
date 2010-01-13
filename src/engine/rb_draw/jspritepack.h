@@ -22,7 +22,7 @@ class JSpritePack : public JObject
     bool                        m_bAlwaysCache;
 
     int                         m_HeaderSize;
-    DWORD                       m_LastFrame;
+    uint32_t                       m_LastFrame;
 
     friend class                JDrawServer;
 public:

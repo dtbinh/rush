@@ -4,10 +4,10 @@
 #ifndef __JFILESERVER_H__
 #define __JFILESERVER_H__
 
-#include "JReflect.h"
-#include "JObject.h"
-#include "DirectoryCache.h"
-#include "IFileServer.h"
+#include "jreflect.h"
+#include "jobject.h"
+#include "directorycache.h"
+#include "ifileserver.h"
 
 class FInStream;
 class JString;

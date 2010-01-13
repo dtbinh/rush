@@ -3,7 +3,7 @@
 //  Date:   10.08.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "AABox.h"
 #include "JMesh.h"
 #include "JMaterial.h"
@@ -42,16 +42,16 @@ void JModelAnim::Clear()
 } // JModelAnim::Clear 
 
 
-const DWORD c_AnimFileFOURCC  = *((DWORD*)"RBAN");
-const DWORD c_AnimFileVersion = 1;
+const uint32_t c_AnimFileFOURCC  = *((uint32_t*)"RBAN");
+const uint32_t c_AnimFileVersion = 1;
 
 template <class TTrack>
 inline void SaveTrack( OutStream& os, const TTrack& track )
 {
     int nKeys = track.GetNKeys();
     os << nKeys;
-    os.Write( (BYTE*)track.GetTimes(), nKeys*sizeof( float ) );
-    os.Write( (BYTE*)track.GetValues(), nKeys*sizeof( TTrack::ValType ) );
+    os.Write( (uint8_t*)track.GetTimes(), nKeys*sizeof( float ) );
+    os.Write( (uint8_t*)track.GetValues(), nKeys*sizeof( TTrack::ValType ) );
 } // SaveTrack
 
 template <class TTrack>
@@ -60,8 +60,8 @@ inline void LoadTrack( InStream& is, TTrack& track )
     int nKeys = 0;
     is >> nKeys;
     track.SetNKeys( nKeys );
-    is.Read( (BYTE*)track.GetTimes(), nKeys*sizeof( float ) );
-    is.Read( (BYTE*)track.GetValues(), nKeys*sizeof( TTrack::ValType ) );
+    is.Read( (uint8_t*)track.GetTimes(), nKeys*sizeof( float ) );
+    is.Read( (uint8_t*)track.GetValues(), nKeys*sizeof( TTrack::ValType ) );
 } // SaveTrack
 
 void JModelAnim::Serialize( OutStream& os ) const
@@ -85,8 +85,8 @@ void JModelAnim::Serialize( OutStream& os ) const
 bool JModelAnim::Unserialize( InStream& is )
 {
     int nTracks = 0;
-    DWORD fourcc = 0;
-    DWORD version = -1;
+    uint32_t fourcc = 0;
+    uint32_t version = -1;
     is >> fourcc >> version;
     
     JString dummy;
@@ -164,7 +164,7 @@ bool JModelAnim::Apply( JBoneInstance* pBones, float cTime, float weight )
         Vec3       pos    = track.m_Pos.GetValue( cTime );
         Vec3       scale  = track.m_Scale.GetValue( cTime );
         Quaternion rot    = track.m_Rot.GetValue( cTime );
-        BYTE       vis    = track.m_Visibility.GetValue( cTime );
+        uint8_t       vis    = track.m_Visibility.GetValue( cTime );
         
         if (weight < 1.0f)
         {
@@ -183,7 +183,7 @@ bool JModelAnim::Apply( JBoneInstance* pBones, float cTime, float weight )
         }
 
         bone.m_LocalTM.srt( scale, rot, pos );
-        const BYTE c_InvisibleValue = 1;
+        const uint8_t c_InvisibleValue = 1;
         bone.m_bVisible = (vis == c_InvisibleValue) ? false : true;
     }
     return false;

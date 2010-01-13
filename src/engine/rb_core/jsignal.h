@@ -4,7 +4,7 @@
 #ifndef __JSIGNAL_H__
 #define __JSIGNAL_H__
 
-#include "JString.h"
+#include "jstring.h"
 
 enum JSignalType
 {

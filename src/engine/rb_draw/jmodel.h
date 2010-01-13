@@ -75,11 +75,11 @@ public:
     void            Render          ( const Mat4& tm, JBoneInstance* pSkelInst = NULL, 
                                       bool bIgnoreShader = false, bool bUseCachedData = false );
 
-    void            SetVertices     ( BYTE* pVert, int numBytes ) { m_Vertices.SetData( pVert, numBytes ); }
-    void            SetIndices      ( WORD* pIdx, int numIdx )    { m_Indices.SetData( (BYTE*)pIdx, numIdx*2 ); }
+    void            SetVertices     ( uint8_t* pVert, int numBytes ) { m_Vertices.SetData( pVert, numBytes ); }
+    void            SetIndices      ( uint16_t* pIdx, int numIdx )    { m_Indices.SetData( (uint8_t*)pIdx, numIdx*2 ); }
 
-    void            AddVertices     ( BYTE* pVert, int numBytes ) { m_Vertices.AddData( pVert, numBytes ); }
-    void            AddIndices      ( WORD* pIdx, int numIdx );
+    void            AddVertices     ( uint8_t* pVert, int numBytes ) { m_Vertices.AddData( pVert, numBytes ); }
+    void            AddIndices      ( uint16_t* pIdx, int numIdx );
 
     void            Reserve         ( int nVertexBytes, int numIdx );
 

@@ -5,7 +5,7 @@
 #ifndef __JMLNODE_H__
 #define __JMLNODE_H__
 
-#include "Buffer.h"
+#include "buffer.h"
 
 class InStream;
 class OutStream;

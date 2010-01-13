@@ -2,8 +2,8 @@
 //  File:  JRef.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "JObject.h"
-#include "JRef.h"
+#include "jobject.h"
+#include "jref.h"
 
 //****************************************************************************/
 /*  JRef implementation

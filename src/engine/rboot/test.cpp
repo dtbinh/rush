@@ -17,9 +17,11 @@ int main()
     }
 
     import( rb_script_lua   );
+    import( rb_particle     );
 
     //import( rb_rendergl     );
-    //import( rb_ui           );
+    import( rb_ui           );
+    import( rb_draw         );
     
     UnitTest::RunAllTests();
     return 0;

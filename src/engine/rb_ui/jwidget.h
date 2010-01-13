@@ -114,14 +114,14 @@ public:
     void            SetClipToExt    ( bool bClip = true ) { m_bClipToExtents = bClip; }
 
     //  tint 
-    DWORD           GetFgColor      () const { return m_FgColor; }
-    DWORD           GetBgColor      () const { return m_BgColor; }
+    uint32_t           GetFgColor      () const { return m_FgColor; }
+    uint32_t           GetBgColor      () const { return m_BgColor; }
 
-    void            SetFgColor      ( DWORD color ) { m_FgColor = color; }
-    void            SetBgColor      ( DWORD color ) { m_BgColor = color; }
+    void            SetFgColor      ( uint32_t color ) { m_FgColor = color; }
+    void            SetBgColor      ( uint32_t color ) { m_BgColor = color; }
 
-    DWORD           GetHoverFgColor () const { return m_HoverFgColor; }
-    DWORD           GetHoverBgColor () const { return m_HoverBgColor; }
+    uint32_t           GetHoverFgColor () const { return m_HoverFgColor; }
+    uint32_t           GetHoverBgColor () const { return m_HoverBgColor; }
 
     float           GetAlpha        () const;
     void            SetAlpha        ( float alpha );
@@ -301,13 +301,13 @@ private:
 
     bool                m_bAlwaysCacheSkin;
     
-    DWORD               m_FgColor;     
-    DWORD               m_HoverFgColor;
-    DWORD               m_DisableFgColor;
+    uint32_t               m_FgColor;     
+    uint32_t               m_HoverFgColor;
+    uint32_t               m_DisableFgColor;
 
-    DWORD               m_BgColor;   
-    DWORD               m_HoverBgColor;
-    DWORD               m_DisableBgColor;
+    uint32_t               m_BgColor;   
+    uint32_t               m_HoverBgColor;
+    uint32_t               m_DisableBgColor;
 
     bool                m_bHasFocus;   
     bool                m_bHovered;

@@ -5,7 +5,7 @@
 #ifndef __REGPOOL_H__
 #define __REGPOOL_H__
 
-#include "UniformPool.h"
+#include "uniformpool.h"
 #include <hash_map>
 
 //****************************************************************************/

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "JLabel.h"
 #include "JButton.h"
 #include "JListBox.h"

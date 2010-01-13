@@ -5,7 +5,7 @@
 /***********************************************************************************/
 #include "precompile.h"
 #include "time.h"
-#include "Logger.h"
+#include "logger.h"
 #include "windows.h"
 
 const int   c_LogBufferSize = 1024;

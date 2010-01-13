@@ -17,12 +17,33 @@ set( EXTERNALS_SRC_DIR ${CMAKE_SOURCE_DIR}/external )
 
 set( CMAKE_MODULE_PATH 
      "${CMAKE_SOURCE_DIR}/cmake" 
-     "${CMAKE_SOURCE_DIR}/cmake/internal" 
      "${CMAKE_SOURCE_DIR}/cmake/external"
     )
     
 include( common )
 
-add_subdirectory( src )
+set(PCH_FILE_H "precompile.h")
+set(PCH_FILE_CPP "precompile.cpp")
+
 add_subdirectory( external )
+
+include_directories( src/include )
+    
+add_subdirectory( src/engine/rb_math )
+add_subdirectory( src/engine/rb_extmath )
+add_subdirectory( src/engine/rb_util )
+add_subdirectory( src/engine/rb_core )
+
+add_subdirectory( src/engine/rb_script_lua )
+add_subdirectory( src/engine/rb_particle )
+
+# add_subdirectory( src/engine/rb_rendergl )
+add_subdirectory( src/engine/rb_ui )
+add_subdirectory( src/engine/rb_draw )
+
+# add_subdirectory( src/engine/rb_particle )
+
+add_subdirectory( src/engine/rboot )
+
+add_subdirectory( src/tools ) 
 

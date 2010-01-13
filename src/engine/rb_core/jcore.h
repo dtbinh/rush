@@ -4,7 +4,7 @@
 #ifndef __JCORE_H__
 #define __JCORE_H__
 
-#include "JObject.h"
+#include "jobject.h"
 
 class JMetaClass;
 class JObjectServer;

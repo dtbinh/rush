@@ -4,12 +4,12 @@
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "ParticleServer.h"
-#include "PSOperator.h"
-#include "PSEmitter.h"
-#include "PSText.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "particleserver.h"
+#include "psoperator.h"
+#include "psemitter.h"
+#include "pstext.h"
 
 //****************************************************************************/
 /*  PSText implementation

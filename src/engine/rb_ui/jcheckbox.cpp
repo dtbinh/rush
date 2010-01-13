@@ -3,7 +3,7 @@
 //  Date:   16.08.2005
 //  Author: Ruslan Shestopalyuk 
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JButton.h"
 #include "JCheckBox.h"
 
@@ -38,7 +38,7 @@ void JCheckBox::Check( bool bCheck )
 void JCheckBox::Render()
 {   
     Frame    ext = GetExt();
-    DWORD   clr = GetFgColor();
+    uint32_t   clr = GetFgColor();
 
     int skinFrame = m_NormalFrame;
     

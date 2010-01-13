@@ -4,7 +4,7 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "MemoryManager.h"
+#include "memorymanager.h"
 
 /***********************************************************************************/
 /*  MemoryManager implementation

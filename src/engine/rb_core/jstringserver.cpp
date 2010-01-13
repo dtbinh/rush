@@ -2,14 +2,14 @@
 //  File:  JStringServer.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "JStringServer.h"
+#include "jstringserver.h"
 
-#include "IPersistServer.h"
-#include "IFileServer.h"
-#include "JCore.h"
-#include "JObjectIterator.h"
-#include "FStream.h"
-#include "Buffer.h"
+#include "ipersistserver.h"
+#include "ifileserver.h"
+#include "jcore.h"
+#include "jobjectiterator.h"
+#include "fstream.h"
+#include "buffer.h"
 #include "hash.h"
 
 //****************************************************************************/

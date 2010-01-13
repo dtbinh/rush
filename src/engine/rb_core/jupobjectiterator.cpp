@@ -4,7 +4,7 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JUpObjectIterator.h"
+#include "jupobjectiterator.h"
 
 /***********************************************************************************/
 /*  JUpObjectIterator implementation

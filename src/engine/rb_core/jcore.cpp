@@ -2,21 +2,21 @@
 //  File:  JCore.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "JObject.h"
-#include "JGroup.h"
-#include "JObjectIterator.h"
+#include "jobject.h"
+#include "jgroup.h"
+#include "jobjectiterator.h"
  
-#include "JObjectServer.h"
-#include "JSignalServer.h"
-#include "JPersistServer.h"
-#include "JFileServer.h"
+#include "jobjectserver.h"
+#include "jsignalserver.h"
+#include "jpersistserver.h"
+#include "jfileserver.h"
 
-#include "IParticleServer.h"
-#include "IScriptServer.h"
+#include "iparticleserver.h"
+#include "iscriptserver.h"
 
 #include "direct.h"
-#include "Path.h"
-#include "JCore.h"
+#include "path.h"
+#include "jcore.h"
 
 JCore* JCore::s_pInstance = NULL;
 //****************************************************************************/

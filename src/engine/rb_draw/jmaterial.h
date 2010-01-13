@@ -20,8 +20,8 @@ class JMaterial : public JObject
     JString             m_NormalMap;
     JString             m_EnvMap;
 
-    DWORD               m_Diffuse;
-    DWORD               m_Specular;
+    uint32_t               m_Diffuse;
+    uint32_t               m_Specular;
     float               m_SpecularPower;
     float               m_Transparency;
     bool                m_bHasAlpha;
@@ -40,8 +40,8 @@ public:
     void                SetEnvMap        ( const char* mapName )    { if (mapName) m_EnvMap = mapName; }
     void                SetShaderName    ( const char* name )       { if (name) m_ShaderName = name; }
     const char*         GetShaderName    () const                   { return m_ShaderName.c_str(); }
-    void                SetDiffuse       ( DWORD color )            { m_Diffuse = color; }
-    void                SetSpecular      ( DWORD color )            { m_Specular = color; }
+    void                SetDiffuse       ( uint32_t color )            { m_Diffuse = color; }
+    void                SetSpecular      ( uint32_t color )            { m_Specular = color; }
     void                SetSpecularPower ( float power )            { m_SpecularPower = power; }
 
     int                 GetShaderID      () const { return m_ShaderID; }

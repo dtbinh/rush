@@ -2,8 +2,8 @@
 //  File:  JMetaClass.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "JObjectServer.h"
-#include "JMetaClass.h"
+#include "jobjectserver.h"
+#include "jmetaclass.h"
 
 //****************************************************************************/
 /*	JMetaClass implementation

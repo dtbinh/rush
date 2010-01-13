@@ -4,10 +4,10 @@
 #ifndef __JSIGNALSERVER_H__
 #define __JSIGNALSERVER_H__
 
-#include "ISignalServer.h"
-#include "JSignal.h"
-#include "JObject.h"
-#include "UniformPool.h"
+#include "isignalserver.h"
+#include "jsignal.h"
+#include "jobject.h"
+#include "uniformpool.h"
 
 class JMLNode;
 

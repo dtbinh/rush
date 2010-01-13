@@ -1,12 +1,15 @@
 rb_library(rb_script_lua)
 
-include(rb_core)
-include(rb_util)
-include(rb_math) 
-
-include(unittest++)
+set(INTERNAL_LIBS 
+    rb_math
+    rb_util
+    rb_core
+    )
+    
+rb_include_libs("${INTERNAL_LIBS}")
 include(lua)
 
 target_link_libraries(rb_script_lua 
-    rb_core rb_util rb_math 
-    lua unittest++)
+    ${INTERNAL_LIBS}
+    lua
+    )

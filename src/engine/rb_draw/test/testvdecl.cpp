@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "VertexDeclaration.h"
 
 TEST( VDeclIsCreated )

@@ -32,9 +32,9 @@ struct JSpriteFrame
     std::vector<JFrameChunk>    m_Chunks;       //  chunks list
 
     int                         m_NumPixelsTotal;
-    DWORD                       m_LastFrame;
+    uint32_t                       m_LastFrame;
     int                         m_FirstByteInPack;
-    DWORD*                      m_pPixels;
+    uint32_t*                      m_pPixels;
 }; // struct JSpriteFrame
 
 #endif //__JSPRITEFRAME_H__

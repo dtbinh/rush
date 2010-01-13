@@ -3,13 +3,13 @@
 //  Date:   10.08.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
-#include "Buffer.h"
-#include "JBone.h"
-#include "JBoneInstance.h"
-#include "JModel.h"
-#include "AABox.h"
-#include "JMesh.h"
+#include "precompile.h"
+#include "buffer.h"
+#include "jbone.h"
+#include "jboneinstance.h"
+#include "jmodel.h"
+#include "aabox.h"
+#include "jmesh.h"
 
 /***********************************************************************************/
 /*  JMesh implementation
@@ -41,7 +41,7 @@ void Skin1( const VertexW4* pSrc, VertexN* pDst, int nVert, const Mat4* pTM )
     {
         const VertexW4& sv = pSrc[i];
         VertexN& dv = pDst[i];
-        BYTE boneIdx = sv.boneIdx[0];
+        uint8_t boneIdx = sv.boneIdx[0];
         const Mat4& tm = pTM[boneIdx];
         dv.x = sv.x; dv.y = sv.y; dv.z = sv.z; 
         dv.nx = sv.nx; dv.ny = sv.ny; dv.nz = sv.nz; 
@@ -52,7 +52,7 @@ void Skin1( const VertexW4* pSrc, VertexN* pDst, int nVert, const Mat4* pTM )
     }
 } // Skin1
 
-inline float ByteToF( BYTE b )
+inline float ByteToF( uint8_t b )
 {
     return float( b )/255.0f;
 }
@@ -231,7 +231,7 @@ void JMesh::Render( int firstIByte, JBoneInstance* pSkelInst, const Mat4& tm, bo
         m_VBIteration = -1;
         Mat4 worldTM = m_ShiftTM*tm;
         g_pRenderServer->SetWorldTM( worldTM );
-        g_pRenderServer->CacheVB( m_VBufID, (BYTE*)&m_SkinnedVert[0], numBytes, stride, m_VBIteration, m_VBFirstByte );
+        g_pRenderServer->CacheVB( m_VBufID, (uint8_t*)&m_SkinnedVert[0], numBytes, stride, m_VBIteration, m_VBFirstByte );
         
         g_pRenderServer->SetVB( m_VBufID, VertexType_XYZNUV, 0 );
         int baseIndex = m_VBFirstByte/stride;
@@ -334,7 +334,7 @@ void JMesh::Init()
 void JMesh::CacheVB()
 {
     if (IsSkinned() || !m_pModel) return;
-    BYTE* pVert = m_pModel->GetVBuf().GetData() + m_FirstVByte;
+    uint8_t* pVert = m_pModel->GetVBuf().GetData() + m_FirstVByte;
     int stride = m_VDecl.m_VertexSize;
     g_pRenderServer->CacheVB( m_VBufID, pVert, m_NVertices*stride, stride, m_VBIteration, m_VBFirstByte );
 } // JMesh::CacheVB
@@ -417,9 +417,9 @@ bool JMesh::GetComponents( Buffer& buf, VertexComponent component ) const
     const VertexElement& vElem = m_VDecl.m_Element[elemIdx];
     int compSize = GetVertexElementSize( vElem.m_Type );
     if (compSize == 0) return false;
-    const BYTE* pVert = vbuf.GetData() + m_FirstVByte + vElem.m_Offset;
+    const uint8_t* pVert = vbuf.GetData() + m_FirstVByte + vElem.m_Offset;
     buf.Resize( m_NVertices*compSize );
-    BYTE* pDst = buf.GetData();
+    uint8_t* pDst = buf.GetData();
     int vertSize = m_VDecl.m_VertexSize;
     for (int i = 0; i < m_NVertices; i++)
     {

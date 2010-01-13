@@ -4,6 +4,6 @@
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "JEvent.h"
+#include "jevent.h"
 
 int g_NEventIDs = 0;

@@ -17,10 +17,10 @@ struct JFrameChunk
     int                     m_Side;
     int                     m_Width;
     int                     m_Height;
-    WORD                    m_Flags;
+    uint16_t                    m_Flags;
 
-    BYTE*                   m_Pixels;
-    DWORD                   m_CacheStamp;
+    uint8_t*                   m_Pixels;
+    uint32_t                   m_CacheStamp;
     int                     m_FrameIdx;
     int                     m_PackIdx;
     

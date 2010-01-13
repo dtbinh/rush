@@ -22,7 +22,7 @@ public:
     void    SetPosition( Vec2 pos ) { m_Position = pos; }
 
     float   GetAlpha() const;
-    DWORD   GetColor() const;
+    uint32_t   GetColor() const;
 
     expose( JSpriteProbe )
     {

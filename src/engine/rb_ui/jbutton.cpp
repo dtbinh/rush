@@ -3,7 +3,7 @@
 //  Date:   21.08.2005
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JButton.h"
 
 //****************************************************************************/
@@ -50,15 +50,15 @@ bool JButton::PtIn( int px, int py ) const
     float scY = frameH/ext.h;
     pixPos.x *= scX;
     pixPos.y *= scY;
-    DWORD clr = g_pDrawServer->GetPixel( spID, m_NormalFrame, pixPos );
-    DWORD alpha = (clr&0xFF000000)>>24;
+    uint32_t clr = g_pDrawServer->GetPixel( spID, m_NormalFrame, pixPos );
+    uint32_t alpha = (clr&0xFF000000)>>24;
     return (alpha > 0x50);
 } // JPuzzlePiece::PtIn
 
 void JButton::Render()
 {    
     Frame ext = GetExt();
-    DWORD clr = GetFgColor();
+    uint32_t clr = GetFgColor();
     int skinFrame = m_NormalFrame;
 
     if (IsBlendAdd()) 

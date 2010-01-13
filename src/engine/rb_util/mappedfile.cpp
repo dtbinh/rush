@@ -3,7 +3,7 @@
 //  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "MappedFile.h"
+#include "mappedfile.h"
 
 //****************************************************************************/
 /*  MappedFile implementation

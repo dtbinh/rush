@@ -37,7 +37,7 @@ public:
 
     WangTiling(){}
 
-    void        Reset  ( DWORD seed ) { m_Random.Reset( seed ); }
+    void        Reset  ( uint32_t seed ) { m_Random.Reset( seed ); }
     int         GetTile( int leftN, int topN, int rightN, int bottomN );
 
 protected:

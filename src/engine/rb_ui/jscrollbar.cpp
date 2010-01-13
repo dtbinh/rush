@@ -3,7 +3,7 @@
 //  Date:   23.09.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JSlider.h"
 #include "JButton.h"
 #include "JScrollBar.h"

@@ -4,7 +4,7 @@
 /*	Author:	Ruslan Shestopalyuk
 /*	Date:	17-02-2006
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "HalfEdgeMesh.h"
 #include "Voronoi.h"
 #include <algorithm>

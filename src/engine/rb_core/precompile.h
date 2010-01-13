@@ -13,7 +13,5 @@
 #include "memstream.h"
 #include "fstream.h"
 
-#include "UnitTest++.h"
-
 #endif // __RB_CORE_PCH_H__
 

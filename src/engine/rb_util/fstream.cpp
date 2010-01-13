@@ -3,7 +3,7 @@
 //  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "FStream.h"
+#include "fstream.h"
 #include "direct.h"
 
 void Save( const std::wstring& s, FILE* fp )

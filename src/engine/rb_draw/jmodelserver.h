@@ -48,7 +48,7 @@ class JModelServer : public JObject, public IModelServer
     std::vector<ShadowObj>      m_ShadowObj;
     bool                        m_bShowShadowMap;
     Vec3                        m_LightDir;
-    DWORD                       m_ShadowColor;
+    uint32_t                       m_ShadowColor;
     float                       m_ShadowRange;
     int                         m_ShadowMapSide;
     bool                        m_bEnableShadows;
@@ -84,7 +84,7 @@ public:
     void        DrawShadows     ();
 
     void        SetLightDir     ( const Vec3& dir ) { m_LightDir = dir; }
-    void        SetShadowColor  ( DWORD color ) { m_ShadowColor = color; }
+    void        SetShadowColor  ( uint32_t color ) { m_ShadowColor = color; }
 
     int         GetShadowMapSide() const { return m_ShadowMapSide; }
     void        SetShadowMapSide( int side );

@@ -4,15 +4,15 @@
 #include "precompile.h"
 #include "stdlib.h"
 #include "float.h"
-#include "JString.h"
-#include "FStream.h"
-#include "Path.h"
-#include "JObjectServer.h"
-#include "IScriptServer.h"
+#include "jstring.h"
+#include "fstream.h"
+#include "path.h"
+#include "jobjectserver.h"
+#include "iscriptserver.h"
 
-#include "JLuaScript.h"
-#include "JLuaThread.h"
-#include "JLuaServer.h"
+#include "jluascript.h"
+#include "jluathread.h"
+#include "jluaserver.h"
 
 //****************************************************************************/
 /*  JLuaServer implementation

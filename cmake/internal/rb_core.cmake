@@ -1,1 +1,0 @@
-include_directories( ${ENGINE_SRC_DIR}/rb_core )

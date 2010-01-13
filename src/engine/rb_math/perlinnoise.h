@@ -6,8 +6,8 @@
 #define __PERLINNOISE_H__
 #pragma once
 
-#include "Vec3.h"
-#include "Quaternion.h"
+#include "vec3.h"
+#include "quaternion.h"
 
 static const int s_Permutation[] = 
 {       151,160,137,91,90,15,

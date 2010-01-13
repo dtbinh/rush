@@ -18,4 +18,7 @@
 #include "vec4.h"
 #include "mat4.h"
 
-#endif
+#include "UnitTest++.h"
+
+#endif // __PRECOMPILE_H__
+

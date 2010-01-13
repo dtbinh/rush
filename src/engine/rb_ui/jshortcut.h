@@ -103,7 +103,7 @@ enum_end(JXKey)
 /***********************************************************************************/
 class JShortcut : public JWidget
 {
-    DWORD           m_Key;          
+    uint32_t           m_Key;          
     bool            m_bControl;
     bool            m_bAlt;
     bool            m_bShift;
@@ -117,7 +117,7 @@ public:
     void            SetKey( const char* key ) { m_Key = *key; }
 
     JXKey           GetXKey() const { return JXKey( m_Key ); }
-    void            SetXKey( JXKey key ) { m_Key = (DWORD)key; }
+    void            SetXKey( JXKey key ) { m_Key = (uint32_t)key; }
 
     expose( JShortcut )
     {

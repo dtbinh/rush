@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 /*
 #include "ColorSurface.h"
 
@@ -14,10 +14,10 @@ TEST( SpriteGetColor )
     const Frame c_OuterRect( 1, 2, 71, 88 );
     const Vec2  c_Pivot( 41, 43 );
     const Vec2  c_Size( 74, 94 );
-    const DWORD c_InnerColor0 = 0xFFFF0000;
-    const DWORD c_InnerColor1 = 0x00000000;
-    const DWORD c_OuterColor  = 0x000000FF;
-    const DWORD c_BorderColor = 0xFFFFFF00;
+    const uint32_t c_InnerColor0 = 0xFFFF0000;
+    const uint32_t c_InnerColor1 = 0x00000000;
+    const uint32_t c_OuterColor  = 0x000000FF;
+    const uint32_t c_BorderColor = 0xFFFFFF00;
 
     CHECK_EQUAL( c_NumFrames, g_pDrawServer->GetNFrames( spID ) );
     bool bRightPivotSize = true;
@@ -60,7 +60,7 @@ TEST( SpriteGetColor )
     {
         int cx = rand()%frameW;
         int cy = rand()%frameH;
-        DWORD rightClr = c_BorderColor;
+        uint32_t rightClr = c_BorderColor;
         //  find out right color
         if (c_InnerRect.PtIn( float( cx ), float( cy ) ))
         {
@@ -72,7 +72,7 @@ TEST( SpriteGetColor )
         }
         for (int j = 0; j < c_NumFrames; j++)
         {
-            DWORD clr = g_pDrawServer->GetPixel( spID, j, Vec2( cx, cy ) );
+            uint32_t clr = g_pDrawServer->GetPixel( spID, j, Vec2( cx, cy ) );
             if (clr == rightClr) 
             {
                 numCorrect[j]++;

@@ -4,9 +4,9 @@
 /*	Date:	04.04.2003
 //****************************************************************************/
 #include "precompile.h"
-#include "Stream.h"
-#include "JMLNode.h"
-#include "JMLParser.h"
+#include "stream.h"
+#include "jmlnode.h"
+#include "jmlparser.h"
 
 //****************************************************************************/
 /*	JMLNode implementation

@@ -5,7 +5,7 @@
 #ifndef __COMMANDLINE_H__
 #define __COMMANDLINE_H__
 
-#include "JString.h"
+#include "jstring.h"
 
 //****************************************************************************/
 //  Class:  CommandLine

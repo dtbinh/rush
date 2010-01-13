@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "Mat4.h"
 #include "Vec4.h"
 #include "Vec3.h"

@@ -1,20 +1,20 @@
 #include "precompile.h"
 #include "rboot.h"
 
-#include "JCore.h"
-#include "JWindowServer.h"
-#include "JDialog.h"
-#include "ISoundServer.h"
+#include "jcore.h"
+#include "jwindowserver.h"
+#include "jdialog.h"
+#include "isoundserver.h"
 #include "direct.h"
-#include "JDialog.h"
+#include "jdialog.h"
 #include "modelviewer.h"
 #include "path.h"
 #include "imodelserver.h"
 #include "jmodelanim.h"
 #include "fstream.h" 
 #include "ifileserver.h"
-#include "CommandLine.h"
-#include "IPersistServer.h"
+#include "commandline.h"
+#include "ipersistserver.h"
 
 void ConvertToRMDL( const CommandLine& cmd );
 

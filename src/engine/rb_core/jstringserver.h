@@ -4,9 +4,9 @@
 #ifndef __JSTRINGSERVER_H__
 #define __JSTRINGSERVER_H__
 #include <hash_map>
-#include "IStringServer.h"
-#include "JObject.h"
-#include "JString.h"
+#include "istringserver.h"
+#include "jobject.h"
+#include "jstring.h"
 
 typedef stdext::hash_map<JString, JString> JStringDictionary;
 

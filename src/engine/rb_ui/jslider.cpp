@@ -2,7 +2,7 @@
 //  File:  JSlider.cpp
 //  Desc:  
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JSlider.h"
 
 //****************************************************************************/
@@ -48,7 +48,7 @@ void JSlider::OnMouse( JMouseEvent& m )
 void JSlider::Render()
 {   
     Frame    ext = GetExt();
-    DWORD   clr  = GetFgColor();
+    uint32_t   clr  = GetFgColor();
     
     //  draw background
     g_pDrawServer->TileSprite( ext, GetSkinPackID(), GetSkinFrame(), GetBgColor() );

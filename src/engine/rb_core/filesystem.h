@@ -5,9 +5,9 @@
 #ifndef __FILESYSTEM_H__
 #define __FILESYSTEM_H__
 
-#include "InputStream.h"
-#include "UniformPool.h"
-#include "JString.h"
+#include "inputstream.h"
+#include "uniformpool.h"
+#include "jstring.h"
 
 enum MountType
 {

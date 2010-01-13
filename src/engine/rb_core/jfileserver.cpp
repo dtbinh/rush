@@ -2,9 +2,9 @@
 //  File:  JFileServer.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "Path.h"
-#include "FStream.h"
-#include "JFileServer.h"
+#include "path.h"
+#include "fstream.h"
+#include "jfileserver.h"
 
 //****************************************************************************/
 /*  JFileServer implementation

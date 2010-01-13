@@ -15,14 +15,14 @@
 class JKeyEvent : public JEventID<JMouseEvent>
 {
     JInputAction    m_InputAction;
-    DWORD           m_Char;
-    DWORD           m_Key;
+    uint32_t           m_Char;
+    uint32_t           m_Key;
 
     friend class    JWindowServer;
 
 public:
-    DWORD           GetChar     () const { return m_Char; }
-    DWORD           Key         () const { return m_Key; }
+    uint32_t           GetChar     () const { return m_Char; }
+    uint32_t           Key         () const { return m_Key; }
     JInputAction    Action      () const { return m_InputAction; }
 
 }; // class JKeyEvent

@@ -1,5 +1,5 @@
 #include "precompile.h"
-#include "UniformPool.h"
+#include "uniformpool.h"
 
 const int c_Constructed = 13;
 const int c_Destructed  = 14;

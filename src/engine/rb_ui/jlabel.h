@@ -19,7 +19,7 @@ public:
     virtual void    Render          (); 
     JXAlign         GetTextXAlign   () const { return m_TextXAlign; } 
     JYAlign         GetTextYAlign   () const { return m_TextYAlign; } 
-    DWORD           GetShadowColor  () const { return m_ShadowColor; }
+    uint32_t           GetShadowColor  () const { return m_ShadowColor; }
     void            SetTextXAlign   ( JXAlign align ) { m_TextXAlign = align; }
     void            SetTextYAlign   ( JYAlign align ) { m_TextYAlign = align; }
     void            SetMarginY      ( int val ) { m_MarginY = val; }
@@ -45,7 +45,7 @@ private:
     JXAlign         m_TextXAlign;   //  in-widget text horizontal alignment
     JYAlign         m_TextYAlign;   //  in-widget text vertical alignment
 
-    DWORD           m_ShadowColor;  //  color of the text's shadow, when 0 - no shadow is drawn
+    uint32_t           m_ShadowColor;  //  color of the text's shadow, when 0 - no shadow is drawn
     int             m_ShadowShiftX;
     int             m_ShadowShiftY;
     

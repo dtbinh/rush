@@ -25,8 +25,8 @@ class JListBox : public JWidget
 
     JWeakRef<JWidget>   m_pTemplate;        //  item prototype widget
     JString             m_TemplateName;
-    DWORD               m_SelBgColor;       //  background color of selected item
-    DWORD               m_SelFgColor;       //  text color of selected item
+    uint32_t               m_SelBgColor;       //  background color of selected item
+    uint32_t               m_SelFgColor;       //  text color of selected item
 
     bool                m_bAutoSize;
 

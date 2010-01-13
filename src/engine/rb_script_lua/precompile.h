@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __PRECOMPILE_H__
+#define __PRECOMPILE_H__
+
 #pragma warning ( disable : 4267 )
 
 #include "rb_common.h"
@@ -15,11 +17,11 @@
 #include "Logger.h"
 
 #include "stdlib.h"
-#include "JString.h"
-#include "FStream.h"
-#include "RegPool.h"
-#include "Path.h"
-#include "IScriptServer.h"
+#include "jstring.h"
+#include "fstream.h"
+#include "regpool.h"
+#include "path.h"
+#include "iscriptserver.h"
 
 #pragma warning ( disable : 4311 )
 #pragma warning ( disable : 4312 )
@@ -35,3 +37,4 @@ extern "C"
 //#include "pluto.h"
 }
 
+#endif

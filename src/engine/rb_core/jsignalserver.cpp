@@ -2,8 +2,8 @@
 //  File:  JSignalServer.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "JMLNode.h"
-#include "JSignalServer.h"
+#include "jmlnode.h"
+#include "jsignalserver.h"
 
 //****************************************************************************/
 /*  JSignalServer implementation

@@ -3,7 +3,7 @@
 //  Date:   22.08.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JObjectIterator.h"
 #include "JLabel.h"
 #include "JListBox.h"

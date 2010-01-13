@@ -2,25 +2,24 @@
 //  File:  JModelServer.cpp
 //  Desc:  
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include <algorithm>
-#include "direct.h"
-#include "VertexType.h"
-#include "FStream.h"
-#include "Vec4.h"
-#include "AABox.h"
-#include "Frustum.h"
-#include "Vec3.h"
-#include "Warping.h"
-#include "ColorConversion.h"
+#include "vertextype.h"
+#include "fstream.h"
+#include "vec4.h"
+#include "aabox.h"
+#include "frustum.h"
+#include "vec3.h"
+#include "warping.h"
+#include "colorconversion.h"
 
-#include "IRenderServer.h"
+#include "irenderserver.h"
 
-#include "JModel.h"
-#include "JModelAnim.h"
-#include "IPersistServer.h"
-#include "JAnmSection.h"
-#include "JModelServer.h"
+#include "jmodel.h"
+#include "jmodelanim.h"
+#include "ipersistserver.h"
+#include "janmsection.h"
+#include "jmodelserver.h"
 
 const int c_StaticVBSize = 1024*1024*8;
 const int c_StaticIBSize = 1024*1024*4;

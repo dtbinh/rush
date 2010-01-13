@@ -200,7 +200,7 @@ enum ColorFormat
 
 }; // enum ColorFormat
 
-inline int Getuint8_tsPerPixel( ColorFormat cf )
+inline int GetBytesPerPixel( ColorFormat cf )
 {
     switch (cf)
     {
@@ -220,7 +220,7 @@ inline int Getuint8_tsPerPixel( ColorFormat cf )
     case ColorFormat_ARGB32F:     return 32;
     }
     return 0;
-} // Getuint8_tsPerPixel
+} // GetBytesPerPixel
 
 #endif // __COLOR_H__
 

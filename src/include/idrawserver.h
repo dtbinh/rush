@@ -14,8 +14,8 @@ class Frame;
 class Plane;
 class Frustum;
 
-#include "VertexType.h"
-#include "IRenderServer.h"
+#include "vertextype.h"
+#include "irenderserver.h"
 
 typedef void (*PVertProcessCB)( void* pVert, int nVert, VertexType vType );
 typedef void (*PSpriteUpdateCB)( int sprID, const Frame& ext, uint8_t* pPixels, ColorFormat fmt );

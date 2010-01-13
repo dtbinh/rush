@@ -4,7 +4,7 @@
 #ifndef __JGROUP_H__
 #define __JGROUP_H__
 
-#include "JObject.h"
+#include "jobject.h"
 
 //****************************************************************************/
 //  Class:  JGroup 

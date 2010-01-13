@@ -1,7 +1,6 @@
-#include "stdafx.h"
-#include "IRenderServer.h"
-#include "IDrawServer.h"
-#include "MeshUtils.h"
+#include "precompile.h"
+#include "irenderserver.h"
+#include "idrawserver.h"
 
 TEST(DecalCreation)
 {

@@ -2,10 +2,10 @@
 //  File:  JObject.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "JObject.h"
-#include "JSignalServer.h"
-#include "IPersistServer.h"
-#include "JEvent.h"
+#include "jobject.h"
+#include "jsignalserver.h"
+#include "ipersistserver.h"
+#include "jevent.h"
 
 //****************************************************************************/
 /*  Utility methods

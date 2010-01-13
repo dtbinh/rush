@@ -4,7 +4,7 @@
 /*	Author:	Ruslan Shestopalyuk
 /*	Date:	17-03-2005
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Scalar.h"
 #include "VecN.h"
 #include "MatMN.h"

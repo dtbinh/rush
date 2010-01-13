@@ -3,7 +3,7 @@
 //  Date:   22.05.2006
 //  Desc:  
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JSwitch.h"
 
 

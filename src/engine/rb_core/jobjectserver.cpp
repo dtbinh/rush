@@ -2,14 +2,14 @@
 //  File:  JObjectServer.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "Path.h"
-#include "JMLNode.h"
-#include "IPersistServer.h"
-#include "JObject.h"
-#include "JCore.h"
-#include "JObjectIterator.h"
-#include "JUpObjectIterator.h"
-#include "JObjectServer.h"
+#include "path.h"
+#include "jmlnode.h"
+#include "ipersistserver.h"
+#include "jobject.h"
+#include "jcore.h"
+#include "jobjectiterator.h"
+#include "jupobjectiterator.h"
+#include "jobjectserver.h"
 
 JObjectServer* g_pObjectServer = &JObjectServer::inst();
 //****************************************************************************/

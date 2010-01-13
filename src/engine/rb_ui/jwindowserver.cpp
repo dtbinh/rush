@@ -3,7 +3,7 @@
 //  Date:   10.08.2005
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JReflect.h"
 #include "JCore.h"
 #include "IPersistServer.h"
@@ -728,8 +728,8 @@ bool JWindowServer::CreateWnd( JScreenMode screenMode )
 
     Frame wrc = GetExt();
     Frame rcParent;
-    DWORD wndStyle = WS_POPUP;
-    DWORD wndExStyle = 0;
+    uint32_t wndStyle = WS_POPUP;
+    uint32_t wndExStyle = 0;
     if (m_ScreenMode == smWindow) 
     {
         wrc.w = m_DisplayWidth;
@@ -799,16 +799,16 @@ bool JWindowServer::CreateWnd( JScreenMode screenMode )
     return true;
 }
  
-DWORD WINAPI JWindowServer::FPSThreadProcStart( LPVOID lpParam )
+uint32_t WINAPI JWindowServer::FPSThreadProcStart( LPVOID lpParam )
 {
    return s_pInstance->FPSThreadProc( lpParam );
 }
 
-DWORD WINAPI JWindowServer::FPSThreadProc( LPVOID lpParam )
+uint32_t WINAPI JWindowServer::FPSThreadProc( LPVOID lpParam )
 {
    while (!m_bQuit)
    {
-      DWORD frameLen = DWORD( 1000.0f/m_FPSCap );
+      uint32_t frameLen = uint32_t( 1000.0f/m_FPSCap );
       Sleep( frameLen );
       SetEvent( m_hFPSEvent );
    }

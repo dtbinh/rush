@@ -2,7 +2,7 @@
 //  File:  JSignal.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "JSignal.h"
+#include "jsignal.h"
 
 //****************************************************************************/
 /*  JSignal implementation

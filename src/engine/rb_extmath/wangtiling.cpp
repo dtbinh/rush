@@ -4,7 +4,7 @@
 /*	Author:	Ruslan Shestopalyuk
 /*	Date:	16-05-2006
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "WangTiling.h"
 
 enum WangColor

@@ -24,9 +24,9 @@ class JSpriteSurface
     int                         m_TexID;
 
     ColorFormat                 m_ColorFormat;
-    DWORD                       m_LastFrameUsed;
-    DWORD                       m_DropStamp;
-    static DWORD                s_Stamp;
+    uint32_t                       m_LastFrameUsed;
+    uint32_t                       m_DropStamp;
+    static uint32_t                s_Stamp;
     QuadPacker                  m_Layout;
     
     friend class                JDrawServer;

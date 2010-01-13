@@ -4,12 +4,12 @@
 #ifndef __JPERSISTSERVER_H__
 #define __JPERSISTSERVER_H__
 
-#include "IPersistServer.h"
+#include "ipersistserver.h"
 
-#include "JObject.h"
-#include "JMetaClass.h"
-#include "JString.h"
-#include "JWeakRef.h"
+#include "jobject.h"
+#include "jmetaclass.h"
+#include "jstring.h"
+#include "jweakref.h"
 
 class JMLNode;
 class TiXmlElement;

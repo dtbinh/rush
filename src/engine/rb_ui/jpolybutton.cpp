@@ -3,7 +3,7 @@
 //  Date:   21.08.2005
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "PolyLine2.h"
 #include "JPolyButton.h"
 

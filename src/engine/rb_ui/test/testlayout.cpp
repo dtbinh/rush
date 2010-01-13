@@ -1,5 +1,6 @@
-#include "stdafx.h"
-#include "JButton.h"
+#include "precompile.h"
+#include "jbutton.h"
+#include "ipersistserver.h"
 
 TEST( Layout )
 {

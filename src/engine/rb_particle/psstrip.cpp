@@ -4,10 +4,10 @@
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "PSOperator.h"
-#include "PSStrip.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "psoperator.h"
+#include "psstrip.h"
 
 //****************************************************************************/
 /*  PSStrip implementation

@@ -40,11 +40,11 @@ public:
     }
 
 protected:
-    DWORD           m_FocusedColor;     //  color to draw widget when focused
-    DWORD           m_SelectionColor;   //  color of the text selection
-    DWORD           m_CaretColor;       
+    uint32_t           m_FocusedColor;     //  color to draw widget when focused
+    uint32_t           m_SelectionColor;   //  color of the text selection
+    uint32_t           m_CaretColor;       
 
-    DWORD           m_ShadowColor;  //  color of the text's shadow, when 0 - no shadow is drawn
+    uint32_t           m_ShadowColor;  //  color of the text's shadow, when 0 - no shadow is drawn
     int             m_ShadowShiftX;
     int             m_ShadowShiftY;
 
@@ -56,9 +56,9 @@ protected:
     int             m_SelEnd;           //  current selection end, in symbols
     int             m_FocusFrame;       
 
-    DWORD           m_CaretBlinkOn;     //  time (ms) of caret visible, when blinking
-    DWORD           m_CaretBlinkOff;    //  time (ms) of caret invisible, when blinking
-    DWORD           m_BlinkStart;       //  time when the caret started blinking
+    uint32_t           m_CaretBlinkOn;     //  time (ms) of caret visible, when blinking
+    uint32_t           m_CaretBlinkOff;    //  time (ms) of caret invisible, when blinking
+    uint32_t           m_BlinkStart;       //  time when the caret started blinking
 
     int             m_TextLeftMargin;   
     int             m_TextShift;

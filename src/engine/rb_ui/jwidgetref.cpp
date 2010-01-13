@@ -1,7 +1,7 @@
 //****************************************************************************/
 //  File:  JWidgetRef.cpp
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "IWindowServer.h"
 #include "JWidgetRef.h"
 

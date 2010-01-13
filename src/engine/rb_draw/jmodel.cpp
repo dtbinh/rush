@@ -3,7 +3,7 @@
 //  Date:   10.08.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "AABox.h"
 #include "JMesh.h"
 #include "JMaterial.h"
@@ -65,7 +65,7 @@ int JModel::GetNMaterials() const
 
 int JModel::GetNFaces() const
 {
-    return m_Indices.GetSize()/(3*sizeof( WORD ));
+    return m_Indices.GetSize()/(3*sizeof( uint16_t ));
 } // JModel::GetNFaces
 
 int JModel::GetNVertices() const
@@ -295,9 +295,9 @@ void JModel::Render( const Mat4& tm, JBoneInstance* pSkelInst, bool bIgnoreShade
 
 } // JModel::Render
 
-void JModel::AddIndices( WORD* pIdx, int numIdx )  
+void JModel::AddIndices( uint16_t* pIdx, int numIdx )  
 { 
-    m_Indices.AddData( (BYTE*)pIdx, numIdx*2 ); 
+    m_Indices.AddData( (uint8_t*)pIdx, numIdx*2 ); 
 } // JModel::AddIndices
 
 void JModel::Reserve( int nVertexBytes, int numIdx )

@@ -2,7 +2,7 @@
 //  File:  JClassAttr.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "JClassAttr.h"
+#include "jclassattr.h"
 
 void JClassAttr::SetName( const char* name )
 {
