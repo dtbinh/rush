@@ -5,8 +5,9 @@
 #ifndef __FILEREADER_H__
 #define __FILEREADER_H__
 
+#include <stdio.h>
+
 #include "inputstream.h"
-#include "windows.h"
 
 //****************************************************************************/
 //  Class:  FileReader
@@ -15,7 +16,7 @@
 class FileReader : public IStreamReader
 {
     std::string     m_FileName;
-    HANDLE			m_hFile;
+    FILE*		    m_hFile;
     int             m_TotalSize;
 public:
                     FileReader  ();

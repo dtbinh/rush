@@ -4,7 +4,6 @@
 //****************************************************************************/
 #include "precompile.h"
 #include "memstream.h"
-#include "direct.h"
 
 //****************************************************************************/
 /*  MemInStream implementation
@@ -39,7 +38,7 @@ int MemInStream::ReadStream( void* buf, int nBytes )
         memcpy( buf, m_pBuffer + m_ReadBytes, nBytes );
     }
     return nBytes;
-} // MemInStream::ReadStream
+}
 
 //****************************************************************************/
 /*  MemOutStream implementation
@@ -72,4 +71,4 @@ int MemOutStream::Flush( const void* buf, int nBytes )
     memcpy( m_pBuffer + m_BytesWritten, buf, nBytes );
     m_BytesWritten += nBytes;
     return nBytes;
-} // MemOutStream::ReadStream
+}

@@ -6,32 +6,31 @@
 #define __REGPOOL_H__
 
 #include "uniformpool.h"
-#include <hash_map>
 
 //****************************************************************************/
 //  Class:	RegPool
-//  Desc:	
+//  Desc:
 //****************************************************************************/
 template <class TElem>
 class RegPool
 {
     typedef UniformPool<TElem>              PoolType;
-    typedef stdext::hash_map<int, TElem*>   RegType;
+    typedef hash_map<int, TElem*>           RegType;
 
     PoolType    m_Pool;
     RegType     m_Reg;
     int         m_LastID;
 
 public:
-    RegPool() 
-    { 
+    RegPool()
+    {
         m_LastID = 0;
     }
 
     ~RegPool()
     {
     }
-    
+
     int reserve_ids( int nID )
     {
         int cID = m_LastID;
@@ -61,7 +60,7 @@ public:
         return true;
     }
 
-    TElem*  operator[]( int id ) 
+    TElem*  operator[]( int id )
     {
         RegType::iterator it = m_Reg.find( id );
         if (it == m_Reg.end()) return NULL;

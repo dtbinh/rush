@@ -7,7 +7,7 @@
 
 //****************************************************************************/
 //  Class:	UniformPoolPage
-//  Desc:	
+//  Desc:
 //****************************************************************************/
 template <class TElem, int PageSize>
 struct UniformPoolPage
@@ -54,10 +54,10 @@ class UniformPool
     int         m_NElem;
 
 public:
-    UniformPool() : m_pFirstPage( NULL ), m_pFirstFree( NULL ), m_NElem(0) 
-    { 
+    UniformPool() : m_pFirstPage( NULL ), m_pFirstFree( NULL ), m_NElem(0)
+    {
         assert( sizeof( TElem ) >= sizeof( TElem* ) &&
-                PageSize > 1 ); 
+                PageSize > 1 );
     }
 
     ~UniformPool()
@@ -132,24 +132,24 @@ protected:
 
 //****************************************************************************/
 //  Class:	up_allocator
-//  Desc:	std compliant uniform pool allocator 
+//  Desc:	std compliant uniform pool allocator
 //****************************************************************************/
 template<class T>
-class up_allocator 
-{	 
-    static UniformPool<T>               s_Pool;
+class up_allocator
+{
+    static UniformPool<T>       s_Pool;
 public:
-    typedef T                           value_type;
-	typedef value_type _FARQ *          pointer;
-	typedef value_type _FARQ&           reference;
-	typedef const value_type _FARQ *    const_pointer;
-	typedef const value_type _FARQ&     const_reference;
-	typedef _SIZT                       size_type;
-	typedef _PDFT                       difference_type;
+    typedef T                   value_type;
+	typedef value_type*         pointer;
+	typedef value_type&         reference;
+	typedef const value_type*   const_pointer;
+	typedef const value_type&   const_reference;
+	typedef size_t              size_type;
+	typedef size_t              difference_type;
 
 	template<class _Other>
 	struct rebind
-	{	
+	{
 	    typedef up_allocator<_Other> other;
 	};
 
@@ -193,7 +193,7 @@ public:
             return s_Pool.Allocate();
 		}
 
-	pointer allocate(size_type _Count, const void _FARQ *)
+	pointer allocate(size_type _Count, const void*)
 		{	// allocate array of _Count elements, ignore hint
 		return (allocate(_Count));
 		}
@@ -208,22 +208,22 @@ public:
 		_Destroy(_Ptr);
 		}
 
-	_SIZT max_size() const
+	size_t max_size() const
 		{	// estimate maximum array size
-		_SIZT _Count = (_SIZT)(-1) / sizeof (_Ty);
+		size_t _Count = (size_t)(-1) / sizeof (T);
 		return (0 < _Count ? _Count : 1);
 		}
 }; // up_allocator
 
-template <class T1, class T2> 
+template <class T1, class T2>
 inline bool operator == ( const up_allocator<T1>&, const up_allocator<T2>& )
-{	 
+{
     return true;
 }
 
-template <class T1, class T2> 
+template <class T1, class T2>
 inline bool operator != ( const up_allocator<T1>&, const up_allocator<T2>& )
-{	 
+{
     return false;
 }
 

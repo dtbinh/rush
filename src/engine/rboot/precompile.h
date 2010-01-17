@@ -1,7 +1,6 @@
 #ifndef __PRECOMPILE_H__
 #define __PRECOMPILE_H__
 
-#include "windows.h"
 #include "assert.h"
 
 #include "rb_common.h"

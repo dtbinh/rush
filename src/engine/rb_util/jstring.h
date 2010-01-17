@@ -262,7 +262,7 @@ public:
             hash = ((hash << 5) + hash) + m_pBuf[i];
         }
         return hash;
-    } // operator size_t
+    }
 
     inline bool operator <( const JString& key ) const
     {
@@ -294,6 +294,19 @@ inline JString ToString( int val )
     return JString( buf );
 }
 
+#ifdef __GNUC__
+ namespace __gnu_cxx
+ {
+    template<>
+    struct hash<JString>
+    {
+        size_t operator()(const JString& s) const
+        {
+            return s;
+        }
+    };
+}
+#endif
 
 #endif // __JSTRING_H__
 

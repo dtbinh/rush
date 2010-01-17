@@ -7,7 +7,6 @@
 
 #include <vector>
 #include <string>
-#include <hash_map>
 
 #include "assert.h"
 #include "math.h"

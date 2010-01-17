@@ -4,7 +4,7 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JAnmSection.h"
+#include "janmsection.h"
 
 /***********************************************************************************/
 /*  JAnmSection implementation

@@ -3,16 +3,32 @@
 
 #ifdef __GNUC__
 #include <stdint.h>
+#include <ext/hash_map>
+namespace std
+{
+ using namespace __gnu_cxx;
+}
+
+#define hash_map_t std::hash_map
+#define hash_multimap_t std::hash_multimap
+
+#define _MAX_PATH       256
+
 #else
+#include <hash_map>
+
+#define hash_map_t stdext::hash_map
+#define hash_multimap_t stdext::hash_multimap
+
 typedef unsigned char   uint8_t;
 typedef unsigned short  uint16_t;
 typedef unsigned long	uint32_t;
 typedef unsigned int	int_t;
 typedef long int		int32_t;
-#define _MAX_PATH       256
-#endif
 
 #define NULL            0
+#endif
+
 
 #pragma warning ( disable : 4018 )
 #pragma warning ( disable : 4244 )

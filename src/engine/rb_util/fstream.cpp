@@ -4,7 +4,6 @@
 //****************************************************************************/
 #include "precompile.h"
 #include "fstream.h"
-#include "direct.h"
 
 void Save( const std::wstring& s, FILE* fp )
 {
@@ -31,62 +30,48 @@ void Load( std::wstring& s, FILE* fp )
 FInStream::FInStream( const char* fname )
 {
     m_FileName  = fname;
-    m_hFile		= INVALID_HANDLE_VALUE;
+    m_hFile		= NULL;
     OpenFile( fname );
 }
 
 bool FInStream::OpenFile( const char* fname )
 {
     m_FileName = fname;
-    char cwd[_MAX_PATH];
-    getcwd( cwd, _MAX_PATH );
-    m_hFile = CreateFile(   fname,
-                            GENERIC_READ,
-                            FILE_SHARE_READ, 0,
-                            OPEN_EXISTING,
-                            FILE_ATTRIBUTE_NORMAL,
-                            NULL );
+    m_hFile = fopen( fname, "rb" );
 
-    if (m_hFile == INVALID_HANDLE_VALUE)
+    if (m_hFile == NULL)
     {
-        uint32_t err = GetLastError();
         m_TotalSize = 0;
         return false;
     }
     else
     {
-        m_TotalSize = ::GetFileSize( m_hFile, NULL );
+        fseek( m_hFile, 0, SEEK_END );
+        m_TotalSize = ftell( m_hFile );
+        fseek( m_hFile, 0, SEEK_SET );
         return true;
     }
-} // FInStream::OpenFile
+}
 
 int FInStream::ReadStream( void* buf, int nBytes )
 {
-    if (m_hFile == INVALID_HANDLE_VALUE) return false;
-    uint32_t readuint8_ts;
-
+    if (m_hFile == NULL) return false;
     if (buf == 0)
     {
-        SetFilePointer( m_hFile, nBytes, NULL, FILE_CURRENT );
+        fseek( m_hFile, nBytes, SEEK_CUR );
         return nBytes;
     }
 
-    BOOL res = ReadFile( m_hFile, buf, nBytes, &readuint8_ts, NULL );
-    if (res == FALSE)
-    {
-        uint32_t err = GetLastError();
-        return 0;
-    }
-    return readuint8_ts;
-} // FInStream::ReadStream
+    uint32_t nReadBytes = fread( buf, nBytes, 1, m_hFile );
+    return nReadBytes;
+}
 
 void FInStream::Close()
 {
-    if (m_hFile == INVALID_HANDLE_VALUE) return;
-    BOOL res = CloseHandle( m_hFile );
-    if (res == FALSE) return;
-    m_hFile = INVALID_HANDLE_VALUE;
-} // FInStream::Close
+    if (m_hFile == NULL) return;
+    fclose( m_hFile );
+    m_hFile = NULL;
+}
 
 //****************************************************************************/
 /*  FOutStream implementation
@@ -94,43 +79,37 @@ void FInStream::Close()
 FOutStream::FOutStream( const char* fname )
 {
     m_FileName = fname;
-    m_hFile = INVALID_HANDLE_VALUE;
+    m_hFile = NULL;
     OpenFile( fname );
-} // FOutStream::FOutStream
+}
 
 bool FOutStream::OpenFile( const char* fname )
 {
-    m_hFile = CreateFile(   fname,
-                            FILE_WRITE_DATA,
-                            FILE_SHARE_READ,
-                            NULL,
-                            CREATE_ALWAYS,
-                            FILE_ATTRIBUTE_NORMAL,
-                            NULL );
-    uint32_t err = GetLastError();
+    m_FileName = fname;
+    m_hFile = fopen( fname, "wb" );
 
-    return (m_hFile != INVALID_HANDLE_VALUE);
-} // FOutStream::OpenFile
+    if (m_hFile == NULL)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
 
 void FOutStream::OnClose()
 {
     FlushStream();
-    if (m_hFile == INVALID_HANDLE_VALUE) return;
-    BOOL res = CloseHandle( m_hFile );
-    if (res == FALSE) return;
-    m_hFile = INVALID_HANDLE_VALUE;
-} // FOutStream::CloseFile
+    if (m_hFile == NULL) return;
+    fclose( m_hFile );
+    m_hFile = NULL;
+}
 
 int FOutStream::Flush( const void* buf, int nBytes )
 {
-    if (m_hFile == INVALID_HANDLE_VALUE) return 0;
-    uint32_t wuint8_ts;
-    BOOL res = WriteFile( m_hFile, buf, nBytes, &wuint8_ts, NULL );
-    if (res == FALSE)
-    {
-        uint32_t err = GetLastError();
-        return 0;
-    }
-    return (int)wuint8_ts;
-} // FOutStream::Flush
+    if (m_hFile == NULL) return 0;
+    uint32_t nWritten = fwrite( buf, nBytes, 1, m_hFile );
+    return (int)nWritten;
+}
 

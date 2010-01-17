@@ -10,14 +10,14 @@
 //****************************************************************************/
 FileReader::FileReader()
 {
-    m_hFile		= INVALID_HANDLE_VALUE;
+    m_hFile		= NULL;
     m_TotalSize = 0;
 }
 
 FileReader::FileReader( const char* fileName )
 {
     m_FileName  = fileName;
-    m_hFile		= INVALID_HANDLE_VALUE;
+    m_hFile		= NULL;
     m_TotalSize = 0;
     OpenFile( fileName );
 }
@@ -25,56 +25,44 @@ FileReader::FileReader( const char* fileName )
 bool FileReader::OpenFile( const char* fileName )
 {
     m_FileName = fileName;
-    m_hFile = CreateFile(   fileName,
-                            GENERIC_READ,
-                            FILE_SHARE_READ, 0,
-                            OPEN_EXISTING,
-                            FILE_ATTRIBUTE_NORMAL,
-                            NULL );
+    m_hFile = fopen( fileName, "rb" );
 
-    if (m_hFile == INVALID_HANDLE_VALUE)
+    if (m_hFile == NULL)
     {
-        uint32_t err = GetLastError();
         m_TotalSize = 0;
         return false;
     }
     else
     {
-        m_TotalSize = ::GetFileSize( m_hFile, NULL );
+        fseek( m_hFile, 0, SEEK_END );
+        m_TotalSize = ftell( m_hFile );
+        fseek( m_hFile, 0, SEEK_SET );
         return true;
     }
 }
 
 int FileReader::ReadStream( void* buf, int nBytes )
 {
-    if (m_hFile == INVALID_HANDLE_VALUE) return false;
-    uint32_t readuint8_ts;
-
+    if (m_hFile == NULL) return false;
     if (buf == 0)
     {
-        SetFilePointer( m_hFile, nBytes, NULL, FILE_CURRENT );
+        fseek( m_hFile, nBytes, SEEK_CUR );
         return nBytes;
     }
 
-    BOOL res = ReadFile( m_hFile, buf, nBytes, &readuint8_ts, NULL );
-    if (res == FALSE)
-    {
-        uint32_t err = GetLastError();
-        return 0;
-    }
-    return readuint8_ts;
+    uint32_t nReadBytes = fread( buf, nBytes, 1, m_hFile );
+    return nReadBytes;
 }
 
 void FileReader::Close()
 {
-    if (m_hFile == INVALID_HANDLE_VALUE) return;
-    BOOL res = CloseHandle( m_hFile );
-    if (res == FALSE) return;
-    m_hFile = INVALID_HANDLE_VALUE;
+    if (m_hFile == NULL) return;
+    fclose( m_hFile );
+    m_hFile = NULL;
 }
 
 bool FileReader::IsValid() const
 {
-    return (m_hFile != INVALID_HANDLE_VALUE);
+    return (m_hFile != NULL);
 }
 

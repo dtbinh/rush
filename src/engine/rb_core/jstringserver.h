@@ -3,15 +3,14 @@
 //****************************************************************************/
 #ifndef __JSTRINGSERVER_H__
 #define __JSTRINGSERVER_H__
-#include <hash_map>
 #include "istringserver.h"
 #include "jobject.h"
 #include "jstring.h"
 
-typedef stdext::hash_map<JString, JString> JStringDictionary;
+typedef hash_map_t<JString, JString> JStringDictionary;
 
 //****************************************************************************/
-//  Class:  JStringServer 
+//  Class:  JStringServer
 //  Desc:
 //****************************************************************************/
 class JStringServer : public JObject, public IStringServer

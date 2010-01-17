@@ -4,14 +4,12 @@
 #ifndef __JWeakRefReg_H__
 #define __JWeakRefReg_H__
 
-#include <hash_map>
-
 #include "uniformpool.h"
 
 class JWeakRefHolder;
 
-typedef stdext::hash_map<void*, JWeakRefHolder*> JWeakRefHolderHash;
-typedef UniformPool<JWeakRefHolder>           JWeakRefHolderPool;
+typedef hash_map_t<void*, JWeakRefHolder*> JWeakRefHolderHash;
+typedef UniformPool<JWeakRefHolder>      JWeakRefHolderPool;
 //****************************************************************************/
 //  Class:  JWeakRefReg, singleton
 //  Desc:   Manages weak references

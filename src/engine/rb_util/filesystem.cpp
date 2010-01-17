@@ -1,10 +1,10 @@
 //****************************************************************************/
 //  File:  FileSystem.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "Path.h"
-#include "FileSystem.h"
+#include "path.h"
+#include "filesystem.h"
 
 //****************************************************************************/
 //  FileSystem implementation
@@ -19,10 +19,6 @@ bool FileSystem::Mount( const char* path )
     if (cpath.IsDirectory())
     {
         //  mount entry is directory
-    }
-    else if (!stricmp( cpath.GetExt(), "rbp" ))
-    {
-        //  mount entry is .rbp archive
     }
     else if (!cpath.IsDirectory())
     {
@@ -41,12 +37,12 @@ bool FileSystem::Mount( const char* path )
         return true;
     }
     return false;
-} // FileSystem::Mount
+}
 
 bool FileSystem::Unmount( const char* path )
 {
     return false;
-} // FileSystem::Unmount
+}
 
 InputStream FileSystem::OpenFile( const char* file, const char* ext )
 {
@@ -58,13 +54,13 @@ InputStream FileSystem::OpenFile( const char* file, const char* ext )
     }
 
     return is;
-} // FileSystem::OpenFile
+}
 
 const char* FileSystem::FindFile( const char* file, const char* ext )
 {
     MountEntry* pEntry = FindEntry( file, ext );
     return pEntry? pEntry->m_Path.c_str() : NULL;
-} // FileSystem::FindFile
+}
 
 MountEntry* FileSystem::FindEntry( const char* file, const char* ext )
 {
@@ -74,21 +70,21 @@ MountEntry* FileSystem::FindEntry( const char* file, const char* ext )
     strcat( fileExt, ext );
     JString key( fileExt );
     MountMap::iterator it = m_MountMap.find( key );
-    if (it == m_MountMap.end()) 
+    if (it == m_MountMap.end())
     {
         return NULL;
     }
     return (*it).second;
-} // FileSystem::FindEntry
+}
 
 void FileSystem::Reset()
 {
-    
-} // FileSystem::Reset
+
+}
 
 void FileSystem::Update()
 {
-    
-} // FileSystem::Update
+
+}
 
 

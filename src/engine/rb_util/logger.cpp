@@ -6,11 +6,12 @@
 #include "precompile.h"
 #include "time.h"
 #include "logger.h"
-#include "windows.h"
 
-const int   c_LogBufferSize = 1024;
-static char s_Buffer[c_LogBufferSize];
-Logger         rlog;
+#include <stdarg.h>
+
+const int       c_LogBufferSize = 1024;
+static char     s_Buffer[c_LogBufferSize];
+Logger          rlog;
 /***********************************************************************************/
 /*  Logger implementation
 /***********************************************************************************/
@@ -76,10 +77,10 @@ void Logger::addmsg( LogMessageType type, const char* msg )
 
     sprintf( pBuf, "%s", msg );
     m_Lines.push_back( buf );
-//#ifdef _DEBUG
+#ifdef _WIN32
     OutputDebugString( buf );
     OutputDebugString( "\n" );
-//#endif // _DEBUG
+#endif
 } // Logger::addmsg
 
 void Logger::err( const char* format, ... )

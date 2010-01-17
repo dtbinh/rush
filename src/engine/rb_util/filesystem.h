@@ -27,8 +27,8 @@ struct MountEntry
     {}
 }; // struct MountEntry
 
-typedef stdext::hash_map<JString, MountEntry*>  MountMap;
-typedef UniformPool<MountEntry>                 MountEntryPool;
+typedef hash_map_t<JString, MountEntry*>    MountMap;
+typedef UniformPool<MountEntry>             MountEntryPool;
 
 //****************************************************************************/
 //  Class:   FileSystem

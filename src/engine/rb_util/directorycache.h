@@ -11,15 +11,15 @@
 
 /***********************************************************************************/
 //  Class:  Directory
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
-struct Directory 
+struct Directory
 {
     std::string                 m_Name;
     std::string                 m_Path;
     std::vector<Directory>      m_Subdirs;
     std::vector<std::string>    m_Files;
-          
+
             Directory   (){}
             Directory   ( const char* name, const char* path = "" )
             {
@@ -32,18 +32,17 @@ struct Directory
             }
     bool    FindFile    ( const char* name, const char* ext, char* path );
     void    Update      ();
-    void    AddFile     ( WIN32_FIND_DATA& fData );
 }; // struct Directory
 
 /***********************************************************************************/
 //  Class:  DirectoryCache
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class DirectoryCache
 {
     std::vector<Directory>   m_Roots;
 
-public:   
+public:
                 DirectoryCache  () {}
                 DirectoryCache  ( const char* root );
     bool        FindFile        ( const char* name, const char* ext, char* path );
@@ -52,7 +51,7 @@ public:
     const char* GetRoot         ( int idx ) const { return m_Roots[idx].m_Name.c_str(); }
 
 protected:
-    void        UpdateCache();  
+    void        UpdateCache();
 
 }; // class DirectoryCache
 

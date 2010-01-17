@@ -4,8 +4,6 @@
 #ifndef __JOBJECTSERVER_H__
 #define __JOBJECTSERVER_H__
 
-#include <hash_map>
-
 #include "jmetaclass.h"
 #include "jweakrefreg.h"
 #include "jstring.h"
@@ -15,10 +13,10 @@ class JObject;
 
 class JClassAttr;
 
-typedef UniformPool<JMetaClass>                    JClassList;
-typedef stdext::hash_map<JString, JMetaClass*>     JClassMap;
-typedef stdext::hash_map<JString, JClassAttr*>     JAttrMap;
-typedef stdext::hash_multimap<JString, JObject*>   JObjectMap;
+typedef UniformPool<JMetaClass>            JClassList;
+typedef hash_map_t<JString, JMetaClass*>     JClassMap;
+typedef hash_map_t<JString, JClassAttr*>     JAttrMap;
+typedef hash_multimap_t<JString, JObject*>   JObjectMap;
 //****************************************************************************/
 //  Class:  JObjectServer
 //  Desc:
