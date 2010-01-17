@@ -6,7 +6,7 @@
 #ifndef __JGRID_H__
 #define __JGRID_H__
 
-#include "JWidget.h"
+#include "jwidget.h"
 
 //****************************************************************************/
 //  Class:  JGrid
@@ -16,7 +16,7 @@ class JGrid : public JWidget
 {
 public:
                     JGrid           ();
-    virtual void    Render          (); 
+    virtual void    Render          ();
     virtual void    OnSize          ();
 
     void            SetRowsCols     ( int nRows, int nCols );
@@ -46,7 +46,7 @@ private:
 
     int             m_HSpacing;
     int             m_VSpacing;
-    
+
     int             m_MarginL;
     int             m_MarginR;
     int             m_MarginT;

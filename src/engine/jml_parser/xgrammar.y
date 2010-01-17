@@ -9,7 +9,7 @@
 #include "rb_common.h"
 #include <math.h>
 #include <malloc.h>
-#include <string.h> 
+#include <string.h>
 #include "JMLParser.h"
 
 //  disable some MSVC7 pain in the arse...
@@ -22,8 +22,6 @@ int		yyerror(char *s);
 void	_yyundo();
 const	char*	_getcurpos();
 void	_setcurpos( char* pos );
-
-#define alloca _alloca
 
 #define YYDEBUG 1
 #define YYERROR_VERBOSE
@@ -49,7 +47,7 @@ unsigned int curTag;
 %token				tComma
 %token				tID
 %token				tRightArrow
-%token				tLeftArrow 
+%token				tLeftArrow
 
 /* jml file grammar */
 %%
@@ -59,7 +57,7 @@ rFile:			    rBlockList
 rBlockList:			|
 					| rBlock
 					| rBlock rBlockList
-;					
+;
 rBlock:				rBlockHeader rBlockBody
 					| rBlockHeader rBlockBody tSemicolon
 ;
@@ -67,7 +65,7 @@ rBlockHeader:       tID tQuotedString
 					{
 						g_pParser->StartObject( GetPooledString( $1.strID ), GetPooledString( $2.strID ) );
 					}
-					| tID 
+					| tID
 					{
 						g_pParser->StartObject( GetPooledString( $1.strID ), "" );
 					}
@@ -85,14 +83,14 @@ rAttrList:          | rAttribute
                     | rAttribute rAttrList
 ;
 rAttribute:         rTermAttr
-                    | rComplexAttr         
-                    | rTermAttr tSemicolon           
+                    | rComplexAttr
+                    | rTermAttr tSemicolon
 ;
-rTermAttr:          tID 
+rTermAttr:          tID
 					{
 						g_pParser->StartAttribute( GetPooledString( $1.strID ) );
 					}
-					tAssignment rAttrValue 
+					tAssignment rAttrValue
 ;
 rComplexAttr:       rBlock
 ;
@@ -123,7 +121,7 @@ rAttrArrayList:     | rAttrValue
 
 extern int yylineno;
 extern char *yytext;
-int yyerror(char *s) 
+int yyerror(char *s)
 {
 	assert( g_pParser );
 	char errb[1024];
@@ -131,4 +129,3 @@ int yyerror(char *s)
 	g_pParser->Error( errb, yylineno );
 	return 0;
 }
-	

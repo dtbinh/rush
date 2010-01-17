@@ -1,22 +1,22 @@
 //****************************************************************************/
 //  File:	HalfEdgeMesh.h
-//  Desc:	 
+//  Desc:
 /*	Author:	Ruslan Shestopalyuk
 //****************************************************************************/
 #ifndef __HALFEDGEMESH_H__
 #define __HALFEDGEMESH_H__
 
-#include "Vec2.h"
-#include "Frame.h"
-#include "PolyLine2.h"
-#include "UniformPool.h"
+#include "vec2.h"
+#include "frame.h"
+#include "polyline2.h"
+#include "uniformpool.h"
 
 struct HESEdge;
 struct HESFace;
 
 //****************************************************************************/
 //  Class:  HESVert
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 struct HESVert
 {
@@ -41,7 +41,7 @@ struct HESVert
 
 //****************************************************************************/
 //  Class:  HESEdge
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 struct HESEdge
 {
@@ -71,9 +71,9 @@ struct HESEdge
         return NULL;
     }
 
-    float GetLength() const 
-    { 
-        return m_pSourceVert->m_Pos.dist( m_pOpposite->m_pSourceVert->m_Pos ); 
+    float GetLength() const
+    {
+        return m_pSourceVert->m_Pos.dist( m_pOpposite->m_pSourceVert->m_Pos );
     }
 
     Vec2 GetDir() const
@@ -90,7 +90,7 @@ struct HESEdge
 
 //****************************************************************************/
 //  Class:  HESFace
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 struct HESFace
 {
@@ -132,7 +132,7 @@ public:
     int         GetFaceNVert    ( int FaceID ) const;
     const Vec2& GetFaceVert     ( int FaceID, int vertID );
     void        Clear           ();
-    bool        PointInFace     ( int faceID, const Vec2& pt ) const; 
+    bool        PointInFace     ( int faceID, const Vec2& pt ) const;
     int         GetVertID       ( const Vec2& v, float bias = c_FltEpsilon ) const;
     int         AddVert         ( const Vec2& v );
     int         AddEdge         ( int va, int vb );
@@ -170,7 +170,7 @@ public:
         int         m_Iteration;
     public:
         FaceCirculator() : m_pHostFace(NULL), m_pCurEdge(NULL), m_Iteration(0) {}
-        FaceCirculator( int faceID ) 
+        FaceCirculator( int faceID )
         {
             m_pHostFace = reinterpret_cast<HESFace*>( faceID );
             m_pCurEdge  = m_pHostFace->m_pFirstEdge;
@@ -181,11 +181,11 @@ public:
             m_pCurEdge = m_pCurEdge->m_pOutEdge;
             if (m_pCurEdge == m_pHostFace->m_pFirstEdge) m_Iteration++;
         }
-        operator bool() const 
-        { 
-            return (m_Iteration == 0)&&m_pCurEdge; 
+        operator bool() const
+        {
+            return (m_Iteration == 0)&&m_pCurEdge;
         }
-        void operator +=( int nSteps ) 
+        void operator +=( int nSteps )
         {
             for (int i = 0; i < nSteps; i++) operator++();
         }

@@ -1,7 +1,7 @@
 #include "precompile.h"
-#include "IRenderServer.h"
-#include "IDrawServer.h"
-#include "FStream.h"
+#include "irenderserver.h"
+#include "idrawserver.h"
+#include "fstream.h"
 /*
 #include "ColorSurface.h"
 #include "IModelServer.h"
@@ -19,15 +19,15 @@ static bool         s_bCreateBlueprint = false;
 
 TEST( ModelIsLoaded )
 {
-    s_TestMdlID = g_pModelServer->GetModelID( "testmesh" ); 
-    CHECK( s_TestMdlID != -1 ); 
+    s_TestMdlID = g_pModelServer->GetModelID( "testmesh" );
+    CHECK( s_TestMdlID != -1 );
 }
 
 const int c_TestRTSide = 32;
 TEST( OffscreenTargetIsCreated )
 {
    s_RTID = g_pRenderServer->CreateRenderTarget( "TestMeshesRT", c_TestRTSide, c_TestRTSide );
-   CHECK( s_RTID != -1 ); 
+   CHECK( s_RTID != -1 );
 
    s_DSID = g_pRenderServer->CreateDepthStencil( "TestMeshesDS", c_TestRTSide, c_TestRTSide );
    CHECK( s_DSID != -1 );
@@ -76,7 +76,7 @@ TEST( RTTextureIsRead )
 
 TEST( ModelIsRendered )
 {
-    Mat4 viewTM( 1,  0,  0, 0, 
+    Mat4 viewTM( 1,  0,  0, 0,
                  0,  0, -1, 0,
                  0, 1,   0, 0,
                  0,  0,  0, 1 );
@@ -95,11 +95,11 @@ TEST( ModelIsRendered )
 
     bRes = s_Surf.ReadFromTexture( s_HelperTexID );
     CHECK_EQUAL( true, bRes );
-    
+
     ColorF clr = s_Surf( 20, 18 );
     CHECK( clr.isEqual( ColorF( 1, 0, 0, 1 ), 0.06f ) );
 
-    if (s_bCreateBlueprint) 
+    if (s_bCreateBlueprint)
     {
         FOutStream os( "media\\testmesh\\testmesh.rbf" );
         os << s_Surf;
@@ -117,12 +117,12 @@ TEST( BluePrintIsPresent )
     CHECK_EQUAL( c_TestRTSide, s_Surf.GetW() );
     CHECK_EQUAL( c_TestRTSide, s_Surf.GetH() );
 
-    ColorF clr = s_Surf( 20, 18 ); 
+    ColorF clr = s_Surf( 20, 18 );
     CHECK( clr.isEqual( ColorF( 1, 0, 0, 1 ), 0.06f ) );
 }
 
 TEST( RenderedImageIsTheSameAsBlueprint )
 {
-    CHECK( s_Surf == s_BPSurf ); 
+    CHECK( s_Surf == s_BPSurf );
 }
 */

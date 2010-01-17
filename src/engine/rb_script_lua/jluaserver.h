@@ -4,18 +4,18 @@
 #ifndef __JLUASERVER_H__
 #define __JLUASERVER_H__
 
-#include "JLuaThread.h"
-#include "JLuaScript.h"
+#include "jluathread.h"
+#include "jluascript.h"
 
 typedef RegPool<JLuaScript>  JScriptReg;
 typedef RegPool<JLuaThread>  JThreadReg;
 //****************************************************************************/
 //  Class:  JLuaServer
-//  Desc:    
+//  Desc:
 //****************************************************************************/
 class JLuaServer : public JObject, public IScriptServer
 {
-    lua_State*      m_pLua;    
+    lua_State*      m_pLua;
     JScriptReg      m_Scripts;
     JThreadReg      m_Threads;
     int             m_AllocMemSize;
@@ -86,7 +86,7 @@ protected:
     static int      FnConnectCB     ( lua_State* pLua ) { return s_pInstance->FnConnect( pLua ); }
     static int      FnRequireCB     ( lua_State* pLua ) { return s_pInstance->FnRequire( pLua ); }
     static int      FnDumpStackCB   ( lua_State* pLua ) { return s_pInstance->FnDumpStack( pLua ); }
-    
+
     //  implementations of the "global" functions
     int             FnCreate        ( lua_State* pLua );
     int             FnDelete        ( lua_State* pLua );

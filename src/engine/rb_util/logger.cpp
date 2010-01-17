@@ -6,6 +6,7 @@
 #include "precompile.h"
 #include "time.h"
 #include "logger.h"
+#include "timer.h"
 
 #include <stdarg.h>
 
@@ -19,7 +20,8 @@ Logger::Logger()
 {
     m_LogFileName = "engine.log";
 
-    m_StartTick = GetTickCount();
+    m_StartTick = GetProcessTimeMs();
+
     time_t long_time;
     time( &long_time );
     tm* newtime = localtime( &long_time );
@@ -57,13 +59,13 @@ void Logger::DumpLog()
 void Logger::clear()
 {
     m_Lines.clear();
-} // Logger::clear
+}
 
 void Logger::addmsg( LogMessageType type, const char* msg )
 {
     char buf[c_LogBufferSize];
     char* pBuf = buf;
-    uint32_t cTick = GetTickCount() - m_StartTick;
+    uint32_t cTick = GetProcessTimeMs() - m_StartTick;
     cTick /= 1000;
     int h = cTick/(60*60);
     int m = cTick/60;

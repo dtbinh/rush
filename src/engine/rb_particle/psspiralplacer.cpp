@@ -4,11 +4,11 @@
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "Particle.h"
-#include "EmitterInstance.h"
-#include "ParticleServer.h"
-#include "PSOperator.h"
-#include "PSSpiralPlacer.h"
+#include "particle.h"
+#include "emitterinstance.h"
+#include "particleserver.h"
+#include "psoperator.h"
+#include "psspiralplacer.h"
 
 //****************************************************************************/
 /*  PSSpiralPlacer implementation
@@ -16,8 +16,8 @@
 decl_class(PSSpiralPlacer);
 PSSpiralPlacer::PSSpiralPlacer()
 {
-    m_Radius     = 10.0f;      
-    m_Period     = 0.5f;    
+    m_Radius     = 10.0f;
+    m_Period     = 0.5f;
     m_bRelToDir  = true;
 } // PSSpiralPlacer::PSSpiralPlacer
 

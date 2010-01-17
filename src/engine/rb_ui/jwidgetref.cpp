@@ -2,14 +2,14 @@
 //  File:  JWidgetRef.cpp
 //****************************************************************************/
 #include "precompile.h"
-#include "IWindowServer.h"
-#include "JWidgetRef.h"
+#include "iwindowserver.h"
+#include "jwidgetref.h"
 
 //****************************************************************************/
 /*  JWidgetRef implementation
 //****************************************************************************/
 decl_class(JWidgetRef);
-JWidgetRef::JWidgetRef() : m_pWidget( NULL )  
+JWidgetRef::JWidgetRef() : m_pWidget( NULL )
 {
     SetXAlign( XAlign_Parent );
     SetYAlign( YAlign_Parent );
@@ -31,7 +31,7 @@ void JWidgetRef::OnMouse( JMouseEvent& e )
 {
     if (!m_pWidget || !m_pWidget->IsVisible()) return;
     m_pWidget->SendMouseEvent( e, g_pWindowServer->GetDragEvent() );
-}  
+}
 
 void JWidgetRef::OnWheel( JWheelEvent& e )
 {

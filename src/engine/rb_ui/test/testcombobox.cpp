@@ -1,12 +1,12 @@
 #include "precompile.h"
-#include "JLabel.h"
-#include "JButton.h"
-#include "JListBox.h"
-#include "JComboBox.h"
+#include "jlabel.h"
+#include "jbutton.h"
+#include "jlistbox.h"
+#include "jcombobox.h"
 
 JComboBox* pCB = NULL;
 
 TEST( ComboBox )
 {
-    
+
 }

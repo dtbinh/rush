@@ -14,45 +14,45 @@
 /***********************************************************************************/
 enum JXKey
 {
-    nkBACK          = VK_BACK,      
-    nkTAB           = VK_TAB,       
-    nkCLEAR         = VK_CLEAR,     
-    nkRETURN        = VK_RETURN,    
-    nkSHIFT         = VK_SHIFT,     
-    nkCONTROL       = VK_CONTROL,   
-    nkMENU          = VK_MENU,      
-    nkPAUSE         = VK_PAUSE,     
-    nkCAPITAL       = VK_CAPITAL,   
+    nkBACK          = VK_BACK,
+    nkTAB           = VK_TAB,
+    nkCLEAR         = VK_CLEAR,
+    nkRETURN        = VK_RETURN,
+    nkSHIFT         = VK_SHIFT,
+    nkCONTROL       = VK_CONTROL,
+    nkMENU          = VK_MENU,
+    nkPAUSE         = VK_PAUSE,
+    nkCAPITAL       = VK_CAPITAL,
     nkESCAPE        = VK_ESCAPE,
-    nkPRIOR         = VK_PRIOR,   
-    nkNEXT          = VK_NEXT,    
-    nkEND           = VK_END,     
-    nkHOME          = VK_HOME,    
-    nkLEFT          = VK_LEFT,    
-    nkUP            = VK_UP,      
-    nkRIGHT         = VK_RIGHT,   
-    nkDOWN          = VK_DOWN,    
-    nkSELECT        = VK_SELECT,  
-    nkPRINT         = VK_PRINT,   
-    nkEXECUTE       = VK_EXECUTE, 
+    nkPRIOR         = VK_PRIOR,
+    nkNEXT          = VK_NEXT,
+    nkEND           = VK_END,
+    nkHOME          = VK_HOME,
+    nkLEFT          = VK_LEFT,
+    nkUP            = VK_UP,
+    nkRIGHT         = VK_RIGHT,
+    nkDOWN          = VK_DOWN,
+    nkSELECT        = VK_SELECT,
+    nkPRINT         = VK_PRINT,
+    nkEXECUTE       = VK_EXECUTE,
     nkSNAPSHOT      = VK_SNAPSHOT,
-    nkINSERT        = VK_INSERT,  
-    nkDELETE        = VK_DELETE,  
-    nkHELP          = VK_HELP,    
-    nkF1            = VK_F1,  
-    nkF2            = VK_F2,  
-    nkF3            = VK_F3,  
-    nkF4            = VK_F4,  
-    nkF5            = VK_F5,  
-    nkF6            = VK_F6,  
-    nkF7            = VK_F7,  
-    nkF8            = VK_F8,  
-    nkF9            = VK_F9,  
-    nkF10           = VK_F10, 
-    nkF11           = VK_F11, 
-    nkF12           = VK_F12, 
-    nkNUMLOCK       = VK_NUMLOCK,  
-    nkSCROLL        = VK_SCROLL,   
+    nkINSERT        = VK_INSERT,
+    nkDELETE        = VK_DELETE,
+    nkHELP          = VK_HELP,
+    nkF1            = VK_F1,
+    nkF2            = VK_F2,
+    nkF3            = VK_F3,
+    nkF4            = VK_F4,
+    nkF5            = VK_F5,
+    nkF6            = VK_F6,
+    nkF7            = VK_F7,
+    nkF8            = VK_F8,
+    nkF9            = VK_F9,
+    nkF10           = VK_F10,
+    nkF11           = VK_F11,
+    nkF12           = VK_F12,
+    nkNUMLOCK       = VK_NUMLOCK,
+    nkSCROLL        = VK_SCROLL,
 }; // enum JXKey
 
 enum_beg(JXKey)
@@ -103,7 +103,7 @@ enum_end(JXKey)
 /***********************************************************************************/
 class JShortcut : public JWidget
 {
-    uint32_t           m_Key;          
+    uint32_t        m_Key;
     bool            m_bControl;
     bool            m_bAlt;
     bool            m_bShift;
@@ -112,7 +112,7 @@ public:
                     JShortcut       ();
     virtual void    OnKey           ( JKeyEvent&   e );
     void            Action          ();
-    
+
     const char*     GetKey() const { return ((const char*)&(m_Key)); }
     void            SetKey( const char* key ) { m_Key = *key; }
 

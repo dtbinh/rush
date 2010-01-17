@@ -6,23 +6,21 @@
 #ifndef __JSPRITEPACK_H__
 #define __JSPRITEPACK_H__
 
-#include "MappedFile.h"
-#include "JSpriteFrame.h"
+#include "jspriteframe.h"
 
 /***********************************************************************************/
 //  Class:  JSpritePack
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JSpritePack : public JObject
 {
     ColorFormat                 m_ColorFormat;
     PSpriteUpdateCB             m_UpdateCB;
     std::vector<JSpriteFrame>   m_Frames;
-    MappedFile                  m_Mapping;
     bool                        m_bAlwaysCache;
 
     int                         m_HeaderSize;
-    uint32_t                       m_LastFrame;
+    uint32_t                    m_LastFrame;
 
     friend class                JDrawServer;
 public:

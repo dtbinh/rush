@@ -81,7 +81,7 @@ inline void JWeakRefHolder::Release()
 //	JWeakRef inlines
 //*****************************************************************************
 template <class T>
-inline JWeakRef<T>::JWeakRef( T* pObject = NULL )
+inline JWeakRef<T>::JWeakRef( T* pObject )
 {
     m_pHolder = JWeakRefReg::s_pInstance->GetHolder( pObject );
     m_pHolder->AddRef();

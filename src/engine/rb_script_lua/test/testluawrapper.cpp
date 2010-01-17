@@ -1,10 +1,10 @@
 #include "precompile.h"
-#include "JCore.h"
-#include "JSignalServer.h"
-#include "FStream.h"
-#include "Path.h"
-#include "IScriptServer.h"
-#include "IFileServer.h"
+#include "jcore.h"
+#include "jsignalserver.h"
+#include "fstream.h"
+#include "path.h"
+#include "iscriptserver.h"
+#include "ifileserver.h"
 
 /*
 TEST(LuaBindingBase)
@@ -30,12 +30,12 @@ TEST(LuaCreateDelete)
 {
     JObject* pObj = JCore::s_pInstance->FindObject<JWidget>( "testlua_obj", true );
     CHECK( pObj != NULL && pObj->GetNChildren() == 3 );
-    
+
     int nObj1 = g_pObjectServer->GetNObjects();
     int scriptID = g_pScriptServer->GetScriptID( "testlua_create" );
     CHECK( scriptID != -1 );
     JString res;
-    int nRes = g_pScriptServer->RunScript( scriptID, pObj, &res ); 
+    int nRes = g_pScriptServer->RunScript( scriptID, pObj, &res );
     //  object reference extraction in context
     CHECK_EQUAL( 0, stricmp( res.c_str(), "success" ) );
 
@@ -48,7 +48,7 @@ TEST(LuaCreateDelete)
     CHECK( pLbl != NULL );
     CHECK_EQUAL( 1, pLbl->GetNRef() );
 
-    JLabel* pLbl1 = pObj->FindObject<JLabel>( "lbl1" ); 
+    JLabel* pLbl1 = pObj->FindObject<JLabel>( "lbl1" );
     CHECK( pLbl1 != NULL );
     CHECK_EQUAL( 1, pLbl1->GetNRef() );
     CHECK_EQUAL( pLbl, pLbl1->GetParent() );
@@ -85,7 +85,7 @@ TEST(LuaCall)
     CHECK_EQUAL( true, pPic->IsVisible() );
     pObj->Release();
 }
- 
+
 TEST(LuaGetSet)
 {
     JObject* pObj = JCore::s_pInstance->FindObject<JWidget>( "testlua_obj", true );
@@ -108,7 +108,7 @@ TEST(LuaGetSet)
     pObj->Release();
 }
 
-TEST(LuaChildren) 
+TEST(LuaChildren)
 {
     JObject* pObj = JCore::s_pInstance->FindObject<JWidget>( "testlua_obj", true );
     CHECK( pObj != NULL && pObj->GetNChildren() == 3 );
@@ -116,7 +116,7 @@ TEST(LuaChildren)
     CHECK( scriptID != -1 );
     JString res;
     int nRes = g_pScriptServer->RunScript( scriptID, pObj, &res );
-    CHECK( !stricmp( res.c_str(), "4" ) ); 
+    CHECK( !stricmp( res.c_str(), "4" ) );
     pObj->Release();
 }
 
@@ -138,7 +138,7 @@ TEST(LuaParent)
 
     int nBtnRef = pBtn->GetNRef();
     int nPicRef = pPic->GetNRef();
-    int nInPicRef = pInPic->GetNRef(); 
+    int nInPicRef = pInPic->GetNRef();
 
     int scriptID1 = g_pScriptServer->GetScriptID( "testlua_setparent1" );
     int scriptID2 = g_pScriptServer->GetScriptID( "testlua_setparent2" );
@@ -171,7 +171,7 @@ TEST(LuaParent)
     CHECK( NULL == pInPic->GetParent() );
     CHECK_EQUAL( 0, pPic->GetNChildren() );
     CHECK_EQUAL( 0, pBtn->GetNChildren() );
- 
+
     nRes = g_pScriptServer->RunScript( scriptID4, pObj, &res );
     CHECK_EQUAL( nBtnRef, pBtn->GetNRef() );
     CHECK_EQUAL( nPicRef, pPic->GetNRef() );
@@ -196,7 +196,7 @@ TEST(LuaRequire)
 
 TEST(LuaReloadScripts)
 {
-    const char* src = g_pFileServer->FindMedia( "testlua_reload_before", "lua" ); 
+    const char* src = g_pFileServer->FindMedia( "testlua_reload_before", "lua" );
     CHECK( src != NULL );
     Path pathBefore( src );
     Path path( pathBefore.GetFullPath() );
@@ -211,8 +211,8 @@ TEST(LuaReloadScripts)
     JString res;
     int nRes = g_pScriptServer->RunScript( scriptID, NULL, &res );
     CHECK( !stricmp( res.c_str(), "before_reloading" ) );
-    
-    CopyFile( pathAfter.GetFullPath(), path.GetFullPath(), FALSE ); 
+
+    CopyFile( pathAfter.GetFullPath(), path.GetFullPath(), FALSE );
     g_pScriptServer->ReloadScripts();
     nRes = g_pScriptServer->RunScript( scriptID, NULL, &res );
     CHECK( !stricmp( res.c_str(), "after_reloading" ) );
@@ -271,7 +271,7 @@ TEST(LuaThread)
     CHECK( stricmp( pPic->GetName(), "thread5" ) );
 
     for (int i = 0; i < 50; i++)
-    { 
+    {
         g_pScriptServer->UpdateThread( thread2, 0.1f );
     }
     CHECK_EQUAL( 25.0f, pPic->GetExt().x );
@@ -279,7 +279,7 @@ TEST(LuaThread)
 
 
     for (int i = 0; i < 40; i++)
-    { 
+    {
         g_pScriptServer->UpdateThread( thread0, 0.4f );
         g_pScriptServer->UpdateThread( thread1, 0.1f );
         g_pScriptServer->UpdateThread( thread2, 0.1f );
@@ -297,7 +297,7 @@ TEST(LuaThread)
     CHECK( !stricmp( pPic->GetName(), "thread5" ) );
 
     for (int i = 0; i < 40; i++)
-    { 
+    {
         g_pScriptServer->UpdateThread( thread0, 0.2f );
         g_pScriptServer->UpdateThread( thread1, 0.1f );
         g_pScriptServer->UpdateThread( thread2, 0.1f );
@@ -327,7 +327,7 @@ TEST(LuaThread)
 
     pObj->Release();
 
-    
+
 }
 
 TEST( Connect )
@@ -350,7 +350,7 @@ TEST( Connect )
     int nSig1 = JSignalServer::s_pInstance->GetNumSignals();
     CHECK_EQUAL( nSig + 3, nSig1 );
 
-    CHECK( pObj->GetExt().x == 0.0f && pObj->GetExt().y == 0.0f && pObj->GetExt().w == 0.0f ); 
+    CHECK( pObj->GetExt().x == 0.0f && pObj->GetExt().y == 0.0f && pObj->GetExt().w == 0.0f );
     pBtn1->SendSignal( "press" );
     pBtn2->SendSignal( "press" );
     CHECK( pObj->GetExt().x == 0.0f && pObj->GetExt().y == 2.0f && pObj->GetExt().w == 0.0f );
@@ -360,7 +360,7 @@ TEST( Connect )
 
     CHECK( pObj->GetExt().x == 3.0f && pObj->GetExt().y == 2.0f );
     pObj->SendSignal( "drag" );
-    CHECK( pObj->GetExt().x == 3.0f && pObj->GetExt().y == 2.0f ); 
+    CHECK( pObj->GetExt().x == 3.0f && pObj->GetExt().y == 2.0f );
     pObj->SendSignal( "onhover" );
     CHECK( pObj->GetExt().x == 1.0f && pObj->GetExt().y == 2.0f );
 
@@ -371,7 +371,7 @@ TEST( Connect )
     g_pScriptServer->UpdateThread( nThread, 100.0f );
     nSig1 = JSignalServer::s_pInstance->GetNumSignals();
     CHECK_EQUAL( nSig, nSig1 );
-    
+
     pObj->Release();
 }
 
@@ -383,8 +383,8 @@ TEST( Fork )
     JButton*  pBtn1 = pObj->FindObject<JButton>( "btn1" );
     JButton*  pBtn2 = pObj->FindObject<JButton>( "btn2" );
 
-    JPicture* pPic  = pObj->FindObject<JPicture>( "pic" ); 
-    CHECK( pObj && pBtn1 && pBtn2 && pPic ); 
+    JPicture* pPic  = pObj->FindObject<JPicture>( "pic" );
+    CHECK( pObj && pBtn1 && pBtn2 && pPic );
 
     int scriptID = g_pScriptServer->GetScriptID( "testlua_fork" );
     CHECK( scriptID != -1 );
@@ -400,20 +400,20 @@ TEST( Fork )
     CHECK( nThread > 0 );
     nThreads = g_pScriptServer->GetNThreads();
     CHECK_EQUAL( 1, nThreads );
-    
+
     //  run root thread
     g_pScriptServer->UpdateThread( nThread, 1.0f );
     nThreads = g_pScriptServer->GetNThreads();
     CHECK_EQUAL( 1, nThreads );
-    
+
     //  spawn "connect" subthread
     pPic->SendSignal( "onlbclick" );
-    g_pScriptServer->UpdateThread( nThread, 0.5f ); 
+    g_pScriptServer->UpdateThread( nThread, 0.5f );
     nThreads = g_pScriptServer->GetNThreads();
     CHECK_EQUAL( 2, nThreads );
     int nCh = g_pScriptServer->GetNThreads( nThread );
     CHECK_EQUAL( 1, nCh );
-    
+
     //  try to spawn wrong "dispatch" subthread
     g_pScriptServer->RunFunction( nThread, "somewrongname" );
     nThreads = g_pScriptServer->GetNThreads();
@@ -436,7 +436,7 @@ TEST( Fork )
     nCh = g_pScriptServer->GetNThreads( nThread );
     CHECK_EQUAL( 0, nCh );
 
-    
+
     // spawn correct "dispatch" subthread
     g_pScriptServer->RunFunction( nThread, "DispatchFunction" );
     nThreads = g_pScriptServer->GetNThreads();
@@ -469,15 +469,15 @@ TEST( Fork )
     //  4.5 sec
     //  spawn "connect" subthread
     pPic->SendSignal( "onlbclick" );
-    g_pScriptServer->UpdateThread( nThread, 0.5f ); 
+    g_pScriptServer->UpdateThread( nThread, 0.5f );
     nThreads = g_pScriptServer->GetNThreads();
     CHECK_EQUAL( 2, nThreads );
     nCh = g_pScriptServer->GetNThreads( nThread );
     CHECK_EQUAL( 1, nCh );
-    
+
     //  5 sec
     //  "connect" subthread finishes
-    g_pScriptServer->UpdateThread( nThread, 0.9f ); 
+    g_pScriptServer->UpdateThread( nThread, 0.9f );
     nThreads = g_pScriptServer->GetNThreads();
     CHECK_EQUAL( 1, nThreads );
     nCh = g_pScriptServer->GetNThreads( nThread );
@@ -490,7 +490,7 @@ TEST( Fork )
     CHECK_EQUAL( 2, nThreads );
     nCh = g_pScriptServer->GetNThreads( nThread );
     CHECK_EQUAL( 1, nCh );
-    
+
     //  6.5 sec
     //  fork spawns another fork
     g_pScriptServer->UpdateThread( nThread, 1.0f );
@@ -498,7 +498,7 @@ TEST( Fork )
     CHECK_EQUAL( 3, nThreads );
     nCh = g_pScriptServer->GetNThreads( nThread );
     CHECK_EQUAL( 1, nCh );
-    
+
     //  7.5 sec
     //  forks finish
     g_pScriptServer->UpdateThread( nThread, 1.5f );
@@ -506,7 +506,7 @@ TEST( Fork )
     CHECK_EQUAL( 1, nThreads );
     nCh = g_pScriptServer->GetNThreads( nThread );
     CHECK_EQUAL( 0, nCh );
-    
+
     //  9 sec
     // root thread finishes
     g_pScriptServer->UpdateThread( nThread, 1.5f );

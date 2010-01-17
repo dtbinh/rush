@@ -6,8 +6,8 @@
 #ifndef __JPOLYBUTTON_H__
 #define __JPOLYBUTTON_H__
 
-#include "JMathTypeCast.h"
-#include "JButton.h"
+#include "jmathtypecast.h"
+#include "jbutton.h"
 
 //****************************************************************************/
 //  Class:  JPolyButton

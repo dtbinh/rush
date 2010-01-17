@@ -6,7 +6,7 @@
 #ifndef __JPROGRESS_H__
 #define __JPROGRESS_H__
 
-#include "JWidget.h"
+#include "jwidget.h"
 
 //****************************************************************************/
 //  Class:  JProgress
@@ -15,15 +15,15 @@
 class JProgress : public JWidget
 {
     int             m_FillFrame;        //  whether tile filling sprite to the bar extents
-    bool            m_bVertical;            
-    
+    bool            m_bVertical;
+
     bool            m_bEditable;        //  whether user can change position with mouse
 
     //  border margins
     int             m_LeftBorder;
     int             m_TopBorder;
     int             m_RightBorder;
-    int             m_BottomBorder;          
+    int             m_BottomBorder;
 
     float           m_Position;         //  current position [0..1]
     float           m_MinVal;
@@ -31,15 +31,15 @@ class JProgress : public JWidget
 
     bool            m_bDiscrete;
     float           m_DiscreteStep;
-    
+
     bool            m_bCaptureOnDrag;
 
 public:
                     JProgress     ();
-    virtual void    Render        (); 
+    virtual void    Render        ();
     virtual void    OnMouse       ( JMouseEvent& m );
 
-    float           GetScaledPos  () const { return m_MinVal + (m_MaxVal - m_MinVal)*m_Position; } 
+    float           GetScaledPos  () const { return m_MinVal + (m_MaxVal - m_MinVal)*m_Position; }
     void            SetScalesPos  ( float val ) { m_Position = (val - m_MinVal)/(m_MaxVal - m_MinVal); }
 
     expose( JProgress )

@@ -5,12 +5,12 @@
 //****************************************************************************/
 #ifndef __JMOUSEEVENT_H__
 #define __JMOUSEEVENT_H__
-#include "JEvent.h"
-#include "JInputAction.h"
+#include "jevent.h"
+#include "jinputaction.h"
 
 //****************************************************************************/
 //	Enum:  JMouseKey
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 enum JMouseKey
 {
@@ -22,7 +22,7 @@ enum JMouseKey
 
 //****************************************************************************/
 //	Enum:  JMouseEventType
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 enum JMouseEventType
 {
@@ -34,17 +34,17 @@ enum JMouseEventType
 
 //****************************************************************************/
 //  Class:  JMouseEvent
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 class JMouseEvent : public JEventID<JMouseEvent>
 {
     JMouseKey        m_MouseKey;
     JInputAction     m_InputAction;
     int              m_MouseX, m_MouseY;
-    
+
     friend class     JWindowServer;
 public:
-    
+
     JMouseKey        MouseKey   () const { return m_MouseKey; }
     JInputAction     Action     () const { return m_InputAction; }
     int              MouseX     () const { return m_MouseX; }

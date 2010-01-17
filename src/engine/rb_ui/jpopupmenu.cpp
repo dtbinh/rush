@@ -1,10 +1,10 @@
 //****************************************************************************/
 //  File:  JPopupMenu.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "JListBox.h"
-#include "JPopupMenu.h"
+#include "jlistbox.h"
+#include "jpopupmenu.h"
 
 //****************************************************************************/
 /*  JPopupMenu implementation
@@ -12,8 +12,8 @@
 decl_class(JPopupMenu);
 JPopupMenu::JPopupMenu()
 {
-} // JPopupMenu::JPopupMenu
+}
 
 void JPopupMenu::Render()
-{   
-} // JPopupMenu::Render
+{
+}

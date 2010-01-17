@@ -1,5 +1,5 @@
 #include "precompile.h"
-#include "JString.h"
+#include "jstring.h"
 
 TEST( String )
 {
@@ -11,7 +11,7 @@ TEST( String )
     CHECK_EQUAL( str.size(), 0 );
     str += "SomeString";
     CHECK( str == "SomeString" );
-    CHECK( str != "somestring" ); 
+    CHECK( str != "somestring" );
     CHECK_EQUAL( str.size(), strlen( "SomeString" ) );
     CHECK( str != "AnotherString" );
     CHECK( str != "SomeStrin" );

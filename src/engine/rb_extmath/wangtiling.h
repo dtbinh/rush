@@ -1,19 +1,19 @@
 //****************************************************************************/
 //  File:	WangTiling.h
-//  Desc:	 
+//  Desc:
 /*	Author:	Ruslan Shestopalyuk
 //****************************************************************************/
 #ifndef __WANGTILING_H__
 #define __WANGTILING_H__
 
-#include "Rand.h"
+#include "rand.h"
 
 const int c_TileSetSize = 8;
 //****************************************************************************/
 //  Class:  WangTiling
 //  Desc:   Creates non-periodic stochastic tiling of the plane with the set
-/*            of 8 square tiles, which are not rotated (so-called Wang tiles). 
-/*          Each tile has "colouring" of the sides, and same-colour sides 
+/*            of 8 square tiles, which are not rotated (so-called Wang tiles).
+/*          Each tile has "colouring" of the sides, and same-colour sides
 /*          of the neighboring tiles must match seamlessly.
 /*          It is supposed, that tiles are coloured like this:
 /*                r           r           g           g
@@ -28,7 +28,7 @@ const int c_TileSetSize = 8;
 /*             |-----|     |-----|     |-----|     |-----|
 /*                g           r           r           g
 /*
-/*           
+/*
 //****************************************************************************/
 class WangTiling
 {

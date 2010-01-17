@@ -15,7 +15,7 @@ template <class TElem>
 class RegPool
 {
     typedef UniformPool<TElem>              PoolType;
-    typedef hash_map<int, TElem*>           RegType;
+    typedef hash_map_t<int, TElem*>         RegType;
 
     PoolType    m_Pool;
     RegType     m_Reg;
@@ -53,7 +53,7 @@ public:
 
     bool remove( int id )
     {
-        RegType::iterator it = m_Reg.find( id );
+        typename RegType::iterator it = m_Reg.find( id );
         if (it == m_Reg.end()) return false;
         m_Pool.Free( (*it).second );
         m_Reg.erase( it );
@@ -62,7 +62,7 @@ public:
 
     TElem*  operator[]( int id )
     {
-        RegType::iterator it = m_Reg.find( id );
+        typename RegType::iterator it = m_Reg.find( id );
         if (it == m_Reg.end()) return NULL;
         return (*it).second;
     }

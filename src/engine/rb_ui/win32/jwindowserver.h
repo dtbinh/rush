@@ -6,9 +6,10 @@
 #ifndef __JWINDOWSERVER_H__
 #define __JWINDOWSERVER_H__
 
-#include "IWindowServer.h"
-#include "JWeakRef.h"
-#include "JWidget.h"
+#include "iwindowserver.h"
+#include "jweakref.h"
+#include "jwidget.h"
+
 #include <windows.h>
 
 enum JWindowBorder
@@ -141,11 +142,11 @@ private:
     JWeakRef<JWidget>   m_pFocus;
     JWeakRef<JWidget>   m_pMouseCapture;
 
-    JScreenMode         m_ScreenMode; 
-    JBitDepth           m_BitDepth;    
+    JScreenMode         m_ScreenMode;
+    JBitDepth           m_BitDepth;
     JWindowBorder       m_WindowBorder;
-    bool                m_bTrayMode;  
-    bool                m_bMinimized;  
+    bool                m_bTrayMode;
+    bool                m_bMinimized;
     bool                m_bHasStencil;
     bool                m_bAppActive;
     JString             m_DefTrayIcon;
@@ -167,7 +168,7 @@ private:
     HWND                m_hWnd;
     WNDPROC             HookedWndProc;
 
-    uint32_t               m_FPSThreadID;
+    uint32_t            m_FPSThreadID;
     HANDLE              m_hFPSThread;
     HANDLE              m_hFPSEvent;
 

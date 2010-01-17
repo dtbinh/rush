@@ -1,7 +1,5 @@
-
-#pragma once
-
-#define WIN32_LEAN_AND_MEAN		
+#ifndef __PRECOMPILE_H__
+#define __PRECOMPILE_H__
 
 #include "rb_common.h"
 
@@ -14,9 +12,10 @@
 
 #include <vector>
 
-#include "MathConst.h"
-#include "MathUtil.h"
+#include "mathconst.h"
+#include "mathutil.h"
 
-#pragma warning ( disable : 4530 )
+
+#endif // __PRECOMPILE_H__
 
 

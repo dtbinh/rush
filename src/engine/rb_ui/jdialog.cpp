@@ -4,8 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "JCore.h"
-#include "JDialog.h"
+#include "jcore.h"
+#include "jdialog.h"
 
 //****************************************************************************/
 /*	JDialog implementation
@@ -37,7 +37,7 @@ void JDialog::OnFocus( bool bEnter )
 {
     JWidget* pFocus = g_pObjectServer->FindObject<JWidget>( m_DefaultFocus.c_str(), this );
     if (!pFocus || !bEnter) return;
-    pFocus->SetFocus( bEnter );  
+    pFocus->SetFocus( bEnter );
 } // JDialog::OnFocus
 
 void JDialog::Show()
@@ -49,7 +49,7 @@ void JDialog::Show()
     JString path;
     GetPath( path );
     JCore::s_pInstance->SetRootObject( path.c_str() );
-    
+
     OnShow();
 
     SetVisible ( true );

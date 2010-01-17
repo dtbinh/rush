@@ -7,3 +7,5 @@ libtheora-1.1.1
 libvorbis-1.2.3
 ode-0.11.1
 tinyxml-2.5.3
+physfs-2.1
+boost-1.41

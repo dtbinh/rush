@@ -6,13 +6,13 @@
 #ifndef __JMODELANIM_H__
 #define __JMODELANIM_H__
 
-#include "TrackPRS.h"
+#include "trackprs.h"
 
 typedef std::vector<TrackPRS>   TrackArray;
 class JBoneInstance;
 /***********************************************************************************/
 //  Class:  JModelAnim
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JModelAnim : public JObject
 {

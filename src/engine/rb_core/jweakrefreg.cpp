@@ -31,7 +31,7 @@ JWeakRefHolder* JWeakRefReg::GetHolder( void* pObject )
         return pHolder;
     }
     return (*it).second;
-} // JWeakRefReg::GetHolder
+}
 
 void JWeakRefReg::DeleteHolder( JWeakRefHolder* pHolder )
 {
@@ -41,8 +41,8 @@ void JWeakRefReg::DeleteHolder( JWeakRefHolder* pHolder )
         m_HolderReg.erase( pHolder->GetPtr() );
     }
     //  delete from pool
-    m_HolderPool.Free( pHolder );    
-} // JWeakRefReg::DeleteHolder
+    m_HolderPool.Free( pHolder );
+}
 
 void JWeakRefReg::Invalidate( void* pObject )
 {
@@ -58,9 +58,9 @@ void JWeakRefReg::Invalidate( void* pObject )
     m_HolderReg.erase( pObject );
 
     pHolder->m_pPtr = NULL;
-} // JWeakRefReg::Invalidate
+}
 
 int JWeakRefReg::GetNHolders()
 {
     return m_HolderPool.GetNElem();
-} // JWeakRefReg::GetNHolders
+}

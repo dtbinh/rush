@@ -5,8 +5,8 @@
 /*	Date:	17-02-2006
 //****************************************************************************/
 #include "precompile.h"
-#include "HalfEdgeMesh.h"
-#include "Voronoi.h"
+#include "halfedgemesh.h"
+#include "voronoi.h"
 #include <algorithm>
 
 //****************************************************************************/
@@ -59,22 +59,22 @@ bool HalfEdgeMesh::CreateVoronoi( const Vec2* sites, int nSites, const Frame& bo
     std::sort( bPt.begin(), bPt.end(), HESVert::CompareByX );
     for (int i = 1; i < lPt.size(); i++)
     {
-        AddEdge( reinterpret_cast<int>( lPt[i - 1] ), 
+        AddEdge( reinterpret_cast<int>( lPt[i - 1] ),
                  reinterpret_cast<int>( lPt[i] ) );
     }
     for (int i = 1; i < rPt.size(); i++)
     {
-        AddEdge( reinterpret_cast<int>( rPt[i - 1] ), 
+        AddEdge( reinterpret_cast<int>( rPt[i - 1] ),
                  reinterpret_cast<int>( rPt[i] ) );
     }
     for (int i = 1; i < tPt.size(); i++)
     {
-        AddEdge( reinterpret_cast<int>( tPt[i - 1] ), 
+        AddEdge( reinterpret_cast<int>( tPt[i - 1] ),
                  reinterpret_cast<int>( tPt[i] ) );
     }
     for (int i = 1; i < bPt.size(); i++)
     {
-        AddEdge( reinterpret_cast<int>( bPt[i - 1] ), 
+        AddEdge( reinterpret_cast<int>( bPt[i - 1] ),
                  reinterpret_cast<int>( bPt[i] ) );
     }
     FindFaces();
@@ -229,7 +229,7 @@ int HalfEdgeMesh::AddEdge( int va, int vb )
             Vec2 d = pCurEdge->GetEndVert()->m_Pos;
             Vec2 bc = c - b;
             Vec2 bd = d - b;
-            if (ba.angle( bd ) < ba.angle( bc )) 
+            if (ba.angle( bd ) < ba.angle( bc ))
             {
                 pEdge1->m_pOutEdge = pCurEdge;
             }
@@ -257,7 +257,7 @@ int HalfEdgeMesh::AddEdge( int va, int vb )
             Vec2 d = pCurEdge->GetEndVert()->m_Pos;
             Vec2 ac = c - a;
             Vec2 ad = d - a;
-            if (ab.angle( ad ) < ab.angle( ac )) 
+            if (ab.angle( ad ) < ab.angle( ac ))
             {
                 pEdge2->m_pOutEdge = pCurEdge;
             }
@@ -356,11 +356,11 @@ bool HalfEdgeMesh::MergeFaces( int fa, int fb )
 {
     HESFace* pFaceA = reinterpret_cast<HESFace*>( fa );
     HESFace* pFaceB = reinterpret_cast<HESFace*>( fb );
-    if (pFaceA == pFaceB || !pFaceA || !pFaceB) 
+    if (pFaceA == pFaceB || !pFaceA || !pFaceB)
     {
         return false;
     }
-    
+
     //  find edge chain to delete
     bool bFound = false;
     int nEdges = GetNFaceEdges( fa );
@@ -370,14 +370,14 @@ bool HalfEdgeMesh::MergeFaces( int fa, int fb )
     while (bfc)
     {
         HESFace* pFace = bfc.GetEdge()->m_pOpposite->m_pFace;
-        if (pFace == pFaceA) 
+        if (pFace == pFaceA)
         {
             pCurEdge = bfc.GetEdge()->m_pOpposite;
             bFound = true;
         }
         ++bfc;
     }
-    if (!bFound) 
+    if (!bFound)
     {
         return false;
     }
@@ -390,16 +390,16 @@ bool HalfEdgeMesh::MergeFaces( int fa, int fb )
     bFound = false;
     for (int i = 0; i < nEdges; i++)
     {
-        HESEdge* pEdgeA = pCurEdge; 
-        HESEdge* pEdgeB = pCurEdge->m_pOpposite; 
+        HESEdge* pEdgeA = pCurEdge;
+        HESEdge* pEdgeB = pCurEdge->m_pOpposite;
         pCurEdge = pCurEdge->m_pOutEdge;
         HESFace* pFace = pEdgeB->m_pFace;
-        if (pFace != pFaceB) 
+        if (pFace != pFaceB)
         {
             continue;
-        }        
+        }
         assert( pFace != pFaceA );
-        
+
         //  reassign outedges
         HESEdge* pPrevA       = pEdgeA->GetReferrer();
         HESEdge* pPrevB       = pEdgeB->GetReferrer();
@@ -434,9 +434,9 @@ bool HalfEdgeMesh::MergeFaces( int fa, int fb )
                 HESEdge* pRefEdge = m_pEdges;
                 while (pRefEdge)
                 {
-                    if (pRefEdge->m_pFace == pFaceA) 
+                    if (pRefEdge->m_pFace == pFaceA)
                     {
-                        if (pRefEdge != pEdgeA) 
+                        if (pRefEdge != pEdgeA)
                         {
                             pFaceA->m_pFirstEdge = pRefEdge;
                             break;
@@ -450,7 +450,7 @@ bool HalfEdgeMesh::MergeFaces( int fa, int fb )
         DestroyEdge( pEdgeB );
         bFound = true;
     }
-    
+
     DestroyFace( pFaceB );
     //  reassign references from deleted face
     HESEdge* pEdge = pFaceA->m_pFirstEdge;
@@ -496,7 +496,7 @@ bool HalfEdgeMesh::IsConsistent() const
     if (nEdges&1) return false;
 
     //  check Euler's formula
-    if (nVerts - nEdges/2 + nFaces != 2) 
+    if (nVerts - nEdges/2 + nFaces != 2)
     {
         return false;
     }
@@ -535,9 +535,9 @@ int HalfEdgeMesh::SplitEdge( int hEdge, float t )
     if (hEdge == 0) return 0;
     HESEdge* pEdgeA1 = reinterpret_cast<HESEdge*>( hEdge );
     HESEdge* pEdgeB2 = pEdgeA1->m_pOpposite;
-    
-    HESVert* pVertA  = pEdgeA1->m_pSourceVert; 
-    HESVert* pVertB  = pEdgeB2->m_pSourceVert; 
+
+    HESVert* pVertA  = pEdgeA1->m_pSourceVert;
+    HESVert* pVertB  = pEdgeB2->m_pSourceVert;
     Vec2 a = pVertA->m_Pos;
     Vec2 b = pVertB->m_Pos;
 
@@ -546,7 +546,7 @@ int HalfEdgeMesh::SplitEdge( int hEdge, float t )
     HESEdge* pEdgeB1 = reinterpret_cast<HESEdge*>( AddEdge() );
 
     pVert->m_pOutEdge = pEdgeA2;
-    
+
     pEdgeA2->m_pOutEdge = pEdgeA1->m_pOutEdge;
     pEdgeB1->m_pOutEdge = pEdgeB2->m_pOutEdge;
 
@@ -563,7 +563,7 @@ int HalfEdgeMesh::SplitEdge( int hEdge, float t )
 
     pEdgeA1->m_pOutEdge = pEdgeA2;
     pEdgeB2->m_pOutEdge = pEdgeB1;
-    
+
     return reinterpret_cast<int>( pVert );
 } // HalfEdgeMesh::SplitEdge
 
@@ -594,7 +594,7 @@ void HalfEdgeMesh::FractalizeEdge( int hEdge, float minLen, float magnitude, flo
         Vec2 ea, eb;
         pCurEdge->GetPoints( ea, eb );
         Seg2 seg( ea, eb );
-        if (seg.intersects( ac, false ) || seg.intersects( bc, false )) 
+        if (seg.intersects( ac, false ) || seg.intersects( bc, false ))
         {
             bValid = false;
         }
@@ -607,13 +607,13 @@ void HalfEdgeMesh::FractalizeEdge( int hEdge, float minLen, float magnitude, flo
         Vec2 ea, eb;
         pCurEdge->GetPoints( ea, eb );
         Seg2 seg( ea, eb );
-        if (seg.intersects( ac, false ) || seg.intersects( bc, false )) 
+        if (seg.intersects( ac, false ) || seg.intersects( bc, false ))
         {
             bValid = false;
         }
         pCurEdge = pCurEdge->m_pOutEdge;
     }
-    
+
     //  insert new vertex
     int vertID = SplitEdge( hEdge, t );
     HESVert* pVert = reinterpret_cast<HESVert*>( vertID );

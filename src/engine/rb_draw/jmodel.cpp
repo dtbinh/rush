@@ -4,17 +4,17 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "AABox.h"
-#include "JMesh.h"
-#include "JMaterial.h"
-#include "JBone.h"
-#include "FStream.h"
-#include "Path.h"
-#include "IFileServer.h"
-#include "IPersistServer.h"
-#include "JObjectIterator.h"
-#include "Buffer.h"
-#include "JModel.h"
+#include "aabox.h"
+#include "jmesh.h"
+#include "jmaterial.h"
+#include "jbone.h"
+#include "fstream.h"
+#include "path.h"
+#include "ifileserver.h"
+#include "ipersistserver.h"
+#include "jobjectiterator.h"
+#include "buffer.h"
+#include "jmodel.h"
 
 
 /***********************************************************************************/
@@ -156,13 +156,13 @@ void JModel::GatherChildren()
     for (int i = 0; i < nCh; i++)
     {
         JMaterial* pMaterial = obj_cast<JMaterial>( GetChild( i ) );
-        if (pMaterial) 
+        if (pMaterial)
         {
             m_Materials.push_back( pMaterial );
             pMaterial->Init();
         }
     }
-    
+
     //  calculate rest pose world transforms for bones
     UpdateSkeleton( Mat4::identity, NULL );
     for (int i = 0; i < nCh; i++)
@@ -174,7 +174,7 @@ void JModel::GatherChildren()
         int idx = -1;
         for (int j = 0; j < m_Materials.size(); j++)
         {
-            if (!stricmp( m_Materials[j]->GetName(), mtlName )) 
+            if (!stricmp( m_Materials[j]->GetName(), mtlName ))
             {
                 idx = j;
                 break;
@@ -206,7 +206,7 @@ void JModel::DrawSkeleton( const Mat4& tm, JBoneInstance* pSkelInst )
     for (int i = 0; i < nBones; i++)
     {
         JBoneInstance& bi = pSkelInst[i];
-        if (bi.m_ParentIdx != -1) 
+        if (bi.m_ParentIdx != -1)
         {
             const Vec3& pos = pSkelInst[bi.m_ParentIdx].m_ModelTM.translation();
             g_pDrawServer->DrawLine( pos, bi.m_ModelTM.translation(), 0xFFFFFF00, 0xFFFFFF00 );
@@ -227,7 +227,7 @@ void JModel::UpdateSkeleton( const Mat4& tm, JBoneInstance* pSkelInst )
     for (int i = 0; i < nBones; i++)
     {
         JBoneInstance& bi = pSkelInst[i];
-        if (bi.m_ParentIdx == -1) 
+        if (bi.m_ParentIdx == -1)
         {
             bi.m_ModelTM = bi.m_LocalTM*tm;
         }
@@ -250,7 +250,7 @@ void JModel::Render( const Mat4& tm, JBoneInstance* pSkelInst, bool bIgnoreShade
     g_pRenderServer->CacheIB( m_IBufID, m_Indices.GetData(),  m_Indices.GetSize(),  m_IBIteration, m_IBFirstByte );
 
     int nBones = m_SkelInst.size();
-    //  calculate world-space transforms for bones 
+    //  calculate world-space transforms for bones
     if (!pSkelInst && nBones > 0) pSkelInst = &m_SkelInst[0];
     UpdateSkeleton( Mat4::identity, pSkelInst );
 
@@ -260,7 +260,7 @@ void JModel::Render( const Mat4& tm, JBoneInstance* pSkelInst, bool bIgnoreShade
     for (int i = 0; i < nGeom; i++)
     {
         JMesh* pMesh = m_Meshes[i];
-        if (!pMesh->IsVisible()) 
+        if (!pMesh->IsVisible())
         {
             continue;
         }
@@ -284,7 +284,7 @@ void JModel::Render( const Mat4& tm, JBoneInstance* pSkelInst, bool bIgnoreShade
             Mat4 rootTM = hb.m_ModelTM*tm;
             worldTM = rootTM;
         }
-        
+
         pMesh->Render( m_IBFirstByte, pSkelInst, worldTM, bUseCachedData );
     }
 
@@ -295,9 +295,9 @@ void JModel::Render( const Mat4& tm, JBoneInstance* pSkelInst, bool bIgnoreShade
 
 } // JModel::Render
 
-void JModel::AddIndices( uint16_t* pIdx, int numIdx )  
-{ 
-    m_Indices.AddData( (uint8_t*)pIdx, numIdx*2 ); 
+void JModel::AddIndices( uint16_t* pIdx, int numIdx )
+{
+    m_Indices.AddData( (uint8_t*)pIdx, numIdx*2 );
 } // JModel::AddIndices
 
 void JModel::Reserve( int nVertexBytes, int numIdx )

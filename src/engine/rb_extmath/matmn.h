@@ -28,7 +28,7 @@ public:
     {
         if (m_bOwnBuf) delete []m_Buf;
     }
- 
+
     int             NRows           () const { return m_NRows; }
     int             NCols           () const { return m_NCols; }
     real*           GetBuf          () { return m_Buf; }
@@ -41,7 +41,7 @@ public:
     void            AddUtV          ( const VecN& u, const VecN& v );
     void            VtV             ( const VecN& v );
     void            Mul             ( const MatMN& a, const MatMN& b );
-    void            operator *=     ( real w ); 
+    void            operator *=     ( real w );
     void            operator +=     ( const MatMN& m );
     void            operator -=     ( const MatMN& m );
     void            operator =      ( const MatMN& m );
@@ -60,7 +60,7 @@ public:
     bool            SetCol          ( int c, VecN& col );
     void            Clamp           ( real minv, real maxv );
 
-    void            SetBuf          ( real* pBuf, int w, int h ) 
+    void            SetBuf          ( real* pBuf, int w, int h )
     {
         m_NCols     = w;
         m_NRows     = h;
@@ -69,32 +69,24 @@ public:
     }
 
     inline real     operator()( int x, int y ) const
-    { 
-        assert( x >= 0 && y >= 0 && x < m_NCols && y <= m_NRows ); 
-        return m_Buf[x + y*m_NCols]; 
+    {
+        assert( x >= 0 && y >= 0 && x < m_NCols && y <= m_NRows );
+        return m_Buf[x + y*m_NCols];
     }
 
 
-    inline real&    operator()( int x, int y ) 
-    { 
-        assert( x >= 0 && y >= 0 && x < m_NCols && y <= m_NRows ); 
-        return m_Buf[x + y*m_NCols]; 
+    inline real&    operator()( int x, int y )
+    {
+        assert( x >= 0 && y >= 0 && x < m_NCols && y <= m_NRows );
+        return m_Buf[x + y*m_NCols];
     }
 
     friend class VecN;
 
-//protected:
     bool            FactorCholesky  ();
     void            SolveCholesky   ( const VecN& b );
     bool            GaussElimination();
 
 }; // class MatMN
-
-#include <malloc.h>
-
-#pragma warning ( disable : 4311 )
-#pragma warning ( disable : 4312 )
-
-#define STACK_ALLOC(A,B) (A*)_alloca( B*sizeof( A ) );
 
 #endif // __MMATMN_H__

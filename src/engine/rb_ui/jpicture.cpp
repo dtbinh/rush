@@ -4,10 +4,10 @@
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "JPicture.h"
+#include "jpicture.h"
 
 //****************************************************************************/
-/*  JPicture implementation 
+/*  JPicture implementation
 //****************************************************************************/
 decl_class(JPicture);
 JPicture::JPicture()
@@ -28,18 +28,18 @@ void JPicture::Init()
     {
         SetLocalPivot(  g_pDrawServer->GetFramePivot( GetSkinPackID(), GetSkinFrame() ) );
     }
-}   
+}
 
-bool JPicture::PtIn( int px, int py ) const 
-{ 
+bool JPicture::PtIn( int px, int py ) const
+{
     if (!m_bPixelPrecise)
     {
-        return GetExt().PtIn( px, py ); 
+        return GetExt().PtIn( px, py );
     }
     else
     {
         Frame ext = GetExt();
-        uint32_t clr = g_pDrawServer->GetPixel( GetSkinPackID(), GetSkinFrame(), 
+        uint32_t clr = g_pDrawServer->GetPixel( GetSkinPackID(), GetSkinFrame(),
              Vec2( px - ext.x, py - ext.y ) );
         uint32_t alpha = (clr&0xFF000000)>>24;
         return (alpha > 0x00);
@@ -47,11 +47,11 @@ bool JPicture::PtIn( int px, int py ) const
 }
 
 void JPicture::Render()
-{    
+{
     int w = g_pDrawServer->GetFrameW( GetSkinPackID(), GetSkinFrame() );
     int h = g_pDrawServer->GetFrameH( GetSkinPackID(), GetSkinFrame() );
     if (w == 0 || h == 0) return;
-    
+
     if (m_bAutoSize)
     {
         const Frame lExt = GetLocalExt();
@@ -93,7 +93,7 @@ void JPicture::Render()
         g_pDrawServer->DrawSprite( rct, GetSkinPackID(), GetSkinFrame(), color, m_Rotation, m_bMirror );
     }
 
-    g_pDrawServer->Flush();   
+    g_pDrawServer->Flush();
 
     if (IsBlendAdd())
     {

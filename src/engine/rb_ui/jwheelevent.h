@@ -5,7 +5,7 @@
 //****************************************************************************/
 #ifndef __JWHEELEVENT_H__
 #define __JWHEELEVENT_H__
-#include "JEvent.h"
+#include "jevent.h"
 
 //****************************************************************************/
 //  Class:  JWheelEvent
@@ -17,8 +17,8 @@ class JWheelEvent : public JEventID<JWheelEvent>
 
     friend class    JWindowServer;
 public:
-    int             Delta() const { return m_Delta; } 
-    
+    int             Delta() const { return m_Delta; }
+
 }; // class JWheelEvent
 
 #endif // __JWHEELEVENT_H__

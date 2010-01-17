@@ -4,17 +4,17 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "AABox.h"
-#include "JMesh.h"
-#include "JMaterial.h"
-#include "JBone.h"
-#include "FStream.h"
-#include "Path.h"
-#include "TrackPRS.h"
-#include "JModel.h"
-#include "JBoneInstance.h"
-#include "JModelAnim.h"
-#include "IFileServer.h"
+#include "aabox.h"
+#include "jmesh.h"
+#include "jmaterial.h"
+#include "jbone.h"
+#include "fstream.h"
+#include "path.h"
+#include "trackprs.h"
+#include "jmodel.h"
+#include "jboneinstance.h"
+#include "jmodelanim.h"
+#include "ifileserver.h"
 
 /***********************************************************************************/
 /*  JModelAnim implementation
@@ -24,22 +24,22 @@ JModelAnim::JModelAnim()
 {
     m_Duration = 0.0f;
     m_ModelID  = -1;
-} // JModelAnim::JModelAnim
+}
 
 void JModelAnim::Init()
 {
-} // JModelAnim::Init
+}
 
 TrackPRS& JModelAnim::AddTrack()
 {
     m_Tracks.push_back( TrackPRS() );
     return m_Tracks.back();
-} // JModelAnim::AddTrack
+}
 
 void JModelAnim::Clear()
 {
     m_Tracks.clear();
-} // JModelAnim::Clear 
+}
 
 
 const uint32_t c_AnimFileFOURCC  = *((uint32_t*)"RBAN");
@@ -51,8 +51,8 @@ inline void SaveTrack( OutStream& os, const TTrack& track )
     int nKeys = track.GetNKeys();
     os << nKeys;
     os.Write( (uint8_t*)track.GetTimes(), nKeys*sizeof( float ) );
-    os.Write( (uint8_t*)track.GetValues(), nKeys*sizeof( TTrack::ValType ) );
-} // SaveTrack
+    os.Write( (uint8_t*)track.GetValues(), nKeys*sizeof( typename TTrack::ValType ) );
+}
 
 template <class TTrack>
 inline void LoadTrack( InStream& is, TTrack& track )
@@ -61,8 +61,8 @@ inline void LoadTrack( InStream& is, TTrack& track )
     is >> nKeys;
     track.SetNKeys( nKeys );
     is.Read( (uint8_t*)track.GetTimes(), nKeys*sizeof( float ) );
-    is.Read( (uint8_t*)track.GetValues(), nKeys*sizeof( TTrack::ValType ) );
-} // SaveTrack
+    is.Read( (uint8_t*)track.GetValues(), nKeys*sizeof( typename TTrack::ValType ) );
+}
 
 void JModelAnim::Serialize( OutStream& os ) const
 {
@@ -80,7 +80,7 @@ void JModelAnim::Serialize( OutStream& os ) const
         SaveTrack( os, track.m_Scale        );
         SaveTrack( os, track.m_Visibility   );
     }
-} 
+}
 
 bool JModelAnim::Unserialize( InStream& is )
 {
@@ -88,14 +88,14 @@ bool JModelAnim::Unserialize( InStream& is )
     uint32_t fourcc = 0;
     uint32_t version = -1;
     is >> fourcc >> version;
-    
+
     JString dummy;
     if (version > 0)
     {
         is >> dummy;
         if (dummy.size() > 0)
         {
-            m_ModelName = dummy;
+            m_ModelName = dummy.c_str();
         }
     }
 
@@ -123,7 +123,7 @@ bool JModelAnim::Unserialize( InStream& is )
         LoadTrack( is, track.m_Visibility   );
     }
     return true;
-} 
+}
 
 bool JModelAnim::Bind( JModel* pModel )
 {
@@ -151,7 +151,7 @@ bool JModelAnim::Bind( JModel* pModel )
         }
     }
     return bOK;
-} // JModelAnim::Bind
+}
 
 bool JModelAnim::Apply( JBoneInstance* pBones, float cTime, float weight )
 {
@@ -165,7 +165,7 @@ bool JModelAnim::Apply( JBoneInstance* pBones, float cTime, float weight )
         Vec3       scale  = track.m_Scale.GetValue( cTime );
         Quaternion rot    = track.m_Rot.GetValue( cTime );
         uint8_t       vis    = track.m_Visibility.GetValue( cTime );
-        
+
         if (weight < 1.0f)
         {
             Vec3 oldPos, oldScale;
@@ -187,7 +187,7 @@ bool JModelAnim::Apply( JBoneInstance* pBones, float cTime, float weight )
         bone.m_bVisible = (vis == c_InvisibleValue) ? false : true;
     }
     return false;
-} // JModelAnim::Apply
+}
 
 
 

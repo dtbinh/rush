@@ -4,7 +4,7 @@
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "JGrid.h"
+#include "jgrid.h"
 
 //****************************************************************************/
 /*  JGrid implementation
@@ -17,7 +17,7 @@ JGrid::JGrid()
 
     m_HSpacing      = 0;
     m_VSpacing      = 0;
-    
+
     m_MarginL       = 0;
     m_MarginR       = 0;
     m_MarginT       = 0;
@@ -25,7 +25,7 @@ JGrid::JGrid()
 
     m_bStretch      = false;
     m_bUniform      = false;
-}  
+}
 
 void JGrid::SetRowsCols( int nRows, int nCols )
 {
@@ -51,14 +51,14 @@ void JGrid::SetMargins( int left, int right, int top, int bottom )
 }
 
 void JGrid::Render()
-{    
-    
-}  
+{
+
+}
 
 void JGrid::OnSize()
 {
-    Layout();    
-}  
+    Layout();
+}
 
 
 void JGrid::Layout()
@@ -67,15 +67,15 @@ void JGrid::Layout()
     if (nCh == 0 || (m_NCols == 0 && m_NRows == 0))
     {
         return;
-    }   
+    }
 
     Frame ext = GetExt();
     int nCols = (m_NCols == 0) ? nCh : m_NCols;
     int nRows = (m_NRows == 0) ? nCh : m_NRows;
 
-    float cellW = (ext.w - float( m_MarginL + m_MarginR ) - 
+    float cellW = (ext.w - float( m_MarginL + m_MarginR ) -
         float( nCols - 1 )*m_HSpacing)/float( nCols );
-    float cellH = (ext.h - float( m_MarginT + m_MarginB ) - 
+    float cellH = (ext.h - float( m_MarginT + m_MarginB ) -
         float( nRows - 1 )*m_VSpacing)/float( nRows );
 
     float cX = m_MarginL;
@@ -89,7 +89,7 @@ void JGrid::Layout()
         {
             JWidget* pCh = obj_cast<JWidget>( GetChild( curCh ) );
             curCh++;
-            if (pCh == NULL) 
+            if (pCh == NULL)
             {
                 continue;
             }

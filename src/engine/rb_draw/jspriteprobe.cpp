@@ -4,8 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "IDrawServer.h"
-#include "JSpriteProbe.h"
+#include "idrawserver.h"
+#include "jspriteprobe.h"
 
 /***********************************************************************************/
 /*  JSpriteProbe implementation
@@ -16,7 +16,7 @@ JSpriteProbe::JSpriteProbe()
     m_SkinPack = "";
     m_SkinFrame = -1;
     m_Position = Vec2::null;
-} 
+}
 
 float JSpriteProbe::GetAlpha() const
 {

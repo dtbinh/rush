@@ -4,9 +4,9 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JSlider.h"
-#include "JButton.h"
-#include "JScrollBar.h"
+#include "jslider.h"
+#include "jbutton.h"
+#include "jscrollbar.h"
 
 /***********************************************************************************/
 /*  JScrollBar implementation
@@ -16,7 +16,7 @@ JScrollBar::JScrollBar()
 {
     m_pUp       = NULL;
     m_pDown     = NULL;
-    m_pSlider   = NULL;  
+    m_pSlider   = NULL;
     m_pPage     = NULL;
     m_bVertical = false;
 } // JScrollBar::JScrollBar
@@ -31,7 +31,7 @@ void JScrollBar::OnSize()
     Frame sext = m_pSlider->GetExt();
 
     if (m_bVertical)
-    {        
+    {
         uext.x = ext.x;
         uext.y = ext.y;
         dext.x = ext.x;
@@ -59,6 +59,6 @@ void JScrollBar::OnSize()
 void JScrollBar::Init()
 {
     m_pUp        = g_pObjectServer->FindObject<JButton>( "up", this );
-    m_pDown      = g_pObjectServer->FindObject<JButton>( "down", this ); 
-    m_pSlider    = g_pObjectServer->FindObject<JButton>( "slider", this );   
+    m_pDown      = g_pObjectServer->FindObject<JButton>( "down", this );
+    m_pSlider    = g_pObjectServer->FindObject<JButton>( "slider", this );
 } // JScrollBar::Init

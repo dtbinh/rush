@@ -1,14 +1,14 @@
 //****************************************************************************/
 //  File:  JSpriteSurface.h
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #ifndef __JSPRITESURFACE_H__
 #define __JSPRITESURFACE_H__
 #include <vector>
-#include "StaticArray.h"
-#include "Color.h"
-#include "QuadPacker.h"
-#include "Mat4.h"
+#include "staticarray.h"
+#include "color.h"
+#include "quadpacker.h"
+#include "mat4.h"
 
 const int   c_SpriteSurfaceSide   = 256;
 const float c_fSpriteSurfaceSide  = float( c_SpriteSurfaceSide );
@@ -17,7 +17,7 @@ const float c_HalfPixel           = 0.5f;
 
 //****************************************************************************/
 //  Class:  JSpriteSurface
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 class JSpriteSurface
 {
@@ -28,13 +28,13 @@ class JSpriteSurface
     uint32_t                       m_DropStamp;
     static uint32_t                s_Stamp;
     QuadPacker                  m_Layout;
-    
+
     friend class                JDrawServer;
 
 public:
     JSpriteSurface();
     ~JSpriteSurface();
-    
+
     void Drop()
     {
         m_DropStamp = ++s_Stamp;

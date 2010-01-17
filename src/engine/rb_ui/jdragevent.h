@@ -5,8 +5,8 @@
 /***********************************************************************************/
 #ifndef __JDRAGEVENT_H__
 #define __JDRAGEVENT_H__
-#include "JEvent.h"
-#include "Vec2.h"
+#include "jevent.h"
+#include "vec2.h"
 
 class JWidget;
 class JObject;
@@ -45,7 +45,7 @@ class JDragEvent : public JEventID<JDragEvent>
 public:
     JDragEvent() { Reset(); }
 
-    void            Reset          () 
+    void            Reset          ()
     {
         m_pSource = NULL;
         m_pTarget = NULL;

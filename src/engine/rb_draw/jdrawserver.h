@@ -1,31 +1,31 @@
 //****************************************************************************/
 //  File:  JDrawServer.h
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #ifndef __JDRAWSERVER_H__
 #define __JDRAWSERVER_H__
 #include <vector>
-#include "StaticArray.h"
-#include "Color.h"
-#include "QuadPacker.h"
-#include "Mat4.h"
-#include "JSpriteSurface.h"
+#include "staticarray.h"
+#include "color.h"
+#include "quadpacker.h"
+#include "mat4.h"
+#include "jspritesurface.h"
 
 //****************************************************************************/
 //	Enum:  RenderModeFlags
 //****************************************************************************/
 enum RenderModeFlags
 {
-    rfScreenSpace   = 0x0001,   
-    rfSprite        = 0x0002,       
-    rfQuad          = 0x0004,   
-    rfLine          = 0x0008,   
-    rfPoly          = 0x0010,   
-    rfLinearFilter  = 0x0020,       
-    rfTexMod2x      = 0x0040,   
-    rfTexMod4x      = 0x0080,   
-    rfAdditive      = 0x0100,   
-    rfZEnable       = 0x0200,   
+    rfScreenSpace   = 0x0001,
+    rfSprite        = 0x0002,
+    rfQuad          = 0x0004,
+    rfLine          = 0x0008,
+    rfPoly          = 0x0010,
+    rfLinearFilter  = 0x0020,
+    rfTexMod2x      = 0x0040,
+    rfTexMod4x      = 0x0080,
+    rfAdditive      = 0x0100,
+    rfZEnable       = 0x0200,
     rfAdjustUV      = 0x0400,
     rfZWriteDisable = 0x0800,
 
@@ -33,15 +33,15 @@ enum RenderModeFlags
 
 //****************************************************************************/
 //  Class:  RenderBit
-//  Desc:   Atomic rendering task - corresponds to rendering single 
+//  Desc:   Atomic rendering task - corresponds to rendering single
 /*          sprite chunk, or line, or quad
 //****************************************************************************/
 struct RenderBit
 {
-    void*           m_pData;       
-    uint32_t           m_Clr[4];        
-    uint32_t           m_Flags;     
-    Mat4            m_TM;               
+    void*           m_pData;
+    uint32_t           m_Clr[4];
+    uint32_t           m_Flags;
+    Mat4            m_TM;
 
     inline bool operator <( const RenderBit& r ) const
     {
@@ -60,7 +60,7 @@ class JSpritePack;
 struct JFrameChunk;
 //****************************************************************************/
 //  Class:  JDrawServer
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 class JDrawServer : public JObject, public IDrawServer
 {
@@ -72,7 +72,7 @@ public:
     void        DrawLine        ( int x1, int y1, int x2, int y2, uint32_t ca, uint32_t cb );
     void        DrawLine        ( const Vec3& a, const Vec3& b, uint32_t ca, uint32_t cb );
     void        DrawQuad        ( const Vec3& lt, const Vec3& rt, const Vec3& lb, const Vec3& rb, uint32_t color );
-    
+
     void        DrawPoly        ( const Vec3& a, const Vec3& b, const Vec3& c, uint32_t ca, uint32_t cb, uint32_t cc );
     void        DrawPoly        ( const Vec2& a, const Vec2& b, const Vec2& c, uint32_t ca, uint32_t cb, uint32_t cc );
 
@@ -96,11 +96,11 @@ public:
     int         GetSpriteID     ( const char* packageName, PSpriteUpdateCB updateCB = NULL, bool bAlwaysCache = false );
     int         GetNFrames      ( int sprID ) const;
     void        DrawSprite      ( float x, float y, int spriteID, int frameID, uint32_t color = 0xFFFFFFFF, float rot = 0.0f, bool bMirror = false );
-    void        DrawSprite      ( const Frame& rct, int spriteID, int frameID, uint32_t color = 0xFFFFFFFF, 
+    void        DrawSprite      ( const Frame& rct, int spriteID, int frameID, uint32_t color = 0xFFFFFFFF,
                                   float rot = 0.0f, bool bMirror = false );
     void        TileSprite      ( const Frame& rct, int spriteID, int frameID, uint32_t color = 0xFFFFFFFF );
     void        DrawSprite      ( const Mat4& tm, int spriteID, int frameID, uint32_t color = 0xFFFFFFFF );
-    void        DrawString      ( int x, int y, int fontID, const char* str, uint32_t color = 0xFFFFFFFF, 
+    void        DrawString      ( int x, int y, int fontID, const char* str, uint32_t color = 0xFFFFFFFF,
                                     float height = -1.0f, int nChar = -1, int spacing = 0 );
     int         GetTextWidth    ( int fontID, const char* str, float height = -1.0f, int numChars = -1, int spacing = 0 );
 
@@ -118,14 +118,14 @@ public:
     void        SetVertexCB     ( PVertProcessCB cb ) { VertProcessCB = cb; }
 
     void        DrawBox         ( const AABox& box, uint32_t clrLines, uint32_t clrFill );
-    void        DrawSphere      ( const Vec3& center, float r,  uint32_t clrLines, uint32_t clrFill, 
+    void        DrawSphere      ( const Vec3& center, float r,  uint32_t clrLines, uint32_t clrFill,
                                      int nSegments = c_NDefaultSegments );
-    void        DrawSpherePart  ( const Vec3& center, float r, float startPhi, float dPhi, float startTheta, float dTheta, 
+    void        DrawSpherePart  ( const Vec3& center, float r, float startPhi, float dPhi, float startTheta, float dTheta,
                                      uint32_t clrLines, uint32_t clrFill, int nSegments = c_NDefaultSegments );
 
     void        DrawCylinder    ( const Vec3& base, float r, float h, uint32_t clrLines, uint32_t clrFill, bool bCapped = true,
                                      int nSegments = c_NDefaultSegments );
-    void        DrawCapsule     ( const Vec3& base, float r, float h, uint32_t clrLines, uint32_t clrFill, 
+    void        DrawCapsule     ( const Vec3& base, float r, float h, uint32_t clrLines, uint32_t clrFill,
                                      int nSegments = c_NDefaultSegments );
     void        DrawPlane       ( const Plane& plane, const Vec2& center, uint32_t clrLines, uint32_t clrFill, float side,
                                     int nSegments = c_NDefaultSegments );
@@ -166,7 +166,7 @@ private:
 
     uint8_t*       AllocateBuffer   ( int nBytes, bool bAlwaysCache );
     void        Cleanup          ();
-   
+
     int                         m_NSpriteSurfaces;      //  total number of the sprite surfaces
     int                         m_NSpriteSurfaces16;    //  number of 16-bit sprite surfaces
     std::vector<JSpritePack*>   m_SpritePacks;
@@ -182,7 +182,7 @@ private:
 
     uint8_t*                       m_pBuffer;
     int                         m_CurBufferByte;
-    
+
     bool                        m_bLinFilter;
     bool                        m_bZEnable;
     bool                        m_bZWriteEnable;
@@ -196,14 +196,14 @@ private:
 
     int                         m_PrimVBID;
 
-    int                         m_shBase;        
-    int                         m_shAdd;         
-    int                         m_shZEnable;     
-    int                         m_shZWriteDisable;   
-    int                         m_shLinf;        
-    int                         m_shMod2x;       
-    int                         m_shMod4x;      
-    int                         m_shNoTex;   
+    int                         m_shBase;
+    int                         m_shAdd;
+    int                         m_shZEnable;
+    int                         m_shZWriteDisable;
+    int                         m_shLinf;
+    int                         m_shMod2x;
+    int                         m_shMod4x;
+    int                         m_shNoTex;
 
     int                         m_MemoryBudget;
     int                         m_CurBytesAllocated;

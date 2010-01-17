@@ -4,16 +4,16 @@
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "JButton.h"
+#include "jbutton.h"
 
 //****************************************************************************/
-/*  JButton implementation 
+/*  JButton implementation
 //****************************************************************************/
 decl_class(JButton);
 JButton::JButton()
 {
     m_bPressed          = false;
-    m_GlyphID           = -1;     
+    m_GlyphID           = -1;
     m_GlyphFrame        = 0;
 
     m_ShadowShiftX      = 1;
@@ -25,9 +25,9 @@ JButton::JButton()
     m_HoverFrame        = -1;
     m_DisabledFrame     = -1;
 
-    m_PressDX           = 1; 
-    m_PressDY           = 1; 
-    m_bTwoState         = false;  
+    m_PressDX           = 1;
+    m_PressDY           = 1;
+    m_bTwoState         = false;
     m_bPixelPrecise     = false;
     SetBgColor( 0xFFFFFFFF );
 
@@ -37,7 +37,7 @@ bool JButton::PtIn( int px, int py ) const
 {
     int spID = GetSkinPackID();
     bool bInRect = JWidget::PtIn( px, py );
-    if (spID == -1 || m_NormalFrame == -1 || 
+    if (spID == -1 || m_NormalFrame == -1 ||
         !bInRect || !m_bPixelPrecise)
     {
         return bInRect;
@@ -56,16 +56,16 @@ bool JButton::PtIn( int px, int py ) const
 } // JPuzzlePiece::PtIn
 
 void JButton::Render()
-{    
+{
     Frame ext = GetExt();
     uint32_t clr = GetFgColor();
     int skinFrame = m_NormalFrame;
 
-    if (IsBlendAdd()) 
+    if (IsBlendAdd())
     {
         g_pDrawServer->SetAdditive( true );
     }
-    
+
     if (m_bPressed && m_PressedFrame != -1)
     {
         skinFrame = m_PressedFrame;
@@ -80,10 +80,10 @@ void JButton::Render()
         //clr = m_DisableFgColor;
     }
 
-    if (IsHovered()) 
+    if (IsHovered())
     {
         clr = GetHoverFgColor();
-        if (m_HoverFrame != -1) 
+        if (m_HoverFrame != -1)
         {
             skinFrame = m_HoverFrame;
         }
@@ -96,17 +96,17 @@ void JButton::Render()
     }
     g_pDrawServer->SetLinFilter( IsFilterFont() );
     g_pDrawServer->Flush();
-    
+
     const char* text = GetText();
     if (text && text[0] != 0)
     {
-        //  draw button text 
+        //  draw button text
         ext.w = g_pDrawServer->GetTextWidth( GetFontID(), text, GetFontHeight() );
         ext.h = GetFontHeight();
         ext = ApplyAlignment( ext, GetExt(), XAlign_Center, YAlign_Center );
         if (m_ShadowColor != 0)
         {
-            g_pDrawServer->DrawString( ext.x + m_ShadowShiftX, ext.y + m_ShadowShiftY, 
+            g_pDrawServer->DrawString( ext.x + m_ShadowShiftX, ext.y + m_ShadowShiftY,
                 GetFontID(), GetText(), m_ShadowColor, GetFontHeight() );
             g_pDrawServer->Flush();
         }
@@ -114,7 +114,7 @@ void JButton::Render()
     }
     else if (m_GlyphID >= 0)
     {
-        //  draw button glyph 
+        //  draw button glyph
         ext.w = g_pDrawServer->GetFrameW( m_GlyphID, m_GlyphFrame );
         ext.h = g_pDrawServer->GetFrameH( m_GlyphID, m_GlyphFrame );
         ext = ApplyAlignment( ext, GetExt(), XAlign_Center, YAlign_Center );
@@ -122,7 +122,7 @@ void JButton::Render()
     }
     g_pDrawServer->Flush();
 
-    if (IsBlendAdd()) 
+    if (IsBlendAdd())
     {
         g_pDrawServer->SetAdditive( false );
     }
@@ -131,21 +131,21 @@ void JButton::Render()
 void JButton::OnMouse( JMouseEvent& m )
 {
     //  check if button being pressed
-    if ((m.Action() == aKeyDown || m.Action() == aDblClick) && 
-        m.MouseKey() == mkLeft) 
-    { 
+    if ((m.Action() == aKeyDown || m.Action() == aDblClick) &&
+        m.MouseKey() == mkLeft)
+    {
         if (m_bTwoState)
         {
-            if (m_bPressed) 
+            if (m_bPressed)
             {
-                Unpress();  
+                Unpress();
             }
-            else 
+            else
             {
                 Press();
             }
-        } 
-        else 
+        }
+        else
         {
             CaptureMouse( true );
             Press();
@@ -155,27 +155,27 @@ void JButton::OnMouse( JMouseEvent& m )
     }
 
     //  check if being unpressed (for one-state buttons)
-    if (m.Action() == aKeyUp && 
-        m.MouseKey() == mkLeft && !m_bTwoState) 
+    if (m.Action() == aKeyUp &&
+        m.MouseKey() == mkLeft && !m_bTwoState)
     {
         CaptureMouse( false );
         Unpress();
         m.Consume();
     }
-    
-    //  automatically unpress when leaving button area 
-    if (m.Action() == aMouseMove && 
-        !GetExt().PtIn( m.MouseX(), m.MouseY() ) && 
+
+    //  automatically unpress when leaving button area
+    if (m.Action() == aMouseMove &&
+        !GetExt().PtIn( m.MouseX(), m.MouseY() ) &&
         m_bPressed)
     {
         CaptureMouse( false );
-        if (!m_bTwoState) 
+        if (!m_bTwoState)
         {
             Unpress();
         }
     }
 
-    if (IsConsumeEvents()) 
+    if (IsConsumeEvents())
     {
         m.Consume();
     }
@@ -213,11 +213,11 @@ void JButton::Unpress()
     OnUnpress();
 } // JButton::Unpress
 
-void JButton::SetGlyphPack( const char* name ) 
-{ 
-    m_GlyphPack = name; 
+void JButton::SetGlyphPack( const char* name )
+{
+    m_GlyphPack = name;
     m_GlyphID = g_pDrawServer->GetSpriteID( name );
-} 
+}
 
 
 

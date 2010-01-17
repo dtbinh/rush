@@ -12,9 +12,9 @@
 * OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
 */
 
-/* 
-* This code was originally written by Stephan Fortune in C code.  I, Shane O'Sullivan, 
-* have since modified it, encapsulating it in a C++ class and, fixing memory leaks and 
+/*
+* This code was originally written by Stephan Fortune in C code.  I, Shane O'Sullivan,
+* have since modified it, encapsulating it in a C++ class and, fixing memory leaks and
 * adding accessors to the Voronoi Edges.
 * Permission to use, copy, modify, and distribute this software for any
 * purpose without fee is hereby granted, provided that this entire notice
@@ -38,10 +38,10 @@
 #define le 0
 #define re 1
 
-#include "Vec2.h"
-#include "Frame.h"
+#include "vec2.h"
+#include "frame.h"
 
-struct	Freenode	
+struct	Freenode
 {
 	struct	Freenode *nextfree;
 };
@@ -53,19 +53,19 @@ struct FreeNodeArrayList
 
 };
 
-struct	Freelist	
+struct	Freelist
 {
 	struct	Freenode	*head;
 	int		nodesize;
 };
 
-struct Point	
+struct Point
 {
 	float x,y;
 };
 
-// structure used both for sites and for vertices 
-struct Site	
+// structure used both for sites and for vertices
+struct Site
 {
 	struct	Point	coord;
 	int		sitenbr;
@@ -74,7 +74,7 @@ struct Site
 
 
 
-struct Edge	
+struct Edge
 {
 	float   a,b,c;
 	struct	Site 	*ep[2];
@@ -92,7 +92,7 @@ struct GraphEdge
 
 
 
-struct Halfedge 
+struct Halfedge
 {
 	struct	Halfedge	*ELleft, *ELright;
 	struct	Edge	*ELedge;
@@ -123,7 +123,7 @@ public:
 	{
 		if(iteratorEdges == 0)
 			return false;
-		
+
 		a.x = iteratorEdges->x1;
 		b.x = iteratorEdges->x2;
 		a.y = iteratorEdges->y1;
@@ -138,19 +138,19 @@ public:
 private:
 	void cleanup();
 	void cleanupEdges();
-	char *getfree(struct Freelist *fl);	
+	char *getfree(struct Freelist *fl);
 	struct	Halfedge *PQfind();
 	int PQempty();
 
 
-	
+
 	struct	Halfedge **ELhash;
 	struct	Halfedge *HEcreate(), *ELleft(), *ELright(), *ELleftbnd();
 	struct	Halfedge *HEcreate(struct Edge *e,int pm);
 
 
 	struct Point PQ_min();
-	struct Halfedge *PQextractmin();	
+	struct Halfedge *PQextractmin();
 	void freeinit(struct Freelist *fl,int size);
 	void makefree(struct Freenode *curr,struct Freelist *fl);
 	void geominit();
@@ -170,7 +170,7 @@ private:
 	void PQdelete(struct Halfedge *he);
 	bool ELinitialize();
 	void ELinsert(struct	Halfedge *lb, struct Halfedge *newHe);
-	struct Halfedge * Voronoi::ELgethash(int b);
+	struct Halfedge * ELgethash(int b);
 	struct Halfedge *ELleft(struct Halfedge *he);
 	struct Site *leftreg(struct Halfedge *he);
 	void out_site(struct Site *s);
@@ -192,10 +192,10 @@ private:
 
 	void pushGraphEdge(float x1, float y1, float x2, float y2);
 
-	void Voronoi::openpl();
-	void Voronoi::line(float x1, float y1, float x2, float y2);
-	void Voronoi::circle(float x, float y, float radius);
-	void Voronoi::range(float minX, float minY, float maxX, float maxY);
+	void openpl();
+	void line(float x1, float y1, float x2, float y2);
+	void circle(float x, float y, float radius);
+	void range(float minX, float minY, float maxX, float maxY);
 
 
 	struct  Freelist	hfl;
@@ -233,7 +233,7 @@ private:
 	GraphEdge* iteratorEdges;
 
 	float minDistanceBetweenSites;
-	
+
 };
 
 int scomp(const void *p1,const void *p2);

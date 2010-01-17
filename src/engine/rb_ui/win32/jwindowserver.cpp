@@ -4,23 +4,23 @@
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "JReflect.h"
-#include "JCore.h"
-#include "IPersistServer.h"
-#include "JWidget.h"
-#include "JDialog.h"
-#include "JMouseEvent.h"
-#include "JKeyEvent.h"
-#include "JDragEvent.h"
-#include "JDropFileEvent.h"
-#include "JWheelEvent.h"
-#include "FStream.h"
-#include "ISoundServer.h"
-#include "IScriptServer.h"  
-#include "IDrawServer.h"
-#include "JObjectIterator.h"
-#include "JRevObjectIterator.h"
-#include "JWindowServer.h"
+#include "jreflect.h"
+#include "jcore.h"
+#include "ipersistserver.h"
+#include "jwidget.h"
+#include "jdialog.h"
+#include "jmouseevent.h"
+#include "jkeyevent.h"
+#include "jdragevent.h"
+#include "jdropfileevent.h"
+#include "jwheelevent.h"
+#include "fstream.h"
+#include "isoundserver.h"
+#include "iscriptserver.h"
+#include "idrawserver.h"
+#include "jobjectiterator.h"
+#include "jrevobjectiterator.h"
+#include "jwindowserver.h"
 
 LRESULT CALLBACK MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 {
@@ -38,9 +38,9 @@ JWindowServer::JWindowServer()
     m_pFocus                = NULL;
     m_pMouseCapture         = NULL;
     m_ScreenMode            = smDesktop;
-    m_BitDepth              = bpp16;   
+    m_BitDepth              = bpp16;
     m_bHasStencil           = false;
-    m_bTrayMode             = false;  
+    m_bTrayMode             = false;
     m_DefTrayIcon           = "";
     m_WndClassName          = "__RB_Window__";
     m_bAppActive            = true;
@@ -66,34 +66,34 @@ JWindowServer::JWindowServer()
 
     SetName( "wnd" );
     m_LocalExt = Frame( 0.0f, 0.0f, 800.0f, 600.0f );
-    
+
     s_pInstance = this;
     g_pWindowServer = this;
-}  
+}
 
 void JWindowServer::Exit()
 {
     PostQuitMessage( 0 );
-}  
+}
 
 void JWindowServer::SetFocus( JWidget* pFocus )
 {
-    if (m_pFocus) 
+    if (m_pFocus)
     {
         m_pFocus->OnFocus( false );
         m_pFocus->m_bHasFocus = false;
     }
     m_pFocus = pFocus;
-    if (m_pFocus) 
+    if (m_pFocus)
     {
         m_pFocus->OnFocus( true );
         m_pFocus->m_bHasFocus = true;
     }
-}  
+}
 
 HRESULT JWindowServer::OnWndMessage( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 {
-    switch (uMsg) 
+    switch (uMsg)
     {
     case WM_LBUTTONDBLCLK:
         {
@@ -256,7 +256,7 @@ HRESULT JWindowServer::OnWndMessage( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM
             break;
         }
     case WM_CLOSE:
-        {    
+        {
             PostQuitMessage( 0 );
             break;
         }
@@ -271,7 +271,7 @@ HRESULT JWindowServer::OnWndMessage( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM
         {
             break;
         }
-    
+
     case WM_SETCURSOR:
         {
             return TRUE;
@@ -312,7 +312,7 @@ HRESULT JWindowServer::OnWndMessage( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM
     }
 
     return DefWindowProc( hWnd, uMsg, wParam, lParam );
-}  
+}
 
 void JWindowServer::OnMouse( JMouseEvent& e )
 {
@@ -331,16 +331,16 @@ void JWindowServer::OnMouse( JMouseEvent& e )
     }
     m_DragEvent.SetCurPos( cPos );
     m_DragEvent.m_bConsumed = false;
-    if (e.Action() == aKeyUp || 
+    if (e.Action() == aKeyUp ||
         (e.MouseKey() == mkNone && m_DragEvent.m_Type != deNone))
     {
-        if (!m_DragEvent.m_bSticky || 
+        if (!m_DragEvent.m_bSticky ||
             (m_DragEvent.m_pObject && !m_DragEvent.m_pObject->IsDragged()))
         {
             m_DragEvent.m_Type      = deDrop;
         }
     }
-    if (m_DragEvent.m_Key != mkNone && 
+    if (m_DragEvent.m_Key != mkNone &&
         m_DragEvent.m_Type == deNone &&
         cPos.dist( m_DragEvent.m_StartPos ) >= m_DragStartDist)
     {
@@ -356,7 +356,7 @@ void JWindowServer::OnMouse( JMouseEvent& e )
     if (m_pMouseCapture)
     {
         m_pMouseCapture->SendMouseEvent( e, m_DragEvent );
-        if (e.Consumed()) 
+        if (e.Consumed())
         {
             return;
         }
@@ -365,7 +365,7 @@ void JWindowServer::OnMouse( JMouseEvent& e )
     if (m_pFocus)
     {
         m_pFocus->SendMouseEvent( e, m_DragEvent );
-        if (e.Consumed()) 
+        if (e.Consumed())
         {
             return;
         }
@@ -380,33 +380,33 @@ void JWindowServer::OnMouse( JMouseEvent& e )
         pChildWidget->SendMouseEvent( e, m_DragEvent );
         if (e.Consumed()) break;
     }
-    
+
     //  send drop event to the source, if has not been sent yet
     if (m_DragEvent.m_Type == deDrop)
     {
-        if (m_DragEvent.m_pSource && 
-            !m_DragEvent.m_pSource->PtIn( cPos.x, cPos.y )) 
+        if (m_DragEvent.m_pSource &&
+            !m_DragEvent.m_pSource->PtIn( cPos.x, cPos.y ))
         {
             m_DragEvent.m_pSource->OnDrag( m_DragEvent );
         }
-        if (m_DragEvent.m_pObject) 
+        if (m_DragEvent.m_pObject)
         {
             m_DragEvent.m_pObject->OnDrag( m_DragEvent );
             m_DragEvent.m_pObject->SetDragged( false );
         }
     }
-    
+
     //  send drag event to the dragged object, if it has not been sent yet
     if (m_DragEvent.m_Type == deDrag)
     {
-        if (m_DragEvent.m_pObject && 
-            !m_DragEvent.m_pObject->PtIn( cPos.x, cPos.y )) 
+        if (m_DragEvent.m_pObject &&
+            !m_DragEvent.m_pObject->PtIn( cPos.x, cPos.y ))
         {
             m_DragEvent.m_pObject->OnDrag( m_DragEvent );
         }
     }
 
-}  
+}
 
 void JWindowServer::SendWheelEvent( JWheelEvent& e, JWidget* pObj )
 {
@@ -417,10 +417,10 @@ void JWindowServer::SendWheelEvent( JWheelEvent& e, JWidget* pObj )
     {
         JWidget* pChild = obj_cast<JWidget>( *it );
         ++it;
-        if (!pChild || !pChild->IsPathVisible() || pChild == this) continue; 
+        if (!pChild || !pChild->IsPathVisible() || pChild == this) continue;
         pChild->OnWheel( e );
     }
-}  
+}
 
 void JWindowServer::OnWheel( JWheelEvent& e )
 {
@@ -435,12 +435,12 @@ void JWindowServer::OnWheel( JWheelEvent& e )
     {
         JWidget* pChild = obj_cast<JWidget>( *it );
         ++it;
-        if (!pChild || !pChild->IsPathVisible() || 
+        if (!pChild || !pChild->IsPathVisible() ||
             pChild == this ||
-            pChild->HasParent( m_pFocus )) continue; 
+            pChild->HasParent( m_pFocus )) continue;
             pChild->OnWheel( e );
     }
-}  
+}
 
 
 void JWindowServer::OnKey( JKeyEvent& e )
@@ -451,9 +451,9 @@ void JWindowServer::OnKey( JKeyEvent& e )
     {
         JWidget* pObj = obj_cast<JWidget>( *it );
         ++it;
-        if (!pObj || !pObj->IsPathVisible()) continue; 
+        if (!pObj || !pObj->IsPathVisible()) continue;
         pObj->OnKey( e );
-    }   
+    }
 
     //  pass to all parents of the focused widget
     if (m_pFocus)
@@ -474,9 +474,9 @@ void JWindowServer::OnKey( JKeyEvent& e )
         {
             JObject* pObj = *it;
             ++it;
-            if (!pObj) continue; 
+            if (!pObj) continue;
             JWidget* pWidget = obj_cast<JWidget>( pObj );
-            if (!pWidget || !pWidget->IsPathVisible()) continue; 
+            if (!pWidget || !pWidget->IsPathVisible()) continue;
             pWidget->AddRef();
             pWidget->OnKey( e );
             if (pWidget->GetNRef() <= 1)
@@ -486,9 +486,9 @@ void JWindowServer::OnKey( JKeyEvent& e )
                 break;
             }
             pWidget->Release();
-        } 
+        }
     }
-}  
+}
 
 void JWindowServer::ReloadWidgets()
 {
@@ -498,7 +498,7 @@ void JWindowServer::ReloadWidgets()
         g_pPersistServer->LoadObject( pChild->GetName(), pChild );
         pChild->InitTree();
     }
-}  
+}
 
 JWidget* JWindowServer::PickWidget( int px, int py )
 {
@@ -509,31 +509,31 @@ JWidget* JWindowServer::PickWidget( int px, int py )
     {
         JWidget* pObj = obj_cast<JWidget>( *it );
         ++it;
-        if (!pObj || !pObj->IsPathVisible() || !pObj->PtIn( px, py )) 
+        if (!pObj || !pObj->IsPathVisible() || !pObj->PtIn( px, py ))
         {
-            continue; 
+            continue;
         }
         pRes = pObj;
     }
     return pRes;
-}  
+}
 
 void JWindowServer::RenderTree( JObject* pObj, bool bRenderFocus, const Frame& curExt )
 {
     if (!pObj) return;
-    if (!pObj->IsVisible()) 
+    if (!pObj->IsVisible())
     {
         return;
     }
 
     JWidget* pWidget = obj_cast<JWidget>( pObj );
-    
+
     bool bSkipRender = (!bRenderFocus && pWidget && pWidget->HasFocus() != bRenderFocus);
-    
+
     Frame ext( curExt );
     //  render object
     Frame vp;
-    if (pObj != this) 
+    if (pObj != this)
     {
         //  automatic slots polling
         if (pObj->IsSignalSink())
@@ -563,10 +563,10 @@ void JWindowServer::RenderTree( JObject* pObj, bool bRenderFocus, const Frame& c
 
     //  draw debug bounds, if overriden
     if (IsDrawBounds() && !pObj->IsDrawBounds())
-    {    
+    {
         pObj->DrawBounds();
     }
-    
+
     //  render children
     int nCh = pObj->GetNChildren();
     for (int i = 0; i < nCh; i++)
@@ -583,24 +583,24 @@ void JWindowServer::RenderTree( JObject* pObj, bool bRenderFocus, const Frame& c
     {
         g_pRenderServer->SetViewport( vp );
     }
-}  
+}
 
 bool JWindowServer::HasInvisibleParent( JObject* pObj )
 {
     if (!pObj) return false;
     JObject* pParent = pObj;
-    while (pParent) 
+    while (pParent)
     {
         if (!pParent->IsVisible()) return true;
         pParent = pParent->GetParent();
     }
     return false;
-}  
+}
 
-void JWindowServer::SetMouseCapture( JWidget* pCapture ) 
-{ 
-    m_pMouseCapture = pCapture; 
-} 
+void JWindowServer::SetMouseCapture( JWidget* pCapture )
+{
+    m_pMouseCapture = pCapture;
+}
 
 void JWindowServer::Render()
 {
@@ -609,12 +609,12 @@ void JWindowServer::Render()
         g_pRenderServer->SetViewport( GetExt() );
     }
 
-    if (HasInvisibleParent( m_pFocus )) 
+    if (HasInvisibleParent( m_pFocus ))
     {
         m_pFocus->SetFocus( false );
     }
 
-    if (HasInvisibleParent( m_pMouseCapture )) 
+    if (HasInvisibleParent( m_pMouseCapture ))
     {
         m_pMouseCapture->CaptureMouse( false );
     }
@@ -625,7 +625,7 @@ void JWindowServer::Render()
     {
         RenderTree( m_pFocus, true, m_pFocus->GetParentExt() );
     }
-    
+
     //  find current cursor
     Vec2 mPos;
     GetMousePos( mPos );
@@ -653,14 +653,14 @@ void JWindowServer::Render()
     }
     SetCursor( pCursorObj ? pCursorObj->GetCursor() : "default" );
 
-}  
-
-void JWindowServer::GetRootExt( Frame& ext ) const 
-{ 
-    ext = GetExt(); 
 }
 
-void JWindowServer::SetRootExt( const Frame& ext ) 
+void JWindowServer::GetRootExt( Frame& ext ) const
+{
+    ext = GetExt();
+}
+
+void JWindowServer::SetRootExt( const Frame& ext )
 {
     SetExt( ext );
 }
@@ -694,7 +694,7 @@ void JWindowServer::Init()
         CreateWnd( m_ScreenMode );
     }
     ::SetCursor( LoadCursor( NULL, IDC_ARROW ) );
-}  
+}
 
 bool JWindowServer::DestroyWnd()
 {
@@ -716,13 +716,13 @@ bool JWindowServer::CreateWnd( JScreenMode screenMode )
 
     m_ScreenMode = screenMode;
 
-    HINSTANCE hInst = GetModuleHandle( NULL ); 
+    HINSTANCE hInst = GetModuleHandle( NULL );
     //  register the window class
     WNDCLASSA wndClass = { CS_DBLCLKS, MsgProc, 0, 0, hInst, NULL, NULL,
                             (HBRUSH)GetStockObject( BLACK_BRUSH ),
                             NULL, m_WndClassName.c_str() };
     RegisterClassA( &wndClass );
-    
+
     RECT rcDesktop;
     SystemParametersInfo( SPI_GETWORKAREA, 0, &rcDesktop, 0 );
 
@@ -730,7 +730,7 @@ bool JWindowServer::CreateWnd( JScreenMode screenMode )
     Frame rcParent;
     uint32_t wndStyle = WS_POPUP;
     uint32_t wndExStyle = 0;
-    if (m_ScreenMode == smWindow) 
+    if (m_ScreenMode == smWindow)
     {
         wrc.w = m_DisplayWidth;
         wrc.h = m_DisplayHeight;
@@ -738,7 +738,7 @@ bool JWindowServer::CreateWnd( JScreenMode screenMode )
         wndStyle = WS_POPUP;
         if (m_WindowBorder != Border_None)
         {
-            wndStyle |= WS_OVERLAPPED | WS_BORDER | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | 
+            wndStyle |= WS_OVERLAPPED | WS_BORDER | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX |
                     WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
         }
         if (m_WindowBorder == Border_Sized)
@@ -774,13 +774,13 @@ bool JWindowServer::CreateWnd( JScreenMode screenMode )
 
     // Create the render window
     m_hWnd = CreateWindowEx( wndExStyle, m_WndClassName.c_str(), m_Text.c_str(), wndStyle,
-                            wrc.x, wrc.y, wrc.w, wrc.h, 
+                            wrc.x, wrc.y, wrc.w, wrc.h,
                             0, NULL, hInst, 0 );
-    
+
     if (m_ScreenMode == smWindow && m_WindowBorder != Border_None)
     {
         RECT clRect;
-        GetClientRect( m_hWnd, &clRect );  
+        GetClientRect( m_hWnd, &clRect );
         wrc.w += (wrc.w - (clRect.right - clRect.left));
         wrc.h += (wrc.h - (clRect.bottom - clRect.top));
     }
@@ -798,7 +798,7 @@ bool JWindowServer::CreateWnd( JScreenMode screenMode )
     UpdateWindow( m_hWnd );
     return true;
 }
- 
+
 uint32_t WINAPI JWindowServer::FPSThreadProcStart( LPVOID lpParam )
 {
    return s_pInstance->FPSThreadProc( lpParam );
@@ -825,7 +825,7 @@ int JWindowServer::RunApplicationLoop()
     MSG  msg;
     msg.message = WM_NULL;
     PeekMessage( &msg, NULL, 0U, 0U, PM_NOREMOVE );
-    
+
     while (msg.message != WM_QUIT && IsWindow( m_hWnd ))
     {
         bool bHaveMsg = (PeekMessage( &msg, NULL, 0U, 0U, PM_REMOVE ) != 0);
@@ -851,7 +851,7 @@ int JWindowServer::RunApplicationLoop()
     }
     m_bQuit = true;
     return (int)msg.wParam;
-} 
+}
 
 void JWindowServer::RenderFrame()
 {
@@ -867,17 +867,17 @@ void JWindowServer::RenderFrame()
     }
 
     JCore::s_pInstance->RenderTree();
-    
-    if (g_pSoundServer) 
+
+    if (g_pSoundServer)
     {
         g_pSoundServer->Update();
     }
 
-    if (g_pDrawServer)  
+    if (g_pDrawServer)
     {
         g_pDrawServer->Flush();
     }
-    
+
     if (g_pRenderServer)
     {
         g_pRenderServer->EndFrame();
@@ -905,12 +905,12 @@ void JWindowServer::SetMouseY( float val )
 void JWindowServer::ToggleMinimized()
 {
 
-}  
+}
 
 void JWindowServer::SetTrayMode( bool bTray )
 {
-    
-}  
+
+}
 
 
 

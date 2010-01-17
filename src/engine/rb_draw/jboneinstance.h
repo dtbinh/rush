@@ -6,12 +6,12 @@
 #ifndef __JBONEINSTANCE_H__
 #define __JBONEINSTANCE_H__
 
-#include "Mat4.h"
+#include "mat4.h"
 
 class JBone;
 /***********************************************************************************/
 /*  Struct:  JBoneInstance
-//  Desc:    Bone, instanced in the world   
+//  Desc:    Bone, instanced in the world
 /***********************************************************************************/
 struct JBoneInstance
 {
@@ -25,7 +25,7 @@ struct JBoneInstance
     int             m_ParentIdx;
     JBone*          m_pBone;
 
-    JBoneInstance() : 
+    JBoneInstance() :
         m_Index      ( -1 ),
         m_LocalTM    ( Mat4::identity ),
         m_ModelTM    ( Mat4::identity ),

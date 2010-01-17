@@ -1,10 +1,10 @@
 //****************************************************************************/
 //  File:   JProgress.cpp
 //  Date:   18.09.2005
-//  Author: Ruslan Shestopalyuk 
+//  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "JProgress.h"
+#include "jprogress.h"
 
 //****************************************************************************/
 /*  JProgress implementation
@@ -36,7 +36,7 @@ void JProgress::OnMouse( JMouseEvent& m )
     Frame ext = GetExt();
     if (m.MouseKey() == mkLeft)
     {
-        if (m.Action() == aKeyDown && m_bCaptureOnDrag) CaptureMouse( true ); 
+        if (m.Action() == aKeyDown && m_bCaptureOnDrag) CaptureMouse( true );
         if (m.Action() == aKeyUp && m_bCaptureOnDrag)   CaptureMouse( false );
 
         Frame fExt( ext );
@@ -65,23 +65,23 @@ void JProgress::OnMouse( JMouseEvent& m )
 
         if (m.Action() == aMouseMove)
         {
-        
+
         }
         m.Consume();
     }
 } // JProgress::OnMouse
 
 void JProgress::Render()
-{   
+{
     Frame ext = GetExt();
     uint32_t clr = GetFgColor();
-    
+
     Frame vp = g_pRenderServer->GetViewport();
     g_pDrawServer->Flush();
     g_pRenderServer->SetViewport( ext );
     //  draw background
     g_pDrawServer->DrawSprite( ext, GetSkinPackID(), GetSkinFrame(), clr );
-    
+
     //  draw fill
     Frame fExt( ext );
     fExt.Inflate( -m_LeftBorder, -m_TopBorder, -m_RightBorder, -m_BottomBorder );

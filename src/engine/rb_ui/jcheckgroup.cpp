@@ -1,12 +1,12 @@
 //****************************************************************************/
 //  File:   JCheckGroup.cpp
 //  Date:   16.08.2005
-//  Author: Ruslan Shestopalyuk 
+//  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "JButton.h"
-#include "JCheckBox.h"
-#include "JCheckGroup.h"
+#include "jbutton.h"
+#include "jcheckbox.h"
+#include "jcheckgroup.h"
 
 //****************************************************************************/
 /*  JCheckGroup implementation
@@ -20,7 +20,7 @@ JCheckGroup::JCheckGroup()
 } // JCheckGroup::JCheckGroup
 
 void JCheckGroup::Render()
-{   
+{
     int nCh = GetNChildren();
     int cChild = 0;
     for (int i = 0; i < nCh; i++)

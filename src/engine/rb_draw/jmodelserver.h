@@ -1,14 +1,14 @@
 //****************************************************************************/
 //  File:  JModelServer.h
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #ifndef __JMODELSERVER_H__
 #define __JMODELSERVER_H__
 #include <vector>
-#include "Color.h"
-#include "Mat4.h"
-#include "Path.h"
-#include "IModelServer.h"
+#include "color.h"
+#include "mat4.h"
+#include "path.h"
+#include "imodelserver.h"
 
 class JModel;
 class JBoneInstance;
@@ -27,13 +27,13 @@ struct ShadowObj
 {
     int     m_InstanceID;
     Mat4    m_TM;
-    ShadowObj( int instID = -1, const Mat4& tm = Mat4::identity ) 
+    ShadowObj( int instID = -1, const Mat4& tm = Mat4::identity )
         : m_InstanceID( instID ), m_TM( tm ){}
 }; // struct ShadowObj
 
 //****************************************************************************/
 //  Class:  JModelServer
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 class JModelServer : public JObject, public IModelServer
 {
@@ -69,14 +69,14 @@ public:
     float       GetAnimDuration ( int animID, int sectionID = -1 ) const;
     int         GetAnimSectionID( int animID, const char* name ) const;
 
-    void        AnimateModel    ( int mID, const Mat4& tm, int anmID, float cTime, int instID = -1, 
+    void        AnimateModel    ( int mID, const Mat4& tm, int anmID, float cTime, int instID = -1,
         float weight = 1.0f, int sectionID = -1 );
     int         InstanceModel   ( int mID );
     int         GetModelBoneID  ( int mID, const char* boneName ) const;
     bool        SetBoneTM       ( int instID, int boneID, Mat4& tm, bool bLocal = false );
     bool        GetBoneTM       ( int instID, int boneID, Mat4& tm ) const;
     JModel*     GetModelByInst  ( int instID );
-    
+
     void        EnableShadows   ( bool bEnable = true ) { m_bEnableShadows = bEnable; }
     bool        ShadowsEnabled  () const { return m_bEnableShadows; }
 
@@ -88,7 +88,7 @@ public:
 
     int         GetShadowMapSide() const { return m_ShadowMapSide; }
     void        SetShadowMapSide( int side );
-    
+
     expose(JModelServer)
     {
         parent(JObject);

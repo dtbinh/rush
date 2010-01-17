@@ -5,9 +5,9 @@
 /*	Date:	17-03-2005
 //****************************************************************************/
 #include "precompile.h"
-#include "Scalar.h"
-#include "VecN.h"
-#include "MatMN.h"
+#include "scalar.h"
+#include "vecn.h"
+#include "matmn.h"
 #include <malloc.h>
 
 //****************************************************************************/
@@ -161,23 +161,23 @@ void MatMN::AddUtV( const VecN& u, const VecN& v )
 bool MatMN::FactorCholesky()
 {
     assert( m_NCols == m_NCols && m_NCols > 0 && m_Buf );
-    
-    int     n     = m_NCols;    
-    real*   recip =  STACK_ALLOC( real, n );
+
+    int     n     = m_NCols;
+    real*   recip = STACK_ALLOC( real, n );
     real*   aa    = m_Buf;
     real    sum;
     real*   a;
     real*   b;
-    for (int i = 0; i < n; i++) 
+    for (int i = 0; i < n; i++)
     {
         real* bb = m_Buf;
         real* cc = m_Buf + i*n;
-        for (int j = 0; j < i; j++) 
+        for (int j = 0; j < i; j++)
         {
             sum = *cc;
             a   = aa;
             b   = bb;
-            for (int k = j; k; k--) 
+            for (int k = j; k; k--)
             {
                 sum -= (*(a++))*(*(b++));
             }
@@ -187,7 +187,7 @@ bool MatMN::FactorCholesky()
         }
         sum = *cc;
         a = aa;
-        for (int k = i; k > 0; k--, a++) 
+        for (int k = i; k > 0; k--, a++)
         {
             sum -= (*a)*(*a);
         }
@@ -202,31 +202,31 @@ bool MatMN::FactorCholesky()
 void MatMN::SolveCholesky( const VecN& b )
 {
     assert( m_NCols == m_NCols && m_NCols > 0 && m_Buf && b.m_Buf );
-    int     n   = m_NCols;    
+    int     n   = m_NCols;
     real*   pB  = b.m_Buf;
     real*   y   = STACK_ALLOC( real, n );
     real*   L   = m_Buf;
-    
-    for (int i = 0; i < n; i++) 
+
+    for (int i = 0; i < n; i++)
     {
         real sum = 0;
-        for (int k = 0; k < i; k++) 
+        for (int k = 0; k < i; k++)
         {
             sum += L[i*n + k]*y[k];
         }
         y[i] = (pB[i] - sum)/L[i*n + i];
     }
-    
-    for (int i = n - 1; i >= 0; i--) 
+
+    for (int i = n - 1; i >= 0; i--)
     {
         real sum = 0;
-        for (int k = i + 1; k < n; k++) 
+        for (int k = i + 1; k < n; k++)
         {
             sum += L[k*n + i]*pB[k];
         }
         pB[i] = (y[i] - sum)/L[i*n + i];
     }
-} // MatMN::SolveCholesky
+}
 
 bool MatMN::IsPosDefinite() const
 {
@@ -240,7 +240,7 @@ bool MatMN::IsPosDefinite() const
     m.m_NCols   = n;
     m.m_NRows   = n;
     return m.FactorCholesky();
-} // MatMN::IsPosDefinite
+}
 
 bool MatMN::PDInverse( const MatMN& m )
 {
@@ -255,18 +255,18 @@ bool MatMN::PDInverse( const MatMN& m )
     VecN  x( px, n );
     if (!L.FactorCholesky()) return false;
     Zero();
-    for (int i = 0; i < n; i++) 
+    for (int i = 0; i < n; i++)
     {
         x.Zero();
         x[i] = 1.0;
         L.SolveCholesky( x );
-        for (int j = 0; j < n; j++) 
+        for (int j = 0; j < n; j++)
         {
             m_Buf[j*n + i] = x[j];
         }
     }
-    return true;  
-} // MatMN::PDInverse
+    return true;
+}
 
 void MatMN::Zero()
 {
@@ -275,7 +275,7 @@ void MatMN::Zero()
     {
         m_Buf[i] = 0.0;
     }
-} // MatMN::Zero
+}
 
 void MatMN::Transpose( const MatMN& m )
 {
@@ -291,7 +291,7 @@ void MatMN::Transpose( const MatMN& m )
         }
         pSrc += m_NRows;
     }
-} // MatMN::Transpose
+}
 
 void MatMN::Transpose()
 {
@@ -301,7 +301,7 @@ void MatMN::Transpose()
     memcpy( pM, m_Buf, sz*sizeof(real) );
     MatMN m( pM, m_NCols, m_NRows );
     Transpose( m );
-} // MatMN::Transpose
+}
 
 bool MatMN::GaussElimination()
 {
@@ -335,19 +335,19 @@ bool MatMN::GaussElimination()
                 }
             }
         }
-        
+
         //  matrix is singular
         if (maxEl < c_Epsilon)
         {
             return false;
         }
-        
+
         //  exchange rows
         if (maxC != maxR)
         {
             int cA = maxC*m_NCols;
             int cB = maxR*m_NCols;
-            for (int i = 0; i < n; i++) 
+            for (int i = 0; i < n; i++)
             {
                 real tmp  = A[cA];
                 A[cA] = A[cB];
@@ -365,11 +365,11 @@ bool MatMN::GaussElimination()
         //  scale current row
         pC = n*maxC;
         A[maxC + maxC*m_NCols] = 1.0;
-        for (int i = 0; i < n; i++) 
+        for (int i = 0; i < n; i++)
         {
             A[pC++] *= invEl;
         }
-        
+
         //  zero elements beneath pivot
         pC = 0;
         for (int j = 0; j < n; j++)
@@ -399,7 +399,7 @@ bool MatMN::GaussElimination()
     }
 
     return true;
-} // MatMN::GaussElimination
+}
 
 void MatMN::SwapRows( int r1, int r2 )
 {
@@ -413,7 +413,7 @@ void MatMN::SwapRows( int r1, int r2 )
         pR1[i] = pR2[i];
         pR2[i] = tmp;
     }
-} // MatMN::SwapRows
+}
 
 void MatMN::SwapCols( int c1, int c2 )
 {
@@ -429,7 +429,7 @@ void MatMN::SwapCols( int c1, int c2 )
         pR1 += m_NCols;
         pR2 += m_NCols;
     }
-} // MatMN::SwapCols
+}
 
 bool MatMN::GetRow( int r, VecN& row )
 {
@@ -438,7 +438,7 @@ bool MatMN::GetRow( int r, VecN& row )
     real* pR = m_Buf + r*m_NCols;
     for (int i = 0; i < m_NCols; i++) row[i] = pR[i];
     return true;
-} // MatMN::GetRow
+}
 
 bool MatMN::GetCol( int c, VecN& col )
 {
@@ -447,7 +447,7 @@ bool MatMN::GetCol( int c, VecN& col )
     real* pR = m_Buf + c;
     for (int i = 0; i < m_NRows; i++) { col[i] = *pR; pR += m_NCols; }
     return true;
-} // MatMN::GetCol
+}
 
 bool MatMN::SetRow( int r, VecN& row )
 {
@@ -456,7 +456,7 @@ bool MatMN::SetRow( int r, VecN& row )
     real* pR = m_Buf + r*m_NCols;
     for (int i = 0; i < m_NCols; i++) pR[i] = row[i];
     return true;
-} // MatMN::SetRow
+}
 
 bool MatMN::SetCol( int c, VecN& col )
 {
@@ -465,7 +465,7 @@ bool MatMN::SetCol( int c, VecN& col )
     real* pR = m_Buf + c;
     for (int i = 0; i < m_NRows; i++) { *pR = col[i]; pR += m_NCols; }
     return true;
-} // MatMN::SetCol
+}
 
 bool MatMN::PseudoInverse( const MatMN& m )
 {
@@ -473,7 +473,7 @@ bool MatMN::PseudoInverse( const MatMN& m )
     int   h  = m.m_NRows;
     real* pM = m.m_Buf;
 
-    //  if there are more rows than columns, transpose source matrix 
+    //  if there are more rows than columns, transpose source matrix
     //  - this tends to reduce errors
     bool bTranspose = (h > w);
     if (bTranspose)
@@ -483,7 +483,7 @@ bool MatMN::PseudoInverse( const MatMN& m )
         mt.Transpose( m );
         w = m.m_NRows;
         h = m.m_NCols;
-    }  
+    }
     Resize( w, h );
 
     real* pV = STACK_ALLOC( real, h );
@@ -491,10 +491,10 @@ bool MatMN::PseudoInverse( const MatMN& m )
 
     real* pB = m_Buf;
     real* pA = pM;
-    
-    VecN a( pA, w ); 
-    VecN b( pB, w ); 
-    
+
+    VecN a( pA, w );
+    VecN b( pB, w );
+
     //  0th column
     b = a;
     b /= a.Norm2();
@@ -508,7 +508,7 @@ bool MatMN::PseudoInverse( const MatMN& m )
 
         MatMN A( pM, w, i );
         MatMN B( m_Buf, w, i );
-        
+
         //  r = (I - AA+)a
         r.Mul( B, a );
         b.Mul( r, A );
@@ -539,7 +539,7 @@ bool MatMN::PseudoInverse( const MatMN& m )
     if (!bTranspose) Transpose();
 
     return true;
-} // MatMN::PseudoInverse
+}
 
 void MatMN::Clamp( real minv, real maxv )
 {
@@ -549,7 +549,7 @@ void MatMN::Clamp( real minv, real maxv )
         if (m_Buf[i] < minv) m_Buf[i] = minv;
         if (m_Buf[i] > maxv) m_Buf[i] = maxv;
     }
-} // MatMN::Clamp
+}
 
 
 

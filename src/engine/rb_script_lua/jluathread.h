@@ -4,7 +4,7 @@
 #ifndef __JLUATHREAD_H__
 #define __JLUATHREAD_H__
 
-#include "JWeakRef.h"
+#include "jweakref.h"
 
 struct JThreadSignal
 {
@@ -12,10 +12,10 @@ struct JThreadSignal
 
     JString             m_Attr;
     JString             m_Func;
-    JThreadSignal() 
+    JThreadSignal()
         : m_pObj( NULL )
     {}
-    JThreadSignal( JObject* pObj, const char* attr, const char* pFunc ) 
+    JThreadSignal( JObject* pObj, const char* attr, const char* pFunc )
         : m_pObj( pObj ),
           m_Attr( attr ),
           m_Func( pFunc )
@@ -30,12 +30,12 @@ struct JThreadSignal
 
 //****************************************************************************/
 //  Class:  JLuaThread
-//  Desc:    
+//  Desc:
 //****************************************************************************/
-class JLuaThread : public JObject 
+class JLuaThread : public JObject
 {
 public:
-    JLuaThread() 
+    JLuaThread()
         : m_pLua        ( NULL  ),
           m_WaitTime    ( 0.0f  ),
           m_pRootObj    ( NULL  ),
@@ -47,11 +47,11 @@ public:
           m_ID          ( -1    )
     {}
 
-    int         Start           ( lua_State* pLua, JLuaScript* pScript, 
+    int         Start           ( lua_State* pLua, JLuaScript* pScript,
                                     JObject* pRootObj = NULL, JString* pResult = NULL );
-    int         Start           ( lua_State* pLua, const char* pScript, 
+    int         Start           ( lua_State* pLua, const char* pScript,
                                     JObject* pRootObj = NULL, JString* pResult = NULL );
-    int         Start           ( lua_State* pLua, const char* funcName, JLuaThread* pParent = NULL, 
+    int         Start           ( lua_State* pLua, const char* funcName, JLuaThread* pParent = NULL,
                                     JObject* pArgument = NULL, JString* pResult = NULL );
 
     int         Resume          ();

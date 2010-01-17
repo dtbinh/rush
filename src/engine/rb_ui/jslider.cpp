@@ -1,9 +1,9 @@
 //****************************************************************************/
 //  File:  JSlider.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "JSlider.h"
+#include "jslider.h"
 
 //****************************************************************************/
 /*  JSlider implementation
@@ -27,7 +27,7 @@ void JSlider::OnMouse( JMouseEvent& m )
     Frame ext = GetExt();
     if (m.MouseKey() == mkLeft)
     {
-        if (m.Action() == aKeyDown && m_bCaptureOnDrag) CaptureMouse( true ); 
+        if (m.Action() == aKeyDown && m_bCaptureOnDrag) CaptureMouse( true );
         if (m.Action() == aKeyUp && m_bCaptureOnDrag)   CaptureMouse( false );
 
         if (m.Action() == aKeyDown || m.Action() == aMouseMove)
@@ -39,23 +39,23 @@ void JSlider::OnMouse( JMouseEvent& m )
 
         if (m.Action() == aMouseMove)
         {
-        
+
         }
         m.Consume();
     }
 } // JSlider::OnMouse
 
 void JSlider::Render()
-{   
+{
     Frame    ext = GetExt();
     uint32_t   clr  = GetFgColor();
-    
+
     //  draw background
     g_pDrawServer->TileSprite( ext, GetSkinPackID(), GetSkinFrame(), GetBgColor() );
-    
+
     float bw = g_pDrawServer->GetFrameW( GetSkinPackID(), m_ThumbBeg );
     float bh = g_pDrawServer->GetFrameH( GetSkinPackID(), m_ThumbBeg );
-    
+
     float mw = g_pDrawServer->GetFrameW( GetSkinPackID(), m_ThumbMid );
     float mh = g_pDrawServer->GetFrameH( GetSkinPackID(), m_ThumbMid );
 
@@ -97,7 +97,7 @@ void JSlider::Render()
             rMid.x = ext.x + ext.w*m_Position - mw*0.5f;
         }
     }
-    
+
     g_pDrawServer->DrawSprite( rBeg, GetSkinPackID(), m_ThumbBeg, GetFgColor() );
     g_pDrawServer->TileSprite( rMid, GetSkinPackID(), m_ThumbMid, GetFgColor() );
     g_pDrawServer->DrawSprite( rEnd, GetSkinPackID(), m_ThumbEnd, GetFgColor() );

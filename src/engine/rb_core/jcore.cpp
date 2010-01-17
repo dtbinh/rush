@@ -5,7 +5,7 @@
 #include "jobject.h"
 #include "jgroup.h"
 #include "jobjectiterator.h"
- 
+
 #include "jobjectserver.h"
 #include "jsignalserver.h"
 #include "jpersistserver.h"
@@ -14,7 +14,6 @@
 #include "iparticleserver.h"
 #include "iscriptserver.h"
 
-#include "direct.h"
 #include "path.h"
 #include "jcore.h"
 
@@ -33,9 +32,9 @@ JCore::~JCore()
 {
 } // JCore::~JCore
 
-void JCore::SetRootObject( const char* objName ) 
-{ 
-    m_RootObject = objName; 
+void JCore::SetRootObject( const char* objName )
+{
+    m_RootObject = objName;
     SendSignal( "RootObject" );
 }
 
@@ -58,13 +57,13 @@ void JCore::Init()
         JGroup* pServers = new JGroup();
         pServers->SetName( "srv" );
         AddChild( pServers );
-        
+
         JSignalServer*  pSignalServer   = new JSignalServer();
         JPersistServer* pPersistServer  = new JPersistServer();
         JFileServer*    pFileServer     = new JFileServer();
 
-        pServers->AddChild( pSignalServer   );    
-        pServers->AddChild( pPersistServer  );    
+        pServers->AddChild( pSignalServer   );
+        pServers->AddChild( pPersistServer  );
         pServers->AddChild( pFileServer     );
     }
 } // JCore::Init
@@ -81,7 +80,7 @@ JObject* JCore::AddServer( const char* className )
     }
     pServers->AddChild( pServer );
     return pServer;
-} // JCore::AddServer
+}
 
 void JCore::Render()
 {
@@ -92,7 +91,7 @@ void JCore::Render()
         if (!pChild || !pChild->IsVisible()) continue;
         pChild->Render();
     }
-} // JCore::Render
+}
 
 
 

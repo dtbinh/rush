@@ -1,6 +1,6 @@
 #include "precompile.h"
-#include "JPersistServer.h"
-#include "JGrid.h"
+#include "jpersistserver.h"
+#include "jgrid.h"
 
 TEST( Grid )
 {

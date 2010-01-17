@@ -4,7 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JStringSelector.h"
+
+#include "jstringselector.h"
 
 /***********************************************************************************/
 /*  JStringSelector implementation

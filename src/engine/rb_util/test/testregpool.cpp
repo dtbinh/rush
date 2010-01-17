@@ -1,5 +1,5 @@
 #include "precompile.h"
-#include "RegPool.h"
+#include "regpool.h"
 
 TEST( RegPool )
 {

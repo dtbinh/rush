@@ -1,11 +1,11 @@
 //****************************************************************************/
 //  File:   JCheckBox.cpp
 //  Date:   16.08.2005
-//  Author: Ruslan Shestopalyuk 
+//  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "JButton.h"
-#include "JCheckBox.h"
+#include "jbutton.h"
+#include "jcheckbox.h"
 
 //****************************************************************************/
 /*  JCheckBox implementation
@@ -24,7 +24,7 @@ void JCheckBox::Check( bool bCheck )
 {
     if (IsPressed() != bCheck)
     {
-        if (bCheck) 
+        if (bCheck)
         {
             Press();
         }
@@ -36,13 +36,13 @@ void JCheckBox::Check( bool bCheck )
 } // JCheckBox::Check
 
 void JCheckBox::Render()
-{   
+{
     Frame    ext = GetExt();
     uint32_t   clr = GetFgColor();
 
     int skinFrame = m_NormalFrame;
-    
-    if (IsHovered()) 
+
+    if (IsHovered())
     {
         clr = GetHoverFgColor();
         skinFrame = m_HoverFrame == -1 ? m_NormalFrame : m_HoverFrame;
@@ -59,10 +59,10 @@ void JCheckBox::Render()
     }
     g_pDrawServer->SetLinFilter( IsFilterFont() );
     g_pDrawServer->Flush();
-    
+
     int fontHeight = GetFontHeight();
     ext.y = ext.b() - fontHeight;
-    ext.h = fontHeight; 
+    ext.h = fontHeight;
     ext = ApplyAlignment( ext, GetExt(), XAlign_Left, YAlign_Center );
     ext.x += g_pDrawServer->GetFrameW( GetSkinPackID(), skinFrame );
     ext.x += 4;

@@ -9,10 +9,11 @@
 #include "jobject.h"
 #include "uniformpool.h"
 
+
 class JMLNode;
 
 typedef UniformPool<JSignal> JSignalPool;
-typedef stdext::hash_multimap<JObject*, JSignal*> JSignalReg;
+typedef hash_multimap_t<JObject*, JSignal*> JSignalReg;
 //****************************************************************************/
 //  Class:  JSignalServer, singleton
 //  Desc:   Tracks and manages connections between object's slots.
@@ -24,7 +25,7 @@ class JSignalServer : public JObject, public ISignalServer
     JSignalPool                 m_SignalPool;
     JSignalReg                  m_SignalReg;
 
-    uint32_t                       m_CurToken;
+    uint32_t                    m_CurToken;
     JObject*                    m_pCurSrcObj;
     JString                     m_CurSrcAttr;
 

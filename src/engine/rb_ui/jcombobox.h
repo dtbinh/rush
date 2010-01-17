@@ -6,7 +6,7 @@
 #ifndef __JCOMBOBOX_H__
 #define __JCOMBOBOX_H__
 
-#include "JWeakRef.h"
+#include "jweakref.h"
 
 class JButton;
 class JListBox;
@@ -40,7 +40,7 @@ public:
     void                DropDown        ();
     void                DropUp          ();
     int                 GetSelectedItem () const { return m_SelectedItem; }
-    void                SelectItem      ( int idx ); 
+    void                SelectItem      ( int idx );
 
     expose(JComboBox)
     {

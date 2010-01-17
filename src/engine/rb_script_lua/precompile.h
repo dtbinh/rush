@@ -12,8 +12,8 @@
 #include "math.h"
 #include "stdlib.h"
 
-#include "JReflect.h"
-#include "Logger.h"
+#include "jreflect.h"
+#include "logger.h"
 
 #include "stdlib.h"
 #include "jstring.h"

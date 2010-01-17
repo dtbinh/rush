@@ -6,8 +6,8 @@
 #ifndef __JMESH_H__
 #define __JMESH_H__
 
-#include "JSkinCluster.h"
-#include "StaticArray.h"
+#include "jskincluster.h"
+#include "staticarray.h"
 
 enum_beg(PrimitiveType)
 enum_val( "Unknown",        PrimitiveType_Unknown         ),
@@ -38,7 +38,7 @@ const int c_MaxBonesPerVertex = 4;
 typedef static_array<JSkinCluster, c_MaxBonesPerVertex> JSkinClusterArray;
 /***********************************************************************************/
 //  Class:  JMesh
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JMesh : public JObject
 {
@@ -50,7 +50,7 @@ class JMesh : public JObject
     int                     m_NIndices;
 
     PrimitiveType           m_PrimitiveType;
-    
+
     JString                 m_MaterialName;
     int                     m_MaterialID;       //  shader index in model's material palette
 
@@ -70,7 +70,7 @@ class JMesh : public JObject
     AABox                   m_AABB;
     Mat4                    m_NormTM;
 
-    
+
     int                     m_VBufID;       //  vertex buffer ID
     int                     m_VBFirstByte;  //  first byte in the renderer's VB for static vertices
     int                     m_VBIteration;  //  current generation (drop stamp) for static vertices
@@ -80,7 +80,7 @@ class JMesh : public JObject
 public:
                             JMesh               ();
 
-    void                    Render              ( int firstIByte, JBoneInstance* pSkelInst, 
+    void                    Render              ( int firstIByte, JBoneInstance* pSkelInst,
                                                   const Mat4& tm, bool bUseCachedData = false );
 
     const char*             GetMaterialName     () const { return m_MaterialName.c_str(); }
@@ -112,11 +112,11 @@ public:
     int                     GetNSkinClusters    () const { return m_SkinClusters.size(); }
 
     virtual bool            LinkBones           ( JBoneInstance* pBones, int nBones );
-    const char*             GetHostBone         () const { return m_HostBone.c_str(); } 
+    const char*             GetHostBone         () const { return m_HostBone.c_str(); }
     int                     GetNSkinBones       () const { return m_BoneList.size(); }
 
-    void                    SetVertexRange      ( int firstByte, int numVert ); 
-    void                    SetIndexRange       ( int firstIdx, int numIdx ); 
+    void                    SetVertexRange      ( int firstByte, int numVert );
+    void                    SetIndexRange       ( int firstIdx, int numIdx );
     void                    SetMaterial         ( const char* name ) { m_MaterialName = name; }
     void                    SetVDecl            ( const VertexDeclaration& vdecl ) { m_VDecl = vdecl; }
 
@@ -125,9 +125,9 @@ public:
 
     void                    CacheVB             ();
     void                    SetModel            ( JModel* pModel ) { m_pModel = pModel; }
-    bool                    IsSkinned           () const 
-    { 
-        return (m_VDecl.m_TypeID == VertexType_XYZNUVW4 && m_BoneID.size()); 
+    bool                    IsSkinned           () const
+    {
+        return (m_VDecl.m_TypeID == VertexType_XYZNUVW4 && m_BoneID.size());
     }
 
     virtual void            Init                ();

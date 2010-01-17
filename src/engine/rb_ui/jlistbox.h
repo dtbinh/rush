@@ -6,8 +6,8 @@
 #ifndef __JLISTBOX_H__
 #define __JLISTBOX_H__
 
-#include "JWeakRef.h"
-#include "JWidget.h"
+#include "jweakref.h"
+#include "jwidget.h"
 
 /***********************************************************************************/
 //  Class:  JListBox
@@ -16,9 +16,9 @@
 /***********************************************************************************/
 class JListBox : public JWidget
 {
-    float               m_MaxWidth;         
-    float               m_MaxHeight;        
-    bool                m_bVertical;        
+    float               m_MaxWidth;
+    float               m_MaxHeight;
+    bool                m_bVertical;
     bool                m_bSelectable;      //  whether user can select items
     bool                m_bSelectOnHover;   //  when true item is selected when user hovers mouse
     int                 m_SelectedItem;     //  currently item beibg selected, -1 when none
@@ -77,7 +77,7 @@ public:
     }
 
 protected:
-    void            SelectItemAt    ( int mx, int my ); 
+    void            SelectItemAt    ( int mx, int my );
 }; // class JListBox
 
 #endif //__JLISTBOX_H__

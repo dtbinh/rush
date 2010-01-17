@@ -26,7 +26,7 @@ template <class T> inline bool enumerate( JStringList& valList ) { return false;
 template <>
 inline bool cast<std::string, JString>( std::string& to, const JString& from )
 {
-    to = from;
+    to = from.c_str();
     return true;
 }
 
@@ -63,9 +63,9 @@ template <>
 inline bool cast<JString, int>( JString& to, const int& from )
 {
     char buf[c_ConvBufSize];
-    char* pEnd = _itoa( from, buf, 10 );
+    snprintf( buf, c_ConvBufSize, "%d", from );
     to = buf;
-    return (pEnd != NULL);
+    return true;
 }
 
 template <>
@@ -105,7 +105,7 @@ template <>
 inline bool cast<std::wstring, int>( std::wstring& to, const int& from )
 {
     wchar_t buf[c_ConvBufSize];
-    swprintf( buf, L"%d", from );
+    swprintf( buf, c_ConvBufSize, L"%d", from );
     to = buf;
     return true;
 }
@@ -239,8 +239,8 @@ inline bool cast<JString, double>( JString& to, const double& from )
 template <>
 inline bool cast<double, JString>( double& to, const JString& from )
 {
-    int val = 0;
-    if (sscanf( from.c_str(), "%f", &val ) == 0) return false;
+    double val = 0;
+    if (sscanf( from.c_str(), "%lf", &val ) == 0) return false;
     to = val;
     return true;
 }

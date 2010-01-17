@@ -4,6 +4,7 @@
 #ifndef __JOBJECTSERVER_H__
 #define __JOBJECTSERVER_H__
 
+#include "jobjcast.h"
 #include "jmetaclass.h"
 #include "jweakrefreg.h"
 #include "jstring.h"
@@ -74,17 +75,14 @@ private:
 
 extern JObjectServer* g_pObjectServer;
 
-
 template <class T>
 inline T* JObjectServer::FindObject( const char* name, JObject* pRoot )
 {
-    static JString fullName;
+    JString fullName;
     fullName = T::s_pMetaClass ? T::s_pMetaClass->GetName() : "*";
     fullName += ":";
     fullName += name;
-    JObject* pObj = FindObject( fullName.c_str(), NULL, pRoot );
-    T* pNode = obj_cast<T>( pObj );
-    return pNode;
+    return obj_cast<T>( FindObject( fullName.c_str(), NULL, pRoot ) );
 }
 
 #endif // __JOBJECTSERVER_H__

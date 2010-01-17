@@ -1,10 +1,10 @@
 //****************************************************************************/
 //  File:  JSwitch.cpp
 //  Date:   22.05.2006
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "JSwitch.h"
+#include "jswitch.h"
 
 
 //****************************************************************************/
@@ -37,7 +37,7 @@ void JSwitch::SetActive( const char* name )
     if (name)
     {
         JObject* pChild = g_pObjectServer->FindObject<JObject>( name, this );
-        if (!pChild) 
+        if (!pChild)
         {
             pChild = new JWidget();
             bFound = false;

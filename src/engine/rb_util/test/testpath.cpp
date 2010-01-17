@@ -1,11 +1,11 @@
 #include "precompile.h"
-#include "Path.h"
+#include "path.h"
 
 TEST( Path )
 {
-    Path path; 
+    Path path;
     CHECK_EQUAL( strlen( path.GetFullPath() ), 0 );
-    
+
     path.SetDrive( "c" );
     CHECK( !strcmp( path.GetDrive(), "c" ) );
     CHECK( !strncmp( path.GetFullPath(), "c:", 2 ) );
@@ -14,7 +14,7 @@ TEST( Path )
     CHECK_EQUAL( strlen( path.GetFile() ), 0 );
     CHECK( !strcmp( path.GetDirectory(), "\\My Documents\\My Pictures\\photos" ) );
     CHECK( !strcmp( path.GetFullPath(), "c:\\My Documents\\My Pictures\\photos\\" ) );
-    
+
     path.SetFileExt( "IMG12323.jpg" );
     CHECK( !strcmp( path.GetFile(), "IMG12323" ) );
     CHECK( !strcmp( path.GetExt(), "jpg" ) );

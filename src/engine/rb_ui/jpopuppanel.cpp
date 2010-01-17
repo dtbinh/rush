@@ -1,11 +1,11 @@
 //****************************************************************************/
 //  File:  JPopupPanel.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "JPanel.h"
-#include "Timer.h"
-#include "JPopupPanel.h"
+#include "jpanel.h"
+#include "timer.h"
+#include "jpopuppanel.h"
 
 //****************************************************************************/
 /*  JPopupPanel implementation
@@ -19,12 +19,12 @@ JPopupPanel::JPopupPanel()
     m_PopPos    = Vec2::null;
     m_Timeout   = 5.0f;
     m_State     = PopupState_Hidden;
-} 
+}
 
 void JPopupPanel::SetState( JPopupState state )
 {
     m_State = state;
-    if (m_State == PopupState_Hiding || 
+    if (m_State == PopupState_Hiding ||
         m_State == PopupState_Popping)
     {
         m_Timer.Start();
@@ -33,14 +33,14 @@ void JPopupPanel::SetState( JPopupState state )
     {
         m_Timer.Reset();
     }
-}  
+}
 
 void JPopupPanel::Render()
-{   
+{
     Frame ext = GetExt();
     if (m_State == PopupState_Popping)
     {
-        float t  = m_Timer.Seconds()/m_PopTime; 
+        float t  = m_Timer.Seconds()/m_PopTime;
         if (t >= 1.0f)
         {
             m_State = PopupState_Popped;
@@ -49,10 +49,10 @@ void JPopupPanel::Render()
         Vec2 pos = m_HidePos + t*(m_PopPos - m_HidePos);
         ext.x = pos.x;
         ext.y = pos.y;
-    }   
+    }
     else if (m_State == PopupState_Hiding)
     {
-        float t  = m_Timer.Seconds()/m_PopTime; 
+        float t  = m_Timer.Seconds()/m_PopTime;
         if (t >= 1.0f)
         {
             m_State = PopupState_Hidden;
@@ -70,7 +70,7 @@ void JPopupPanel::Render()
         }
         else
         {
-            float t  = m_Timer.Seconds()/m_Timeout; 
+            float t  = m_Timer.Seconds()/m_Timeout;
             if (t >= 1.0f)
             {
                 m_State = PopupState_Hiding;
@@ -89,26 +89,26 @@ void JPopupPanel::Render()
     ext.x = floorf( ext.x );
     ext.y = floorf( ext.y );
     SetExt( ext );
-}  
+}
 
 void JPopupPanel::Pop()
 {
     if (m_State == PopupState_Popped) return;
     m_Timer.Start();
     m_State = PopupState_Popping;
-}  
+}
 
 void JPopupPanel::Hide()
 {
     if (m_State == PopupState_Hidden) return;
     m_Timer.Start();
     m_State = PopupState_Hiding;
-} 
+}
 
 void JPopupPanel::TogglePop()
 {
-    if (m_State == PopupState_Popped || 
-        m_State == PopupState_Popping) 
+    if (m_State == PopupState_Popped ||
+        m_State == PopupState_Popping)
     {
         Hide();
     }
@@ -116,18 +116,18 @@ void JPopupPanel::TogglePop()
     {
         Pop();
     }
-}  
+}
 
 void JPopupPanel::OnMouse( JMouseEvent& e )
-{ 
+{
     if (m_State == PopupState_Hidden && e.Action() == aMouseMove)
     {
         m_State = PopupState_Popping;
         m_Timer.Start();
     }
-}  
+}
 
-    
+
 
 
 

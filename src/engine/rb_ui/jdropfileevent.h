@@ -5,7 +5,7 @@
 //****************************************************************************/
 #ifndef __JDROPFILEEVENT_H__
 #define __JDROPFILEEVENT_H__
-#include "JEvent.h"
+#include "jevent.h"
 
 //****************************************************************************/
 //  Class:  JDropFileEvent
@@ -13,7 +13,7 @@
 //****************************************************************************/
 class JDropFileEvent : public JEventID<JDropFileEvent>
 {
-public:    
+public:
     JDropFileEvent( const char* path = "", const Vec2& pos = Vec2::null ) :
         m_Path( path ),
         m_Pos ( pos )

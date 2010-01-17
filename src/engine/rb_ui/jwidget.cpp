@@ -4,8 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "IWindowServer.h"
-#include "JWidget.h"
+#include "iwindowserver.h"
+#include "jwidget.h"
 
 Frame ApplyAlignment( const Frame& rcAdjust, const Frame& rcParent, JXAlign xalign, JYAlign yalign )
 {
@@ -34,28 +34,28 @@ Frame ApplyAlignment( const Frame& rcAdjust, const Frame& rcParent, JXAlign xali
 decl_class(JWidget);
 JWidget::JWidget()
 {
-    m_Text              = "";       
-    m_Font              = "";       
-    m_ToolTip           = "";    
-    m_FontHeight        = 12; 
-    m_FontID            = -1;  
+    m_Text              = "";
+    m_Font              = "";
+    m_ToolTip           = "";
+    m_FontHeight        = 12;
+    m_FontID            = -1;
     m_bFilterFont       = true;
     m_bFocusable        = false;
 
-    m_FgColor           = 0xFFFFFFFF;    
-    m_HoverFgColor      = 0xFFFFFFFF;    
-    m_DisableFgColor    = 0xFF777777;    
+    m_FgColor           = 0xFFFFFFFF;
+    m_HoverFgColor      = 0xFFFFFFFF;
+    m_DisableFgColor    = 0xFF777777;
 
     m_BgColor           = 0xFF000000;
     m_HoverBgColor      = 0xFF000000;
     m_DisableBgColor    = 0xFF000000;
 
-    m_LocalExt          = Frame::null;  
+    m_LocalExt          = Frame::null;
     m_LocalPivot        = Vec2::null;
 
-    m_bHasFocus         = false;  
-    m_bInited           = false;  
-    m_XAlign            = XAlign_None;  
+    m_bHasFocus         = false;
+    m_bInited           = false;
+    m_XAlign            = XAlign_None;
     m_YAlign            = YAlign_None;
     m_bHovered          = false;
     m_bDragged          = false;
@@ -108,59 +108,59 @@ void JWidget::DrawBounds()
 	g_pDrawServer->DrawFrame( ext, 0xFFFFFF00 );
 }; // JWidget::DrawBounds
 
-int JWidget::GetFontID() const 
-{ 
+int JWidget::GetFontID() const
+{
     //if (m_FontID == -1)
     {
         m_FontID = g_pDrawServer->GetSpriteID( m_Font.c_str() );
     }
-    return m_FontID; 
-} 
+    return m_FontID;
+}
 
-int JWidget::GetFontHeight() const 
+int JWidget::GetFontHeight() const
 {
     if (m_FontHeight == -1)
     {
         return g_pDrawServer->GetFrameH( GetFontID(), 0 );
     }
-    return m_FontHeight; 
-} 
+    return m_FontHeight;
+}
 
 void JWidget::SetFont( const char* name )
-{ 
-    m_Font      = name; 
+{
+    m_Font      = name;
     m_FontID    = g_pDrawServer->GetSpriteID( m_Font.c_str() );
 }
 
 void JWidget::SetSkinPack( const char* name )
 {
-	if (m_SkinPackID != -1) 
+	if (m_SkinPackID != -1)
     {
         m_SkinPackID = g_pDrawServer->GetSpriteID( name );
     }
 	m_SkinPack = name;
 } // JWidget::SetSkinPack
 
-int JWidget::GetSkinPackID() const 
-{ 
+int JWidget::GetSkinPackID() const
+{
     if (m_SkinPackID < 0)
     {
         m_SkinPackID = g_pDrawServer->GetSpriteID( m_SkinPack.c_str(), NULL, m_bAlwaysCacheSkin );
     }
-    return m_SkinPackID; 
-}  
+    return m_SkinPackID;
+}
 
 void JWidget::CaptureMouse( bool bCapture )
 {
-    if (bCapture) 
+    if (bCapture)
     {
-       g_pWindowServer->SetMouseCapture( this ); 
+       g_pWindowServer->SetMouseCapture( this );
     }
     else if (g_pWindowServer->GetMouseCapture() == this)
     {
         g_pWindowServer->SetMouseCapture( NULL );
     }
-}  
+}
 
 void JWidget::SetFocus( bool bSet )
 {
@@ -170,13 +170,13 @@ void JWidget::SetFocus( bool bSet )
         pParent->SetFocus( bSet );
     }
 
-    if (bSet && m_bFocusable) 
+    if (bSet && m_bFocusable)
     {
         g_pWindowServer->SetFocus( this );
     }
     else
     {
-        g_pWindowServer->SetFocus( NULL );    
+        g_pWindowServer->SetFocus( NULL );
     }
 } // JWidget::SetFocus
 
@@ -187,7 +187,7 @@ void JWidget::AdjustSize()
     Frame parentExt = GetParentExt();
     m_LocalExt = ApplyAlignment( GetExt(), parentExt, m_XAlign, m_YAlign );
 
-    m_LocalExt.x -= parentExt.x; 
+    m_LocalExt.x -= parentExt.x;
     m_LocalExt.y -= parentExt.y;
 
     OnSize();
@@ -210,15 +210,15 @@ void JWidget::AdjustSize()
         if (cext.b() > ext.b()) ext.h = cext.b() - ext.y;
         if (cext.r() > ext.r()) ext.w = cext.r() - ext.x;
     }
-    
+
     m_LocalExt = ext;
 } // JWidget::FitToChildren
 
 
 
-void JWidget::SetText( const char* text ) 
-{ 
-    m_Text = text; 
+void JWidget::SetText( const char* text )
+{
+    m_Text = text;
 } // JWidget::SetText
 
 void JWidget::OnDrag( JDragEvent& e )
@@ -241,9 +241,9 @@ void JWidget::OnDrag( JDragEvent& e )
 
 void PassMouseEvent( JObject* pObject, JMouseEvent& me, JDragEvent& de )
 {
-    if (!pObject->IsVisible() || !pObject->IsEnabled()) 
+    if (!pObject->IsVisible() || !pObject->IsEnabled())
     {
-        return; 
+        return;
     }
     for (int i = pObject->GetNChildren() - 1; i >= 0; i--)
     {
@@ -261,9 +261,9 @@ void PassMouseEvent( JObject* pObject, JMouseEvent& me, JDragEvent& de )
 
 void JWidget::SendKeyEvent( JKeyEvent& e, bool bSendToRoot )
 {
-    if (!IsVisible() || !IsEnabled()) 
+    if (!IsVisible() || !IsEnabled())
     {
-        return; 
+        return;
     }
 
     int nCh = GetNChildren();
@@ -285,9 +285,9 @@ void JWidget::SendKeyEvent( JKeyEvent& e, bool bSendToRoot )
 
 void JWidget::SendWheelEvent( JWheelEvent& e )
 {
-    if (!IsVisible() || !IsEnabled()) 
+    if (!IsVisible() || !IsEnabled())
     {
-        return; 
+        return;
     }
 
     int nCh = GetNChildren();
@@ -306,15 +306,15 @@ void JWidget::SendWheelEvent( JWheelEvent& e )
 
 void JWidget::SendMouseEvent( JMouseEvent& me, JDragEvent& de )
 {
-    if (!IsVisible() || !IsEnabled()) 
+    if (!IsVisible() || !IsEnabled())
     {
-        return; 
+        return;
     }
 
     //  pass event to children widgets
     PassMouseEvent( this, me, de );
 
-    if (PtIn( me.MouseX(), me.MouseY() )) 
+    if (PtIn( me.MouseX(), me.MouseY() ))
     {
         if (!IsHovered())
         {
@@ -326,8 +326,8 @@ void JWidget::SendMouseEvent( JMouseEvent& me, JDragEvent& de )
 
         //  send signal
         if (me.Action() == aKeyDown)
-        { 
-            if (me.MouseKey() == mkLeft)     SendSignal( "onlbdown" );     
+        {
+            if (me.MouseKey() == mkLeft)     SendSignal( "onlbdown" );
             if (me.MouseKey() == mkMiddle)   SendSignal( "onmbdown" );
             if (me.MouseKey() == mkRight)    SendSignal( "onrbdown" );
         }
@@ -353,11 +353,11 @@ void JWidget::SendMouseEvent( JMouseEvent& me, JDragEvent& de )
             if (me.MouseKey() == mkRight)    SendSignal( "onrbdblclick" );
         }
 
-        //  pass drag event, if appropriate 
+        //  pass drag event, if appropriate
         if (de.GetType() != deNone && !de.Consumed())
         {
             OnDrag( de );
-            if (de.GetType() == deDragStart && 
+            if (de.GetType() == deDragStart &&
                 (this == de.GetSource() || this == de.GetDragObject()))
             {
                 de.Consume();
@@ -368,7 +368,7 @@ void JWidget::SendMouseEvent( JMouseEvent& me, JDragEvent& de )
                 de.m_HotSpot.y   -= ext.y;
                 if (de.m_pObject) de.m_pObject->SetDragged();
             }
-            if (de.Consumed()) 
+            if (de.Consumed())
             {
                 me.Consume();
                 return;
@@ -381,11 +381,11 @@ void JWidget::SendMouseEvent( JMouseEvent& me, JDragEvent& de )
         if (IsHovered())
         {
             SendSignal( "OnStopHover" );
-            SetHovered( false );            
+            SetHovered( false );
         }
     }
 
-}  
+}
 
 
 

@@ -5,7 +5,7 @@
 /*	Date:	16-05-2006
 //****************************************************************************/
 #include "precompile.h"
-#include "WangTiling.h"
+#include "wangtiling.h"
 
 enum WangColor
 {
@@ -24,7 +24,7 @@ struct WangTileSetup
     WangColor   bottom;
 }; // struct WangTileSetup
 
-const WangTileSetup c_TileSetup[] = 
+const WangTileSetup c_TileSetup[] =
 {
     { wcNone,   wcNone,  wcNone,   wcNone  },
     { wcBlue,   wcRed,   wcYellow, wcGreen },
@@ -42,7 +42,7 @@ const WangTileSetup c_TileSetup[] =
 //****************************************************************************/
 int WangTiling::GetTile( int leftN, int topN, int rightN, int bottomN )
 {
-    //  get allowed side colors 
+    //  get allowed side colors
     WangColor vL = c_TileSetup[leftN].right;
     WangColor vT = c_TileSetup[topN].bottom;
     WangColor vR = c_TileSetup[rightN].left;
@@ -61,12 +61,12 @@ int WangTiling::GetTile( int leftN, int topN, int rightN, int bottomN )
         bValid[i] = true;
         nValid++;
     }
-    
+
     if (nValid == 0) return 0;
 
-    //  pick one random valid tile 
+    //  pick one random valid tile
     int cTile = m_Random.GetValue( nValid );
-    for (int i = 1; i <= c_TileSetSize; i++) 
+    for (int i = 1; i <= c_TileSetSize; i++)
     {
         if (bValid[i]) cTile--;
         if (cTile == -1) return i;

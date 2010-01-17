@@ -6,6 +6,7 @@
 
 #include "ipersistserver.h"
 #include "ifileserver.h"
+#include "jreflect.h"
 #include "jcore.h"
 #include "jobjectiterator.h"
 #include "fstream.h"
@@ -16,6 +17,7 @@
 /*  JStringServer implementation
 //****************************************************************************/
 decl_class(JStringServer);
+
 JStringServer::JStringServer()
 {
     g_pStringServer = this;

@@ -6,7 +6,7 @@
 #ifndef __JBUTTON_H__
 #define __JBUTTON_H__
 
-#include "JWidget.h"
+#include "jwidget.h"
 
 //****************************************************************************/
 //  Class:  JButton
@@ -16,7 +16,7 @@ class JButton : public JWidget
 {
 public:
                     JButton         ();
-    
+
     virtual void    Render          ();
     virtual void    OnMouse         ( JMouseEvent& m );
     void            Press           ();
@@ -63,7 +63,7 @@ protected:
     uint32_t          m_ShadowColor;   //  button text shadow color
     int            m_ShadowShiftX;  //  button text shadow x shift
     int            m_ShadowShiftY;  //  button text shadow y shift
-    
+
     //  button appearance
     JString        m_GlyphPack;     //  button glyph sprite package, if empty - no glyph present
     int            m_GlyphFrame;    //  button glyph frame in the sprite package

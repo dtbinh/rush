@@ -4,8 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JScrollBar.h"
-#include "JScrollBox.h"
+#include "jscrollbar.h"
+#include "jscrollbox.h"
 
 /***********************************************************************************/
 /*  JScrollBox implementation
@@ -22,4 +22,4 @@ void JScrollBox::Init()
 {
     m_pVBar = g_pObjectServer->FindObject<JScrollBar>( "vbar", this );
     m_pHBar = g_pObjectServer->FindObject<JScrollBar>( "hbar", this );
-} // JScrollBox::Init
+}

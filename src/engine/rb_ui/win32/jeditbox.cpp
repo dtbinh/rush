@@ -6,7 +6,7 @@
 #include "precompile.h"
 #include <windows.h>
 
-#include "JEditBox.h"
+#include "jeditbox.h"
 
 //****************************************************************************/
 /*  JEditBox implementation
@@ -38,13 +38,13 @@ JEditBox::JEditBox()
     SetFocusable( true );
 
     SetClipToExt();
-} // JEditBox::JEditBox
+}
 
 void JEditBox::Render()
-{    
+{
     Frame ext = GetExt();
     Frame vp = g_pRenderServer->GetViewport();
-    if (IsClipToExt()) 
+    if (IsClipToExt())
     {
         g_pDrawServer->Flush();
         Frame cext( ext );
@@ -66,25 +66,25 @@ void JEditBox::Render()
     int     cx  = ext.x + m_TextLeftMargin + m_TextShift;
     int     cy  = ext.y;
     uint32_t   clr = GetFgColor();
-    if (HasFocus()) 
+    if (HasFocus())
     {
         DrawSelection();
     }
     g_pDrawServer->SetLinFilter( IsFilterFont() );
-    
+
     if (m_ShadowColor != 0)
     {
         g_pDrawServer->DrawString( cx + m_ShadowShiftX, cy + m_ShadowShiftY, GetFontID(), GetText(), m_ShadowColor, GetFontHeight(), -1, m_Spacing );
         g_pDrawServer->Flush();
     }
-    g_pDrawServer->DrawString( cx, cy, GetFontID(), GetText(), clr, GetFontHeight(), -1, m_Spacing ); 
+    g_pDrawServer->DrawString( cx, cy, GetFontID(), GetText(), clr, GetFontHeight(), -1, m_Spacing );
 
     g_pDrawServer->Flush();
     if (HasFocus()) DrawCaret();
     g_pDrawServer->Flush();
 
     if (IsClipToExt()) g_pRenderServer->SetViewport( vp );
-} // JEditBox::Render
+}
 
 void JEditBox::OnFocus( bool bEnter )
 {
@@ -98,7 +98,7 @@ void JEditBox::Clear()
     m_CaretPos          = 0;
     m_SelStart          = 0;
     m_SelEnd            = 0;
-} // JEditBox::Clear
+}
 
 void JEditBox::OnMouse( JMouseEvent& m )
 {
@@ -111,7 +111,7 @@ void JEditBox::OnMouse( JMouseEvent& m )
 
         m_CaretPos = nCh;
         m_SelStart = 0;
-        m_SelEnd   = nCh; 
+        m_SelEnd   = nCh;
 
         ResetCaretBlink();
         m.Consume();
@@ -128,7 +128,7 @@ void JEditBox::OnMouse( JMouseEvent& m )
         for (cPos = 0; cPos < nCh; cPos++)
         {
             int chW = g_pDrawServer->GetTextWidth( GetFontID(), &pText[cPos], GetFontHeight(), 1 );
-            if (mX <= cX + chW/2) 
+            if (mX <= cX + chW/2)
             {
                 ResetCaretBlink();
                 break;
@@ -137,7 +137,7 @@ void JEditBox::OnMouse( JMouseEvent& m )
         }
         m_CaretPos = cPos;
         m_SelStart = m_CaretPos;
-        m_SelEnd   = m_CaretPos; 
+        m_SelEnd   = m_CaretPos;
 
         CaptureMouse();
         ResetCaretBlink();
@@ -149,7 +149,7 @@ void JEditBox::OnMouse( JMouseEvent& m )
         CaptureMouse( false );
         m.Consume();
     }
-    
+
     if (m.Action() == aMouseMove && m.MouseKey() == mkLeft)
     {
        SetFocus();
@@ -163,22 +163,22 @@ void JEditBox::OnMouse( JMouseEvent& m )
            if (mX <= cX) break;
            cX += g_pDrawServer->GetTextWidth( GetFontID(), &pText[cPos], GetFontHeight(), 1 );
        }
-       m_SelEnd   = cPos; 
+       m_SelEnd   = cPos;
        m_CaretPos = cPos;
        m.Consume();
     }
-} // JEditBox::OnMouse  
+}
 
 void JEditBox::OnKey( JKeyEvent& e )
 {
     if (!HasFocus()) return;
-    
+
     //  process control keys down events
     if (e.Action() != aKeyDown) return;
     uint32_t keyCode = e.Key();
     if (keyCode == VK_DELETE)
     {
-        JString text = GetText(); 
+        JString text = GetText();
         if (m_SelStart != m_SelEnd)
         {
             if (m_SelStart > m_SelEnd) std::swap( m_SelEnd, m_SelStart );
@@ -194,7 +194,7 @@ void JEditBox::OnKey( JKeyEvent& e )
         ResetCaretBlink();
         e.Consume();
         return;
-    } 
+    }
     if (keyCode == VK_BACK && m_CaretPos > 0)
     {
         JString text = GetText();
@@ -249,7 +249,7 @@ void JEditBox::OnKey( JKeyEvent& e )
     uint32_t charCode = e.GetChar();
     if (charCode >= 32)
     {
-        JString text = GetText(); 
+        JString text = GetText();
         if (m_SelStart != m_SelEnd)
         {
             if (m_SelStart > m_SelEnd) std::swap( m_SelEnd, m_SelStart );
@@ -268,7 +268,7 @@ void JEditBox::OnKey( JKeyEvent& e )
         return;
     }
 
-} // JEditBox::OnKey
+}
 
 void JEditBox::DrawCaret()
 {
@@ -279,7 +279,7 @@ void JEditBox::DrawCaret()
     {
         int textW = g_pDrawServer->GetTextWidth( GetFontID(), GetText(), GetFontHeight(), m_CaretPos );
         int cx = ext.x + textW + m_TextLeftMargin - 1 + m_TextShift;
-        
+
         if (cx > ext.r() - 2)
         {
             m_TextShift += ext.r() - cx;
@@ -296,7 +296,7 @@ void JEditBox::DrawCaret()
         ext.h -= 5;
         g_pDrawServer->DrawLine( cx, ext.y, cx, ext.b(), m_CaretColor, m_CaretColor );
     }
-} // JEditBox::DrawCaret
+}
 
 void JEditBox::DrawSelection()
 {
@@ -320,9 +320,9 @@ void JEditBox::DrawSelection()
     Frame rc( ext.x + selBeg + m_TextShift, ext.y + 1, selEnd - selBeg, h );
     g_pDrawServer->DrawRect( rc, m_SelectionColor );
     g_pDrawServer->Flush();
-} // JEditBox::DrawSelection
+}
 
 void JEditBox::ResetCaretBlink()
 {
     m_BlinkStart = GetTickCount();
-} // JEditBox::ResetCaretBlink
+}

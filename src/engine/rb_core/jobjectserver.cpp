@@ -475,13 +475,15 @@ void JObjectServer::DumpTree( const JObject* pObj, int indent )
     static char buf[c_BufSize];
     memset( buf, ' ', c_BufSize );
     sprintf( buf + indent, "%s[%d]\n", pObj->GetName(), pObj->GetNRef() );
-    OutputDebugString( buf );
+
+    rlog.msg( buf );
+
     int nCh = pObj->GetNChildren();
     for (int i = 0; i < nCh; i++)
     {
         DumpTree( pObj->GetChild( i ), indent + 1 );
     }
-} // JObjectServer::DumpTree
+}
 
 void JObjectServer::DumpObjectMap()
 {

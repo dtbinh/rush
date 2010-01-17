@@ -6,15 +6,14 @@
 #ifndef __JMODEL_H__
 #define __JMODEL_H__
 
-#include "Buffer.h"
-
-#include "JBoneInstance.h"
+#include "buffer.h"
+#include "jboneinstance.h"
 
 class JMaterial;
 class JMesh;
 /***********************************************************************************/
 //  Class:  JModel
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JModel : public JObject
 {
@@ -29,7 +28,7 @@ class JModel : public JObject
     std::vector<JMesh*>         m_Meshes;       //  list of meshes in model
 
     int                         m_IBufID;       //  index buffer ID
-    int                         m_IBFirstByte;  //  first byte in the renderer's IB  
+    int                         m_IBFirstByte;  //  first byte in the renderer's IB
     int                         m_IBIteration;  //  current generation (drop stamp) for indices
 
     bool                        m_bDrawSkeleton;
@@ -72,7 +71,7 @@ public:
 
     void            GatherChildren  ();
     void            GatherBones     ();
-    void            Render          ( const Mat4& tm, JBoneInstance* pSkelInst = NULL, 
+    void            Render          ( const Mat4& tm, JBoneInstance* pSkelInst = NULL,
                                       bool bIgnoreShader = false, bool bUseCachedData = false );
 
     void            SetVertices     ( uint8_t* pVert, int numBytes ) { m_Vertices.SetData( pVert, numBytes ); }

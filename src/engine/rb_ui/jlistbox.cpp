@@ -4,9 +4,9 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JObjectIterator.h"
-#include "JLabel.h"
-#include "JListBox.h"
+#include "jobjectiterator.h"
+#include "jlabel.h"
+#include "jlistbox.h"
 
 /***********************************************************************************/
 /*  JListBox implementation
@@ -43,7 +43,7 @@ JStringList JListBox::GetStrings() const
 void JListBox::SetStrings( JStringList strings )
 {
     SetNItems( strings.size() );
-    
+
     int nCh = strings.size();
     for (int i = 0; i < nCh; i++)
     {
@@ -98,8 +98,8 @@ void JListBox::Render()
             while (it)
             {
                 JWidget* pObj = obj_cast<JWidget>( *it );
-                if (pObj && pObj != pChild && !pObj->IsVisible()) 
-                { 
+                if (pObj && pObj != pChild && !pObj->IsVisible())
+                {
                     it.breadth_next();
                     continue;
                 }
@@ -117,8 +117,8 @@ void JListBox::Render()
         while (it)
         {
             JWidget* pObj = obj_cast<JWidget>( *it );
-            if (pObj && pObj != pSelected && !pObj->IsVisible()) 
-            { 
+            if (pObj && pObj != pSelected && !pObj->IsVisible())
+            {
                 it.breadth_next();
                 continue;
             }
@@ -148,7 +148,7 @@ void JListBox::SetTemplateName( const char* name )
 void JListBox::Init()
 {
     m_pTemplate = g_pObjectServer->FindObject<JWidget>( m_TemplateName.c_str(), this );
-    if (!m_pTemplate) 
+    if (!m_pTemplate)
     {
         m_pTemplate = new JLabel();
         m_pTemplate->SetName( "Template" );
@@ -179,7 +179,7 @@ void JListBox::SetNItems( int val )
         JWidget* pChild = obj_cast<JWidget>( m_pTemplate->Clone( this, buf, true ) );
         pChild->SetVisible( false );
         pChild->SetTag( i, true );
-        AddChild( pChild );              
+        AddChild( pChild );
     }
 
     OnSize();
@@ -190,7 +190,7 @@ int JListBox::GetNItems() const
     return GetNChildren();
 } // JListBox::GetItems
 
-void JListBox::SelectItemAt( int mx, int my ) 
+void JListBox::SelectItemAt( int mx, int my )
 {
     int selIdx = -1;
     int nCh = GetNChildren();
@@ -198,7 +198,7 @@ void JListBox::SelectItemAt( int mx, int my )
     {
         JWidget* pChild = obj_cast<JWidget>( GetChild( i ) );
         if (!pChild) continue;
-        if (pChild->PtIn( mx, my )) 
+        if (pChild->PtIn( mx, my ))
         {
             selIdx = i;
             break;
@@ -254,7 +254,7 @@ Frame JListBox::CalcItemRect( int idx ) const
         JWidget* pCurChild = obj_cast<JWidget>( GetChild( i ) );
         if (!pChild) continue;
         Frame cext = pCurChild->GetLocalExt();
-        if (m_bVertical) cY += cext.h; 
+        if (m_bVertical) cY += cext.h;
             else cX += cext.w;
     }
 

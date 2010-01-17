@@ -4,7 +4,7 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JShortcut.h"
+#include "jshortcut.h"
 
 /***********************************************************************************/
 /*  JShortcut implementation
@@ -19,7 +19,7 @@ JShortcut::JShortcut()
 
     SetXAlign( XAlign_Parent );
     SetYAlign( YAlign_Parent );
-} // JShortcut::JShortcut
+}
 
 void JShortcut::OnKey( JKeyEvent& e )
 {
@@ -29,16 +29,16 @@ void JShortcut::OnKey( JKeyEvent& e )
         if (m_bControl  && GetKeyState( VK_CONTROL ) >= 0) return;
         if (m_bAlt      && GetKeyState( VK_MENU ) >= 0) return;
         if (m_bShift    && GetKeyState( VK_SHIFT ) >= 0) return;
-        
+
         Action();
         if (IsConsumeEvents())
         {
             e.Consume();
         }
     }
-} // JShortcut::OnKey
+}
 
 void JShortcut::Action()
-{  
+{
     SendSignal( "Action" );
-} // JShortcut::Action
+}

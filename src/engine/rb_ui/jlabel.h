@@ -6,7 +6,7 @@
 #ifndef __JLABEL_H__
 #define __JLABEL_H__
 
-#include "JWidget.h"
+#include "jwidget.h"
 
 //****************************************************************************/
 //  Class:  JLabel
@@ -16,9 +16,9 @@ class JLabel : public JWidget
 {
 public:
                     JLabel          ();
-    virtual void    Render          (); 
-    JXAlign         GetTextXAlign   () const { return m_TextXAlign; } 
-    JYAlign         GetTextYAlign   () const { return m_TextYAlign; } 
+    virtual void    Render          ();
+    JXAlign         GetTextXAlign   () const { return m_TextXAlign; }
+    JYAlign         GetTextYAlign   () const { return m_TextYAlign; }
     uint32_t           GetShadowColor  () const { return m_ShadowColor; }
     void            SetTextXAlign   ( JXAlign align ) { m_TextXAlign = align; }
     void            SetTextYAlign   ( JYAlign align ) { m_TextYAlign = align; }
@@ -48,9 +48,9 @@ private:
     uint32_t           m_ShadowColor;  //  color of the text's shadow, when 0 - no shadow is drawn
     int             m_ShadowShiftX;
     int             m_ShadowShiftY;
-    
-    int             m_MarginX;      
-    int             m_MarginY;      
+
+    int             m_MarginX;
+    int             m_MarginY;
     bool            m_bWrapText;
     int             m_RowsGap;
     int             m_Spacing;

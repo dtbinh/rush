@@ -5,11 +5,12 @@
 //****************************************************************************/
 #ifndef __JDIALOG_H__
 #define __JDIALOG_H__
-#include "JWidget.h"
+
+#include "jwidget.h"
 
 //****************************************************************************/
 //	Enum:  JDialogResult
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 enum JDialogResult
 {
@@ -69,12 +70,12 @@ protected:
     virtual void        OnClose    () {}
 
 private:
-    bool                m_bModal;       //  dialog disables message passing to another 
+    bool                m_bModal;       //  dialog disables message passing to another
                                         //  visible dialogs
     bool                m_bFloating;    //  dialog is tool-window like
     JString             m_DefaultFocus; //  default control to focus on when the dialog is shown
 
-    JDialogResult       m_Result;       //  dialog result 
+    JDialogResult       m_Result;       //  dialog result
     Frame               m_OldViewPort;
 
 }; // class JDialog

@@ -1,9 +1,9 @@
 //****************************************************************************/
 //  File:  JPanel.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "JPanel.h"
+#include "jpanel.h"
 
 //****************************************************************************/
 /*  JPanel implementation
@@ -16,18 +16,18 @@ JPanel::JPanel()
 }
 
 void JPanel::Render()
-{   
+{
     Frame    ext = GetExt();
     if ((GetBgColor()&0xFF000000) != 0)
     {
         g_pDrawServer->Flush();
-        g_pDrawServer->DrawRect( ext, GetBgColor() ); 
+        g_pDrawServer->DrawRect( ext, GetBgColor() );
         g_pDrawServer->Flush();
     }
 } // JPanel::Render
 
 void JPanel::OnMouse( JMouseEvent& e )
-{ 
+{
     if (e.Action() == aKeyDown && e.MouseKey() == mkLeft)
     {
         if (IsFocusable() && !HasFocus())
@@ -61,7 +61,7 @@ void JPanel::PostRender()
 {
     g_pDrawServer->Flush();
 } // JPanel::PostRender
-    
+
 
 
 

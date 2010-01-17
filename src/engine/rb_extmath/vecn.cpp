@@ -5,8 +5,8 @@
 /*	Date:	17-03-2005
 //****************************************************************************/
 #include "precompile.h"
-#include "MatMN.h"
-#include "VecN.h"
+#include "matmn.h"
+#include "vecn.h"
 
 //****************************************************************************/
 /*  VecN implementation
@@ -42,7 +42,7 @@ real VecN::Dot( const VecN& v )
     assert( m_Size == v.m_Size );
     real res = 0.0;
     for (int i = 0; i < m_Size; i++) res += m_Buf[i]*v.m_Buf[i];
-    return res; 
+    return res;
 } // VecN::Dot
 
 void VecN::operator /=( real v )
@@ -83,7 +83,7 @@ void VecN::operator =( const VecN& v )
 
 void VecN::Zero()
 {
-     for (int i = 0; i < m_Size; i++) m_Buf[i] = 0.0; 
+     for (int i = 0; i < m_Size; i++) m_Buf[i] = 0.0;
 } // VecN::Zero
 
 void VecN::Add( const VecN& v, real w )
@@ -111,7 +111,7 @@ void VecN::Mul( const MatMN& m, const VecN& v )
 void VecN::Mul( const VecN& v, const MatMN& m )
 {
     assert( m.m_NRows == v.Size() );
-    int sz = m.m_NCols; 
+    int sz = m.m_NCols;
     int w  = v.m_Size;
     Resize( sz );
     const real* mv = m.m_Buf;

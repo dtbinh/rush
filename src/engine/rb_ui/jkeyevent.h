@@ -5,8 +5,8 @@
 //****************************************************************************/
 #ifndef __JKEYEVENT_H__
 #define __JKEYEVENT_H__
-#include "JEvent.h"
-#include "JInputAction.h"
+#include "jevent.h"
+#include "jinputaction.h"
 
 //****************************************************************************/
 //  Class:  JKeyEvent

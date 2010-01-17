@@ -8,91 +8,91 @@
 
 //****************************************************************************/
 //  Class:	static_array
-//  Desc:	Static linear unordered array 
+//  Desc:	Static linear unordered array
 //****************************************************************************/
 template <class TElem, int MaxSz>
 class static_array
 {
 public:
 	static_array( int nElem = 0 ) : m_NElem(nElem) {}
-	static_array( const static_array<TElem, MaxSz>& arr ) 
-    { 
+	static_array( const static_array<TElem, MaxSz>& arr )
+    {
         m_NElem = arr.m_NElem;
-        memcpy( m_Buf, arr.m_Buf, m_NElem * sizeof(TElem) ); 
+        memcpy( m_Buf, arr.m_Buf, m_NElem * sizeof(TElem) );
     }
 
-	~static_array() 
-    { 
-        m_NElem = 0; 
+	~static_array()
+    {
+        m_NElem = 0;
     }
 
-	TElem&	operator[]( int idx ) 
-    { 
-        assert( idx >= 0 && idx < m_NElem ); 
-        return m_Buf[idx]; 
+	TElem&	operator[]( int idx )
+    {
+        assert( idx >= 0 && idx < m_NElem );
+        return m_Buf[idx];
     }
 
-	const TElem& operator[]( int idx ) const 
-    { 
-        assert( idx >= 0 && idx < m_NElem ); 
-        return m_Buf[idx]; 
+	const TElem& operator[]( int idx ) const
+    {
+        assert( idx >= 0 && idx < m_NElem );
+        return m_Buf[idx];
     }
 
-	const TElem& at     ( int idx ) const 
-    { 
-        assert( idx >= 0 && idx < m_NElem ); 
-        return m_Buf[idx]; 
+	const TElem& at     ( int idx ) const
+    {
+        assert( idx >= 0 && idx < m_NElem );
+        return m_Buf[idx];
     }
 
-	int     size_uint8_ts  () const 
-    { 
-        return MaxSz * sizeof( TElem ) + sizeof( *this ); 
+	int     size_bytes  () const
+    {
+        return MaxSz * sizeof( TElem ) + sizeof( *this );
     }
 
 	int	    size        () const { return m_NElem; }
-    bool    resize      ( int sz ) 
-    { 
-        if (sz > MaxSz) return false; 
-        m_NElem = sz; 
-        return true; 
+    bool    resize      ( int sz )
+    {
+        if (sz > MaxSz) return false;
+        m_NElem = sz;
+        return true;
     }
 
-	TElem&  push_back   ( const TElem& el ) 
-    { 
-        assert(m_NElem < MaxSz); 
-        m_Buf[m_NElem] = el; 
+	TElem&  push_back   ( const TElem& el )
+    {
+        assert(m_NElem < MaxSz);
+        m_Buf[m_NElem] = el;
         m_NElem++;
-        return m_Buf[m_NElem - 1]; 
+        return m_Buf[m_NElem - 1];
     }
 
-    TElem&  back        () 
-    { 
-        assert( m_NElem > 0); 
-        return m_Buf[m_NElem - 1]; 
-    }
-    
-    TElem&  pop         () 
-    { 
-        assert( m_NElem > 0); 
-        m_NElem--; 
-        return m_Buf[m_NElem]; 
+    TElem&  back        ()
+    {
+        assert( m_NElem > 0);
+        return m_Buf[m_NElem - 1];
     }
 
-    TElem&  expand      () 
-    { 
-        assert( m_NElem < MaxSz ); 
-        m_NElem++; 
-        return m_Buf[m_NElem - 1]; 
+    TElem&  pop         ()
+    {
+        assert( m_NElem > 0);
+        m_NElem--;
+        return m_Buf[m_NElem];
     }
 
-    void    erase       ( int elIdx ) 
-    { 
-        assert( elIdx >= 0 && elIdx < m_NElem ); 
-        m_NElem--; 
+    TElem&  expand      ()
+    {
+        assert( m_NElem < MaxSz );
+        m_NElem++;
+        return m_Buf[m_NElem - 1];
+    }
+
+    void    erase       ( int elIdx )
+    {
+        assert( elIdx >= 0 && elIdx < m_NElem );
+        m_NElem--;
         if (elIdx < m_NElem)
         {
             //  move the last element to the gap
-            m_Buf[elIdx] = m_Buf[m_NElem]; 
+            m_Buf[elIdx] = m_Buf[m_NElem];
         }
     }
 	int     capacity    () const { return MaxSz; }
@@ -128,12 +128,12 @@ public:
         bool        operator<=  ( const iterator& r ) const { return (m_Ptr <= r.m_Ptr); }
         bool        operator>=  ( const iterator& r ) const { return (m_Ptr >= r.m_Ptr); }
         friend iterator operator+( int diff, const iterator& r ) {	return (r + diff); }
-    
+
         typedef typename std::random_access_iterator_tag iterator_category;
-        typedef typename TElem          value_type;
-        typedef typename int            difference_type;
-        typedef typename TElem*         pointer;
-        typedef typename TElem&         reference;
+        typedef TElem          value_type;
+        typedef int            difference_type;
+        typedef TElem*         pointer;
+        typedef TElem&         reference;
     }; // class iterator
 
     iterator begin  () { return iterator( &m_Buf[0] ); }

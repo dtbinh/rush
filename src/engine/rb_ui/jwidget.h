@@ -6,11 +6,11 @@
 #ifndef __JWIDGET_H__
 #define __JWIDGET_H__
 
-#include "JMouseEvent.h"
-#include "JKeyEvent.h"
-#include "JWheelEvent.h"
-#include "JDragEvent.h"
-#include "JMathTypeCast.h"
+#include "jmouseevent.h"
+#include "jkeyevent.h"
+#include "jwheelevent.h"
+#include "jdragevent.h"
+#include "jmathtypecast.h"
 
 //****************************************************************************/
 //	Enum:  JXAlign
@@ -108,12 +108,12 @@ public:
     Vec2            GetLocalPos     () const;
     void            SetLocalPos     ( Vec2 pos );
     Vec2            GetPos          () const;
-    void            SetPos          ( Vec2 pos );   
+    void            SetPos          ( Vec2 pos );
 
     bool            IsClipToExt     () const { return m_bClipToExtents; }
     void            SetClipToExt    ( bool bClip = true ) { m_bClipToExtents = bClip; }
 
-    //  tint 
+    //  tint
     uint32_t           GetFgColor      () const { return m_FgColor; }
     uint32_t           GetBgColor      () const { return m_BgColor; }
 
@@ -136,7 +136,7 @@ public:
     int             GetFontID       () const;
     const char*     GetFont         () const { return m_Font.c_str(); }
     void            SetFont         ( const char* name );
-    
+
     const char*     GetText         () const { return m_Text.c_str(); }
     void            SetText         ( const char* text );
 
@@ -175,7 +175,7 @@ public:
     void            SetSkinFrame    ( int val ) { m_SkinFrame = val; }
     const char*     GetSkinPack     () const { return m_SkinPack.c_str(); }
     void			SetSkinPack     ( const char* name );
-    
+
     //  messages
     bool            IsConsumeEvents () const { return m_bConsumeEvents; }
     void            SetConsumeEvents( bool bConsume = true ) { m_bConsumeEvents = bConsume; }
@@ -183,7 +183,7 @@ public:
     void            SendMouseEvent  ( JMouseEvent& me, JDragEvent& de );
     void            SendKeyEvent    ( JKeyEvent& e, bool bSendToRoot = true );
     void            SendWheelEvent  ( JWheelEvent& e );
-    
+
     //  resource
     virtual void    ResInit         ();
 
@@ -230,11 +230,11 @@ protected:
         prop ( "PivotAbs:d",        GetPivot, SetPivot          );
         prop ( "Position:d",        GetLocalPos, SetLocalPos    );
         prop ( "PositionAbs:d",     GetPos, SetPos              );
-        
+
         prop ( "Font",              GetFont, SetFont            );
         field( "FontID:d",          m_FontID                    );
         field( "FontHeight",        m_FontHeight                );
-        field( "FilterFont",        m_bFilterFont               ); 
+        field( "FilterFont",        m_bFilterFont               );
         field( "FgColor",           m_FgColor                   );
         field( "BgColor",           m_BgColor                   );
         field( "HoverFgColor",      m_HoverFgColor              );
@@ -247,9 +247,9 @@ protected:
         prop( "Alpha:d",            GetAlpha, SetAlpha          );
         prop( "BgAlpha:d",          GetBgAlpha, SetBgAlpha      );
 
-        
+
         field( "AlwaysCacheSkin",   m_bAlwaysCacheSkin          );
-        
+
         //  hud widget
         field( "ConsumeEvents",     m_bConsumeEvents            );
         field( "ClipToExt",         m_bClipToExtents            );
@@ -261,13 +261,13 @@ protected:
 
         prop ( "SkinPack",          GetSkinPack, SetSkinPack    );
         prop ( "SkinFrame",         GetSkinFrame, SetSkinFrame  );
-        
+
         field( "Left:d",            m_LocalExt.x );
         field( "Top:d",             m_LocalExt.y );
         field( "Width:d",           m_LocalExt.w );
         field( "Height:d",          m_LocalExt.h );
         prop ( "ExtentsAbs:d",      GetExt, SetExt );
-        
+
         //  events
         method( "OnHover",      OnHover      );
         method( "OnStopHover",  OnStopHover  );
@@ -284,39 +284,39 @@ protected:
         method( "OnRBClick",    OnRBClick    );
         method( "OnRBDblClick", OnRBDblClick );
     }
-    
+
     friend class                JWindowServer;
 private:
-    JString             m_Text;             //  textual contents of widget (depends of context)   
+    JString             m_Text;             //  textual contents of widget (depends of context)
     JString             m_ToolTip;          //  when empty, no tooltip is displayed
-    
+
     JString             m_SkinPack;         //  name of the sprite package containing skin elements
     JString             m_Font;             //  main widget text font
 
-    int                 m_FontHeight;  
-    mutable int         m_FontID; 
+    int                 m_FontHeight;
+    mutable int         m_FontID;
     bool                m_bFilterFont;
     bool                m_bFocusable;
     bool                m_bDraggable;
 
     bool                m_bAlwaysCacheSkin;
-    
-    uint32_t               m_FgColor;     
+
+    uint32_t               m_FgColor;
     uint32_t               m_HoverFgColor;
     uint32_t               m_DisableFgColor;
 
-    uint32_t               m_BgColor;   
+    uint32_t               m_BgColor;
     uint32_t               m_HoverBgColor;
     uint32_t               m_DisableBgColor;
 
-    bool                m_bHasFocus;   
+    bool                m_bHasFocus;
     bool                m_bHovered;
     bool                m_bDragged;
     bool                m_bClipToExtents;
-    bool                m_bInited;  
+    bool                m_bInited;
     bool                m_bBlendAdd;
     bool                m_bConsumeEvents;
-    JXAlign             m_XAlign;  
+    JXAlign             m_XAlign;
     JYAlign             m_YAlign;
 
     JString             m_Cursor;
@@ -333,8 +333,8 @@ Frame ApplyAlignment( const Frame& rcAdjust, const Frame& rcParent, JXAlign xali
 //****************************************************************************/
 /*	Inline Functions
 //****************************************************************************/
-inline Frame JWidget::GetExt() const 
-{ 
+inline Frame JWidget::GetExt() const
+{
     Frame ext( m_LocalExt );
     JObject* pParent = GetParent();
     while (pParent)
@@ -347,20 +347,20 @@ inline Frame JWidget::GetExt() const
         }
         pParent = pParent->GetParent();
     }
-    return ext; 
+    return ext;
 } // JWidget::GetExt
 
-inline void JWidget::SetExt( Frame ext ) 
-{ 
+inline void JWidget::SetExt( Frame ext )
+{
     Frame parentExt = GetParentExt();
     ext.x -= parentExt.x;
     ext.y -= parentExt.y;
-    SetLocalExt( ext ); 
+    SetLocalExt( ext );
 } // JWidget::SetExt
 
-inline void JWidget::SetLocalExt( Frame ext ) 
-{ 
-    m_LocalExt = ext; 
+inline void JWidget::SetLocalExt( Frame ext )
+{
+    m_LocalExt = ext;
 } // JWidget::SetLocalExt
 
 inline Vec2 JWidget::GetPivot() const
@@ -374,7 +374,7 @@ inline void JWidget::SetPivot( Vec2 pt )
     Frame ext = GetExt();
     pt.x -= ext.x;
     pt.y -= ext.y;
-    SetLocalPivot( pt ); 
+    SetLocalPivot( pt );
 }
 
 inline void JWidget::SetLocalPivot( Vec2 pt )
@@ -413,8 +413,8 @@ inline void JWidget::SetPos( Vec2 pos )
     SetExt( ext );
 }
 
-inline Frame JWidget::GetParentExt() const 
-{ 
+inline Frame JWidget::GetParentExt() const
+{
     JObject* pParent = GetParent();
     while (pParent)
     {
@@ -425,7 +425,7 @@ inline Frame JWidget::GetParentExt() const
         }
         pParent = pParent->GetParent();
     }
-    return m_LocalExt; 
+    return m_LocalExt;
 } // JWidget::GetParentExt
 
 #endif // __JWIDGET_H__

@@ -6,7 +6,7 @@
 #ifndef __JSPRITEFRAME_H__
 #define __JSPRITEFRAME_H__
 
-#include "JFrameChunk.h"
+#include "jframechunk.h"
 
 enum JFrameFlags
 {
@@ -16,16 +16,16 @@ enum JFrameFlags
 
 //****************************************************************************/
 //  Class:  JSpriteFrame
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 struct JSpriteFrame
 {
     int                         m_Width;        //  full frame width
     int                         m_Height;       //  full frame height
-    Frame                       m_Frame;        //  trimmed bounding frame 
+    Frame                       m_Frame;        //  trimmed bounding frame
     Vec2                        m_Pivot;
     Vec2                        m_Shift;
-    bool                        m_bHasBorder;  
+    bool                        m_bHasBorder;
     int                         m_RefFrame;     //  "reference" frame for difference-frames
     ColorFormat                 m_ColorFormat;  //  sprite pixels color format
 

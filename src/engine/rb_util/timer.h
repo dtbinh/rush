@@ -23,11 +23,13 @@ public:
 
 private:
     double       m_TotalTime;    //  total timer time
-    double       m_TimeStart;    //  current start time 
+    double       m_TimeStart;    //  current start time
     double       m_Frequency;    //  timer frequency
     double       m_Period;
     bool         m_bPaused;
 
 }; // class Timer
+
+uint32_t GetProcessTimeMs();
 
 #endif // __TIMER_H__

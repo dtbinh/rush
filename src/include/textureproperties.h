@@ -3,7 +3,7 @@
 /*****************************************************************************/
 #ifndef __TEXTUREPROPERTIES_H__
 #define __TEXTUREPROPERTIES_H__
-#include "Color.h"
+#include "color.h"
 
 /*****************************************************************************/
 /*	Enum:   DepthFormat
@@ -35,7 +35,7 @@ enum PoolType
 /*	Class:  TextureProperties
 /*  Desc:   Bundle of texture resource properties
 /*****************************************************************************/
-struct TextureProperties 
+struct TextureProperties
 {
     int             m_Width;
     int             m_Height;
@@ -47,9 +47,9 @@ struct TextureProperties
     DepthFormat     m_DSFormat;
     char            m_Name[_MAX_PATH];
 
-    TextureProperties() : m_Width(0), m_Height(0), m_NMips(0), 
+    TextureProperties() : m_Width(0), m_Height(0), m_NMips(0),
                           m_bAutoGenMips( false ), m_PoolType( PoolType_Unknown ),
-                          m_Format( ColorFormat_Unknown ), 
+                          m_Format( ColorFormat_Unknown ),
                           m_DSFormat( DepthFormat_Unknown ),
                           m_bRenderTarget( false )
     {
@@ -60,7 +60,7 @@ struct TextureProperties
     {
         strcpy( m_Name, name );
     }
-}; // struct TextureProperties 
+}; // struct TextureProperties
 
 #endif // __TEXTUREPROPERTIES_H__
 

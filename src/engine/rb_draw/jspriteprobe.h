@@ -6,23 +6,22 @@
 #ifndef __JSPRITEPROBE_H__
 #define __JSPRITEPROBE_H__
 
-#include "MappedFile.h"
-#include "JSpriteFrame.h"
+#include "jspriteframe.h"
 
 /***********************************************************************************/
 //  Class:  JSpriteProbe
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JSpriteProbe : public JObject
 {
 public:
-            JSpriteProbe ();
+                JSpriteProbe ();
 
-    Vec2    GetPosition() const { return m_Position; }
-    void    SetPosition( Vec2 pos ) { m_Position = pos; }
+    Vec2        GetPosition() const { return m_Position; }
+    void        SetPosition( Vec2 pos ) { m_Position = pos; }
 
-    float   GetAlpha() const;
-    uint32_t   GetColor() const;
+    float       GetAlpha() const;
+    uint32_t    GetColor() const;
 
     expose( JSpriteProbe )
     {

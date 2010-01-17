@@ -4,14 +4,14 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JMaterial.h"
+#include "jmaterial.h"
 
 /***********************************************************************************/
 /*  JMaterial implementation
 /***********************************************************************************/
 decl_class(JMaterial);
 
-JMaterial::JMaterial() : 
+JMaterial::JMaterial() :
                 m_ShaderName    ( "" ),
                 m_DiffuseMap    ( "white.bmp" ),
                 m_Diffuse       ( 0xFFFFFFFF ),
@@ -36,7 +36,7 @@ bool JMaterial::IsEqual( JMaterial* pMtl ) const
     if (stricmp( m_Diffuse2Map.c_str(), pMtl->m_Diffuse2Map.c_str() )) return false;
     if (stricmp( m_NormalMap.c_str(),   pMtl->m_NormalMap.c_str()   )) return false;
     if (stricmp( m_EnvMap.c_str(),      pMtl->m_EnvMap.c_str()      )) return false;
-        
+
     if (m_Diffuse       != pMtl->m_Diffuse      ) return false;
     if (m_Specular      != pMtl->m_Specular     ) return false;
     if (m_SpecularPower != pMtl->m_SpecularPower) return false;
@@ -71,4 +71,3 @@ void JMaterial::Render( bool bIgnoreShader )
         g_pRenderServer->SetShader ( m_ShaderID );
     }
 } // JMaterial::Render
-    

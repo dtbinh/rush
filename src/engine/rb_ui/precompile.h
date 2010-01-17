@@ -1,37 +1,27 @@
-#ifndef __RB_UI_PCH_H__
-#define __RB_UI_PCH_H__
-
-
-#define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
-#define STRICT
+#ifndef __PRECOMPILE_H__
+#define __PRECOMPILE_H__
 
 #include "rb_common.h"
-#include "Logger.h"
+#include "logger.h"
 
 #include <vector>
 #include <string>
 
-#include "IRenderServer.h"
-#include "IDrawServer.h"
+#include "irenderserver.h"
+#include "idrawserver.h"
 
-#include "PolyLine2.h"
-#include "Frame.h"
-#include "JObject.h"
-#include "JMathTypeCast.h"
-#include "JMouseEvent.h"
-#include "JKeyEvent.h"
-#include "JWheelEvent.h"
+#include "polyline2.h"
+#include "frame.h"
+#include "jobject.h"
+#include "jmathtypecast.h"
+#include "jmouseevent.h"
+#include "jkeyevent.h"
+#include "jwheelevent.h"
 
-#include "JReflect.h"
-#include "JWidget.h"
-#include "JDialog.h"
+#include "jreflect.h"
+#include "jwidget.h"
+#include "jdialog.h"
 
-#include "JWeakRef.h"
+#include "jweakref.h"
 
-#pragma warning (push)
-#pragma warning (disable : 4311)
-#pragma warning (disable : 4312)
-#pragma warning (pop)
-
-
-#endif // 
+#endif // __PRECOMPILE_H__

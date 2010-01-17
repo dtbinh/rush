@@ -4,7 +4,7 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JSpritePack.h"
+#include "jspritepack.h"
 
 /***********************************************************************************/
 /*  JSpritePack implementation
@@ -18,4 +18,4 @@ JSpritePack::JSpritePack()
 
     m_HeaderSize    = 0;
     m_LastFrame     = 0;
-} // JSpritePack::JSpritePack
+}

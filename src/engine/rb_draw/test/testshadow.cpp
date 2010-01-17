@@ -1,7 +1,7 @@
 #include "precompile.h"
-#include "Mat4.h"
-#include "Vec4.h"
-#include "Vec3.h"
+#include "mat4.h"
+#include "vec4.h"
+#include "vec3.h"
 
 
 TEST( FlatShadow )
@@ -29,7 +29,7 @@ TEST( FlatShadow )
 	6484.5020	,
 	1.0000000 );
 
-    Mat4 lcProjTM( 
+    Mat4 lcProjTM(
     0.00048128571	,
 	0.00018963437	,
 	0.00000000	,
@@ -48,7 +48,7 @@ TEST( FlatShadow )
 	1.0000000 );
 
 
-    Mat4 tm1( 
+    Mat4 tm1(
     -0.17671488	,
 	-0.98426217	,
 	1.5909170e-006	,
@@ -90,7 +90,7 @@ TEST( FlatShadow )
 
     Vec4 p1( pos1.x, pos1.y, pos1.z, 1.0f );
     Vec4 p2( pos2.x, pos2.y, pos2.z, 1.0f );
-    
+
     lcViewTM.tm( p1 );
     lcProjTM.tm( p1 );
     p1 /= p1.w;

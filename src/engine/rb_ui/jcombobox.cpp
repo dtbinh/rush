@@ -4,10 +4,10 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JSignalServer.h"
-#include "JButton.h"
-#include "JListBox.h"
-#include "JComboBox.h"
+#include "jsignalserver.h"
+#include "jbutton.h"
+#include "jlistbox.h"
+#include "jcombobox.h"
 
 /***********************************************************************************/
 /*  JComboBox implementation
@@ -21,34 +21,34 @@ JComboBox::JComboBox()
     m_LastSelection = -1;
     m_SelectedItem  = -1;
     SetFocusable( true );
-} // JComboBox::JComboBox
+}
 
 int JComboBox::GetDropHeight() const
 {
     return m_DropHeight;
-} // JComboBox::GetDropHeight
+}
 
 void JComboBox::SetDropHeight( int val )
 {
     m_DropHeight = val;
-    if (m_pDropList) 
+    if (m_pDropList)
     {
         m_pDropList->SetMaxHeight( val );
         Frame ext = m_pDropList->GetLocalExt();
         ext.h = val;
         m_pDropList->SetLocalExt( ext );
     }
-} // JComboBox::SetDropHeight
+}
 
 bool JComboBox::IsDropVisible() const
 {
     return (m_pDropList && m_pDropList->IsVisible());
-} // JComboBox::IsDropVisible
+}
 
 void JComboBox::SetDropVisible( bool bVisible )
 {
     if (m_pDropList) m_pDropList->SetVisible( bVisible );
-} // JComboBox::SetDropVisible
+}
 
 void JComboBox::OnSize()
 {
@@ -61,7 +61,7 @@ void JComboBox::OnSize()
         if (h == 0) h = ext.h;
         ext.x = 0.0f;
         ext.y = 0.0f;
-        ext.x = ext.r() - w; 
+        ext.x = ext.r() - w;
         ext.w = w;
         ext.h = h;
         m_pThumb->SetLocalExt( ext );
@@ -79,7 +79,7 @@ void JComboBox::OnSize()
         m_pDropList->SetLocalExt( cext );
         m_pDropList->OnSize();
     }
-} // JComboBox::OnSize
+}
 
 void JComboBox::OnMouse( JMouseEvent& m )
 {
@@ -96,7 +96,7 @@ void JComboBox::OnMouse( JMouseEvent& m )
         m.Consume();
         return;
     }
-} // JComboBox::OnMouse
+}
 
 void JComboBox::Init()
 {
@@ -119,31 +119,31 @@ void JComboBox::Init()
 
     JSignalServer::s_pInstance->Connect( m_pThumb,    "unpress",         this, "DropDown" );
     JSignalServer::s_pInstance->Connect( m_pDropList, "changeselection", this, "DropUp"   );
-    
+
     m_pDropList->SetFont        ( GetFont()         );
     m_pDropList->SetFontHeight  ( GetFontHeight()   );
     m_pDropList->SetFgColor     ( GetFgColor()      );
     m_pDropList->SelectItem     ( m_SelectedItem    );
 
     OnSize();
-} // JComboBox::Init
+}
 
-void JComboBox::SelectItem( int idx ) 
-{ 
-    m_SelectedItem = idx; 
-    if (m_LastSelection == -1) m_LastSelection = idx; 
-    if (m_pDropList) m_pDropList->SelectItem( idx ); 
+void JComboBox::SelectItem( int idx )
+{
+    m_SelectedItem = idx;
+    if (m_LastSelection == -1) m_LastSelection = idx;
+    if (m_pDropList) m_pDropList->SelectItem( idx );
     SendSignal( "SelectedItem" );
-} // JComboBox::SelectItem
+}
 
 void JComboBox::OnFocus( bool bEnter )
 {
     if (!bEnter)
     {
-        SetDropVisible( false ); 
+        SetDropVisible( false );
         m_LastSelection = m_pDropList->GetSelectedItem();
     }
-} // JComboBox::OnFocus
+}
 
 void JComboBox::DropDown()
 {
@@ -152,32 +152,32 @@ void JComboBox::DropDown()
         DropUp();
         return;
     }
-    SetDropVisible( true ); 
+    SetDropVisible( true );
     m_LastSelection = m_pDropList->GetSelectedItem();
-    SetFocus(); 
+    SetFocus();
     m_pDropList->CaptureMouse();
-} // JComboBox::DropDown
+}
 
 void JComboBox::DropUp()
 {
-    SetDropVisible( false ); 
+    SetDropVisible( false );
     m_LastSelection = m_pDropList->GetSelectedItem();
     SelectItem( m_LastSelection );
     SetFocus( false );
     m_pDropList->CaptureMouse( false );
-} // JComboBox::DropDown
+}
 
 void JComboBox::Render()
 {
     if (!m_pDropList || !m_pThumb) return;
 
     Frame ext = GetExt();
-    //  if dropped down, but mouse is outside - close 
+    //  if dropped down, but mouse is outside - close
     if (IsDropVisible())
     {
         if (!HasFocus())
         {
-            SelectItem( m_LastSelection ); 
+            SelectItem( m_LastSelection );
             DropUp();
         }
     }
@@ -201,5 +201,5 @@ void JComboBox::Render()
 
     g_pDrawServer->DrawSprite( ext, GetSkinPackID(), GetSkinFrame() );
     g_pDrawServer->Flush();
-} // JComboBox::Render
+}
 

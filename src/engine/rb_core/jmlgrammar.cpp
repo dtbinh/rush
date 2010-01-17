@@ -21,8 +21,8 @@
 #include "rb_common.h"
 #include <math.h>
 #include <malloc.h>
-#include <string.h> 
-#include "JMLParser.h"
+#include <string.h>
+#include "jmlparser.h"
 
 //  disable some MSVC7 pain in the arse...
 #pragma runtime_checks( "", off )
@@ -34,8 +34,6 @@ int		yyerror(char *s);
 void	_yyundo();
 const	char*	_getcurpos();
 void	_setcurpos( char* pos );
-
-#define alloca _alloca
 
 #define YYDEBUG 1
 #define YYERROR_VERBOSE
@@ -933,7 +931,7 @@ yyerrhandle:
 
 extern int yylineno;
 extern char *yytext;
-int yyerror(char *s) 
+int yyerror(char *s)
 {
 	assert( g_pParser );
 	char errb[1024];
@@ -1712,12 +1710,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-{	
+{
 							const char* pText = yytext + 1;
 							int len = yyleng - 2;
 							if (*pText == '"') { pText++; len--; }
 							yylval.strID = CreatePooledString( pText, len );
-							return tQuotedString;		
+							return tQuotedString;
 						}
 	YY_BREAK
 case 11:
@@ -1726,66 +1724,66 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-{ 
+{
 							yylval.strID = CreatePooledString( yytext, yyleng );
-							BEGIN(0); 
-							return tInsideTag; 
+							BEGIN(0);
+							return tInsideTag;
 						}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-{	
+{
 							yylval.strID = CreatePooledString( yytext, yyleng );
-							return tNumber;					
+							return tNumber;
 						}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-{	
+{
 							yylval.strID = CreatePooledString( yytext, yyleng );
-							return tNumber;					
+							return tNumber;
 						}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-{	
+{
 							yylval.strID = CreatePooledString( yytext, yyleng );
-							return tHexNumber;					
+							return tHexNumber;
 						}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-{	
+{
 							yylval.strID = CreatePooledString( yytext, yyleng );
-							return tID;					
+							return tID;
 						}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-{	
+{
 							yylval.strID = CreatePooledString( yytext, yyleng );
-							return tID;					
+							return tID;
 						}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-{	
+{
 							yylval.strID = CreatePooledString( yytext, yyleng );
-							return tID;					
+							return tID;
 						}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-{	
+{
 							yylval.strID = CreatePooledString( yytext, yyleng );
-							return tID;					
+							return tID;
 						}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-{	
+{
 							yylval.strID = CreatePooledString( yytext, yyleng );
-							return tID;					
+							return tID;
 						}
 	YY_BREAK
 case 21:
@@ -2677,7 +2675,7 @@ bool JMLParser::ParseBuffer( char* buffer )
 {
 	assert( buffer );
 	Init();
-	
+
 	m_Buffer			= buffer;
 	m_BufPtr			= buffer;
 	g_pParser	= this;
@@ -2686,5 +2684,3 @@ bool JMLParser::ParseBuffer( char* buffer )
 } // JMLParser::ParseBuffer
 
 
-
-

@@ -12,9 +12,9 @@ class JModelAnim;
 
 /*****************************************************************************/
 /*	Class:  IModelServer
-/*  Desc:   
+/*  Desc:
 /*****************************************************************************/
-class IModelServer 
+class IModelServer
 {
 public:
     virtual int         GetModelID      ( const char* name, JModel* pModel = NULL ) = 0;
@@ -28,7 +28,7 @@ public:
     virtual void        DrawShadow      ( int instID, const Mat4& tm ) = 0;
     virtual void        DrawShadows     () = 0;
     virtual void        SetLightDir     ( const Vec3& dir ) = 0;
-    virtual void        SetShadowColor  ( DWORD color ) = 0;
+    virtual void        SetShadowColor  ( uint32_t color ) = 0;
 
     virtual void        EnableShadows   ( bool bEnable = true ) = 0;
     virtual bool        ShadowsEnabled  () const = 0;
@@ -38,7 +38,7 @@ public:
     virtual float       GetAnimDuration ( int animID, int sectionID = -1 ) const = 0;
     virtual int         GetAnimSectionID( int animID, const char* name ) const = 0;
 
-    virtual void        AnimateModel    ( int mID, const Mat4& tm, int anmID, float cTime, 
+    virtual void        AnimateModel    ( int mID, const Mat4& tm, int anmID, float cTime,
                                           int instID = -1, float weight = 1.0f, int sectionID = -1 ) = 0;
     virtual int         InstanceModel   ( int mID ) = 0;
     virtual JModel*     GetModelByInst  ( int instID ) = 0;

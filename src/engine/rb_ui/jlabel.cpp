@@ -4,7 +4,7 @@
 //  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #include "precompile.h"
-#include "JLabel.h"
+#include "jlabel.h"
 
 //****************************************************************************/
 /*  JLabel implementation
@@ -26,7 +26,7 @@ JLabel::JLabel()
     SetBgColor( 0x00000000 );
     SetFocusable( false );
 
-} // JLabel::JLabel 
+} // JLabel::JLabel
 
 struct TextWrap
 {
@@ -36,7 +36,7 @@ struct TextWrap
 };
 
 void JLabel::Render()
-{   
+{
     Frame    pext = GetExt();
     Frame    ext  = pext;
     if (GetBgColor() != 0 && strlen( GetText() ) != 0 )
@@ -46,11 +46,11 @@ void JLabel::Render()
     }
 
     g_pDrawServer->SetLinFilter( IsFilterFont() );
-    
+
     if (!m_bWrapText)
     {
         ext.w = g_pDrawServer->GetTextWidth( GetFontID(), GetText(), GetFontHeight() );
-        ext.h = GetFontHeight();    
+        ext.h = GetFontHeight();
         ext = ApplyAlignment( ext, pext, m_TextXAlign, m_TextYAlign );
         DrawSubstring( ext, GetText() );
     }
@@ -68,16 +68,16 @@ void JLabel::Render()
             //  rewind to the end of the next token
             int len = strcspn( pStr + nChar, " ,-:;.\n\r\t!?" );
             len += strspn( pStr + nChar + len, " ,-:;.\n\r\t!?" );
-            
+
             //  get width of the next token, in pixels
             int tokenW = g_pDrawServer->GetTextWidth( GetFontID(), pStr, GetFontHeight(), len, m_Spacing );
-            
+
             if (curW + tokenW > pext.w  ||  //  text does not fit with the next token
                 len == 0)                   //  reached the end of the string
             {
                 ext.w = curW;
                 Frame cext = ApplyAlignment( ext, pext, m_TextXAlign, YAlign_None );
-                
+
                 TextWrap wrap;
                 wrap.ext   = cext;
                 wrap.nChar = nChar;
@@ -88,7 +88,7 @@ void JLabel::Render()
                 ext.y += GetFontHeight() + m_RowsGap;
                 pStr += nChar;
                 nCharLeft -= nChar;
-                if (nChar == 0) 
+                if (nChar == 0)
                 {
                     break;
                 }
@@ -137,12 +137,12 @@ void JLabel::DrawSubstring( const Frame& ext, const char* text, int nChar )
     uint32_t   clr  = GetFgColor();
     if (m_ShadowColor != 0)
     {
-        g_pDrawServer->DrawString( ext.x + m_MarginX + m_ShadowShiftX, ext.y + m_MarginY + m_ShadowShiftY, 
+        g_pDrawServer->DrawString( ext.x + m_MarginX + m_ShadowShiftX, ext.y + m_MarginY + m_ShadowShiftY,
             GetFontID(), text, m_ShadowColor, GetFontHeight(), nChar, m_Spacing );
         g_pDrawServer->Flush();
     }
-    g_pDrawServer->DrawString( ext.x + m_MarginX, ext.y + m_MarginY, GetFontID(), 
-        text, clr, GetFontHeight(), nChar, m_Spacing ); 
+    g_pDrawServer->DrawString( ext.x + m_MarginX, ext.y + m_MarginY, GetFontID(),
+        text, clr, GetFontHeight(), nChar, m_Spacing );
 } // JLabel::DrawSubstring
 
 
