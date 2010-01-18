@@ -2,7 +2,7 @@
 //  File:  JFade.cpp
 //  Desc:  
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Timer.h"
 #include "JAnimation.h"
 #include "JWidget.h"
@@ -64,7 +64,7 @@ void JFade::Render()
     Frame ext;
     g_pWindowServer->GetRootExt( ext );
 
-    DWORD clr = m_Color;
+    uint32_t clr = m_Color;
     if (m_Color == 0) 
     {
         clr = m_pFadeObject->GetBgColor();
@@ -94,8 +94,8 @@ void JFade::Render()
     }
     else
     {
-        DWORD alpha = DWORD( amt*255.0f );
-        alpha = clamp<DWORD>( alpha, 0, 255 );
+        uint32_t alpha = uint32_t( amt*255.0f );
+        alpha = clamp<uint32_t>( alpha, 0, 255 );
         alpha <<= 24;
         clr |= alpha;
     }

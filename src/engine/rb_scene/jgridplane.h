@@ -12,10 +12,10 @@
 /***********************************************************************************/
 class JGridPlane : public JWidget
 {
-    DWORD               m_LinesColor;
-    DWORD               m_RulersColor;
-    DWORD               m_XColor;
-    DWORD               m_YColor;
+    uint32_t               m_LinesColor;
+    uint32_t               m_RulersColor;
+    uint32_t               m_XColor;
+    uint32_t               m_YColor;
     int                 m_AxisLineWidth;
     float               m_CellSide;
     int                 m_CellsW;

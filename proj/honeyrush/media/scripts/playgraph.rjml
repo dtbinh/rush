@@ -1,0 +1,219 @@
+dialog "PlayGraph"
+{
+    xalign       = Parent;
+    yalign       = Parent;
+    extents		 = { 0, 0, 640, 480 };
+    
+    
+    picture "Stars"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 2;
+        tile        = true;
+    }
+    
+    button "OK"
+    {
+        text        = L"OK";
+        extents     = { 540, 400, 60, 40 };
+        xalign      = Right;
+        yalign      = Bottom;
+        font        = "font_menu";
+        shadowcolor = 0xFF11FF11;
+        fontheight  = 48;
+        fgcolor     = 0xFF49CD49;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>MenuSystem.OnBack;
+        unpress     = >>LevelTree.SaveDAG;
+    }
+    
+    dageditor "LevelTree"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        focusable	= false;
+    }
+    
+    panel "LevelPanel"
+    {
+        xalign          = Left;
+        yalign          = Top;
+        extents         = { 0, 0, 220, 160 };
+        bgcolor         = 0x99111111;
+        visible			= <<LevelTree.IsLevelSelected;
+		consumemouse	= true;
+		
+		label "lbLevelName"
+        {
+			extents         = { 5, 10, 100, 13 };
+			text			= L"Name:";
+			textyalign		= top;
+			font            = "font_system";
+            fontheight      = 13;
+			filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+        }
+        
+        editbox "ebLevelName"
+        {
+			extents         = { 70, 13, 128, 13 };
+			tag             = <<LevelTree.SelectedLevel;
+            text			= <>Game.LevelName;
+            textyalign		= top;
+			font            = "font_system";
+            fontheight      = 13;
+			filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+			caretcolor      = 0xFFFFFFFF;
+			bgcolor         = 0xFFFFFFFF;
+        }
+        
+        label "lbLevelBonus"
+        {
+			extents         = { 5, 30, 100, 18 };
+			text			= L"Bonus:";
+			font            = "font_system";
+            fontheight      = 13;
+			filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+        }
+        
+        editbox "ebLevelBonus"
+        {
+			extents         = { 70, 33, 128, 18 };
+			tag             = <<LevelTree.SelectedLevel;
+            text			= <>Game.LevelBonus;
+			font            = "font_system";
+            fontheight      = 13;
+			filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+			caretcolor      = 0xFFFFFFFF;
+			bgcolor         = 0xFFFFFFFF;
+        }
+        
+        label "lbLevelMinutes"
+        {
+			extents         = { 5, 50, 100, 18 };
+			text			= L"Minutes:";
+			font            = "font_system";
+            fontheight      = 13;
+			filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+        }
+        
+        editbox "ebLevelMinutes"
+        {
+			extents         = { 70, 53, 128, 18 };
+			font            = "font_system";
+            fontheight      = 13;
+            tag             = <<LevelTree.SelectedLevel;
+            text			= <>Game.LevelMinutes;
+            skinpack        = "button";
+            filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+			caretcolor      = 0xFFFFFFFF;
+			bgcolor         = 0xFFFFFFFF;
+        }
+        
+        label "lbLevelSeconds"
+        {
+			extents         = { 5, 70, 100, 18 };
+			text			= L"Seconds:";
+			font            = "font_system";
+            fontheight      = 13;
+			filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+        }
+        
+        editbox "ebLevelSeconds"
+        {
+			extents         = { 70, 73, 128, 18 };
+			font            = "font_system";
+            fontheight      = 13;
+            tag             = <<LevelTree.SelectedLevel;
+            text			= <>Game.LevelSeconds;
+            skinpack        = "button";
+            filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+			caretcolor      = 0xFFFFFFFF;
+			bgcolor         = 0xFFFFFFFF;
+        }
+        
+        label "lbLevelHive"
+        {
+			extents         = { 5, 90, 100, 18 };
+			text			= L"Hive:";
+			font            = "font_system";
+            fontheight      = 13;
+			filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+        }
+        
+        editbox "ebLevelHive"
+        {
+			extents         = { 70, 93, 128, 18 };
+			font            = "font_system";
+            fontheight      = 13;
+            tag             = <<LevelTree.SelectedLevel;
+            text			= <>Game.LevelHive;
+            skinpack        = "button";
+            filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+			caretcolor      = 0xFFFFFFFF;
+			bgcolor         = 0xFFFFFFFF;
+        }
+        
+        label "lbLevelApiary"
+        {
+			extents         = { 5, 110, 100, 18 };
+			text			= L"Apiary:";
+			font            = "font_system";
+            fontheight      = 13;
+			filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+        }
+        
+        editbox "ebLevelApiary"
+        {
+			extents         = { 70, 113, 128, 18 };
+			font            = "font_system";
+            fontheight      = 13;
+            tag             = <<LevelTree.SelectedLevel;
+            text			= <>Game.LevelApiary;
+            skinpack        = "button";
+            filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+			caretcolor      = 0xFFFFFFFF;
+			bgcolor         = 0xFFFFFFFF;
+        }
+	    
+        checkbox "cbFinal"
+        {
+			extents         = { 8, 130, 128, 16 };
+			font            = "font_system";
+            fontheight      = 13;
+            tag             = <<LevelTree.SelectedLevel;
+            text			= "Final";
+            pressed         = <>Game.LevelFinal;
+            skinpack        = "button";
+            normalframe     = 4;
+            pressedframe    = 5;
+            filterfont		= false;
+			fgcolor         = 0xFFDDDDFF;
+			caretcolor      = 0xFFFFFFFF;
+			bgcolor         = 0xFFFFFFFF;
+        }
+    }
+    
+    /*
+    picture "Border"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 0;
+    }
+    */
+};

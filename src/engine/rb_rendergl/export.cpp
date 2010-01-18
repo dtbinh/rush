@@ -1,11 +1,7 @@
+#include "precompile.h"
 #include "JReflect.h"
 
-namespace rb_rendergl
+export(rb_rendergl)
 {
-
-void Export() 
-{
-
-}
-
+    link_class(JRenderServerGL);
 }

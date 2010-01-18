@@ -1,0 +1,45 @@
+shader "shadow_plane"
+{
+    renderstate "rs"
+    {
+        alphablendenable        = true;
+        srcblend                = zero;
+        destblend               = srccolor;
+        alphatestenable         = true;
+        alphafunc               = greaterequal;
+        alpharef                = 0x01;
+        ditherenable            = false;
+        lighting                = false;
+        zenable                 = true;
+        zwriteenable            = false;
+        zfunc                   = lessequal;
+        cullmode                = none;
+        fillmode                = solid;
+        texturefactor           = 0xFFFFFFFF;
+    }
+    
+    texturepass 
+    {
+        pass                    = 0;
+        colorop                 = SelectArg1;
+        colorarg1               = Texture;
+        colorarg2               = Diffuse;
+        
+        alphaop                 = SelectArg1;
+        alphaarg1               = TFactor;
+        alphaarg2               = Diffuse;
+        
+        addressu                = clamp;
+        addressv                = clamp;
+        magfilter               = linear;
+        minfilter               = linear;
+        mipfilter               = linear;
+    }
+    
+    texturepass 
+    {
+        pass                = 1;
+        colorop             = disable;
+        alphaop             = disable; 
+    }
+}

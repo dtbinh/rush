@@ -1,0 +1,10 @@
+shader "ts0_linfilter"
+{
+    texturepass 
+    {
+        pass                = 0;
+        magfilter           = linear;
+        minfilter           = linear;
+        mipfilter           = linear;
+    }
+}

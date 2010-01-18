@@ -3,13 +3,13 @@
 //  Date:   11.08.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
-#include "JObjectIterator.h"
-#include "JAnimation.h"
-#include "JCamera.h"
-#include "JModel.h"
-#include "JModelInstance.h"
-#include "IModelServer.h"
+#include "precompile.h"
+#include "jobjectiterator.h"
+#include "janimation.h"
+#include "jcamera.h"
+#include "jmodel.h"
+#include "jmodelinstance.h"
+#include "imodelserver.h"
 
 /***********************************************************************************/
 /*  JModelInstance implementation
@@ -45,14 +45,14 @@ void JModelInstance::SetModel( const char* model )
 
 float JModelInstance::GetTransparency() const
 {
-    DWORD transp = (m_Color&0xFF000000) >> 24;
+    uint32_t transp = (m_Color&0xFF000000) >> 24;
     float res = float( transp )/255.0f;
     return res;
 }
 
 void JModelInstance::SetTransparency( float val )
 {
-    DWORD transp = DWORD( val*255.0f );
+    uint32_t transp = uint32_t( val*255.0f );
     m_Color = (m_Color&0x00FFFFFF)|(transp << 24);
 }
 

@@ -2,7 +2,7 @@
 //  File:  MockRenderServer.cpp
 //  Desc:  
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "MockRenderServer.h"
 
 //****************************************************************************/
@@ -16,7 +16,7 @@ MockRenderServer::MockRenderServer()
     m_WorldTM       = IdentityMatrix();
     m_TextureTM     = IdentityMatrix();
     m_CurFrame      = 0; 
-} // MockRenderServer::MockRenderServer 
+}  
 
 MockRenderServer::~MockRenderServer()
 {
@@ -43,7 +43,7 @@ void MockRenderServer::ReloadResources()
 {
 } // MockRenderServer::ReloadResources
     
-void MockRenderServer::ClearViewport( DWORD color )
+void MockRenderServer::ClearViewport( uint32_t color )
 {
 } // MockRenderServer::ClearViewport
 
@@ -118,17 +118,17 @@ bool MockRenderServer::SaveTexture( int texID, const char* fname )
     return true;
 } // MockRenderServer::SaveTexture
 
-void MockRenderServer::SetAmbient( DWORD color )
+void MockRenderServer::SetAmbient( uint32_t color )
 {
 } // MockRenderServer::SetAmbient
 
 int MockRenderServer::AddPointLight( const Vec3& pos, float radius, float falloff, 
-                          DWORD diffuse, DWORD specular, bool bPerPixel )
+                          uint32_t diffuse, uint32_t specular, bool bPerPixel )
 {
     return 0;
 } // MockRenderServer::AddPointLight
 
-int MockRenderServer::AddDirLight( const Vec3& dir, DWORD diffuse, DWORD specular, bool bPerPixel )
+int MockRenderServer::AddDirLight( const Vec3& dir, uint32_t diffuse, uint32_t specular, bool bPerPixel )
 {
     return 0;
 } // MockRenderServer::AddDirLight
@@ -167,7 +167,7 @@ int MockRenderServer::CreateTexture( const TextureProperties& texProp )
     return 0;
 } // MockRenderServer::CreateTexture
 
-BYTE* MockRenderServer::LockTexture( int texID, const Frame& rect, int level, DWORD* pStride )
+uint8_t* MockRenderServer::LockTexture( int texID, const Frame& rect, int level, uint32_t* pStride )
 {
     return NULL;
 } // MockRenderServer::LockTexture
@@ -177,7 +177,7 @@ bool MockRenderServer::UnlockTexture( int texID, int level )
     return false;
 } // MockRenderServer::UnlockTexture
 
-void MockRenderServer::SetColorTint( DWORD color )
+void MockRenderServer::SetColorTint( uint32_t color )
 {
 } // MockRenderServer::SetColorTint
 
@@ -261,22 +261,22 @@ int MockRenderServer::GetIBIteration( int ibID )
     return -1;
 } // MockRenderServer::GetIBIteration
 
-BYTE* MockRenderServer::LockIB( int ibID, int firstByte, int numBytes )
+uint8_t* MockRenderServer::LockIB( int ibID, int firstByte, int numBytes )
 {
     return NULL;
 } // MockRenderServer::LockIB
 
-bool MockRenderServer::CacheIB( int ibID, BYTE* pData, int size, int& iteration, int& firstByte )
+bool MockRenderServer::CacheIB( int ibID, uint8_t* pData, int size, int& iteration, int& firstByte )
 {
     return true;
 } // MockRenderServer::CacheIB
 
-BYTE* MockRenderServer::LockVB( int vbID, int firstByte, int numBytes )
+uint8_t* MockRenderServer::LockVB( int vbID, int firstByte, int numBytes )
 {
     return NULL;
 } // MockRenderServer::LockVB
 
-bool MockRenderServer::CacheVB( int vbID, BYTE* pData, int size, int stride, int& iteration, int& firstByte )
+bool MockRenderServer::CacheVB( int vbID, uint8_t* pData, int size, int stride, int& iteration, int& firstByte )
 {
     return true;
 } // MockRenderServer::CacheVB

@@ -1,2 +1,0 @@
-int_libs = rb_core, rb_util, rb_math, rb_draw, rb_ui
-ext_libs = unittest++

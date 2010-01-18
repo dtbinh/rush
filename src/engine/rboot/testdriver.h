@@ -6,7 +6,7 @@
 #ifndef __TESTDRIVER_H__
 #define __TESTDRIVER_H__
 
-#include "JDialog.h"
+#include "jdialog.h"
 
 /***********************************************************************************/
 //  Class:  TestDriver

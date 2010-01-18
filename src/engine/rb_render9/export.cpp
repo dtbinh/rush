@@ -1,7 +1,7 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "JReflect.h"
 
 export(rb_render9)
 {
-    link_class(JRenderServer);
+    link_class(JRenderServerDX9);
 }

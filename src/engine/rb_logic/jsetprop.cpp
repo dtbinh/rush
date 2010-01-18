@@ -16,13 +16,13 @@ JSetProp::JSetProp()
     m_pSrcObject = NULL;
     m_MinVal    = -1;
     m_MaxVal    = -1;
-} // JSetProp::JSetProp
+}  
 
 void JSetProp::Init()
 {   
     m_pObject    = g_pObjectServer->FindObject( m_Object.c_str(), NULL, this );
     m_pSrcObject = g_pObjectServer->FindObject( m_SrcObject.c_str(), NULL, this );
-} // JSetProp::Init
+}  
 
 void JSetProp::OnPlay()
 {
@@ -50,7 +50,7 @@ void JSetProp::OnPlay()
 
         m_pObject->SetProperty( m_Prop.c_str(), m_Value.c_str(), GetTag() );
     }
-} // JSetProp::OnPlay
+}  
 
 
 

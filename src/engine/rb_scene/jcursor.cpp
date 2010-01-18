@@ -2,7 +2,7 @@
 //  File:  JCursor.cpp
 //  Desc:  
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JAnimation.h"
 #include "JSwitch.h"
 #include "JCursor.h"

@@ -3,7 +3,7 @@
 //  Date:   11.08.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "IParticleServer.h"
 #include "IModelServer.h"
 #include "JAnimation.h"

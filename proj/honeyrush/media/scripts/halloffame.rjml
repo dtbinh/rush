@@ -1,0 +1,203 @@
+dialog "HallOfFame"
+{
+    xalign       = Center;
+    yalign       = Center;
+    extents		 = { 0, 0, 640, 480 };
+    
+    
+    picture "Stars"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 2;
+        tile        = true;
+    }
+    
+    picture "Planet"
+    {
+        extents     = { 350, -115, 300, 300 };
+        skinpack    = "interface";
+        skinframe = 1;
+    }
+    
+    label "HallOfFamePropmt"
+    {
+        text        = L"Hall of Fame:";
+        extents     = { 130, 20, 260, 48 };
+        xalign      = parent;
+        textxalign  = center;
+        font        = "font_menu";
+        fontheight  = 48;
+        shadowcolor = 0xBB550000;
+        fgcolor     = 0xFFFFFFFF;
+    }
+    
+    panel "Header"
+    {
+        extents         = { 80, 90, 480, 30 };
+        bgcolor         = 0x6600AA00;
+        
+        label "lblNumber"
+        {
+            extents         = { 0, 0, 280, 30 };
+		    text			= "";
+		    font            = "font_menu";
+		    fontheight      = 30;
+		    textxalign      = left;
+		    filterfont		= true;
+		    shadowcolor     = 0xBB000000;
+		    fgcolor         = 0xFFFFFF00;
+        }
+        
+        label "lblName"
+        {
+            extents         = { 30, 0, 280, 30 };
+		    text			= "Name";
+		    font            = "font_menu";
+		    fontheight      = 30;
+		    textxalign      = left;
+		    filterfont		= true;
+		    shadowcolor     = 0xBB000000;
+		    fgcolor         = 0xFFFFFFFF;
+        }
+        
+        label "lblStatus"
+        {
+            extents         = { 180, 0, 280, 30 };
+		    text			= "Status";
+		    font            = "font_menu";
+		    fontheight      = 30;
+		    textxalign      = left;
+		    filterfont		= true;
+		    shadowcolor     = 0xBB000000;
+		    fgcolor         = 0xFFFFFFFF;
+        }
+
+		label "lblRounds"
+        {
+            extents         = { 300, 0, 300, 30 };
+		    text			= "Rounds";
+		    font            = "font_menu";
+		    textxalign      = left;
+		    shadowcolor     = 0xBB000000;
+		    fontheight      = 30;
+		    filterfont		= true;
+		    fgcolor         = 0xFFFFFFFF;
+        }
+                
+        label "lblScore"
+        {
+            extents         = { 390, 0, 300, 30 };
+		    text			= "Score";
+		    font            = "font_menu";
+		    textxalign      = left;
+		    shadowcolor     = 0xBB000000;
+		    fontheight      = 30;
+		    filterfont		= true;
+		    fgcolor         = 0xFFFFFFFF;
+        }
+        
+    }   
+        
+    listbox "StatsBox"
+    {
+        extents         = { 80, 120, 480, 450 };
+        bgcolor         = 0x00000000;
+        selbgcolor		= 0x5500EE00;
+        selecteditem	= <<Game.CurrentBestPlayer;
+        vertical        = true;
+        autosize        = true;
+        maxwidth        = 580;
+        maxheight       = 130;
+        numitems		= <<Game.NumBestPlayers;
+        
+        panel "Template"
+        {
+            extents         = { 0, 0, 480, 30 };
+            bgcolor         = 0x2200FF00;
+            
+            label "lblNumber"
+            {
+                extents         = { 0, 0, 280, 30 };
+	    	    text			= <<Game.BestPlayerIndex;
+	    	    font            = "font_menu";
+	    	    fontheight      = 30;
+	    	    textxalign      = left;
+	    	    filterfont		= true;
+	    	    shadowcolor     = 0xBB000000;
+	    	    fgcolor         = 0xFFEEEEEE;
+            }
+            
+            label "lblName"
+            {
+                extents         = { 30, 0, 280, 30 };
+	    	    text			= <<Game.BestPlayerName;
+	    	    font            = "font_menu";
+	    	    fontheight      = 30;
+	    	    textxalign      = left;
+	    	    filterfont		= true;
+	    	    shadowcolor     = 0xBB000000;
+	    	    fgcolor         = 0xFFEEEE99;
+            }
+            
+            label "lblStatus"
+        	{
+        	    extents         = { 180, 0, 280, 30 };
+			    text			= <<Game.BestPlayerStatus;
+			    font            = "font_menu";
+			    fontheight      = 30;
+			    textxalign      = left;
+			    filterfont		= true;
+			    shadowcolor     = 0xBB000000;
+			    fgcolor         = 0xFFEEEE99;
+        	}
+            
+            label "lblRounds"
+            {
+                extents         = { 300, 0, 300, 30 };
+	    	    text			= <<Game.BestPlayerRounds;
+	    	    font            = "font_menu";
+	    	    textxalign      = left;
+	    	    shadowcolor     = 0xBB000000;
+	    	    fontheight      = 30;
+	    	    filterfont		= true;
+	    	    fgcolor         = 0xFFEEEE99;
+            }
+            
+            label "lblScore"
+            {
+                extents         = { 390, 0, 300, 30 };
+	    	    text			= <<Game.BestPlayerScore;
+	    	    font            = "font_menu";
+	    	    textxalign      = left;
+	    	    shadowcolor     = 0xBB000000;
+	    	    fontheight      = 30;
+	    	    filterfont		= true;
+	    	    fgcolor         = 0xFFFFFF00;
+            }
+        }        
+    }
+    
+    button "OK"
+    {
+        text        = L"OK";
+        extents     = { 540, 400, 80, 60 };
+        xalign      = Right;
+        yalign      = Bottom;
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFF49CD49;
+        shadowcolor = 0xFF11FF11;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>MenuSystem.OnBack;
+    }
+    
+    picture "Border"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 0;
+    }
+};

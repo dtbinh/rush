@@ -118,7 +118,7 @@ private:
     bool            m_bAlwaysCache;
     bool            m_bFilter;
     bool            m_bBlendFrames;
-    DWORD           m_Color;
+    uint32_t           m_Color;
 
     JString         m_AttachInstance;
     JString         m_AttachBone;

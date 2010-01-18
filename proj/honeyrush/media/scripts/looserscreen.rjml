@@ -1,0 +1,55 @@
+dialog "LooserScreen"
+{
+    xalign       = Center;
+    yalign       = Center;
+    extents		 = { 0, 0, 640, 480 };
+    
+    
+    picture "Stars"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 2;
+        tile        = true;
+    }
+    
+    picture "Planet"
+    {
+        extents     = { 350, -115, 300, 300 };
+        skinpack    = "interface";
+        skinframe = 1;
+    }
+    
+    label "Congratulate"
+    {
+        extents     = { 120, 20, 400, 48 };
+        xalign      = Parent;
+        textxalign  = Center;
+        text        = L"You have lost... :(";
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFF11CD11;
+        shadowcolor = 0xFF11FF11;
+    }
+    
+    button "OK"
+    {
+        text        = L"OK";
+        extents     = { 540, 400, 60, 40 };
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFF49CD49;
+        shadowcolor = 0xFF11FF11;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>MenuSystem.OnPlayerScreen;
+    }
+    
+    picture "Border"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 0;
+    }
+};

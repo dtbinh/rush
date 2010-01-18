@@ -64,7 +64,7 @@ private:
     int                     m_ModelID;
     int                     m_Dummy;
 
-    DWORD                   m_Color;
+    uint32_t                   m_Color;
     JString                 m_AttachInstance;     
     JString                 m_AttachBone;         
 

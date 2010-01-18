@@ -3,7 +3,7 @@
 //  Date:   13.05.2006
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JLight.h"
 #include "JRenderTarget.h"
 
@@ -81,7 +81,7 @@ void JQuestGame::CreateThumbnail()
             {
                 pt.x = i;
                 pt.y = j;
-                DWORD pixel = g_pDrawServer->GetPixel( maskID, 0, pt );
+                uint32_t pixel = g_pDrawServer->GetPixel( maskID, 0, pt );
                 ColorF color( pixel );
                 m_ThumbSnapshot.SetAlpha( i, j, color.a );
             }

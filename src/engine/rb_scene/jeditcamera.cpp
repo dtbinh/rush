@@ -3,7 +3,7 @@
 //  Date:   11.10.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JEditCamera.h"
 #include "JCamera.h"
 #include "windows.h"

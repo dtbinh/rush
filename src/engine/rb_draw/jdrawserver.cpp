@@ -727,7 +727,7 @@ uint8_t* JDrawServer::AllocateBuffer( int nBytes, bool bAlwaysCache )
         m_CurBytesAllocated = nBytes;
     }
     return pData;
-} // JDrawServer::AllocateBuffer
+} 
 
 int JDrawServer::GetSpriteID( const char* packageName, PSpriteUpdateCB updateCB, bool bAlwaysCache )
 {
@@ -840,7 +840,7 @@ int JDrawServer::GetSpriteID( const char* packageName, PSpriteUpdateCB updateCB,
     AddChild( pSpritePack );
 
     return packID;
-} // JDrawServer::GetSpriteID
+}  
 
 void JDrawServer::LoadPixels( int packID, int sprID )
 {
@@ -851,7 +851,7 @@ void JDrawServer::LoadPixels( int packID, int sprID )
     if (!g_pFileServer->OpenMedia( sp.GetName(), "rspr", is )) return;
     is.Rewind( sp.m_HeaderSize );
     LoadPixels( packID, 0, sp.m_Frames.size(), is );
-} // JDrawServer::LoadPixels
+}  
 
 void JDrawServer::LoadPixels( int packID, int firstSpr, int nSpr, InStream& is )
 {
@@ -922,7 +922,7 @@ void JDrawServer::LoadPixels( int packID, int firstSpr, int nSpr, InStream& is )
 void JDrawServer::DrawSprite( float x, float y, int spriteID, int frameID, uint32_t color, float rot, bool bMirror )
 {
     DrawSprite( Frame( x, y, -1.0f, -1.0f ), spriteID, frameID, color, rot, bMirror );
-} // JDrawServer::DrawSprite
+}  
 
 int JDrawServer::AllocateChunk( JFrameChunk& ch )
 {
@@ -1046,13 +1046,13 @@ int JDrawServer::AllocateChunk( JFrameChunk& ch )
     int chunkID = AllocateChunk( ch );
 	assert( chunkID != -1 );
 	return chunkID;
-} // JDrawServer::AllocateChunk
+}  
 
 int JDrawServer::GetNFrames( int sprID ) const
 {
     if (sprID < 0 || sprID >= m_SpritePacks.size()) return 0;
     return m_SpritePacks[sprID]->m_Frames.size();
-} // JDrawServer::GetNFrames
+}  
 
 void JDrawServer::TileSprite( const Frame& rct, int spriteID, int frameID, uint32_t color )
 {
@@ -1073,7 +1073,7 @@ void JDrawServer::TileSprite( const Frame& rct, int spriteID, int frameID, uint3
         Flush();
     }
     g_pRenderServer->SetViewport( vp );
-} // JDrawServer::TileSprite
+}  
 
 void JDrawServer::DrawSprite( const Frame& rct, int spriteID, int frameID, uint32_t color, float rot, bool bMirror )
 {
@@ -1163,7 +1163,7 @@ void JDrawServer::DrawSprite( const Frame& rct, int spriteID, int frameID, uint3
         m_Surfaces[ch.m_SurfID].m_LastFrameUsed = m_CurFrame;
     }
     m_NDrawnSprites++;
-} // JDrawServer::DrawSprite
+}  
 
 void JDrawServer::DrawSprite( const Mat4& tm, int spriteID, int frameID, uint32_t color )
 {
@@ -1204,7 +1204,7 @@ void JDrawServer::DrawSprite( const Mat4& tm, int spriteID, int frameID, uint32_
         if (m_bAdjustUV && !fr.m_bHasBorder)    rb.m_Flags |= rfAdjustUV;
     }
     m_NDrawnSprites++;
-} // JDrawServer::DrawSprite
+}  
 
 void JDrawServer::ResetSprite( int sprID )
 {
@@ -1219,7 +1219,7 @@ void JDrawServer::ResetSprite( int sprID )
             fr.m_Chunks[j].m_SurfID = -1;
         }
     }
-} // JDrawServer::ResetSprite
+}  
 
 int JDrawServer::GetTextWidth( int fontID, const char* str, float height, int numChars, int spacing )
 {
@@ -1240,7 +1240,7 @@ int JDrawServer::GetTextWidth( int fontID, const char* str, float height, int nu
         x += w + spacing;
     }
     return x;
-} // JDrawServer::GetTextWidth
+} 
 
 void JDrawServer::DrawString( int x, int y, int fontID, const char* str, uint32_t color, float height,
                               int nChar, int spacing )
@@ -1268,13 +1268,13 @@ void JDrawServer::DrawString( int x, int y, int fontID, const char* str, uint32_
         DrawSprite( Frame( x, y, w, h ), fontID, cID, color );
         x += w + spacing;
     }
-} // JDrawServer::DrawString
+}  
 
 void JDrawServer::DrawQuad( const Vec3& lt, const Vec3& rt, const Vec3& lb, const Vec3& rb, uint32_t color )
 {
     DrawPoly( lt, rt, lb, color, color, color );
     DrawPoly( lb, rt, rb, color, color, color );
-} // JDrawServer::DrawQuad
+} 
 
 void JDrawServer::DrawBox( const AABox& box, uint32_t clrLines, uint32_t clrFill )
 {
@@ -1314,7 +1314,7 @@ void JDrawServer::DrawBox( const AABox& box, uint32_t clrLines, uint32_t clrFill
         DrawQuad( ltf, ltn, lbf, lbn, clrFill );
         DrawQuad( rtn, rtf, rbn, rbf, clrFill );
     }
-} // JDrawServer::DrawBox
+}  
 
 void JDrawServer::DrawSphere( const Vec3& center, float r, uint32_t clrLines, uint32_t clrFill, int nSegments )
 {
@@ -1349,7 +1349,7 @@ void JDrawServer::DrawSphere( const Vec3& center, float r, uint32_t clrLines, ui
             }
         }
     }
-} // JDrawServer::DrawSphere
+}  
 
 void JDrawServer::DrawSpherePart( const Vec3& center, float r, float startPhi, float dPhi,
     float startTheta, float dTheta, uint32_t clrLines, uint32_t clrFill, int nSegments )
@@ -1394,7 +1394,7 @@ void JDrawServer::DrawSpherePart( const Vec3& center, float r, float startPhi, f
             }
         }
     }
-} // JDrawServer::DrawSphereSegment
+} 
 
 void JDrawServer::DrawCylinder( const Vec3& base, float r, float h, uint32_t clrLines, uint32_t clrFill, bool bCapped, int nSegments )
 {
@@ -1433,7 +1433,7 @@ void JDrawServer::DrawCylinder( const Vec3& base, float r, float h, uint32_t clr
              }
          }
     }
-} // JDrawServer::DrawCylinder
+} 
 
 void JDrawServer::DrawCapsule( const Vec3& base, float r, float h, uint32_t clrLines, uint32_t clrFill, int nSegments )
 {
@@ -1444,7 +1444,7 @@ void JDrawServer::DrawPlane( const Plane& plane, const Vec2& center,
                             uint32_t clrLines, uint32_t clrFill, float side, int nSegments )
 {
 
-} // JDrawServer::DrawPlane
+}  
 
 void JDrawServer::DrawTriMesh( const TriMesh2& mesh, uint32_t color, bool bScreenSpace )
 {
@@ -1466,7 +1466,7 @@ void JDrawServer::DrawTriMesh( const TriMesh2& mesh, uint32_t color, bool bScree
                 Vec3( c.x, c.y, 0.0f ), color, color, color );
         }
     }
-} // DrawTriMesh
+}  
 
 const float c_MinBendAngle = c_PI/20.0f;
 void JDrawServer::DrawPolyline( float width, const PolyLine2& pl, uint32_t color, bool bClosed, bool bWorldSpace )
@@ -1629,7 +1629,7 @@ void JDrawServer::DrawFrustum( const Frustum& frustum,  uint32_t clrLines, uint3
         DrawQuad( frustum.rtn(), frustum.rtf(), frustum.rbn(), frustum.rbf(), clrFill );
     }
 
-} // JDrawServer::DrawFrustum
+}  
 
 
 

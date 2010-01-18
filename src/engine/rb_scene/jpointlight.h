@@ -15,8 +15,8 @@ class JPointLight : public JLight
     Vec3            m_Position;
     float           m_Radius;
     float           m_Falloff;
-    DWORD           m_Diffuse;
-    DWORD           m_Specular;
+    uint32_t           m_Diffuse;
+    uint32_t           m_Specular;
 public:
                     JPointLight ();
     virtual void    Render      ();

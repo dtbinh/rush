@@ -29,7 +29,7 @@ Logger::Logger()
     sprintf( s_Buffer, "*    Started logging: %.19s", asctime( newtime ) );
     m_Lines.push_back( s_Buffer );
     m_Lines.push_back( "**********************************************************************************" );
-} // Logger::Logger
+}  
 
 Logger::~Logger()
 {
@@ -43,7 +43,7 @@ Logger::~Logger()
 
     //  write log file
     //DumpLog();
-} // Logger::~Logger
+}  
 
 void Logger::DumpLog()
 {
@@ -79,11 +79,7 @@ void Logger::addmsg( LogMessageType type, const char* msg )
 
     sprintf( pBuf, "%s", msg );
     m_Lines.push_back( buf );
-#ifdef _WIN32
-    OutputDebugString( buf );
-    OutputDebugString( "\n" );
-#endif
-} // Logger::addmsg
+}  
 
 void Logger::err( const char* format, ... )
 {
@@ -92,7 +88,7 @@ void Logger::err( const char* format, ... )
     vsprintf( s_Buffer, format, argList );
     addmsg( lmtError, s_Buffer );
     va_end( argList );
-} // Logger::warn
+}  
 
 void Logger::warn( const char* format, ... )
 {
@@ -101,7 +97,7 @@ void Logger::warn( const char* format, ... )
     vsprintf( s_Buffer, format, argList );
     addmsg( lmtWarning, s_Buffer );
     va_end( argList );
-} // Logger::warn
+}  
 
 void Logger::msg( const char* format, ... )
 {
@@ -110,4 +106,4 @@ void Logger::msg( const char* format, ... )
     vsprintf( s_Buffer, format, argList );
     addmsg( lmtMessage, s_Buffer );
     va_end( argList );
-} // Logger::warn
+} 

@@ -14,7 +14,7 @@ class JRenderTarget : public JObject
 {
     float           m_Width;
     float           m_Height;
-    DWORD           m_ClearColor;
+    uint32_t        m_ClearColor;
 
     int             m_TexID;
 

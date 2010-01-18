@@ -10,7 +10,7 @@
 #include "IRenderServer.h"
 
 const char*     GetDXError      ( HRESULT hresult );
-D3DCOLORVALUE   ConvertColor    ( DWORD col );
+D3DCOLORVALUE   ConvertColor    ( uint32_t col );
 
 inline D3DFORMAT ConvertDepthFormat( DepthFormat dsFormat )
 {
@@ -128,7 +128,7 @@ inline D3DPRIMITIVETYPE ConvertPrimitiveType( PrimitiveType priType )
 }  // ConvertPrimitiveType
 
 struct VertexDeclaration;
-DWORD CreateFVF( const VertexDeclaration& vdecl );
+uint32_t CreateFVF( const VertexDeclaration& vdecl );
 IDirect3DVertexDeclaration9* CreateVDecl( IDirect3DDevice9* pDevice, const VertexDeclaration& vdecl );
 
 #endif // __DXUTILS_H__

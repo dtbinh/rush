@@ -1,0 +1,9 @@
+shader "ts0_mod4x"
+{
+    texturepass 
+    {
+        pass                = 0;
+        colorop             = modulate4x;
+        alphaop             = modulate4x;
+    }
+}

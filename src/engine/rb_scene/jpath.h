@@ -54,7 +54,7 @@ private:
     Vec2            m_MarkerDir;
 
     float           m_LineWidth;
-    DWORD           m_Color;
+    uint32_t           m_Color;
 }; // class JPath
 
 inline float JPath::GetMarkerT() const 

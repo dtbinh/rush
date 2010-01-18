@@ -4,13 +4,13 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "Logger.h"
-#include "FStream.h"
-#include "Path.h"
-#include "IPersistServer.h"
-#include "IFileServer.h"
-#include "IModelServer.h"
-#include "TestDriver.h"  
+#include "logger.h"
+#include "fstream.h"
+#include "path.h"
+#include "ipersistserver.h"
+#include "ifileserver.h"
+#include "imodelserver.h"
+#include "testdriver.h"  
 
 /***********************************************************************************/
 /*  TestDriver implementation

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "JString.h"
 #include "JReflect.h"
 #include "JAnimation.h"

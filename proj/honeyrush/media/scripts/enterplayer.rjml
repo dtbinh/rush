@@ -1,0 +1,78 @@
+dialog "EnterPlayer"
+{
+    xalign       = Center;
+    yalign       = Center;
+    extents		 = { 0, 0, 640, 480 };
+    defaultfocus = "EnterPlayerBox";
+    
+    
+    picture "Stars"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 2;
+        tile        = true;
+    }
+    
+    picture "Planet"
+    {
+        extents     = { 350, -115, 300, 300 };
+        skinpack    = "interface";
+        skinframe = 1;
+    }
+    
+    label "EnterPlayerPromt"
+    {
+        text        = L"Enter Player Name:";
+        extents     = { 130, 170, 260, 48 };
+        xalign      = Parent;
+        textxalign  = Center;
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFFFFFFFF;
+    }
+    
+    editbox "EnterPlayerBox"
+    {
+        extents     = { 150, 230, 240, 48 };
+        font        = "font_menu";
+        fontheight  = 40;
+        text        = <>Core.Game.NewPlayerName;
+        fgcolor     = 0xFFFFFFFF;
+    }
+    
+    button "Back"
+    {
+        text        = L"Back";
+        extents     = { 40,  400, 100, 40 };
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFF49CD49;
+        shadowcolor = 0xFF11FF11;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>MenuSystem.OnBack;
+    }
+    
+    button "OK"
+    {
+        text        = "OK";
+        extents     = { 540, 400, 60, 40 };
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFF49CD49;
+        shadowcolor = 0xFF11FF11;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>Core.Game.AddNewPlayer;
+        unpress     = >>MenuSystem.OnPlayerScreen;
+        
+    }
+    
+    picture "Border"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 0;
+    }
+};

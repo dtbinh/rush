@@ -1,0 +1,128 @@
+dialog "MainMenu"
+{
+    xalign        = Center;
+    yalign        = Center;
+    extents		    = { 0, 0, 640, 480 };
+    
+    picture "Stars"
+    {
+        xalign          = Parent;
+        yalign          = Parent;
+        extents			    = { 0, 0, 640, 480 };
+        skinpack        = "interface";
+        skinframe		    = 2;
+        tile            = true;
+    }
+    
+    picture "Planet"
+    {
+        extents         = { -15, 115, 300, 300 };
+        skinpack        = "interface";
+        skinframe		    = 1;
+    }
+    
+    picture "Bee"
+    {
+        skinpack        = "mmenu";
+        extents         = { 420, -10, 300, 300 };
+        skinframe		    = 0;
+    }
+    
+    picture "Logo"
+    {
+        skinpack        = "logo";
+        extents         = { 40, 30, 330, 100 };
+        stretch         = true;
+        skinframe       = 0;
+        fgcolor         = 0xFFFFFFFF;
+        bgcolor         = 0xFFFFFFFF;
+    }
+
+    shortcut "EditorShortcut"
+    {
+        Key             = "E";
+        Action          = >>MenuSystem.OnEditor;
+    }
+        
+    button "ContinueGame"
+    {
+        text            = L"Continue Game";
+        extents         = { 290, 160, 270, 48 };
+        font            = "font_menu";
+        fontheight      = 48;
+        fgcolor         = 0xFF49CD49;
+        shadowcolor     = 0xFF11FF11;
+        hoverfgcolor    = 0xFF88FF88;
+        unpress         = >>MenuSystem.OnContinueGame;
+        visible         = <<Core.Game.HasPlayers;
+    }
+    
+    button "NewGame"
+    {
+        text            = L"New Game";
+        extents         = { 325, 210, 250, 48 };
+        font            = "font_menu";
+        fontheight      = 48;
+        fgcolor         = 0xFF49CD49;
+        shadowcolor     = 0xFF11FF11;
+        hoverfgcolor    = 0xFF88FF88;
+        unpress         = >>MenuSystem.OnNewGame;
+    }
+    
+    button "ToHallOfFame"
+    {
+        text            = L"Hall of Fame";
+        extents         = { 335, 260, 280, 48 };
+        font            = "font_menu";
+        fontheight      = 48;
+        fgcolor         = 0xFF49CD49;
+        shadowcolor     = 0xFF11FF11;
+        hoverfgcolor    = 0xFF88FF88;
+        unpress         = >>MenuSystem.OnHallOfFame;
+    }
+    
+    button "ToOptions"
+    {
+        text            = L"Options";
+        extents         = { 325, 310, 240, 48 };
+        font            = "font_menu";
+        fontheight      = 48;
+        fgcolor         = 0xFF49CD49;
+        shadowcolor     = 0xFF11FF11;
+        hoverfgcolor    = 0xFF88FF88;
+        unpress         = >>MenuSystem.OnOptions;
+    }
+    
+    button "ToCredits"
+    {
+        text            = L"Credits";
+        extents         = { 315, 360, 240, 48 };
+        font            = "font_menu";
+        fontheight      = 48;
+        fgcolor         = 0xFF49CD49;
+        shadowcolor     = 0xFF11FF11;
+        hoverfgcolor    = 0xFF88FF88;
+        unpress         = >>MenuSystem.OnCredits;
+    }
+    
+    button "Exit"
+    {
+        text            = L"Quit";
+        extents         = { 305, 410, 80,  48 };
+        font            = "font_menu";
+        fontheight      = 48;
+        fgcolor         = 0xFF49CD49;
+        shadowcolor     = 0xFF11FF11;
+        hoverfgcolor    = 0xFF88FF88;
+        unpress         = >>MenuSystem.OnExit;
+    }
+    
+    picture "Border"
+    {
+        xalign          = Parent;
+        yalign          = Parent;
+        skinpack        = "interface";
+        skinframe     = 0;
+    }
+    
+};

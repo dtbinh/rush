@@ -12,7 +12,7 @@
 /***********************************************************************************/
 class JAmbient : public JLight
 {
-    DWORD           m_Color;
+    uint32_t           m_Color;
 public:
     JAmbient () : m_Color( 0xFF333333 ) {}
     virtual void    Render   ();

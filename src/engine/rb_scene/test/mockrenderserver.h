@@ -5,10 +5,10 @@
 #ifndef __MOCKRENDERSERVER_H__
 #define __MOCKRENDERSERVER_H__
 
-#include "Mat4.h"
-#include "Frame.h"
+#include "mat4.h"
+#include "frame.h"
 
-#include "IRenderServer.h"
+#include "irenderserver.h"
 //****************************************************************************/
 //  Class:  MockRenderServer
 //  Desc:   
@@ -25,19 +25,19 @@ public:
     virtual void            SetViewport         ( const Frame& rc );
     virtual bool            StartFrame          ();
     virtual void            EndFrame            ();
-    virtual void            ClearViewport       ( DWORD color );
+    virtual void            ClearViewport       ( uint32_t color );
     virtual void            ClearDepthStencil   ( bool bDepth, bool bStencil );
     virtual void            ShowCursor          ( bool bShow = true );
 
     virtual int             GetVDeclID          ( const VertexDeclaration& vdecl );
 
-    virtual void            SetAmbient          ( DWORD color );
+    virtual void            SetAmbient          ( uint32_t color );
     virtual int             AddPointLight       ( const Vec3& pos, float radius, float falloff, 
-                                                  DWORD diffuse, DWORD specular, bool bPerPixel );
-    virtual int             AddDirLight         ( const Vec3& dir, DWORD diffuse, DWORD specular, bool bPerPixel );
+                                                  uint32_t diffuse, uint32_t specular, bool bPerPixel );
+    virtual int             AddDirLight         ( const Vec3& dir, uint32_t diffuse, uint32_t specular, bool bPerPixel );
 
     virtual int             GetFPS              () const { return 60; }
-    virtual DWORD           GetCurFrame         () const { return m_CurFrame; }
+    virtual uint32_t           GetCurFrame         () const { return m_CurFrame; }
 
     virtual void            SetViewTM           ( const Mat4& tm );
     virtual void            SetWorldTM          ( const Mat4& tm );
@@ -50,14 +50,14 @@ public:
     virtual void            SetTextureTM        ( const Mat4& tm );
     virtual const Mat4&     GetTextureTM        () const { return m_TextureTM; }
 
-    virtual void            SetColorTint        ( DWORD color );
+    virtual void            SetColorTint        ( uint32_t color );
     
     virtual int             GetTextureID        ( const char* texName );
     virtual bool            GetTextureProp      ( int texID, TextureProperties& texProp );
     virtual void            SetTexture          ( int texID, int stage );
     virtual void            DeleteTexture       ( int texID );
     virtual int             CreateTexture       ( const TextureProperties& texProp );
-    virtual BYTE*           LockTexture         ( int texID, const Frame& rect, int level = 0, DWORD* pStride = NULL );
+    virtual uint8_t*           LockTexture         ( int texID, const Frame& rect, int level = 0, uint32_t* pStride = NULL );
     virtual bool            UnlockTexture       ( int texID, int level = 0 );
     virtual bool            CopyTexture         ( int destID, int srcID, const Frame* rct = NULL, int nRect = 0 );
 
@@ -80,7 +80,7 @@ public:
 
     virtual int             CreateVB            ( const char* name, int numBytes, bool bStatic = false );
     virtual int             GetVBID             ( const char* name );
-    virtual BYTE*           LockVB              ( int vbID, int firstByte, int numBytes );        
+    virtual uint8_t*           LockVB              ( int vbID, int firstByte, int numBytes );        
     virtual bool            UnlockVB            ( int vbID );
     virtual bool            SetVB               ( int vbID, int vdeclID, int stream );
     virtual int             ClearVB             ( int vbID );
@@ -88,7 +88,7 @@ public:
 
     virtual int             CreateIB            ( const char* name, int numBytes, bool bStatic = false );
     virtual int             GetIBID             ( const char* name );
-    virtual BYTE*           LockIB              ( int ibID, int firstByte, int numBytes );        
+    virtual uint8_t*           LockIB              ( int ibID, int firstByte, int numBytes );        
     virtual bool            UnlockIB            ( int ibID );
     virtual bool            SetIB               ( int ibID, int baseIndex );
     virtual int             ClearIB             ( int ibID );
@@ -97,15 +97,15 @@ public:
     virtual bool            Draw                ( int firstIdx, int numIdx, int firstVert, int numVert, 
                                                     PrimitiveType primType = PrimitiveType_TriangleList );
 
-    virtual bool            CacheIB             ( int ibID, BYTE* pData, int size, int& iteration, int& firstByte );
-    virtual bool            CacheVB             ( int vbID, BYTE* pData, int size, int stride, int& iteration, int& firstByte );
+    virtual bool            CacheIB             ( int ibID, uint8_t* pData, int size, int& iteration, int& firstByte );
+    virtual bool            CacheVB             ( int vbID, uint8_t* pData, int size, int stride, int& iteration, int& firstByte );
     virtual int             GetVBIteration      ( int vbID );
     virtual int             GetIBIteration      ( int ibID );
 
-    virtual void            ResetTime       ();
+    virtual void            ResetTime           ();
 
-    virtual void            Register        ( IRenderServerClient* pClient );
-    virtual void            Unregister      ( IRenderServerClient* pClient );
+    virtual void            Register            ( IRenderServerClient* pClient );
+    virtual void            Unregister          ( IRenderServerClient* pClient );
 
 private:
     Frame                   m_Viewport;
@@ -113,7 +113,7 @@ private:
     Mat4                    m_ProjTM;
     Mat4                    m_WorldTM;
     Mat4                    m_TextureTM;
-    DWORD                   m_CurFrame;          
+    uint32_t                m_CurFrame;          
 
 }; // class MockRenderServer
 

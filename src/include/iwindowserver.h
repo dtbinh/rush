@@ -28,6 +28,7 @@ enum JScreenMode
     smExclusive   = 4, 
 }; // enum ScreenMode
 
+class JObject;
 class JWidget;
 class JDragEvent;
 
@@ -62,6 +63,8 @@ public:
     virtual void        SetMouseCapture     ( JWidget* pWidget ) = 0;
     virtual void        SetFocus            ( JWidget* pWidget ) = 0;
 
+    virtual void        AddWindow           ( JObject* pWidget ) = 0;
+    
 }; // class IWindowServer
 
 extern IWindowServer* g_pWindowServer;

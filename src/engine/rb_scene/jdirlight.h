@@ -14,8 +14,8 @@ class JDirLight : public JLight
 {
     float           m_Latitude;
     float           m_Longitude;
-    DWORD           m_Diffuse;
-    DWORD           m_Specular;
+    uint32_t        m_Diffuse;
+    uint32_t        m_Specular;
 
 public:
                     JDirLight   ();

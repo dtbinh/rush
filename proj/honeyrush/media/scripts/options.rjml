@@ -1,0 +1,117 @@
+dialog "Options"
+{
+    xalign       = Center;
+    yalign       = Center;
+    extents		 = { 0, 0, 640, 480 };
+    
+    
+    picture "Stars"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 2;
+        tile        = true;
+    }
+    
+    picture "Planet"
+    {
+        extents     = { 350, -115, 300, 300 };
+        skinpack    = "interface";
+        skinframe = 1;
+    }
+    
+    checkbox "ShowMoves"
+    {
+        text        	= L"Show Possible Moves";
+        extents     	= { 120, 140, 300, 25 };
+        skinpack    	= "check";
+        normalframe 	= 0;
+        pressedframe	= 1;
+        font        	= "font_menu";
+        fontheight  	= 30;
+        fgcolor     	= 0xFF49CD49;
+        hoverfgcolor    = 0xFF49CD49;
+        pressed			= <>Game.ShowMoves;
+    }
+    
+    checkbox "ShowGrid"
+    {
+        text        	= L"Show Grid";
+        extents     	= { 120, 100, 300, 25 };
+        skinpack    	= "check";
+        normalframe 	= 0;
+        pressedframe	= 1;
+        font        	= "font_menu";
+        fontheight  	= 30;
+        fgcolor     	= 0xFF49CD49;
+        hoverfgcolor    = 0xFF49CD49;
+        pressed			= <>Game.ShowGrid;
+    }
+    
+    label "SoundVolumeLabel"
+    {
+        text        = "SOUND VOLUME:";
+        extents     = { 120, 220, 300, 30 };
+        font        = "font_menu";
+        textxalign  = Left;
+        fontheight  = 30;
+        fgcolor     = 0xFF49CD49;
+    }
+    
+    label "MusicVolumeLabel"
+    {
+        text        = "MUSIC VOLUME:";
+        extents     = { 120, 260, 300, 30 };
+        font        = "font_menu";
+        textxalign  = Left;
+        fontheight  = 30;
+        fgcolor     = 0xFF49CD49;
+    }
+    
+   
+    progress "SoundVolume"
+    {
+		skinpack    	= "check";
+        skinframe 		= 2;
+        fillframe		= 3;
+        editable		= true;
+        extents			= { 300, 225, 256, 20  };
+        fgcolor			= 0xFF49CD49;
+        bgcolor			= 0xFFFFFFFF;
+
+		position		= <>Game.SoundVolume;
+    }
+    
+    progress "MusicVolume"
+    {
+		skinpack    	= "check";
+        skinframe 		= 2;
+        fillframe		= 3;
+        editable		= true;
+        extents     	= { 300, 265, 256, 20 };
+        fgcolor     	= 0xFF49CD49;
+        bgcolor			= 0xFFFFFFFF;
+		position		= <>Game.MusicVolume;
+    }
+    
+    button "OK"
+    {
+        text        	= L"OK";
+        extents     	= { 540, 400, 60, 40 };
+        font        	= "font_menu";
+        fontheight  	= 48;
+        fgcolor     	= 0xFF49CD49;
+        shadowcolor 	= 0xFF11FF11;
+        hoverfgcolor	= 0xFF88FF88;
+        unpress     	= >>MenuSystem.OnBack;
+    }
+    
+    picture "Border"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 0;
+    }
+};

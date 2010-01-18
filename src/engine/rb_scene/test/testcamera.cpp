@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "JCamera.h"
+#include "precompile.h"
+#include "jcamera.h"
 
 const float c_CamEps = 1e-4;
 TEST( CameraProjection )

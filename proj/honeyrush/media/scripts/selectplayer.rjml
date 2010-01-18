@@ -1,0 +1,104 @@
+dialog "SelectPlayer"
+{
+    xalign       = Center;
+    yalign       = Center;
+    extents		 = { 0, 0, 640, 480 };
+    
+    
+    picture "Stars"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 2;
+        tile        = true;
+    }
+    
+    picture "Planet"
+    {
+        extents     = { 350, -115, 300, 300 };
+        skinpack    = "interface";
+        skinframe = 1;
+    }
+    
+    label "SelectPlayerPromt"
+    {
+        text        = L"Select Player:";
+        extents     = { 190, 30, 260, 48 };
+        xalign      = Parent;
+        textxalign  = Center;
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFFFFFFFF;
+    }
+    
+    listbox "SelectPlayerBox"
+    {
+        extents         = { 130, 80, 400, 300 };
+        font            = "font_menu";
+        fontheight      = 22;
+        xalign          = Center;
+        fgcolor         = 0xFFFFFFFF;
+        selbgcolor	    = 0x445555FF;
+        selfgcolor	    = 0x00000000;
+        selecteditem    = <>Core.Game.CurrentPlayer;
+        numitems	    = <<Core.Game.NumPlayers;
+            
+        label "Template"
+        {
+            text        = <<Core.Game.PlayerName;
+            extents     = { 10, 10, 176, 22 };
+            xalign      = Parent;
+            textxalign  = Center;
+            font        = "font_menu";
+            fontheight  = 22;
+            fgcolor     = 0xFFFFFFFF;
+        }    
+    } 
+    
+    button "DeletePlayer"
+    {
+        text        = L"Delete Player";
+        extents     = { 230, 410, 200, 30 };
+        font        = "font_menu";
+        fontheight  = 30;
+        fgcolor     = 0xFF49CD49;
+        shadowcolor = 0xFF11FF11;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>Core.Game.DeleteCurPlayer;
+        visible     = <<Core.Game.PlayerSelected;
+    }
+    
+    button "Back"
+    {
+        text        = L"Back";
+        extents     = { 40,  400, 100, 40 };
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFF49CD49;
+        shadowcolor = 0xFF11FF11;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>MenuSystem.OnBack;
+    }
+    
+    button "OK"
+    {
+        text        = L"OK";
+        extents     = { 540, 400, 60, 40 };
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFF49CD49;
+        shadowcolor = 0xFF11FF11;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>MenuSystem.OnPlayerScreen;
+        visible     = <<Core.Game.PlayerSelected;
+    }
+    
+    picture "Border"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 0;
+    }
+};

@@ -3,21 +3,20 @@
 //  Date:   11.10.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
-#include "IParticleServer.h"
-#include "IPersistServer.h"
-#include "JWindowServer.h"
-#include "IModelServer.h"
-#include "IFileServer.h"
-#include "FStream.h" 
-#include "Path.h"
-#include "AABox.h"
-#include "CommandLine.h"
-#include "JModel.h"
-#include "JModelAnim.h"
-#include "JModelInstance.h"
-#include "JDropFileEvent.h"
-#include "ModelViewer.h"  
+#include "precompile.h"
+#include "iparticleserver.h"
+#include "ipersistserver.h"
+#include "imodelserver.h"
+#include "ifileserver.h"
+#include "fstream.h" 
+#include "path.h"
+#include "aabox.h"
+#include "commandline.h"
+#include "jmodel.h"
+#include "jmodelanim.h"
+#include "jmodelinstance.h"
+#include "jdropfileevent.h"
+#include "modelviewer.h"  
 
 /***********************************************************************************/
 /*  ModelViewer implementation
@@ -32,32 +31,24 @@ ModelViewer::ModelViewer()
 void ModelViewer::Render()
 {
     SendSignal( "Render" );
-} // ModelViewer::Render
+}  
 
 void ModelViewer::PostRender()
 {
     SendSignal( "PostRender" );
     g_pModelServer->DrawShadows();
-} // ModelViewer::PostRender
+}  
 
 void ModelViewer::Init()
 {
     m_pAnimInstance  = g_pObjectServer->FindObject<JAnimInstance> ( "PlayedAnim",  this );
     m_pModelInstance = g_pObjectServer->FindObject<JModelInstance>( "PlayedModel", this );
-} // ModelViewer::Init
+}  
 
 void ModelViewer::Exit()
 {
     exit( 0 );
-} // ModelViewer::Exit
-
-void ModelViewer::SortTransparent()
-{
-    int mdlID = GetModelID();
-    void SortTransparentPolys( JModel* pModel );
-    JModel* pModel = g_pModelServer->GetModel( mdlID );
-    SortTransparentPolys( pModel );
-} // ModelViewer::SortTransparent
+}  
 
 void ModelViewer::SaveModel()
 {

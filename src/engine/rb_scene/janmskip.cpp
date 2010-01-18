@@ -3,7 +3,7 @@
 //  Date:   27.10.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JAnimation.h"
 #include "JAnimServer.h"
 #include "JAnmSkip.h"

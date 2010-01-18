@@ -82,6 +82,7 @@
 
     #include <malloc.h>
     #define STACK_ALLOC(A,B) (A*)_alloca( B*sizeof( A ) );
+    #define snprintf _snprintf
 
 #endif
 

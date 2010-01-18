@@ -1,0 +1,50 @@
+dialog "ConfirmDeletePlayer"
+{
+    xalign       = Center;
+    yalign       = Center;
+    modal        = true;
+    extents		 = { 0, 0, 300, 200 };
+    
+    panel "DlgPanel"
+    {
+        xalign       = Parent;
+        yalign       = Parent;
+        bgcolor      = 0x66FFFFFF;
+        
+        label "DeletePlayerPromt"
+        {
+            text        = L"Sure to delete player? All player data will be lost.";
+            extents     = { 130, 170, 260, 48 };
+            xalign      = Parent;
+            textxalign  = Center;
+            font        = "font_menu";
+            fontheight  = 48;
+            fgcolor     = 0xFFFFFFFF;
+        }
+        
+        button "OK"
+        {
+            text        = "Yes";
+            extents     = { 40, 120, 60, 40 };
+            font        = "font_menu";
+            fontheight  = 48;
+            fgcolor     = 0xFF49CD49;
+            shadowcolor = 0xFF11FF11;
+            hoverfgcolor= 0xFF88FF88;
+            unpress     = >>MenuSystem.OnYes;
+            
+        }
+        
+        button "Cancel"
+        {
+            text        = L"No";
+            extents     = { 140, 120, 60, 40 };
+            font        = "font_menu";
+            fontheight  = 48;
+            fgcolor     = 0xFF49CD49;
+            shadowcolor = 0xFF11FF11;
+            hoverfgcolor= 0xFF88FF88;
+            unpress     = >>MenuSystem.OnNo;
+        }
+    }
+};

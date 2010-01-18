@@ -2,7 +2,7 @@
 //  File:  JMove.cpp
 //  Desc:  
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Timer.h"
 #include "JAnimation.h"
 #include "IWindowServer.h"

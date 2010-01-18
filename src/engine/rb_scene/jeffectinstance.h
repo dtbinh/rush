@@ -52,7 +52,7 @@ private:
     Vec3            m_Rotation;
     int             m_EffectID;
     int             m_InstanceID;
-    DWORD           m_Stamp;
+    uint32_t           m_Stamp;
     float           m_PrevTime; 
     bool            m_bScreenSpace;
 

@@ -1,0 +1,194 @@
+dialog "EditLevel"
+{
+    xalign       = Center;
+    yalign       = Center;
+    extents		 = { 0, 0, 640, 480 };
+    
+    
+    picture "Stars"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe	= 2;
+        tile        = true;
+    }
+
+    boardeditor "BoardEditor"
+    {
+		xalign      = Parent;
+		yalign      = Parent;
+		gameboard "EditorGameBoard"
+    	{
+    	    extents     = { 160, 35, 530, 440 };
+    	    showgrid	= true;
+    	    level		= <<LevelTree.SelectedLevel;
+    	}
+    }    
+    
+    shortcut "scClear"
+    {
+        Key         = " ";
+        tag			= 1;
+        Action      = >>BoardEditor.SetClearMode;
+    }
+    
+    panel "BallsTool"
+    {
+		extents     = { 20, 20, 128, 300 };
+		bgcolor		= 0x66000000;
+		
+		button "BlackBall"
+        {
+            extents         = { 0, 0, 40, 40 };
+	        font            = "font_system";
+	        fontheight      = 13;
+	        tag				= 3;
+	        skinpack        = "button";
+            normalframe     = 0;
+            pressedframe    = 1;
+            disabledframe   = 3;
+            glyph			= "black_rest";
+            glyphframe		= 0;
+	        textxalign      = left;
+	        filterfont		= false;
+	        twostate        = true;
+	        bgcolor         = 0xAA6666FF;
+	        fgcolor         = 0xFFFFFFFF;
+	        hoverfgcolor    = 0xFF222222;
+	        pressed			= <>BoardEditor.ActiveMode;
+        }
+        button "WhiteBall"
+        {
+            extents         = { 0, 40, 40, 40 };
+	        font            = "font_system";
+	        fontheight      = 13;
+	        skinpack        = "button";
+	        glyph			= "white_rest";
+            glyphframe		= 0;
+            normalframe     = 0;
+            pressedframe    = 1;
+            disabledframe   = 3;
+	        textxalign      = left;
+	        filterfont		= false;
+	        twostate        = true;
+	        bgcolor         = 0xAA6666FF;
+	        fgcolor         = 0xFFFFFFFF;
+	        hoverfgcolor    = 0xFF222222;
+	        tag				= 4;
+	        pressed			= <>BoardEditor.ActiveMode;
+        }
+        button "EmptyCell"
+        {
+            extents         = { 0, 80, 40, 40 };
+	        font            = "font_system";
+	        fontheight      = 13;
+	        skinpack        = "button";
+	        glyph			= "cell";
+            glyphframe		= 0;
+            normalframe     = 0;
+            pressedframe    = 1;
+            disabledframe   = 3;
+	        textxalign      = left;
+	        filterfont		= false;
+	        twostate        = true;
+	        bgcolor         = 0xAA6666FF;
+	        fgcolor         = 0xFFFFFFFF;
+	        hoverfgcolor    = 0xFF222222;
+	        tag				= 2;
+	        pressed			= <>BoardEditor.ActiveMode;
+        }
+        button "NoCell"
+        {
+            extents         = { 0, 120, 40, 40 };
+	        font            = "font_system";
+	        fontheight      = 13;
+	        skinpack        = "button";
+	        glyph			= "grid";
+            glyphframe		= 0;
+            normalframe     = 0;
+            pressedframe    = 1;
+            disabledframe   = 3;
+	        textxalign      = left;
+	        filterfont		= false;
+	        twostate        = true;
+	        bgcolor         = 0xAA6666FF;
+	        fgcolor         = 0xFFFFFFFF;
+	        hoverfgcolor    = 0xFF222222;
+	        tag				= 1;
+	        pressed			= <>BoardEditor.ActiveMode;
+        }
+    }
+    
+    button "ClearAll"
+    {
+        text        = L"Clear";
+        extents     = { 0, 200, 150, 40 };
+        xalign      = Left;
+        font        = "font_menu";
+        fontheight  = 30;
+        fgcolor     = 0xFF49CD49;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>BoardEditor.ClearAll;
+    }
+    
+    button "FillAll"
+    {
+        text        = L"Fill";
+        extents     = { 0, 230, 150, 40 };
+        xalign      = Left;
+        font        = "font_menu";
+        fontheight  = 30;
+        fgcolor     = 0xFF49CD49;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>BoardEditor.FillAll;
+    }
+    
+    button "PlayLevel"
+    {
+        text        = L"Play";
+        extents     = { 0, 260, 150, 40 };
+        xalign      = Left;
+        font        = "font_menu";
+        fontheight  = 30;
+        fgcolor     = 0xFF49CD49;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>BoardEditor.PlayLevel;
+    }
+    
+    button "OK"
+    {
+        text        = L"OK";
+        extents     = { 540, 400, 60, 40 };
+        xalign      = Right;
+        yalign      = Bottom;
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFF49CD49;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>EditorGameBoard.SaveLevelBoard;
+        unpress     = >>Game.SaveLevels;
+        unpress     = >>MenuSystem.OnBack;
+    }
+    
+    button "Cancel"
+    {
+        text        = L"Cancel";
+        extents     = { 540, 400, 150, 40 };
+        xalign      = Left;
+        yalign      = Bottom;
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFF49CD49;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>MenuSystem.OnBack;
+    }
+    
+    picture "Border"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe	= 0;
+    }
+};

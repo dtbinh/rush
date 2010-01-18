@@ -5,6 +5,7 @@
 /***********************************************************************************/
 #include "precompile.h"
 #include "path.h"
+#include "windows.h"
 #include "directorycache.h"
 
 /***********************************************************************************/
@@ -50,18 +51,21 @@ void Directory::Update()
     do
     {
         const char* fname = fData.cFileName;
-        if (fname[0] == '.') return;
-        uint32_t flags = fData.dwFileAttributes;
-        if (flags & FILE_ATTRIBUTE_SYSTEM) return;
-        if (flags & FILE_ATTRIBUTE_DIRECTORY)
+        if (fname[0] != '.') 
         {
-            char path[_MAX_PATH];
-            _makepath( path, NULL, m_Path.c_str(), fname, NULL );
-            m_Subdirs.push_back( Directory( fname, path ) );
-            m_Subdirs.back().Update();
-            return;
+            uint32_t flags = fData.dwFileAttributes;
+            if (flags & FILE_ATTRIBUTE_DIRECTORY)
+            {
+                char path[_MAX_PATH];
+                _makepath( path, NULL, m_Path.c_str(), fname, NULL );
+                m_Subdirs.push_back( Directory( fname, path ) );
+                m_Subdirs.back().Update();
+            }
+            else if (!(flags & FILE_ATTRIBUTE_SYSTEM)) 
+            {
+                m_Files.push_back( fname );
+            }
         }
-        m_Files.push_back( fname );
     } while (FindNextFile( h, &fData ));
 
     FindClose( h );

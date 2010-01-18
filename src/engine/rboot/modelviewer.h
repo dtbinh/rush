@@ -6,10 +6,10 @@
 #ifndef __MODELVIEW_H__
 #define __MODELVIEW_H__
 
-#include "JDialog.h"
-#include "JAnimation.h"
-#include "JModelInstance.h"
-#include "JAnimInstance.h"
+#include "jdialog.h"
+#include "janimation.h"
+#include "jmodelinstance.h"
+#include "janiminstance.h"
 
 /***********************************************************************************/
 //  Class:  ModelViewer
@@ -35,7 +35,6 @@ public:
     void                    SetModel        ( const char* name );
     void                    SetAnim         ( const char* name );
 
-    void                    SortTransparent ();
     void                    SaveModel       ();
 
 
@@ -45,7 +44,6 @@ public:
         prop( "Model", GetModel, SetModel );
         prop( "Animation", GetAnim, SetAnim );
         method( "Exit", Exit );
-        method( "SortTransparent", SortTransparent );
         method( "SaveModel", SaveModel );
     }
 

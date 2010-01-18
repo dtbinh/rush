@@ -1,0 +1,179 @@
+dialog "PlayerScreen"
+{
+    xalign       = Center;
+    yalign       = Center;
+    extents		 = { 0, 0, 640, 480 };
+    
+    
+    picture "Stars"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 2;
+        tile        = true;
+    }
+    
+    picture "Planet"
+    {
+        extents     = { -50, -150, 300, 300 };
+        skinpack    = "interface";
+        skinframe = 1;
+    }
+    
+    label "NamePromt"
+    {
+        text        = L"Name:";
+        extents     = { 40, 160, 280, 32 };
+        font        = "font_menu";
+        fontheight  = 32;
+        fgcolor     = 0xFFFFFFFF;
+    }
+    
+    label "RankPromt"
+    {
+        visible     = false;
+        text        = L"Status:";
+        extents     = { 40, 194, 280, 32 };
+        font        = "font_menu";
+        fontheight  = 32;
+        fgcolor     = 0xFFFFFFFF;
+    }    
+    
+    label "RoundsPromt"
+    {
+        text        = L"Rounds:";
+        extents     = { 40, 228, 280, 32 };
+        font        = "font_menu";
+        fontheight  = 32;
+        fgcolor     = 0xFFFFFFFF;
+    }
+    
+    label "HoneyPromt"
+    {
+        text        = L"Score:";
+        extents     = { 40, 262, 280, 32 };
+        font        = "font_menu";
+        fontheight  = 32;
+        fgcolor     = 0xFFFFFFFF;
+    } 
+    
+    label "NameVal"
+    {
+        text        = <<Core.Game.CurrentPlayerName;
+        extents     = { 180, 160, 280, 32 };
+        font        = "font_menu";
+        fontheight  = 32;
+        fgcolor     = 0xFFFFFFFF;
+    }
+    
+    label "RankVal"
+    {
+        visible     = false;
+        text        = <<Core.Game.CurrentPlayerRank;
+        extents     = { 180, 194, 280, 32 };
+        font        = "font_menu";
+        fontheight  = 32;
+        fgcolor     = 0xFFFFFFFF;
+    }    
+    
+    label "RoundsVal"
+    {
+        text        = <<Core.Game.CurrentPlayerRounds;
+        extents     = { 180, 228, 280, 32 };
+        font        = "font_menu";
+        fontheight  = 32;
+        fgcolor     = 0xFFFFFFFF;
+    }
+    
+    label "HoneyVal"
+    {
+        text        = <<Core.Game.CurrentPlayerScore;
+        extents     = { 180, 262, 280, 32 };
+        font        = "font_menu";
+        fontheight  = 32;
+        fgcolor     = 0xFFFFFFFF;
+    } 
+    
+    label "SelectLevelPromt"
+    {
+        text        = L"Select the Game:";
+        extents     = { 300, 60, 260, 48 };
+        font        = "font_menu";
+        fontheight  = 30;
+        fgcolor     = 0xFFFFFFFF;
+        unpress     = OnBack;
+    }
+    
+    stickerbox "SelectPlayerBox"
+    {
+        extents         = { 290, 90, 300, 300 };
+        font            = "font_menu";
+        fontheight      = 40;
+        fgcolor         = 0xFFFFFFFF;
+        slotw           = 90;
+        sloth           = 80;
+        selbgcolor	    = 0x55555FF;
+        selfgcolor	    = 0xFF33AA33;
+        selecteditem    = <>Core.Game.CurrentLevelIdx;
+        slotpos         = { { 10,  10 },
+                            { 210, 15 },
+                            { 20,  100 },
+                            
+                            { 205, 110 },
+                            { 200, 200 },
+                            { 10,  190 },
+                            
+                            { 50, 70 },
+                            { 150, 160 },
+                            { 40,  220 },
+                            
+                            { 195, 60 } };
+        
+        numitems	= <<Core.Game.NumPendingLevels;
+                        
+        panel "Template"
+        {
+			bgcolor		= 0x101133FF;
+			extents     = { 90, 80, 60, 20 }; 
+			levelthumb "Thumb"
+			{
+			    xalign      = Parent;
+			    yalign      = Parent; 
+			    levelid     = <<Core.Game.PendingLevelID;
+			}
+        }
+    } 
+
+    button "Back"
+    {
+        text        = L"Quit";
+        extents     = { 40,  400, 100, 40 };
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFF49CD49;
+        shadowcolor = 0xFF11FF11;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>MenuSystem.OnMainMenu;
+    }
+    
+    button "Play"
+    {
+        text        = L"Play!";
+        extents     = { 490, 400, 100, 40 };
+        font        = "font_menu";
+        fontheight  = 48;
+        fgcolor     = 0xFF49CD49;
+        shadowcolor = 0xFF11FF11;
+        hoverfgcolor= 0xFF88FF88;
+        unpress     = >>Core.Game.StartCurLevel;
+    }
+    
+    picture "Border"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 0;
+    }
+};

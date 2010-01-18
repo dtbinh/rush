@@ -2,7 +2,7 @@
 #include "rboot.h"
 
 #include "jcore.h"
-#include "jwindowserver.h"
+#include "iwindowserver.h"
 #include "jdialog.h"
 #include "isoundserver.h"
 #include "direct.h"
@@ -16,7 +16,21 @@
 #include "commandline.h"
 #include "ipersistserver.h"
 
-void ConvertToRMDL( const CommandLine& cmd );
+
+// FIXME:
+#ifdef __GNUC__
+void GetExecutablePath( char* path, int nMaxPath )
+{
+}
+const char* c_RenderServerName = "renderservergl";
+#else
+#include "windows.h"
+void GetExecutablePath( char* path, int nMaxPath )
+{
+    GetModuleFileName( GetModuleHandle( NULL ), path, nMaxPath );
+}
+const char* c_RenderServerName = "renderserverdx9";
+#endif
 
 RBoot g_Boot;
 
@@ -45,31 +59,21 @@ bool RBoot::Init( const CommandLine& cmd )
     }
     
     import( rb_draw         );
-    import( rb_extui        );
-    import( rb_logic        );
-    import( rb_nature       );
+    //import( rb_extui        );
     import( rb_particle     );
     import( rb_render9      );
-    import( rb_quest        );
     import( rb_scene        );
     import( rb_script_lua   );
-    import( rb_sound        );
-    import( rb_texture      );
+    //import( rb_sound        );
+    //import( rb_texture      );
     import( rb_ui           );
-    import( rb_video        );
-    import( rb_physics      );
-    import( rb_legacy       );
+    //import( rb_video        );
+    //import( rb_physics      );
 	
-	link_class(ModelViewer);
-    link_class(TestDriver);
+    link_class( ModelViewer );
+    link_class( TestDriver  );
 
     m_pCore->Init();
-
-    if (cmd.GetValue( "convert" ))
-    {
-        ConvertToRMDL( cmd );
-        return true;
-    }
 
     AddCommonMediaPath();
     
@@ -93,7 +97,7 @@ bool RBoot::Init( const CommandLine& cmd )
     m_pCore->AddServer( "animserver"      );
     m_pCore->AddServer( "stringserver"    );
     m_pCore->AddServer( "windowserver"    );
-    m_pCore->AddServer( "renderserver"    );
+    m_pCore->AddServer( c_RenderServerName );
     m_pCore->AddServer( "drawserver"      );
     m_pCore->AddServer( "modelserver"     );
     m_pCore->AddServer( "particleserver"  );
@@ -119,7 +123,7 @@ bool RBoot::Init( const CommandLine& cmd )
     pRoot->GetPath( objPath );
     m_pCore->SetRootObject( objPath.c_str() );
 
-    JWindowServer::s_pInstance->AddChild( pRoot, 0 );
+    g_pWindowServer->AddWindow( pRoot );
     pRoot->InitTree();
 
     ModelViewer* pModelViewer = obj_cast<ModelViewer>( pRoot );
@@ -161,7 +165,7 @@ void RBoot::AddModuleMediaPath()
 {
     //  set current working directory to the same where we are located
     char path[_MAX_PATH];
-    GetModuleFileName( GetModuleHandle( NULL ), path, _MAX_PATH );
+    GetExecutablePath( path, _MAX_PATH );
     Path mediaPath( path );
     mediaPath.SetFileExt( "" );
     mediaPath.DirAppend( "media" );
@@ -175,7 +179,7 @@ void RBoot::AddModuleMediaPath()
 void RBoot::AddCommonMediaPath()
 {
     char path[_MAX_PATH];
-    GetModuleFileName( GetModuleHandle( NULL ), path, _MAX_PATH );
+    GetExecutablePath( path, _MAX_PATH );
     Path mediaPath( path );
     mediaPath.SetFileExt( "" );
     mediaPath.DirUp();

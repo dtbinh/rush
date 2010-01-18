@@ -1,0 +1,45 @@
+shader "shadow"
+{
+    renderstate "rs"
+    {
+        alphablendenable            = false;
+        alphatestenable             = true;
+        alphafunc                   = greaterequal;
+        alpharef                    = 0x01;
+        ditherenable                = false;
+        lighting                    = false;
+        zenable                     = false;
+        zwriteenable                = false;
+        cullmode                    = none;
+        fillmode                    = solid;
+        colorvertex                 = false;
+    }
+    
+    texturepass 
+    {
+        pass                    = 0;
+        colorop                 = SelectArg1;
+        colorarg1               = TFactor;
+        colorarg2               = Diffuse;
+        
+        alphaop                 = SelectArg1;
+        alphaarg1               = Texture;
+        alphaarg2               = Diffuse;
+        
+        addressu                = clamp;
+        addressv                = clamp;
+        magfilter               = point;
+        minfilter               = point;
+        mipfilter               = linear;
+        
+        texturetransformflags   = Count4Projected;
+        texcoordindex           = CameraSpacePosition;
+    }
+    
+    texturepass 
+    {
+        pass                = 1;
+        colorop             = disable;
+        alphaop             = disable; 
+    }
+}

@@ -1,0 +1,12 @@
+modelviewer "rboot"
+{
+    xalign       = Parent;
+    yalign       = Parent;
+    
+    onshow = >>uiscript.play;
+    
+    script "uiscript"
+    {
+        script = "ui";
+    }
+}

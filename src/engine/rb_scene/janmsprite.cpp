@@ -3,7 +3,7 @@
 //  Date:   27.10.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "Color.h"
 #include "JAnimation.h"
 #include "JModelInstance.h"
@@ -55,14 +55,14 @@ void JAnmSprite::ResInit()
 
 float JAnmSprite::GetTransparency() const
 {
-    DWORD transp = (m_Color&0xFF000000) >> 24;
+    uint32_t transp = (m_Color&0xFF000000) >> 24;
     float res = float( transp )/255.0f;
     return res;
 }
 
 void  JAnmSprite::SetTransparency( float val )
 {
-    DWORD transp = DWORD( val*255.0f );
+    uint32_t transp = uint32_t( val*255.0f );
     m_Color = (m_Color&0x00FFFFFF)|(transp << 24);
 }
 
@@ -175,8 +175,8 @@ void JAnmSprite::Render()
         if (m_bBlendFrames)
         {
             ColorF clr = m_Color;
-            DWORD clr1 = clr;
-            DWORD clr2 = clr;
+            uint32_t clr1 = clr;
+            uint32_t clr2 = clr;
             g_pDrawServer->DrawSprite( rect, m_PackID, m_FrameID, clr1, DegToRad( m_Rotation ), m_bMirrored );
             g_pDrawServer->DrawSprite( rect, m_PackID, m_FrameID, clr2, DegToRad( m_Rotation ), m_bMirrored );
         }

@@ -2,10 +2,10 @@
 //  File:  DXUtils.cpp
 //  Desc:  
 //****************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "DXUtils.h"
 
-D3DCOLORVALUE ConvertColor( DWORD col )
+D3DCOLORVALUE ConvertColor( uint32_t col )
 {
     D3DCOLORVALUE res;
     res.a = float( (col & 0xFF000000)>>24 ) / 255.0f;
@@ -15,13 +15,13 @@ D3DCOLORVALUE ConvertColor( DWORD col )
     return res;
 } // ConvertColor
 
-DWORD ConvertColor( D3DCOLORVALUE col )
+uint32_t ConvertColor( D3DCOLORVALUE col )
 {
-    DWORD res;
-    DWORD a = DWORD( col.a*255.0f )<<24;
-    DWORD r = DWORD( col.r*255.0f )<<16;
-    DWORD g = DWORD( col.g*255.0f )<<8;
-    DWORD b = DWORD( col.b*255.0f );
+    uint32_t res;
+    uint32_t a = uint32_t( col.a*255.0f )<<24;
+    uint32_t r = uint32_t( col.r*255.0f )<<16;
+    uint32_t g = uint32_t( col.g*255.0f )<<8;
+    uint32_t b = uint32_t( col.b*255.0f );
     res = a | r | g | b;
     return res;
 } // ConvertColor
@@ -88,9 +88,9 @@ const char* GetDXError( HRESULT hresult )
     return "";
 } // GetDXError
 
-DWORD CreateFVF( const VertexDeclaration& vdecl )
+uint32_t CreateFVF( const VertexDeclaration& vdecl )
 {
-    DWORD fvf = 0;
+    uint32_t fvf = 0;
     for (int i = 0; i < vdecl.m_NElements; i++)
     {
         switch (vdecl.m_Element[i].m_Usage)
@@ -121,7 +121,7 @@ DWORD CreateFVF( const VertexDeclaration& vdecl )
     return fvf;
 } // CreateFVF
 
-VertexDeclaration CreateVDecl( DWORD fvf )
+VertexDeclaration CreateVDecl( uint32_t fvf )
 {
     VertexDeclaration res;
     if ((fvf & D3DFVF_XYZ) == D3DFVF_XYZ)                res << VertexComponent_Position;

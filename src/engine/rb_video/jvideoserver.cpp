@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "JVideoServer.h"
+#include "jvideoserver.h"
 
 //****************************************************************************/
 /*  JVideoServer implementation
@@ -9,11 +9,11 @@ decl_class( JVideoServer );
 JVideoServer::JVideoServer()
 {
     SetName( "video" );
-} // JVideoServer::JVideoServer
+}  
 
 JVideoServer::~JVideoServer()
 {
-} // JVideoServer::~JVideoServer
+} 
 
 
 ogg_stream_state    m_StreamState;
@@ -41,7 +41,7 @@ int LoadChunk( FILE* pFile, ogg_sync_state* pOggSyncState )
   return nBytes;  
 }
 
-// добавляет завершенные страницы в поток
+ 
 int PushPage(ogg_page *page)
 {
   if (ogg_stream_pagein( &m_StreamState, page ) == -1)

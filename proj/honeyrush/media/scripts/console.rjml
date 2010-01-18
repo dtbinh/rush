@@ -1,0 +1,48 @@
+console "Console"
+{
+    xalign          = Parent;
+    yalign          = Top;  
+    floating        = true;
+    extents         = { 0, 0, 0, 416 };   
+    
+    listbox "Log"
+    {
+        strings         = <<RootWindow.LogLines;	     
+        selectable      = false; 
+        extents         = { 0, 0, 0, 400 };  
+        xalign          = Parent;
+        autosize        = false;
+        cliptoext       = true;
+        
+        label "template"
+        {
+            extents         = { 0, 0, 0, 16 };
+            xalign          = Parent;
+            font            = "font_system";
+            margin          = 5;
+	        fontheight      = 13;
+	        fgcolor         = 0xFF8888FF;
+	        bgcolor         = 0xD0000000;
+        }
+    }
+    
+    editbox "EnterCommand"
+    {
+        extents         = { 0, 0, 0, 16 };
+        xalign          = Parent;
+        yalign          = Bottom;
+        text            = "";
+	    font            = "font_system";
+	    fontheight      = 13;
+	    skinpack        = "button";
+	    cliptoext		= true;
+        focusframe      = 6;
+	    textxalign      = left;
+	    filterfont		= false;
+	    caretcolor      = 0xFF000000;
+	    bgcolor         = 0x55FFFFFF;
+	    fgcolor         = 0xFF000000;
+	    hoverfgcolor    = 0xFF000000;
+    }
+};
+

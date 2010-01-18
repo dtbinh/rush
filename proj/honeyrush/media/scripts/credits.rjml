@@ -1,0 +1,144 @@
+dialog "Credits"
+{
+    xalign       = Center;
+    yalign       = Center;
+    extents		 = { 0, 0, 640, 480 };
+    
+    
+    picture "Stars"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 2;
+        tile        = true;
+    }
+    
+    picture "Planet"
+    {
+        extents     = { 350, -115, 300, 300 };
+        skinpack    = "interface";
+        skinframe = 1;
+    }
+    
+    label "Title"
+    {
+        text            = "Developers";
+        xalign          = Parent;
+        textxalign      = Center;
+        fgcolor         = 0xFF49CD49;
+        shadowcolor     = 0xFF11FF11;
+        extents         = { 0, 80, 0, 70 };
+        font            = "font_menu";
+        fontheight      = 50;
+        filterfont      = true;
+    }
+
+    label "Design"
+    {
+        text            = "QA, design:";
+        textxalign      = Left;
+        fgcolor         = 0xFF49CD49;
+        extents         = { 50, 150, 200, 40 };
+        font            = "font_menu";
+        fontheight      = 30;
+        filterfont      = true;
+    } 
+    
+    label "DesignName"
+    {
+        text            = "Helen Shestopalyuk";
+        textxalign      = Left;
+        fgcolor         = 0xFF49CD49;
+        extents         = { 300, 150, 200, 40 };
+        font            = "font_menu";
+        fontheight      = 30;
+        filterfont      = true;
+    }
+       
+    label "Programming"
+    {
+        text            = "Programming, design:";
+        textxalign      = Left;
+        fgcolor         = 0xFF22FF22;
+        extents         = { 50, 200, 300, 40 };
+        font            = "font_menu";
+        fontheight      = 30;
+        filterfont      = true;
+    }
+    
+    label "ProgrammingName"
+    {
+        text            = "Ruslan Shestopalyuk";
+        textxalign      = Left;
+        fgcolor         = 0xFF49CD49;
+        extents         = { 300, 200, 200, 40 };
+        font            = "font_menu";
+        fontheight      = 30;
+        filterfont      = true;
+    }
+    
+    label "Art"
+    {
+        text            = "Idea:";
+        textxalign      = Left;
+        fgcolor         = 0xFF49CD49;
+        extents         = { 50, 250, 200, 40 };
+        font            = "font_menu";
+        fontheight      = 30;
+        filterfont      = true;
+    }
+    
+    label "ArtName"
+    {
+        text            = "Yuri Bulba";
+        textxalign      = Left;
+        fgcolor         = 0xFF49CD49;
+        extents         = { 300, 250, 200, 40 };
+        font            = "font_menu";
+        fontheight      = 30;
+        filterfont      = true;
+    }
+    
+    label "Site"
+    {
+        text            = "Visit   www.rushbits.com";
+        textxalign      = Left;
+        fgcolor         = 0xFFFFFF49;
+        extents         = { 50, 320, 200, 40 };
+        font            = "font_menu";
+        fontheight      = 50;
+        filterfont      = true;
+    }
+    
+    picture "CompanyLogo"
+    {
+        yalign          = Bottom;
+        skinpack        = "interface";
+        skinframe       = 2;
+        fgcolor         = 0xFFD5D5D5;
+        extents         = { 10, 300, 100, 70 };
+        stretch         = false;
+        tile            = false;
+    }
+    
+    button "OK"
+    {
+        text        	= L"OK";
+        extents     	= { 540, 400, 60, 40 };
+        font        	= "font_menu";
+        fontheight  	= 48;
+        fgcolor     	= 0xFF49CD49;
+        shadowcolor 	= 0xFF11FF11;
+        hoverfgcolor	= 0xFF88FF88;
+        unpress     	= >>MenuSystem.OnBack;
+    }
+    
+    picture "Border"
+    {
+        xalign      = Parent;
+        yalign      = Parent;
+        skinpack    = "interface";
+        skinframe = 0;
+    }
+};

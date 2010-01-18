@@ -3,7 +3,7 @@
 //  Date:   11.08.2005
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
-#include "stdafx.h"
+#include "precompile.h"
 #include "JAnimation.h"
 #include "JModelInstance.h"
 #include "JAnimInstance.h"

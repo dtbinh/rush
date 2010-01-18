@@ -31,7 +31,7 @@ class JFade : public JAnimation
     JString             m_FadeObject;
     JWeakRef<JWidget>   m_pFadeObject;
     JFadeMode           m_FadeMode;
-    DWORD               m_Color;
+    uint32_t               m_Color;
     bool                m_bFadeColor;
 
 public: 

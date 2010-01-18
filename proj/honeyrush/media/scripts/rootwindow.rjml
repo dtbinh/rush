@@ -1,0 +1,10 @@
+RootWindow "RootWindow"
+{
+    text            = "honeyrush";
+    xalign          = Parent;
+    yalign          = Parent; 
+    screenmode      = Desktop;  
+    hasstencil      = false;
+    
+    widget "mainmenu";
+};

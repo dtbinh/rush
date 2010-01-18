@@ -1,0 +1,12 @@
+shader "constantcolor"
+{
+    texturepass 
+    {
+        pass                = 0;
+        colorop             = selectarg1;
+        alphaop             = modulate;
+        colorarg1           = tfactor;
+        alphaarg1           = texture;
+        alphaarg2           = tfactor;
+    }
+}

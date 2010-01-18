@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompile.h"
 #include "IRenderServer.h"
 #include "MockRenderServer.h"
 #include "JLocator.h"

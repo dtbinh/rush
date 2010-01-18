@@ -1,0 +1,42 @@
+shader "shadow0"
+{
+    renderstate "rs"
+    {
+        alphablendenable    = true;
+        srcblend            = srcalpha;
+        destblend           = invsrcalpha;
+        alphatestenable     = true;
+        alphafunc           = greaterequal;
+        alpharef            = 0x01;
+        ditherenable        = true;
+        lighting            = false;
+        zenable             = false;
+        zwriteenable        = false;
+        zfunc               = lessequal;
+        fillmode            = solid;
+        cullmode            = ccw;
+        texturefactor       = 0x44000000;
+        fogenable           = false;
+    }
+    
+    texturepass 
+    {
+        pass                = 0;
+        colorop             = selectarg1;
+        alphaop             = selectarg1;
+        colorarg1           = tfactor;
+        alphaarg1           = tfactor;
+        addressu            = mirror;
+        addressv            = mirror;
+        magfilter           = point;
+        minfilter           = point;
+        mipfilter           = point;
+    }
+    
+    texturepass 
+    {
+        pass                = 1;
+        colorop             = disable;
+        alphaop             = disable; 
+    }
+}

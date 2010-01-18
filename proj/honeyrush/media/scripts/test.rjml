@@ -1,0 +1,39 @@
+dialog "Test"
+{
+    xalign       = Parent;
+    yalign       = Parent;
+    
+    shufflebox "SelectPlayerBox"
+    {
+        extents     = { 130, 80, 400, 300 };
+        font        = "font_menu";
+        fontheight  = 40;
+        fgcolor     = 0xFFFFFFFF;
+        slotw       = 100;
+        sloth       = 90;
+        debugslots  = 10;
+        slotpos     = { { 10,  10 },
+                        { 210, 15 },
+                        { 20,  100 },
+                        
+                        { 205, 110 },
+                        { 200, 200 },
+                        { 10,  190 },
+                        
+                        { 50, 70 },
+                        { 150, 160 },
+                        { 40,  220 },
+                        
+                        { 195, 60 } };
+                        
+        widget "ItemTemplate"
+        {
+            levelthumb "Thumb"
+            {
+                extents     = { 12, 12, 98, 88 };
+                levelid     = 0;
+            }
+        }
+    } // shufflebox "SelectPlayerBox"
+    
+};

@@ -89,6 +89,8 @@ public:
     void                SetMouseCapture     ( JWidget* pCapture );
     JWidget*            GetMouseCapture     () const { return m_pMouseCapture; }
 
+    virtual void        AddWindow           ( JObject* pWidget ) { AddChild( pWidget, 0 ); }
+
     void                SetFocus            ( JWidget* pFocus );
     JWidget*            GetFocus            () const { return m_pFocus; }
 

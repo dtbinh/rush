@@ -1,0 +1,92 @@
+hoftable "hoftable"
+{
+    hofentry "entry1"
+    {
+        playername      = "Helen";
+        score           = 4420;
+        rounds          = 70;
+        rank            = 5;
+        creationdate    = "17.10.2005 14:24:00";
+    }
+    
+    hofentry "entry2"
+    {
+        playername      = "King Arthur";
+        score           = 3780;
+        rounds          = 55;
+        rank            = 5;
+        creationdate    = "17.10.2005 14:24:00";
+    }
+    
+    hofentry "entry3"
+    {
+        playername      = "Don Quixote";
+        score           = 2534;
+        rounds          = 38;
+        rank            = 5;
+        creationdate    = "17.10.2005 14:24:00";
+    }
+    
+    hofentry "entry4"
+    {
+        playername      = "Nemo";
+        score           = 1509;
+        rounds          = 30;
+        rank            = 5;
+        creationdate    = "17.10.2005 14:24:00";
+    }
+    
+    hofentry "entry5"
+    {
+        playername      = "Fireball";
+        score           = 1200;
+        rounds          = 33;
+        rank            = 5;
+        creationdate    = "17.10.2005 14:24:00";
+    }
+    
+    hofentry "entry6"
+    {
+        playername      = "Dragon";
+        score           = 1045;
+        rounds          = 25;
+        rank            = 5;
+        creationdate    = "17.10.2005 14:24:00";
+    }
+    
+    hofentry "entry7"
+    {
+        playername      = "Bublick";
+        score           = 830;
+        rounds          = 20;
+        rank            = 3;
+        creationdate    = "17.10.2005 14:24:00";
+    }
+    
+    hofentry "entry8"
+    {
+        playername      = "Quasimodo";
+        score           = 650;
+        rounds          = 15;
+        rank            = 2;
+        creationdate    = "17.10.2005 14:24:00";
+    }
+    
+    hofentry "entry9"
+    {
+        playername      = "Jack The Bean";
+        score           = 430;
+        rounds          = 6;
+        rank            = 0;
+        creationdate    = "17.10.2005 14:24:00";
+    }
+    
+    hofentry "entry10"
+    {
+        playername      = "Rush";
+        score           = 360;
+        rounds          = 4;
+        rank            = 0;
+        creationdate    = "17.10.2005 14:24:00";
+    }
+}
