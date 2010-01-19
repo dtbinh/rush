@@ -6,11 +6,11 @@
 #ifndef __JSENSOR_H__
 #define __JSENSOR_H__
 
-#include "JWidget.h"
+#include "jwidget.h"
 
 /***********************************************************************************/
 //  Class:  JSensor
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JSensor : public JWidget
 {
@@ -26,7 +26,7 @@ public:
 
     const char*         GetAttachInstance   () const { return m_AttachInstance.c_str(); }
     const char*         GetAttachBone       () const { return m_AttachBone.c_str(); }
-    
+
     void                SetAttachInstance   ( const char* name );
     void                SetAttachBone       ( const char* name );
 
@@ -50,10 +50,10 @@ private:
     float               m_Radius;
     bool                m_bScreenSpace;
 
-    JString             m_AttachInstance;     
-    JString             m_AttachBone;         
-    int                 m_AttachInstanceID; 
-    int                 m_AttachBoneID;  
+    JString             m_AttachInstance;
+    JString             m_AttachBone;
+    int                 m_AttachInstanceID;
+    int                 m_AttachBoneID;
 }; // class JSensor
 
 #endif //__JSENSOR_H__

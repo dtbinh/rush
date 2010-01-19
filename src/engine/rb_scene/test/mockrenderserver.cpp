@@ -1,9 +1,9 @@
 //****************************************************************************/
 //  File:  MockRenderServer.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "MockRenderServer.h"
+#include "mockrenderserver.h"
 
 //****************************************************************************/
 /*  MockRenderServer
@@ -15,8 +15,8 @@ MockRenderServer::MockRenderServer()
     m_ProjTM        = IdentityMatrix();
     m_WorldTM       = IdentityMatrix();
     m_TextureTM     = IdentityMatrix();
-    m_CurFrame      = 0; 
-}  
+    m_CurFrame      = 0;
+}
 
 MockRenderServer::~MockRenderServer()
 {
@@ -42,7 +42,7 @@ void MockRenderServer::EndFrame()
 void MockRenderServer::ReloadResources()
 {
 } // MockRenderServer::ReloadResources
-    
+
 void MockRenderServer::ClearViewport( uint32_t color )
 {
 } // MockRenderServer::ClearViewport
@@ -104,7 +104,7 @@ int MockRenderServer::CreateDepthStencil( const char* texName, int w, int h, Dep
 } // MockRenderServer::CreateDepthStencil
 
 int MockRenderServer::CreateRenderTarget( const char* texName, int w, int h, ColorFormat fmt )
-{            
+{
     return 0;
 } // MockRenderServer::CreateRenderTarget
 
@@ -122,7 +122,7 @@ void MockRenderServer::SetAmbient( uint32_t color )
 {
 } // MockRenderServer::SetAmbient
 
-int MockRenderServer::AddPointLight( const Vec3& pos, float radius, float falloff, 
+int MockRenderServer::AddPointLight( const Vec3& pos, float radius, float falloff,
                           uint32_t diffuse, uint32_t specular, bool bPerPixel )
 {
     return 0;
@@ -281,8 +281,8 @@ bool MockRenderServer::CacheVB( int vbID, uint8_t* pData, int size, int stride, 
     return true;
 } // MockRenderServer::CacheVB
 
-bool MockRenderServer::CopyTexture( int destID, int srcID, const Frame* rct, int nRect ) 
-{ 
+bool MockRenderServer::CopyTexture( int destID, int srcID, const Frame* rct, int nRect )
+{
     return false;
 } //MockRenderServer::CopyTexture
 

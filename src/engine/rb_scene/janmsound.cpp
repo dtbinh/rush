@@ -4,9 +4,9 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JAnimation.h"
-#include "ISoundServer.h"
-#include "JAnmSound.h"
+#include "janimation.h"
+#include "isoundserver.h"
+#include "janmsound.h"
 
 /***********************************************************************************/
 /*  JAnmSound implementation
@@ -14,7 +14,7 @@
 decl_class(JAnmSound);
 JAnmSound::JAnmSound()
 {
-    m_SoundID   = -1;   
+    m_SoundID   = -1;
     SetTag( 0 );
 } // JAnmSound::JAnmSound
 
@@ -23,7 +23,7 @@ void JAnmSound::Render()
     if (IsPlaying() && g_pSoundServer)
     {
         JAnmContext& ctx = GetContext();
-        if (ctx.m_bStateOnly) 
+        if (ctx.m_bStateOnly)
         {
             Stop();
         }
@@ -65,7 +65,7 @@ void JAnmSound::OnPlay()
     {
         return;
     }
-    if (m_SoundID == -1) 
+    if (m_SoundID == -1)
     {
         ResInit();
     }

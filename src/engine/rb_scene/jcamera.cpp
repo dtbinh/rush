@@ -4,8 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "Frustum.h"
-#include "JCamera.h"
+#include "frustum.h"
+#include "jcamera.h"
 
 /***********************************************************************************/
 /*  JCamera implementation
@@ -97,14 +97,14 @@ void JCamera::Render()
     viewTM.inverse( m_WorldTM );
     g_pRenderServer->SetViewTM( viewTM );
     g_pRenderServer->SetWorldTM( Mat4::identity );
-    
-    g_pRenderServer->SetViewport( ext ); 
+
+    g_pRenderServer->SetViewport( ext );
     g_pRenderServer->ClearDepthStencil( true, true );
 } // JCamera::Render
 
 void JCamera::PostRender()
 {
-    if (m_bRestoreState) 
+    if (m_bRestoreState)
     {
         g_pRenderServer->SetViewport( m_PreviousVP );
     }
@@ -141,24 +141,24 @@ void JCamera::ValidateProjTM()
 
 bool JCamera::GetTM( JSpace src, JSpace dest, Mat4& tm ) const
 {
-    //  from world space 
+    //  from world space
     if (src == Space_World)
     {
         switch (dest)
         {
-        case Space_World: 
-            tm = Mat4::identity; 
+        case Space_World:
+            tm = Mat4::identity;
             break;
         case Space_View:
-            tm.inverse( m_WorldTM ); 
+            tm.inverse( m_WorldTM );
             break;
         case Space_Projection:
-            tm.inverse( m_WorldTM ); 
+            tm.inverse( m_WorldTM );
             tm *= m_ProjTM;
             break;
         case Space_Screen:
             {
-                tm.inverse( m_WorldTM ); 
+                tm.inverse( m_WorldTM );
                 tm *= m_ProjTM;
                 Mat4 sTM;
                 ProjToScreenTM( sTM, GetExt() );
@@ -171,13 +171,13 @@ bool JCamera::GetTM( JSpace src, JSpace dest, Mat4& tm ) const
         return true;
     }
 
-    //  from view space 
+    //  from view space
     if (src == Space_View)
     {
         switch (dest)
         {
-        case Space_World: 
-            tm = m_WorldTM; 
+        case Space_World:
+            tm = m_WorldTM;
             break;
         case Space_View:
             tm = Mat4::identity;
@@ -199,12 +199,12 @@ bool JCamera::GetTM( JSpace src, JSpace dest, Mat4& tm ) const
         return true;
     }
 
-    //  from projection space 
+    //  from projection space
     if (src == Space_Projection)
     {
         switch (dest)
         {
-        case Space_World: 
+        case Space_World:
             tm.inverse( m_ProjTM );
             tm *= m_WorldTM;
             break;
@@ -223,12 +223,12 @@ bool JCamera::GetTM( JSpace src, JSpace dest, Mat4& tm ) const
         return true;
     }
 
-    //  from screen space 
+    //  from screen space
     if (src == Space_Screen)
     {
         switch (dest)
         {
-        case Space_World: 
+        case Space_World:
             {
                 ScreenToProjTM( tm, GetExt() );
                 Mat4 ipTM;
@@ -270,12 +270,12 @@ void JCamera::DrawBounds()
     g_pDrawServer->DrawLine( center, center + right*c_HandleLen, 0xFFFF0000, 0xFFFF0000 );
     g_pDrawServer->DrawLine( center, center + up*c_HandleLen,    0xFF00FF00, 0xFF00FF00 );
     g_pDrawServer->DrawLine( center, center + dir*c_HandleLen,   0xFF0000FF, 0xFF0000FF );
-    
+
     Frustum frustum( GetViewTM()*GetProjTM() );
     g_pDrawServer->DrawFrustum( frustum, 0xFFFF5555, 0x11555555 );
 
     g_pDrawServer->Flush();
-    
+
 } // JCamera::DrawBounds
 
 

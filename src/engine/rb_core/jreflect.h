@@ -29,7 +29,7 @@
 #define parent( CName )             mc.SetParent( #CName );
 #define prop( PName, Get, Set )     mc.Property( PName, &MyType::Get, &MyType::Set );
 #define rprop( PName, Get )         mc.Property( PName, &MyType::Get );
-#define field( PName, Val )         mc.Field( PName, MyType::Val, int( &((MyType*)NULL)->Val ) );
+#define field( PName, Val )         mc.Field( PName, MyType::Val, int( &((MyType*)this)->Val ) - int( this ) );
 #define method( PName, Fun )        mc.Method( PName, &MyType::Fun );
 
 #define import(PackageName) void PackageName##_import();\

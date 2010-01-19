@@ -41,7 +41,7 @@ JObjectServer::~JObjectServer()
         }
         ++it;
     }
-} // JObjectServer::JObjectServer
+}
 
 JMetaClass* JObjectServer::GetClass( int idx )
 {
@@ -51,7 +51,7 @@ JMetaClass* JObjectServer::GetClass( int idx )
         ++it;
     }
     return (*it).second;
-} // JObjectServer::GetClass
+}
 
 JMetaClass* JObjectServer::FindClass( const char* cname )
 {
@@ -69,7 +69,7 @@ JMetaClass* JObjectServer::FindClass( const char* cname )
         return (*it).second;
     }
     return NULL;
-} // JObjectServer::FindClass
+}
 
 JClassAttr* JObjectServer::FindClassAttr( const char* cname, const char* attr )
 {
@@ -99,7 +99,7 @@ JClassAttr* JObjectServer::FindClassAttr( const char* cname, const char* attr )
          return FindClassAttr( parentName, attr );
     }
     return (*it).second;
-} // JObjectServer::FindClassAttr
+}
 
 JMetaClass* JObjectServer::RegClass( const char* cname, ObjCreator creator )
 {
@@ -145,7 +145,7 @@ JMetaClass* JObjectServer::RegClass( const char* cname, ObjCreator creator )
         }
     }
     return pMeta;
-} // JObjectServer::RegClass
+}
 
 JObject* JObjectServer::Create( const char* cname )
 {
@@ -161,7 +161,7 @@ JObject* JObjectServer::Create( const char* cname )
     JObject* pRes = NULL;
     if (cd) pRes = cd->Create();
     return pRes;
-} // JObjectServer::Create
+}
 
 JObject* JObjectServer::CreateFromScript( const char* text, JObject* pSrc )
 {
@@ -179,7 +179,7 @@ JObject* JObjectServer::CreateFromScript( const char* text, JObject* pSrc )
     MemInStream is( (void*)text, strlen( text ) );
     JObject* pObj = g_pPersistServer->Load( is, fmt, pSrc );
     return pObj;
-} // JObjectServer::CreateFromScript
+}
 
 JObject* JObjectServer::CloneObject( const JObject* pObj, JObject* pParent, const char* name,
                                      bool bCloneSignals, bool bCloneChildren )
@@ -199,7 +199,7 @@ JObject* JObjectServer::CloneObject( const JObject* pObj, JObject* pParent, cons
     }
 
     return pNewObj;
-} // JObjectServer::CloneObject
+}
 
 bool JObjectServer::AreObjectsEqual( const JObject* pObj1, const JObject* pObj2, bool bWithChildren )
 {
@@ -220,7 +220,7 @@ bool JObjectServer::AreObjectsEqual( const JObject* pObj1, const JObject* pObj2,
     }
     int res = memcmp( os1.GetBuffer(), os2.GetBuffer(), os1.GetTotalSize() );
     return (res == 0);
-} // JObjectServer::AreObjectsEqual
+}
 
 void JObjectServer::AutoNameObject( JObject* pObject )
 {
@@ -238,7 +238,7 @@ void JObjectServer::AutoNameObject( JObject* pObject )
         name += buf;
     }
     pObject->m_Name = name;
-} // JObjectServer::AutoNameObject
+}
 
 int JObjectServer::Register( JObject* pObject )
 {
@@ -256,7 +256,7 @@ int JObjectServer::Register( JObject* pObject )
     m_ObjectMap.insert( JObjectMap::value_type( s_Key, pObject ) );
     m_NumObjects++;
     return m_NumObjects - 1;
-} // JObjectServer::Register
+}
 
 bool JObjectServer::Unregister( JObject* pObject )
 {
@@ -285,7 +285,7 @@ bool JObjectServer::Unregister( JObject* pObject )
     m_NumDeleted++;
 
     return true;
-} // JObjectServer::Unregister
+}
 
 const JObject* FindCommonParent( const JObject* pObj1, const JObject* pObj2, int& len1, int& len2 )
 {
@@ -308,7 +308,7 @@ const JObject* FindCommonParent( const JObject* pObj1, const JObject* pObj2, int
         len1++;
     }
     return NULL;
-} // FindCommonParent
+}
 
 bool HasPath( JObject* pObj, const char* path )
 {
@@ -466,7 +466,7 @@ JObject* JObjectServer::FindObject( const char* symPath, JObject* pRoot, JObject
         nCollisions++;
     }
     return pObject;
-} // JObjectServer::FindObject
+}
 
 void JObjectServer::DumpTree( const JObject* pObj, int indent )
 {

@@ -1,6 +1,6 @@
 //****************************************************************************/
 //  File:  JRenderServerGL.h
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #ifndef __JRENDERSERVERGL_H__
 #define __JRENDERSERVERGL_H__
@@ -14,7 +14,7 @@
 const int c_QuadIBSize = 65536*2*6;
 //****************************************************************************/
 //  Class:  JRenderServerGL
-//  Desc:   
+//  Desc:
 //****************************************************************************/
 class JRenderServerGL : public JObject, public IRenderServer
 {
@@ -35,7 +35,7 @@ public:
     virtual int             GetVDeclID      ( const VertexDeclaration& vdecl );
 
     virtual void            SetAmbient      ( uint32_t color );
-    virtual int             AddPointLight   ( const Vec3& pos, float radius, float falloff, 
+    virtual int             AddPointLight   ( const Vec3& pos, float radius, float falloff,
                                               uint32_t diffuse, uint32_t specular, bool bPerPixel );
     virtual int             AddDirLight     ( const Vec3& dir, uint32_t diffuse, uint32_t specular, bool bPerPixel );
 
@@ -54,13 +54,13 @@ public:
     virtual const Mat4&     GetTextureTM    () const { return m_TextureTM; }
 
     virtual void            SetColorTint    ( uint32_t color );
-    
+
     virtual int             GetTextureID    ( const char* texName );
     virtual bool            GetTextureProp  ( int texID, TextureProperties& texProp );
     virtual void            SetTexture      ( int texID, int stage );
     virtual void            DeleteTexture   ( int texID );
     virtual int             CreateTexture   ( const TextureProperties& texProp );
-    virtual BYTE*           LockTexture     ( int texID, const Frame& rect, int level = 0, uint32_t* pStride = NULL );
+    virtual uint8_t*        LockTexture     ( int texID, const Frame& rect, int level = 0, uint32_t* pStride = NULL );
     virtual bool            UnlockTexture   ( int texID, int level = 0 );
     virtual bool            CopyTexture     ( int destID, int srcID, const Frame* rct = NULL, int nRect = 0 );
 
@@ -83,7 +83,7 @@ public:
 
     virtual int             CreateVB        ( const char* name, int numBytes, bool bStatic = false );
     virtual int             GetVBID         ( const char* name );
-    virtual BYTE*           LockVB          ( int vbID, int firstByte, int numBytes );        
+    virtual uint8_t*        LockVB          ( int vbID, int firstByte, int numBytes );
     virtual bool            UnlockVB        ( int vbID );
     virtual bool            SetVB           ( int vbID, int vdeclID, int stream );
     virtual int             ClearVB         ( int vbID );
@@ -91,17 +91,17 @@ public:
 
     virtual int             CreateIB        ( const char* name, int numBytes, bool bStatic = false );
     virtual int             GetIBID         ( const char* name );
-    virtual BYTE*           LockIB          ( int ibID, int firstByte, int numBytes );        
+    virtual uint8_t*        LockIB          ( int ibID, int firstByte, int numBytes );
     virtual bool            UnlockIB        ( int ibID );
     virtual bool            SetIB           ( int ibID, int baseIndex );
     virtual int             ClearIB         ( int ibID );
     virtual bool            DeleteIB        ( int ibID );
-    
-    virtual bool            Draw            ( int firstIdx, int numIdx, int firstVert, int numVert, 
+
+    virtual bool            Draw            ( int firstIdx, int numIdx, int firstVert, int numVert,
                                                 PrimitiveType primType = PrimitiveType_TriangleList );
 
-    virtual bool            CacheIB         ( int ibID, BYTE* pData, int size, int& iteration, int& firstByte );
-    virtual bool            CacheVB         ( int vbID, BYTE* pData, int size, int stride, int& iteration, int& firstByte );
+    virtual bool            CacheIB         ( int ibID, uint8_t* pData, int size, int& iteration, int& firstByte );
+    virtual bool            CacheVB         ( int vbID, uint8_t* pData, int size, int stride, int& iteration, int& firstByte );
     virtual int             GetVBIteration  ( int vbID );
     virtual int             GetIBIteration  ( int ibID );
 
@@ -134,10 +134,10 @@ public:
         rprop( "ShadersPF",     GetShadersPerFrame  );
         rprop( "TexturesPF",    GetTexturesPerFrame );
         rprop( "RTsPF",         GetRTsPerFrame      );
-        
+
         prop( "fullscreen", IsFullScreen, SetFullScreen );
         prop( "WireFrame",  IsWireFrame, SetWireFrame  );
-        
+
         method( "ReloadResources", ReloadResources );
     }
 
@@ -171,36 +171,36 @@ private:
     bool                            m_bHasStencil;
 
     bool                            m_bDeviceLost;
-    
+
     int                             m_RTID;
     int                             m_DSID;
 
     int                             m_PoolShaderID;
 
-    int                             m_hWorldTM;		  
-    int                             m_hViewTM;         
-    int                             m_hProjTM;    
+    int                             m_hWorldTM;
+    int                             m_hViewTM;
+    int                             m_hProjTM;
     int                             m_hCamPos;
     int                             m_hWorldViewProjTM;
-    int                             m_hMtlDiffuse;     
-    int                             m_hMtlAmbient;     
-    int                             m_hAmbience;       
-    int                             m_hSunDirection;   
-    int                             m_hSunDiffuse;	  
-    int                             m_hSunSpecular;	 
+    int                             m_hMtlDiffuse;
+    int                             m_hMtlAmbient;
+    int                             m_hAmbience;
+    int                             m_hSunDirection;
+    int                             m_hSunDiffuse;
+    int                             m_hSunSpecular;
     int                             m_hTime;
 
-    int                             m_DIPsPerFrame;    
-    int                             m_PolysPerFrame;   
-    int                             m_ShadersPerFrame; 
+    int                             m_DIPsPerFrame;
+    int                             m_PolysPerFrame;
+    int                             m_ShadersPerFrame;
     int                             m_TexturesPerFrame;
-    int                             m_RTsPerFrame;    
+    int                             m_RTsPerFrame;
 
-    int                             m_CurDIPsPerFrame;    
-    int                             m_CurPolysPerFrame;   
-    int                             m_CurShadersPerFrame; 
+    int                             m_CurDIPsPerFrame;
+    int                             m_CurPolysPerFrame;
+    int                             m_CurShadersPerFrame;
     int                             m_CurTexturesPerFrame;
-    int                             m_CurRTsPerFrame;  
+    int                             m_CurRTsPerFrame;
 
     void                            InitGlobalConstants();
     void                            SetGlobalConstants();
@@ -208,7 +208,7 @@ private:
     void                            ReleaseDefaultRes();
     void                            RecreateDefaultRes();
     void                            CreateQuadIB();
-    
+
     void                            ResetStats();
 }; // class JRenderServerGL
 

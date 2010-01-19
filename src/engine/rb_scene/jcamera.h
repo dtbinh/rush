@@ -6,8 +6,8 @@
 #ifndef __JCAMERA_H__
 #define __JCAMERA_H__
 
-#include "JWidget.h"
-#include "Mat4.h"
+#include "jwidget.h"
+#include "mat4.h"
 
 enum JSpace
 {
@@ -19,7 +19,7 @@ enum JSpace
 
 /***********************************************************************************/
 //  Class:  JCamera
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JCamera : public JWidget
 {
@@ -85,13 +85,13 @@ public:
 private:
 	float			m_ZNear;
 	float			m_ZFar;
-	float			m_FOVx;		
+	float			m_FOVx;
 	float			m_Aspect;
 	Vec3			m_ViewDir;
 	Vec3			m_ViewUp;
 	bool            m_bOrtho;
-    
-	
+
+
 	Mat4            m_WorldTM;
     Mat4            m_ProjTM;
 
@@ -106,25 +106,25 @@ private:
 /***********************************************************************************/
 //  JCamera inlines
 /***********************************************************************************/
-inline float JCamera::GetFOVx() const 
-{ 
+inline float JCamera::GetFOVx() const
+{
     return RadToDeg( m_FOVx );
 } // JCamera::GetFOVx
 
-inline void JCamera::SetFOVx( float val ) 
-{ 
+inline void JCamera::SetFOVx( float val )
+{
     m_FOVx = DegToRad( val );
     ValidateProjTM();
 } // JCamera::SetFOVx
 
-inline float JCamera::GetZNear() const 
-{ 
-    return m_ZNear; 
+inline float JCamera::GetZNear() const
+{
+    return m_ZNear;
 } // JCamera::GetZNear
 
-inline float JCamera::GetZFar() const 
-{ 
-    return m_ZFar; 
+inline float JCamera::GetZFar() const
+{
+    return m_ZFar;
 } // JCamera::GetZFar
 
 inline float JCamera::GetAspect() const
@@ -132,14 +132,14 @@ inline float JCamera::GetAspect() const
     return m_Aspect;
 } // JCamera::GetAspect
 
-inline void JCamera::SetZNear( float val ) 
-{ 
+inline void JCamera::SetZNear( float val )
+{
     m_ZNear = val;
     ValidateProjTM();
 } // JCamera::SetZNear
 
-inline void JCamera::SetZFar( float val ) 
-{ 
+inline void JCamera::SetZFar( float val )
+{
     m_ZFar = val;
     ValidateProjTM();
 } // JCamera::SetZFar
@@ -150,31 +150,31 @@ inline void JCamera::SetAspect( float val )
     ValidateProjTM();
 } // JCamera::SetAspect
 
-inline void JCamera::SetOrtho( bool bOrtho ) 
-{ 
-	bOrtho = bOrtho; 
+inline void JCamera::SetOrtho( bool bOrtho )
+{
+	bOrtho = bOrtho;
     ValidateProjTM();
 } // JCamera::SetOrtho
 
-inline bool JCamera::IsOrtho() const 
-{ 
-    return m_bOrtho; 
+inline bool JCamera::IsOrtho() const
+{
+    return m_bOrtho;
 }
 
-inline void JCamera::SetViewTM( const Mat4& tm ) 
-{ 
-    m_WorldTM.inverse( tm ); 
+inline void JCamera::SetViewTM( const Mat4& tm )
+{
+    m_WorldTM.inverse( tm );
 } // JCamera::SetViewTM
 
-inline void JCamera::SetWorldTM( const Mat4& tm ) 
-{ 
-    m_WorldTM = tm; 
+inline void JCamera::SetWorldTM( const Mat4& tm )
+{
+    m_WorldTM = tm;
 } // JCamera::SetWorldTM
 
-inline void JCamera::SetProjTM( const Mat4& tm ) 
-{ 
-    m_ProjTM = tm; 
-    ValidateProjParam(); 
+inline void JCamera::SetProjTM( const Mat4& tm )
+{
+    m_ProjTM = tm;
+    ValidateProjParam();
 } // JCamera::SetProjTM
 
 inline Vec3 JCamera::GetPos() const

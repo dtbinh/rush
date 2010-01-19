@@ -5,7 +5,8 @@
 //****************************************************************************/
 #ifndef __JSCRIPT_H__
 #define __JSCRIPT_H__
-#include "JAnimation.h"
+
+#include "janimation.h"
 
 //****************************************************************************/
 //  Class:  JScript
@@ -21,13 +22,13 @@ class JScript : public JAnimation
 
     JStringList     m_DispatchTable;
 
-public: 
+public:
                     JScript    ();
     virtual         ~JScript   ();
-    virtual void    OnPlay     (); 
-    virtual void    OnStop     (); 
-    virtual void    Init       (); 
-    virtual void    Render     (); 
+    virtual void    OnPlay     ();
+    virtual void    OnStop     ();
+    virtual void    Init       ();
+    virtual void    Render     ();
 
     void            Reload     ();
     void            Dispatch   ( int methodID );

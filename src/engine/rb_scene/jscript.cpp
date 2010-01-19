@@ -1,12 +1,12 @@
 //****************************************************************************/
 //  File:  JScript.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "Timer.h"
-#include "JAnimation.h"
-#include "IScriptServer.h"
-#include "JScript.h"
+#include "timer.h"
+#include "janimation.h"
+#include "iscriptserver.h"
+#include "jscript.h"
 
 //****************************************************************************/
 /*  JScript implementation
@@ -21,7 +21,7 @@ JScript::JScript()
 JScript::~JScript()
 {
     StopThread();
-} // JScript::~JScript
+}
 
 void JScript::OnPlay()
 {
@@ -42,21 +42,21 @@ void JScript::OnPlay()
     }
     else
     {
-        //  if duration is unknown, assign it to the infinite and wait until script finishes 
+        //  if duration is unknown, assign it to the infinite and wait until script finishes
         if (GetDuration() == 0.0f)
         {
             const float c_VeryLongTime = 1000000.0f;
             SetDuration( c_VeryLongTime );
         }
     }
-} // JScript::OnPlay
+}
 
 void JScript::Render()
 {
     JAnimation::Render();
     JAnmContext& ctx = GetContext();
     float dt = GetTempo()*GetContext().m_TimeDelta;
-    if (IsPaused()) 
+    if (IsPaused())
     {
         return;
     }
@@ -65,18 +65,18 @@ void JScript::Render()
     {
         Stop();
     }
-} // JScript::Render
+}
 
 void JScript::OnStop()
 {
     StopThread();
-} // JScript::OnStop
+}
 
 void JScript::Init()
 {
     StopThread();
     m_ScriptID = g_pScriptServer->GetScriptID( m_Script.c_str() );
-} // JScript::Init
+}
 
 void JScript::Reload()
 {
@@ -87,7 +87,7 @@ void JScript::Reload()
         Stop();
         Play();
     }
-} // JScript::Reload
+}
 
 void JScript::StopThread()
 {
@@ -96,7 +96,7 @@ void JScript::StopThread()
         g_pScriptServer->StopThread( m_ThreadID );
         m_ThreadID = -1;
     }
-} // JScript::StopThread
+}
 
 void JScript::Dispatch( const char* event )
 {
@@ -115,7 +115,7 @@ void JScript::Dispatch( int methodID )
     }
 
     g_pScriptServer->RunFunction( m_ThreadID, m_DispatchTable[methodID].c_str(), this );
-} // JScript::Dispatch
+}
 
 bool JScript::OnSignal( JObject* pSrc, const char* pSrcAttr, const char* pDstAttr )
 {
@@ -123,5 +123,5 @@ bool JScript::OnSignal( JObject* pSrc, const char* pSrcAttr, const char* pDstAtt
     {
         return false;
     }
-    return g_pScriptServer->RunFunction( m_ThreadID, pDstAttr, pSrc );    
+    return g_pScriptServer->RunFunction( m_ThreadID, pDstAttr, pSrc );
 }

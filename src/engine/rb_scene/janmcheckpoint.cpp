@@ -5,11 +5,11 @@
 /***********************************************************************************/
 #include "precompile.h"
 #include <algorithm>
-#include "JUpObjectIterator.h"
-#include "JAnimation.h"
-#include "JAnimServer.h"
-#include "JAnmSkip.h"
-#include "JAnmCheckPoint.h"
+#include "jupobjectiterator.h"
+#include "janimation.h"
+#include "janimserver.h"
+#include "janmskip.h"
+#include "janmcheckpoint.h"
 
 /***********************************************************************************/
 /*  JAnmCheckPoint implementation

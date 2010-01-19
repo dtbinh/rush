@@ -5,12 +5,12 @@
 /***********************************************************************************/
 #include "precompile.h"
 
-#include "JWeakRef.h"
-#include "JCharCamera.h"
-#include "JCamera.h"
-#include "JModelInstance.h"
-#include "IWindowServer.h"
-#include "IModelServer.h"
+#include "jweakref.h"
+#include "jcharcamera.h"
+#include "jcamera.h"
+#include "jmodelinstance.h"
+#include "iwindowserver.h"
+#include "imodelserver.h"
 
 /***********************************************************************************/
 /*  JCharCamera implementation
@@ -51,13 +51,13 @@ void JCharCamera::Render()
 
     m_Pitch     += m_PitchDelta;
     m_Heading   += m_HeadingDelta;
-    
+
     m_Pitch   = clamp( m_Pitch,     m_MinPitch, m_MaxPitch );
     m_Heading = clamp( m_Heading,   m_MinHeading, m_MaxHeading );
-    
+
     m_PitchDelta    = 0.0f;
     m_HeadingDelta  = 0.0f;
-    
+
     //  get position of the bone tracked
     Mat4 boneTM = Mat4::identity;
     if (m_pModelInst)
@@ -69,7 +69,7 @@ void JCharCamera::Render()
 
     Vec3 lookAt = m_TrackPoint;
     lookAt += boneTM.translation();
-    
+
     float theta = DegToRad( m_Heading );
     float phi   = DegToRad( m_Pitch );
     Vec3 camPos;
@@ -95,7 +95,7 @@ void JCharCamera::Render()
     viewTM.inverse( camTM );
 
     pCamera->SetViewTM( viewTM );
-    
+
 } // JCharCamera::Render
 
 void JCharCamera::OnMouse( JMouseEvent& e )
@@ -110,7 +110,7 @@ void JCharCamera::OnMouse( JMouseEvent& e )
         Vec2 mouseDelta = Vec2( e.MouseX(), e.MouseY() ) - m_MousePos;
         Vec4 mouse1( e.MouseX(), e.MouseY(), 1.0f, 1.0f );
         Vec4 mouse2( m_MousePos.x, m_MousePos.y, 1.0f, 1.0f );
-        
+
         Mat4 spTM;
         pCamera->GetTM( Space_Screen, Space_Projection, spTM );
 
@@ -124,22 +124,22 @@ void JCharCamera::OnMouse( JMouseEvent& e )
 
         const int c_MouseGutter = 5;
         Frame ext = GetExt();
-        if (mX < ext.x + c_MouseGutter)   
+        if (mX < ext.x + c_MouseGutter)
         {
             mX = ext.r() - c_MouseGutter;
             g_pWindowServer->SetMousePos( Vec2( mX, mY ) );
         }
-        if (mX > ext.r() - c_MouseGutter) 
+        if (mX > ext.r() - c_MouseGutter)
         {
             mX = ext.x + c_MouseGutter;
             g_pWindowServer->SetMousePos( Vec2( mX, mY ) );
         }
-        if (mY < ext.y + c_MouseGutter)   
+        if (mY < ext.y + c_MouseGutter)
         {
             mY = ext.b() - c_MouseGutter;
             g_pWindowServer->SetMousePos( Vec2( mX, mY ) );
         }
-        if (mY > ext.b() - c_MouseGutter) 
+        if (mY > ext.b() - c_MouseGutter)
         {
             mY = ext.y + c_MouseGutter;
             g_pWindowServer->SetMousePos( Vec2( mX, mY ) );

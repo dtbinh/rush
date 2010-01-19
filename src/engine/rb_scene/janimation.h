@@ -6,8 +6,8 @@
 #ifndef __JANIMATION_H__
 #define __JANIMATION_H__
 
-#include "JAnmContext.h"
-#include "StaticArray.h"
+#include "janmcontext.h"
+#include "staticarray.h"
 
 enum JAnimMode
 {
@@ -16,14 +16,14 @@ enum JAnimMode
     AnimMode_PlayOne     = 2
 }; // enum JAnimMode
 
-enum JAnimWrap 
+enum JAnimWrap
 {
     AnimWrap_None        = 0,
     AnimWrap_Loop        = 1,   //  animation is looped
     AnimWrap_Pong        = 2,   //  animation is played in pong style (forwards-back-forwards-back...)
     AnimWrap_Freeze      = 3,   //  animation is played once and then is frozen at last frame
     AnimWrap_Reset       = 4    //  animation is played once and then is frozen at first frame
-}; // enum JAnimWrap 
+}; // enum JAnimWrap
 
 enum_beg(JAnimMode)
     enum_val( "PlayAll",      AnimMode_PlayAll      ),
@@ -43,7 +43,7 @@ const int c_AnmStackSize = 128;
 typedef static_array<JAnmContext, c_AnmStackSize> JContextStack;
 /***********************************************************************************/
 //  Class:  JAnimation
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JAnimation : public JObject
 {
@@ -131,8 +131,8 @@ public:
     }
 
     static JAnmContext&         GetContext      ()    { return s_ContextStack.back(); }
-    static JAnmContext&         PopContext      ();    
-    static JAnmContext&         PushContext     ();   
+    static JAnmContext&         PopContext      ();
+    static JAnmContext&         PushContext     ();
 
 private:
     static JContextStack        s_ContextStack;

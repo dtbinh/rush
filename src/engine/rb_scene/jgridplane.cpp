@@ -4,8 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JGridPlane.h"
-#include "Mat4.h"
+#include "jgridplane.h"
+#include "mat4.h"
 
 /***********************************************************************************/
 /*  JGridPlane implementation
@@ -48,12 +48,12 @@ void JGridPlane::Render()
     g_pDrawServer->Flush();
     g_pDrawServer->SetZEnable();
     g_pDrawServer->SetWorldTM( tm );
-    
+
     float maxx = m_CellSide*m_CellsW*0.5f;
-    float minx = -maxx; 
+    float minx = -maxx;
     float maxy = m_CellSide*m_CellsH*0.5f;
-    float miny = -maxy; 
-    
+    float miny = -maxy;
+
     for (float x = minx; x <= maxx; x += m_CellSide)
     {
         if (_fabs( x ) < c_FltEpsilon) continue;

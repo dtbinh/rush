@@ -1,12 +1,12 @@
 //****************************************************************************/
 //  File:  JMove.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "Timer.h"
-#include "JAnimation.h"
-#include "IWindowServer.h"
-#include "JMove.h"
+#include "timer.h"
+#include "janimation.h"
+#include "iwindowserver.h"
+#include "jmove.h"
 
 //****************************************************************************/
 /*  JMove implementation
@@ -20,7 +20,7 @@ JMove::JMove()
 } // JMove::JMove
 
 void JMove::Render()
-{   
+{
     JAnimation::Render();
     JAnmContext& ctx = PushContext();
 
@@ -76,7 +76,7 @@ void JMove::DrawBounds()
             const Vec2& b = m_Path.GetPoint( i );
             g_pDrawServer->DrawLine( a.x, a.y, b.x, b.y, 0xFF0000FF, 0xFF0000FF );
         }
-        if (m_bClosed) 
+        if (m_bClosed)
         {
             const Vec2& a = m_Path.GetPoint( 0 );
             const Vec2& b = m_Path.GetPoint( m_Path.GetNPoints() - 1 );
@@ -85,7 +85,7 @@ void JMove::DrawBounds()
     }
     else
     {
-    
+
     }
     g_pDrawServer->Flush();
 } // JMove::DrawBounds

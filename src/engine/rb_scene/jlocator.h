@@ -6,11 +6,11 @@
 #ifndef __JLOCATOR_H__
 #define __JLOCATOR_H__
 
-#include "JWidget.h"
+#include "jwidget.h"
 
 /***********************************************************************************/
 //  Class:  JLocator
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JLocator : public JWidget
 {

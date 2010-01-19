@@ -1,9 +1,9 @@
 //****************************************************************************/
 //  File:  JPath.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "JPath.h"
+#include "jpath.h"
 
 //****************************************************************************/
 /*  JPath implementation
@@ -29,7 +29,7 @@ void JPath::SetMarkerT( float val )
 {
     val = clamp( val, 0.0f, 1.0f );
     m_MarkerT   = val;
-    Vec2 tangent; 
+    Vec2 tangent;
     m_MarkerPos = m_Path.GetParamPoint( val, false, &tangent );
     m_MarkerDir.x = tangent.x;
     m_MarkerDir.y = tangent.y;

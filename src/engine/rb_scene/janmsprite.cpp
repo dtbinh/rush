@@ -4,11 +4,11 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "Color.h"
-#include "JAnimation.h"
-#include "JModelInstance.h"
-#include "IModelServer.h"
-#include "JAnmSprite.h"
+#include "color.h"
+#include "janimation.h"
+#include "jmodelinstance.h"
+#include "imodelserver.h"
+#include "janmsprite.h"
 
 /***********************************************************************************/
 /*  JAnmSprite implementation
@@ -45,7 +45,7 @@ JAnmSprite::JAnmSprite()
 } // JAnmSprite::JAnmSprite
 
 void JAnmSprite::Init()
-{  
+{
 } // JAnmSprite::Init
 
 void JAnmSprite::ResInit()
@@ -81,7 +81,7 @@ void JAnmSprite::SetAttachBone( const char* name )
 
 void JAnmSprite::OnPlay()
 {
-    if (m_PackID < 0) 
+    if (m_PackID < 0)
     {
         m_PackID = g_pDrawServer->GetSpriteID( m_PackageName.c_str(), 0, m_bAlwaysCache );
     }
@@ -98,7 +98,7 @@ void JAnmSprite::OnPlay()
 void JAnmSprite::Render()
 {
     JAnimation::Render();
-    
+
     JAnmContext& ctx = GetContext();
 
     //  filter by direction angle
@@ -117,19 +117,19 @@ void JAnmSprite::Render()
         }
         if (!bInSector) return;
     }
-    else if (angle < m_StartAngle || angle >= m_EndAngle) 
+    else if (angle < m_StartAngle || angle >= m_EndAngle)
     {
         return;
     }
 
     //  FIXME:
-    if (m_PackID == -1) 
+    if (m_PackID == -1)
     {
         m_PackID = g_pDrawServer->GetSpriteID( m_PackageName.c_str() );
     }
 
     int nFrames = m_NumFrames;
-    if (nFrames < 0) 
+    if (nFrames < 0)
     {
         nFrames = g_pDrawServer->GetNFrames( m_PackID );
     }
@@ -153,8 +153,8 @@ void JAnmSprite::Render()
 
     if (m_bScreenSpace)
     {
-        Frame rect( ctx.m_Pos.x + m_Pos.x, ctx.m_Pos.y + m_Pos.y, 
-                g_pDrawServer->GetFrameW( m_PackID, m_FrameID ), 
+        Frame rect( ctx.m_Pos.x + m_Pos.x, ctx.m_Pos.y + m_Pos.y,
+                g_pDrawServer->GetFrameW( m_PackID, m_FrameID ),
                 g_pDrawServer->GetFrameH( m_PackID, m_FrameID ) );
         rect.x -= m_Pivot.x*scale;
         rect.y -= m_Pivot.y*scale;
@@ -221,7 +221,7 @@ void JAnmSprite::Render()
                            0, 0, 0, 1);
         }
 
-        tm.st( scale, pos ); 
+        tm.st( scale, pos );
 
         if (m_Align == Align_Camera)
         {
@@ -235,40 +235,40 @@ void JAnmSprite::Render()
 
         if (m_Align == Align_Vertical)
         {
-            tm = Mat4( 1.0f,    0.0f, 0.0f,   0.0f, 
-                       0.0f,    0.0f, -1.0f,  0.0f, 
-                       0.0f,    1.0f, 0.0f,   0.0f, 
+            tm = Mat4( 1.0f,    0.0f, 0.0f,   0.0f,
+                       0.0f,    0.0f, -1.0f,  0.0f,
+                       0.0f,    1.0f, 0.0f,   0.0f,
                        -pivot.x, 0.0f, pivot.y, 1.0f )*tm;
         }
         if (m_Align == Align_XAxis)
         {
-            tm = Mat4( 1.0f,    0.0f, 0.0f,   0.0f, 
-                       0.0f,    0.0f, -1.0f,  0.0f, 
-                       0.0f,    1.0f, 0.0f,   0.0f, 
+            tm = Mat4( 1.0f,    0.0f, 0.0f,   0.0f,
+                       0.0f,    0.0f, -1.0f,  0.0f,
+                       0.0f,    1.0f, 0.0f,   0.0f,
                        -pivot.x, 0.0f, pivot.y, 1.0f )*tm;
         }
         if (m_Align == Align_YAxis)
         {
-            tm = Mat4( 1.0f,    0.0f, 0.0f,   0.0f, 
-                       0.0f,    0.0f, -1.0f,  0.0f, 
-                       0.0f,    1.0f, 0.0f,   0.0f, 
+            tm = Mat4( 1.0f,    0.0f, 0.0f,   0.0f,
+                       0.0f,    0.0f, -1.0f,  0.0f,
+                       0.0f,    1.0f, 0.0f,   0.0f,
                        -pivot.x, 0.0f, pivot.y, 1.0f )*tm;
         }
         else if (m_Align == Align_Ground)
         {
-            tm = Mat4(  1.0f,   0.0f,    0.0f, 0.0f,  
-                            0.0f,   1.0f,    0.0f, 0.0f, 
-                            0.0f,   0.0f,    1.0f, 0.0f, 
+            tm = Mat4(  1.0f,   0.0f,    0.0f, 0.0f,
+                            0.0f,   1.0f,    0.0f, 0.0f,
+                            0.0f,   0.0f,    1.0f, 0.0f,
                            -pivot.x, -pivot.y, 0.0f, 1.0f )*tm;
         }
         else if (m_Align == Align_Camera)
         {
             const Mat4& m = g_pRenderServer->GetViewTM();
-            tm = Mat4( 
-                 m.e00, m.e10, m.e20, 0.0f, 
-                -m.e01,-m.e11,-m.e21, 0.0f, 
-                 m.e02, m.e12, m.e22, 0, 
-                -m.e00*pivot.x + m.e01*pivot.y, 
+            tm = Mat4(
+                 m.e00, m.e10, m.e20, 0.0f,
+                -m.e01,-m.e11,-m.e21, 0.0f,
+                 m.e02, m.e12, m.e22, 0,
+                -m.e00*pivot.x + m.e01*pivot.y,
                 -m.e10*pivot.x + m.e11*pivot.y,
                 -m.e20*pivot.x + m.e21*pivot.y, 1.0f )*tm;
         }

@@ -6,7 +6,7 @@
 #ifndef __JFADE_H__
 #define __JFADE_H__
 
-#include "JWeakRef.h"
+#include "jweakref.h"
 
 enum JFadeMode
 {
@@ -34,9 +34,9 @@ class JFade : public JAnimation
     uint32_t               m_Color;
     bool                m_bFadeColor;
 
-public: 
+public:
                         JFade          ();
-    virtual void        Render         (); 
+    virtual void        Render         ();
     virtual void        Init           ();
     virtual void        OnStop         ();
 

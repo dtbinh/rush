@@ -4,10 +4,9 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JObject.h"
-#include "JAnimServer.h"
-#include "JAnimation.h"
-#include "windows.h"
+#include "jobject.h"
+#include "janimserver.h"
+#include "janimation.h"
 
 /***********************************************************************************/
 /*  JAnimation implementation
@@ -37,7 +36,7 @@ JAnimation::JAnimation()
     m_Tempo         = 1.0f;
 
     SetVisible( false );
-} // JAnimation::JAnimation
+}
 
 float JAnimation::Wrap( float cTime, float duration )
 {
@@ -47,7 +46,7 @@ float JAnimation::Wrap( float cTime, float duration )
     case AnimWrap_Loop:
         return fmodf( cTime, duration );
     case AnimWrap_Pong:
-        return (nCycles%2 == 0) ? fmodf( cTime, duration ) : 
+        return (nCycles%2 == 0) ? fmodf( cTime, duration ) :
                                   duration - fmodf( cTime, duration );
     case AnimWrap_Freeze:
         return tmin( cTime, duration );
@@ -55,7 +54,7 @@ float JAnimation::Wrap( float cTime, float duration )
         return (cTime > duration) ? 0.0f : cTime;
     }
     return cTime;
-} // JAnimation::Wrap
+}
 
 void JAnimation::Play()
 {
@@ -69,12 +68,12 @@ void JAnimation::Play()
     SetVisible( true );
 
     m_CurTime = 0.0f;
-    
-    if (m_CurLoop == 0) 
+
+    if (m_CurLoop == 0)
     {
         m_CurTime += double( m_StartTime );
     }
-    
+
     int nCh = GetNChildren();
     if (m_PlayMode == AnimMode_PlayAll)
     {
@@ -82,7 +81,6 @@ void JAnimation::Play()
     }
     else if (m_PlayMode == AnimMode_PlayRandom)
     {
-        srand( GetTickCount() );
         m_CurChild = nCh > 0 ? rand()%nCh : 0;
     }
     else if (m_PlayMode == AnimMode_PlayOne)
@@ -92,17 +90,17 @@ void JAnimation::Play()
             m_CurChild = 0;
          }
     }
-    m_CurLoop  = 0; 
+    m_CurLoop  = 0;
     //  reset child animations to idle state
     for (int i = 0; i < GetNChildren(); i++)
     {
         JAnimation* pChild = obj_cast<JAnimation>( GetChild( i ) );
-        if (pChild && pChild->IsPlaying()) 
+        if (pChild && pChild->IsPlaying())
         {
             pChild->Stop();
         }
     }
-    
+
     m_bPlaying = true;
 
     OnPlay();
@@ -112,7 +110,7 @@ void JAnimation::Play()
     {
         Stop();
     }
-} // JAnimation::Play
+}
 
 void JAnimation::Pause( bool bPause )
 {
@@ -121,11 +119,11 @@ void JAnimation::Pause( bool bPause )
 
 void JAnimation::Stop()
 {
-    if (!m_bPlaying) 
+    if (!m_bPlaying)
     {
         return;
     }
-    if (!m_bAutoPlay) 
+    if (!m_bAutoPlay)
     {
         SetVisible( false );
     }
@@ -135,7 +133,7 @@ void JAnimation::Stop()
     for (int i = 0; i < GetNChildren(); i++)
     {
         JAnimation* pChild = obj_cast<JAnimation>( GetChild( i ) );
-        if (pChild) 
+        if (pChild)
         {
             pChild->Stop();
         }
@@ -144,13 +142,13 @@ void JAnimation::Stop()
     OnStop();
 
     JAnimation* pParent = obj_cast<JAnimation>( GetParent() );
-    if (pParent && !m_bPlaying) 
+    if (pParent && !m_bPlaying)
     {
         pParent->OnChildStopped( this );
     }
     m_CurLoop++;
 
-} // JAnimation::Stop
+}
 
 void JAnimation::StartCurChild()
 {
@@ -159,17 +157,17 @@ void JAnimation::StartCurChild()
     {
         JAnimation* pNewChild = obj_cast<JAnimation>( GetChild( m_CurChild ) );
         m_CurChild++;
-        if (!pNewChild) 
+        if (!pNewChild)
         {
             continue;
         }
         pNewChild->Play();
-        if (!pNewChild->IsParallel()) 
+        if (!pNewChild->IsParallel())
         {
             return;
         }
     }
-} // JAnimation::StartCurChild
+}
 
 void JAnimation::OnChildStopped( JAnimation* pChild )
 {
@@ -184,7 +182,7 @@ void JAnimation::OnChildStopped( JAnimation* pChild )
     {
         JAnimation* pCurChild = obj_cast<JAnimation>( GetChild( i ) );
         if (!pCurChild || pCurChild == pChild) continue;
-        if (pCurChild->m_bPlaying && !pCurChild->IsParallel()) 
+        if (pCurChild->m_bPlaying && !pCurChild->IsParallel())
         {
             bAllDone = false;
         }
@@ -195,10 +193,10 @@ void JAnimation::OnChildStopped( JAnimation* pChild )
         bAllDone = false;
     }
 
-    if (nCh > 0 && m_Duration == 0.0f && bAllDone && IsPlaying()) 
+    if (nCh > 0 && m_Duration == 0.0f && bAllDone && IsPlaying())
     {
         if (m_bLooped)
-        { 
+        {
             m_bPlaying = false;
             Play();
         }
@@ -207,13 +205,13 @@ void JAnimation::OnChildStopped( JAnimation* pChild )
             Stop();
         }
     }
-} // JAnimation::OnChildStopped
+}
 
 float JAnimation::GetCurTime() const
 {
     if (!IsPlaying()) return m_StartTime;
     return m_CurTime;
-} // JAnimation::GetCurTime
+}
 
 void JAnimation::SkipChild()
 {
@@ -229,7 +227,7 @@ void JAnimation::SkipChild()
             Stop();
         }
     }
-} // JAnimation::SkipChild
+}
 
 void JAnimation::Render()
 {
@@ -237,7 +235,7 @@ void JAnimation::Render()
     //  filter by state
     if (m_State.size() > 0)
     {
-        if (stricmp( m_State.c_str(), ctx.m_State.c_str() )) 
+        if (stricmp( m_State.c_str(), ctx.m_State.c_str() ))
         {
             Stop();
             return;
@@ -252,11 +250,11 @@ void JAnimation::Render()
     {
         GetContext().m_TimeDelta = 0.0f;
     }
-    
+
     m_CurTime += m_Tempo*GetContext().m_TimeDelta;
     GetContext().m_Time = m_Tempo*m_CurTime;
     GetContext().m_TimeDelta *= m_Tempo;
-} // JAnimation::Render
+}
 
 void JAnimation::PostRender()
 {
@@ -267,9 +265,9 @@ void JAnimation::PostRender()
         if (cTime >= m_Duration)
         {
             if (m_bLooped)
-            { 
+            {
                 m_CurTime = fmodf( cTime, m_Duration );
-                if (m_NLoops > 0 && m_CurLoop == m_NLoops) 
+                if (m_NLoops > 0 && m_CurLoop == m_NLoops)
                 {
                     Stop();
                 }
@@ -285,15 +283,15 @@ void JAnimation::PostRender()
         }
     }
     PopContext();
-} // JAnimation::PostRender
+}
 
-JAnmContext& JAnimation::PopContext()    
-{ 
-    return s_ContextStack.pop(); 
-} // JAnimation::PopContext
+JAnmContext& JAnimation::PopContext()
+{
+    return s_ContextStack.pop();
+}
 
-JAnmContext& JAnimation::PushContext()   
-{ 
+JAnmContext& JAnimation::PushContext()
+{
     if (s_ContextStack.size() >= 1)
     {
         const JAnmContext& top = s_ContextStack.back();
@@ -306,4 +304,4 @@ JAnmContext& JAnimation::PushContext()
         JAnmContext& newTop = s_ContextStack.expand();
         return newTop;
     }
-} // JAnimation::PushContext
+}

@@ -1,5 +1,5 @@
 #include "precompile.h"
-#include "JReflect.h"
+#include "jreflect.h"
 
 export(rb_scene)
 {
@@ -8,8 +8,8 @@ export(rb_scene)
     link_class  ( JModelInstance        );
     link_class  ( JAnimInstance         );
     link_class  ( JEffectInstance       );
-    link_class  ( JGridPlane                 );  
-    
+    link_class  ( JGridPlane                 );
+
     link_class  ( JLight                );
     link_class  ( JAmbient              );
     link_class  ( JPointLight           );

@@ -1,7 +1,7 @@
 #include "precompile.h"
-#include "JString.h"
-#include "JReflect.h"
-#include "JAnimation.h"
+#include "jstring.h"
+#include "jreflect.h"
+#include "janimation.h"
 
 TEST( Animation )
 {

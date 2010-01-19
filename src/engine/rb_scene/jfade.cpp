@@ -1,13 +1,13 @@
 //****************************************************************************/
 //  File:  JFade.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "Timer.h"
-#include "JAnimation.h"
-#include "JWidget.h"
-#include "JFade.h"
-#include "IWindowServer.h"
+#include "timer.h"
+#include "janimation.h"
+#include "jwidget.h"
+#include "jfade.h"
+#include "iwindowserver.h"
 
 //****************************************************************************/
 /*  JFade implementation
@@ -37,7 +37,7 @@ void JFade::OnStop()
 } // JFade::OnStop
 
 void JFade::Render()
-{   
+{
     if (!IsPlaying()) return;
 
     if (!m_pFadeObject)
@@ -54,8 +54,8 @@ void JFade::Render()
     JAnimation::Render();
     if (!IsPlaying()) return;
 
-    
-    if (m_FadeMode == FadeMode_None) 
+
+    if (m_FadeMode == FadeMode_None)
     {
         m_pFadeObject->SetVisible( false );
         return;
@@ -65,7 +65,7 @@ void JFade::Render()
     g_pWindowServer->GetRootExt( ext );
 
     uint32_t clr = m_Color;
-    if (m_Color == 0) 
+    if (m_Color == 0)
     {
         clr = m_pFadeObject->GetBgColor();
     }

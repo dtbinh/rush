@@ -4,11 +4,11 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "IParticleServer.h"
-#include "IModelServer.h"
-#include "JAnimation.h"
-#include "JModelInstance.h"
-#include "JEffectInstance.h"
+#include "iparticleserver.h"
+#include "imodelserver.h"
+#include "janimation.h"
+#include "jmodelinstance.h"
+#include "jeffectinstance.h"
 
 /***********************************************************************************/
 /*  JEffectInstance implementation
@@ -29,7 +29,7 @@ JEffectInstance::JEffectInstance()
     m_AttachBoneID      = -1;
     m_AttachInstanceID  = -1;
     m_bScreenSpace      = true;
-} // JEffectInstance::JEffectInstance
+}
 
 void JEffectInstance::SetAttachInstance( const char* name )
 {
@@ -48,14 +48,14 @@ void JEffectInstance::OnPlay()
 {
     if (m_EffectID == -1) m_EffectID = g_pParticleServer->GetEffectID( m_Effect.c_str() );
     if (m_EffectID == -1) return;
-    if (m_InstanceID != -1) 
+    if (m_InstanceID != -1)
     {
         g_pParticleServer->DeleteInstance( m_InstanceID );
     }
     m_InstanceID = g_pParticleServer->CreateInstance( m_EffectID );
     m_Stamp = g_pParticleServer->GetStamp();
     m_PrevTime = GetStartTime();
-} // JEffectInstance::OnPlay
+}
 
 void JEffectInstance::OnStop()
 {
@@ -64,17 +64,17 @@ void JEffectInstance::OnStop()
         g_pParticleServer->DeleteInstance( m_InstanceID );
     }
     m_InstanceID = -1;
-} // JEffectInstance::OnStop
+}
 
 void JEffectInstance::PostRender()
 {
     JAnimation::PostRender();
-} // JEffectInstance::PostRender
+}
 
 void JEffectInstance::Init()
 {
     m_EffectID = g_pParticleServer->GetEffectID( m_Effect.c_str() );
-} // JEffectInstance::Init
+}
 
 void JEffectInstance::Render()
 {
@@ -84,10 +84,10 @@ void JEffectInstance::Render()
         return;
     }
 
-    //  modify transform by "attach-to" bone 
+    //  modify transform by "attach-to" bone
     if (m_AttachInstance.size() > 0)
     {
-        int boneID = -1; 
+        int boneID = -1;
         Mat4 boneTM = Mat4::identity;
         if (m_AttachInstance.size() > 0)
         {
@@ -109,7 +109,7 @@ void JEffectInstance::Render()
 
         if (m_bScreenSpace)
         {
-            Mat4 tm; 
+            Mat4 tm;
             ProjToScreenTM( tm, g_pRenderServer->GetViewport() );
             if (g_pRenderServer)
             {
@@ -128,7 +128,7 @@ void JEffectInstance::Render()
             Stop();
             Play();
             cTime = 0.0f;
-            if (GetCurLoop() == 0) 
+            if (GetCurLoop() == 0)
             {
                 cTime += GetStartTime();
             }
@@ -144,4 +144,4 @@ void JEffectInstance::Render()
     {
         Stop();
     }
-} // JEffectInstance::Render
+}

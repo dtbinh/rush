@@ -4,8 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JCameraController.h"
-#include "JCamera.h"
+#include "jcameracontroller.h"
+#include "jcamera.h"
 
 /***********************************************************************************/
 /*  JCameraController implementation
@@ -25,9 +25,9 @@ void JCameraController::SetCameraName( const char* name )
 {
 	m_pCamera = g_pObjectServer->FindObject<JCamera>( name, this );
 	m_CameraName = name;
-}  
+}
 
 void JCameraController::Init()
 {
 	m_pCamera = g_pObjectServer->FindObject<JCamera>( GetCameraName(), this );
-} 
+}

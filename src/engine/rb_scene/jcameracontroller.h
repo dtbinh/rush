@@ -6,18 +6,18 @@
 #ifndef __JCAMERACONTROLLER_H__
 #define __JCAMERACONTROLLER_H__
 
-#include "JWeakRef.h"
+#include "jweakref.h"
 
 class JCamera;
 /***********************************************************************************/
 //  Class:  JCameraController
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JCameraController : public JWidget
 {
 	JWeakRef<JCamera>		m_pCamera;
 	JString					m_CameraName;
-	
+
 public:
 							JCameraController();
 	const char*				GetCameraName() const { return m_CameraName.c_str(); }

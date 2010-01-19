@@ -1,10 +1,10 @@
 //****************************************************************************/
 //  File:  JScriptEvent.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
-#include "JScript.h"
-#include "JScriptEvent.h"
+#include "jscript.h"
+#include "jscriptevent.h"
 
 //****************************************************************************/
 /*  JScriptEvent implementation
@@ -13,10 +13,10 @@ decl_class(JScriptEvent);
 JScriptEvent::JScriptEvent()
 {
     m_pScript = NULL;
-} // JScriptEvent::JScriptEvent
+}
 
 void JScriptEvent::Init()
-{   
+{
     m_pScript = obj_cast<JScript>( g_pObjectServer->FindObject( m_Script.c_str(), NULL, this ) );
 
     //  check whether we have connected properly
@@ -27,7 +27,7 @@ void JScriptEvent::Init()
         rlog.err( "JScriptEvent at path <%s>: Could not find script object <%s>", path.c_str(), m_Script.c_str() );
         return;
     }
-} // JScriptEvent::Init
+}
 
 void JScriptEvent::OnPlay()
 {
@@ -40,4 +40,4 @@ void JScriptEvent::OnPlay()
         m_pScript->Dispatch( m_Event.c_str() );
     }
     Stop();
-} // JScriptEvent::OnPlay
+}

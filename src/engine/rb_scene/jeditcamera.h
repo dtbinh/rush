@@ -6,17 +6,17 @@
 #ifndef __JEDITCAMERA_H__
 #define __JEDITCAMERA_H__
 
-#include "JCameraController.h"
-#include "Timer.h"
+#include "jcameracontroller.h"
+#include "timer.h"
 
 /***********************************************************************************/
 //  Class:  JEditCamera
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JEditCamera : public JCameraController
 {
 public:
-       
+
     enum ViewMode
     {
         ViewMode_Unknown    = 0,
@@ -67,38 +67,38 @@ public:
 private:
     ViewMode        m_Mode;
 
-    //  home camera parameters 
+    //  home camera parameters
     float           m_HomeRoll;
-    float           m_HomeTilt; 
-    float           m_HomeZoom; 
+    float           m_HomeTilt;
+    float           m_HomeZoom;
 
-    //  current camera parameters 
+    //  current camera parameters
     float           m_Roll;
-    float           m_Tilt; 
-    float           m_Zoom; 
-	
-	//  limits
-	float           m_MaxRoll; 			
-	float           m_MaxTilt; 			
-	float           m_MaxZoom; 			
+    float           m_Tilt;
+    float           m_Zoom;
 
-	float           m_MinRoll;			
-	float           m_MinTilt; 			
-	float           m_MinZoom;			
+	//  limits
+	float           m_MaxRoll;
+	float           m_MaxTilt;
+	float           m_MaxZoom;
+
+	float           m_MinRoll;
+	float           m_MinTilt;
+	float           m_MinZoom;
 
     //  camera parameters speed
     float           m_RollSpeed;
-    float           m_TiltSpeed; 
-    float           m_ZoomSpeed; 
+    float           m_TiltSpeed;
+    float           m_ZoomSpeed;
 
     //  camera parameters delta
     float           m_RollDelta;
-    float           m_TiltDelta; 
-    float           m_ZoomDelta; 
-    Vec3            m_LookAtDelta; 
+    float           m_TiltDelta;
+    float           m_ZoomDelta;
+    Vec3            m_LookAtDelta;
 
     float           m_FocusDist;
-    Vec3            m_LookAt; 
+    Vec3            m_LookAt;
 
     Vec2            m_MousePos;
     Timer           m_Timer;

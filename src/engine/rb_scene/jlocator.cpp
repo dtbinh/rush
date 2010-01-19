@@ -4,9 +4,9 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JLocator.h"
-#include "IWindowServer.h"
-#include "Mat4.h"
+#include "jlocator.h"
+#include "iwindowserver.h"
+#include "mat4.h"
 
 /***********************************************************************************/
 /*  JLocator implementation
@@ -50,7 +50,7 @@ void JLocator::SetScreenSpace( bool bSet )
         return;
     }
     m_bScreenSpace = bSet;
-    Mat4 tm; 
+    Mat4 tm;
     ProjToScreenTM( tm, g_pRenderServer->GetViewport() );
     if (g_pRenderServer)
     {

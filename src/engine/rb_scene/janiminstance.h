@@ -5,19 +5,18 @@
 /***********************************************************************************/
 #ifndef __JMODELANIMINSTANCE_H__
 #define __JMODELANIMINSTANCE_H__
-
-#include "JWeakRef.h"
+#include "jweakref.h"
 
 /***********************************************************************************/
 //  Class:  JAnimInstance
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JAnimInstance : public JAnimation
 {
 public:
                     JAnimInstance   ();
-    virtual void    Render          ();   
-    virtual void    Init            (); 
+    virtual void    Render          ();
+    virtual void    Init            ();
     virtual void    OnPlay          ();
 
     void            SetModel        ( const char* name );

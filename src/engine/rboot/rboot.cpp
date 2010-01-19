@@ -5,13 +5,12 @@
 #include "iwindowserver.h"
 #include "jdialog.h"
 #include "isoundserver.h"
-#include "direct.h"
 #include "jdialog.h"
 #include "modelviewer.h"
 #include "path.h"
 #include "imodelserver.h"
 #include "jmodelanim.h"
-#include "fstream.h" 
+#include "fstream.h"
 #include "ifileserver.h"
 #include "commandline.h"
 #include "ipersistserver.h"
@@ -22,12 +21,20 @@
 void GetExecutablePath( char* path, int nMaxPath )
 {
 }
+void ImportRenderLib()
+{
+    import( rb_rendergl );
+}
 const char* c_RenderServerName = "renderservergl";
 #else
 #include "windows.h"
 void GetExecutablePath( char* path, int nMaxPath )
 {
     GetModuleFileName( GetModuleHandle( NULL ), path, nMaxPath );
+}
+void ImportRenderLib()
+{
+    import( rb_render9 );
 }
 const char* c_RenderServerName = "renderserverdx9";
 #endif
@@ -57,11 +64,11 @@ bool RBoot::Init( const CommandLine& cmd )
     {
         sscanf( pHandle, "%d", &hwnd );
     }
-    
+
     import( rb_draw         );
     //import( rb_extui        );
     import( rb_particle     );
-    import( rb_render9      );
+    ImportRenderLib();
     import( rb_scene        );
     import( rb_script_lua   );
     //import( rb_sound        );
@@ -69,14 +76,14 @@ bool RBoot::Init( const CommandLine& cmd )
     import( rb_ui           );
     //import( rb_video        );
     //import( rb_physics      );
-	
+
     link_class( ModelViewer );
     link_class( TestDriver  );
 
     m_pCore->Init();
 
     AddCommonMediaPath();
-    
+
     const char* scriptFile = cmd.GetValue( "script" );
     JObject* pRoot = NULL;
     if (scriptFile)
@@ -90,7 +97,7 @@ bool RBoot::Init( const CommandLine& cmd )
     {
         AddModuleMediaPath();
     }
-    
+
     const char* mediaDir = cmd.GetValue( "media" );
     g_pFileServer->AddMediaPath( mediaDir );
 
@@ -173,7 +180,6 @@ void RBoot::AddModuleMediaPath()
     {
         g_pFileServer->AddMediaPath( mediaPath.GetFullPath() );
     }
-    chdir( path );  
 }
 
 void RBoot::AddCommonMediaPath()
@@ -187,7 +193,7 @@ void RBoot::AddCommonMediaPath()
     if (mediaPath.Exists())
     {
         g_pFileServer->AddMediaPath( mediaPath.GetFullPath() );
-    }  
+    }
 }
 
 void RBoot::AddScriptMediaPath( const char* scriptFile )

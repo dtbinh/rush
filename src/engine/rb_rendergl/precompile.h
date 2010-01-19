@@ -1,14 +1,7 @@
-#ifndef __RB_RENDER_DX9_PCH_H__
-#define __RB_RENDER_DX9_PCH_H__
-#pragma once
-#define WIN32_LEAN_AND_MEAN	
+#ifndef __PRECOMPILE_H__
+#define __PRECOMPILE_H__
 
-#include "windows.h"
 #include "rb_common.h"
-#include "Logger.h"
+#include "logger.h"
 
-#ifndef SAFE_RELEASE
-#define SAFE_RELEASE(p)      { if(p) { (p)->Release(); (p)=NULL; } }
-#endif
-
-#endif // __RB_RENDER_DX9_PCH_H__
+#endif // __PRECOMPILE_H__

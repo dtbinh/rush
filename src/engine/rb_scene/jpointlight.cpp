@@ -4,8 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JLight.h"
-#include "JPointLight.h"
+#include "jlight.h"
+#include "jpointlight.h"
 
 /***********************************************************************************/
 /*  JPointLight implementation

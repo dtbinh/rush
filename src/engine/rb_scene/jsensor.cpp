@@ -4,9 +4,9 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JSensor.h"
-#include "IWindowServer.h"
-#include "Mat4.h"
+#include "jsensor.h"
+#include "iwindowserver.h"
+#include "mat4.h"
 
 /***********************************************************************************/
 /*  JSensor implementation
@@ -19,7 +19,7 @@ JSensor::JSensor()
     m_Radius            = 1.0f;
     m_AttachBoneID      = -1;
     m_AttachInstanceID  = -1;
-} // JSensor::JSensor
+}
 
 void JSensor::SetAttachInstance( const char* name )
 {
@@ -36,7 +36,7 @@ void JSensor::SetAttachBone( const char* name )
 
 void JSensor::DrawBounds()
 {
-    
+
 } // JSensor::DrawBounds
 
 void JSensor::SetScreenSpace( bool bSet )
@@ -46,7 +46,7 @@ void JSensor::SetScreenSpace( bool bSet )
         return;
     }
     m_bScreenSpace = bSet;
-    Mat4 tm; 
+    Mat4 tm;
     ProjToScreenTM( tm, g_pRenderServer->GetViewport() );
     if (g_pRenderServer)
     {

@@ -6,19 +6,19 @@
 #ifndef __JCHARCAMERA_H__
 #define __JCHARCAMERA_H__
 
-#include "JCameraController.h"
-#include "Timer.h"
+#include "jcameracontroller.h"
+#include "timer.h"
 
 class JModelInstance;
 /***********************************************************************************/
 //  Class:  JCharCamera
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JCharCamera : public JCameraController
 {
     Timer                       m_Timer;
 
-    //  instance of the character model 
+    //  instance of the character model
     JString                     m_ModelInstance;
 
     //  name of the bone to track
@@ -32,7 +32,7 @@ class JCharCamera : public JCameraController
 
     //  camera rotation speed
     float                       m_RotateSpeed;
-    
+
     //  current camera heading (rotation angle in horizontal plane)
     float                       m_Heading;
 
@@ -53,7 +53,7 @@ class JCharCamera : public JCameraController
     Vec2                        m_MousePos;
 
 public:
-       
+
                     JCharCamera ();
     virtual void    Render      ();
     virtual void    OnMouse     ( JMouseEvent& e );

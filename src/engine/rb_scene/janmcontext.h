@@ -6,13 +6,13 @@
 #ifndef __JANMCONTEXT_H__
 #define __JANMCONTEXT_H__
 
-#include "Mat4.h"
+#include "mat4.h"
 /***********************************************************************************/
 //  Class:  JAnmContext
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 struct JAnmContext
-{   
+{
     Mat4                m_TM;
     Vec3                m_Pos;
     Vec3                m_Target;
@@ -24,14 +24,14 @@ struct JAnmContext
     JString             m_State;
 
 
-    JAnmContext() : 
-        m_Time( 0.0 ), 
+    JAnmContext() :
+        m_Time( 0.0 ),
         m_TimeDelta( 0.0f ),
         m_State( "" ),
-        m_Angle( 0 ), 
-        m_Pos( Vec3::null ), 
+        m_Angle( 0 ),
+        m_Pos( Vec3::null ),
         m_Target( Vec3::null ),
-        m_Scale( 1.0f ), 
+        m_Scale( 1.0f ),
         m_bStateOnly( false ),
         m_TM( Mat4::identity )
     {}
@@ -51,13 +51,13 @@ struct JAnmContext
 
     void operator = ( const JAnmContext& ctx )
     {
-        m_State         = ctx.m_State;     
-        m_TM            = ctx.m_TM;        
-        m_Pos           = ctx.m_Pos; 
+        m_State         = ctx.m_State;
+        m_TM            = ctx.m_TM;
+        m_Pos           = ctx.m_Pos;
         m_Target        = ctx.m_Target;
-        m_Angle         = ctx.m_Angle;     
-        m_Scale         = ctx.m_Scale;     
-        m_Time          = ctx.m_Time;   
+        m_Angle         = ctx.m_Angle;
+        m_Scale         = ctx.m_Scale;
+        m_Time          = ctx.m_Time;
         m_TimeDelta     = ctx.m_TimeDelta;
         m_bStateOnly    = ctx.m_bStateOnly;
     }

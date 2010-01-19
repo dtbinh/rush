@@ -5,8 +5,8 @@
 //****************************************************************************/
 #ifndef __JSCRIPTEVENT_H__
 #define __JSCRIPTEVENT_H__
-#include "JAnimation.h"
-#include "JWeakRef.h"
+#include "janimation.h"
+#include "jweakref.h"
 
 //****************************************************************************/
 //  Class:  JScriptEvent
@@ -18,10 +18,10 @@ class JScriptEvent : public JAnimation
     JString             m_Event;
     JWeakRef<JScript>   m_pScript;
 
-public: 
+public:
                     JScriptEvent();
-    virtual void    OnPlay      (); 
-    virtual void    Init        (); 
+    virtual void    OnPlay      ();
+    virtual void    Init        ();
 
     expose( JScriptEvent )
     {

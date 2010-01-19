@@ -4,8 +4,8 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JLight.h"
-#include "JDirLight.h"
+#include "jlight.h"
+#include "jdirlight.h"
 
 /***********************************************************************************/
 /*  JDirLight implementation

@@ -6,12 +6,12 @@
 #ifndef __JANIMSERVER_H__
 #define __JANIMSERVER_H__
 
-#include "Timer.h"
+#include "timer.h"
 
 class JAnimation;
 /***********************************************************************************/
 //  Class:  JAnimServer
-//  Desc:   
+//  Desc:
 /***********************************************************************************/
 class JAnimServer : public JObject
 {
@@ -25,7 +25,7 @@ public:
     virtual void        Render      ();
     double              GetCurTime  () const { return m_Timer.Seconds(); }
     void                SetCurTime  ( double cTime ) { m_Timer.Set( cTime ); }
-    
+
     void                Pause       ( bool bPause = true );
     bool                IsPaused    () const { return m_bPaused; }
 

@@ -4,7 +4,7 @@
 //  Author: Ruslan Shestopalyuk
 /***********************************************************************************/
 #include "precompile.h"
-#include "JLight.h"
+#include "jlight.h"
 
 /***********************************************************************************/
 /*  JLight implementation

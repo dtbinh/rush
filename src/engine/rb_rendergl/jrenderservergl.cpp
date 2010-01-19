@@ -1,6 +1,6 @@
 //****************************************************************************/
 //  File:  JRenderServerGL.cpp
-//  Desc:  
+//  Desc:
 //****************************************************************************/
 #include "precompile.h"
 #include "jreflect.h"
@@ -34,22 +34,22 @@ JRenderServerGL::JRenderServerGL()
     m_RTID              = -1;
     m_DSID              = -1;
     m_bDeviceLost       = false;
-    
+
     m_FPS               = 0;
     m_bWireFrame        = false;
     g_pRenderServer     = this;
 
     ResetStats();
-}  
+}
 
 JRenderServerGL::~JRenderServerGL()
 {
     Shut();
-    if (g_pRenderServer == this) 
+    if (g_pRenderServer == this)
     {
         g_pRenderServer = NULL;
     }
-}  
+}
 
 void JRenderServerGL::ResetStats()
 {
@@ -59,11 +59,11 @@ void JRenderServerGL::ResetStats()
     m_CurTexturesPerFrame  = m_TexturesPerFrame;
     m_CurRTsPerFrame       = m_RTsPerFrame;
 
-    m_DIPsPerFrame         = 0;    
-    m_PolysPerFrame        = 0;   
-    m_ShadersPerFrame      = 0; 
+    m_DIPsPerFrame         = 0;
+    m_PolysPerFrame        = 0;
+    m_ShadersPerFrame      = 0;
     m_TexturesPerFrame     = 0;
-    m_RTsPerFrame          = 0;     
+    m_RTsPerFrame          = 0;
 }
 
 void JRenderServerGL::InitGlobalConstants()
@@ -88,7 +88,7 @@ void JRenderServerGL::InitGlobalConstants()
     m_hCamPos           = GetConstantID( m_PoolShaderID, "g_CamPos"	          );
     m_hTime             = GetConstantID( m_PoolShaderID, "g_Time"	            );*/
 
-}  
+}
 
 void JRenderServerGL::SetGlobalConstants()
 {
@@ -107,16 +107,16 @@ void JRenderServerGL::SetGlobalConstants()
     SetConstant( m_PoolShaderID, m_hTime,            m_CurTime );
     SetConstant( m_PoolShaderID, m_hCamPos,          camPos.x, camPos.y, camPos.z, 0.0f );
 
-    const ShaderInstance& shader = m_Shaders[m_CurShader];  
+    const ShaderInstance& shader = m_Shaders[m_CurShader];
     shader.m_pEffect->CommitChanges();*/
-}  
+}
 
 void JRenderServerGL::Init()
 {
     SetName( "render" );
 
     //m_hWnd = (HWND)g_pWindowServer->GetRootHandle();
-    //if (m_bInited) 
+    //if (m_bInited)
     //{
     //    return;
     //}
@@ -136,7 +136,7 @@ void JRenderServerGL::Init()
     //JScreenMode mode = g_pWindowServer->GetScreenMode();
     //BOOL bWindowed = (mode == smWindow || mode == smDesktop);
 
-    //bool bHasStencil = true;  
+    //bool bHasStencil = true;
 
     //m_PresParam.Windowed                  = bWindowed;
     //m_PresParam.SwapEffect                = bWindowed ? D3DSWAPEFFECT_COPY : D3DSWAPEFFECT_FLIP;
@@ -147,7 +147,7 @@ void JRenderServerGL::Init()
     //m_PresParam.hDeviceWindow             = m_hWnd;
     //m_PresParam.PresentationInterval      = D3DPRESENT_INTERVAL_IMMEDIATE;
 
-    //if (bHasStencil) 
+    //if (bHasStencil)
     //{
     //    m_PresParam.AutoDepthStencilFormat = D3DFMT_D24S8;
     //    m_bHasStencil = true;
@@ -164,14 +164,14 @@ void JRenderServerGL::Init()
 
     //rlog.msg( "Creating d3d9 render device..." );
 
-    //HRESULT res = m_pD3D->CreateDevice(	adapterID, devType, m_hWnd, flags, &m_PresParam, &m_pDevice ); 
-    //if (!m_pDevice) 
+    //HRESULT res = m_pD3D->CreateDevice(	adapterID, devType, m_hWnd, flags, &m_PresParam, &m_pDevice );
+    //if (!m_pDevice)
     //{
     //    rlog.warn( "Could not create render device. Switching to software vertex processing." );
-    //    
+    //
     //    flags = D3DCREATE_SOFTWARE_VERTEXPROCESSING;
     //    res = m_pD3D->CreateDevice(	0, devType, m_hWnd, flags, &m_PresParam, &m_pDevice );
-    //    
+    //
     //    if (!m_pDevice)
     //    {
     //        rlog.err( "Could not create render device. %s", GetDXError( res ) );
@@ -209,7 +209,7 @@ void JRenderServerGL::Init()
     //{
     //    m_Clients[i]->OnResetDevice();
     //}
-} 
+}
 
 bool JRenderServerGL::IsFullScreen() const
 {
@@ -219,7 +219,7 @@ bool JRenderServerGL::IsFullScreen() const
 void JRenderServerGL::SetFullScreen( bool bFullScreen )
 {
 //    bool bCurFullScreen = m_PresParam.Windowed ? false : true;
-//    
+//
 //    if (bCurFullScreen == bFullScreen)
 //    {
 //        return;
@@ -248,13 +248,13 @@ void JRenderServerGL::SetFullScreen( bool bFullScreen )
 
 bool JRenderServerGL::ResizeBackBuffer( int w, int h )
 {
-//    if (m_pDevice == NULL || 
-//        (w == m_PresParam.BackBufferWidth && 
+//    if (m_pDevice == NULL ||
+//        (w == m_PresParam.BackBufferWidth &&
 //         h == m_PresParam.BackBufferHeight ))
 //    {
 //        return false;
 //    }
-//    
+//
 //    m_PresParam.BackBufferWidth  = w;
 //    m_PresParam.BackBufferHeight = h;
 //
@@ -291,11 +291,11 @@ void* JRenderServerGL::GetRenderSurface()
 void JRenderServerGL::ResetTime()
 {
     m_Time.Start();
-} 
+}
 
 bool JRenderServerGL::StartFrame()
 {
-    //if (!m_bInited || !m_pDevice) 
+    //if (!m_bInited || !m_pDevice)
     //{
     //    return false;
     //}
@@ -309,7 +309,7 @@ bool JRenderServerGL::StartFrame()
     //    if (hRes != S_OK)
     //    {
     //        //  if the device was lost, do not render until we get it back
-    //        if (hRes == D3DERR_DEVICELOST) 
+    //        if (hRes == D3DERR_DEVICELOST)
     //        {
     //            return false;
     //        }
@@ -337,7 +337,7 @@ bool JRenderServerGL::StartFrame()
 
     //m_CurTime = float( m_Time.Seconds() );
     //SetColorTint( 0xFFFFFFFF );
-    //m_pDevice->SetTransform( D3DTS_TEXTURE0, (D3DMATRIX*)&Mat4::identity ); 
+    //m_pDevice->SetTransform( D3DTS_TEXTURE0, (D3DMATRIX*)&Mat4::identity );
     return true;
 } // JRenderServerGL::StartFrame
 
@@ -373,7 +373,7 @@ void JRenderServerGL::EndFrame()
         m_Clients[i]->OnFrame();
     }
 
-}  
+}
 
 void JRenderServerGL::ReloadResources()
 {
@@ -384,13 +384,13 @@ void JRenderServerGL::ReloadResources()
     //m_pEffectPool->Release();
     //D3DXCreateEffectPool( &m_pEffectPool );
     //InitGlobalConstants();
-}  
-    
+}
+
 void JRenderServerGL::ClearViewport( uint32_t color )
 {
     //if (!m_pDevice) return;
     //m_pDevice->Clear( 0, NULL, D3DCLEAR_TARGET, color, 1.0, 0 );
-}  
+}
 
 void JRenderServerGL::ClearDepthStencil( bool bDepth, bool bStencil )
 {
@@ -399,7 +399,7 @@ void JRenderServerGL::ClearDepthStencil( bool bDepth, bool bStencil )
     //if (bDepth)   flags |= D3DCLEAR_ZBUFFER;
     //if (bStencil && m_bHasStencil) flags |= D3DCLEAR_STENCIL;
     //m_pDevice->Clear( 0, NULL, flags, 0, 1.0, 0 );
-}  
+}
 
 void JRenderServerGL::SetViewport( const Frame& rc )
 {
@@ -433,39 +433,39 @@ void JRenderServerGL::SetViewport( const Frame& rc )
     //dvp.Height	= m_Viewport.h;
     //dvp.MinZ	= 0.0f;
     //dvp.MaxZ	= 1.0f;
-    //m_pDevice->SetViewport( (D3DVIEWPORT9*)&dvp );	
-} 
+    //m_pDevice->SetViewport( (D3DVIEWPORT9*)&dvp );
+}
 
 bool JRenderServerGL::Shut()
 {
-    if (!m_bInited) 
+    if (!m_bInited)
     {
         return false;
     }
 
     rlog.msg( "Releasing d3d9 render device..." );
-    
+
     /*SAFE_RELEASE( m_pBackBuffer );
     SAFE_RELEASE( m_pDepthStencil );
 
-    for (int i = 0; i < m_Textures.size(); i++) 
+    for (int i = 0; i < m_Textures.size(); i++)
     {
         SAFE_RELEASE( m_Textures[i].m_pTexture );
         SAFE_RELEASE( m_Textures[i].m_pDepthStencil );
     }
-    for (int i = 0; i < m_Shaders.size(); i++) 
+    for (int i = 0; i < m_Shaders.size(); i++)
     {
         SAFE_RELEASE( m_Shaders[i].m_pEffect );
     }
-    for (int i = 0; i < m_VBuffers.size(); i++) 
+    for (int i = 0; i < m_VBuffers.size(); i++)
     {
         SAFE_RELEASE( m_VBuffers[i].m_pBuffer );
     }
-    for (int i = 0; i < m_IBuffers.size(); i++) 
+    for (int i = 0; i < m_IBuffers.size(); i++)
     {
         SAFE_RELEASE( m_IBuffers[i].m_pBuffer );
     }
-    for (int i = 0; i < m_VertexDeclarations.size(); i++) 
+    for (int i = 0; i < m_VertexDeclarations.size(); i++)
     {
         SAFE_RELEASE( m_VertexDeclarations[i].m_pVDecl );
     }
@@ -479,8 +479,8 @@ bool JRenderServerGL::Shut()
     int nRef = 0;
     if (m_pDevice) nRef = m_pDevice->Release();
     m_pDevice = NULL;
-    
-    if (nRef > 0) 
+
+    if (nRef > 0)
     {
         rlog.err( "Render device was not released properly." );
     }
@@ -488,31 +488,31 @@ bool JRenderServerGL::Shut()
     SAFE_RELEASE( m_pD3D );*/
     m_bInited = false;
     return true;
-}  
+}
 
 void JRenderServerGL::SetViewTM( const Mat4& tm )
 {
     m_ViewTM = tm;
     //m_pDevice->SetTransform( D3DTS_VIEW, (D3DMATRIX*)&tm );
-}  
+}
 
 void JRenderServerGL::SetWorldTM( const Mat4& tm )
 {
     m_WorldTM = tm;
     //m_pDevice->SetTransform( D3DTS_WORLD, (D3DMATRIX*)&tm );
-}  
+}
 
 void JRenderServerGL::SetProjTM( const Mat4& tm )
 {
     m_ProjTM = tm;
     //m_pDevice->SetTransform( D3DTS_PROJECTION, (D3DMATRIX*)&tm );
-}  
+}
 
 void JRenderServerGL::SetTextureTM( const Mat4& tm )
 {
     m_TextureTM = tm;
     //m_pDevice->SetTransform( D3DTS_TEXTURE0, (D3DMATRIX*)&tm );
-} 
+}
 
 int JRenderServerGL::GetTextureID( const char* texName )
 {
@@ -527,9 +527,9 @@ int JRenderServerGL::GetTextureID( const char* texName )
     if (!is) return -1;
 
     int nBytes = is.GetTotalSize();
-    BYTE* buf = new BYTE[nBytes];
+    uint8_t* buf = new uint8_t[nBytes];
     is.Read( buf, nBytes );
-    
+
     D3DXIMAGE_INFO info;
     HRESULT hRes = D3DXGetImageInfoFromFileInMemory( buf, nBytes, &info );
     DXBaseTexture* pTex = NULL;
@@ -577,7 +577,7 @@ int JRenderServerGL::GetTextureID( const char* texName )
         tp.m_Width          = desc.Width;
         tp.m_PoolType       = ConvertPoolType( desc.Pool );
     }
-    
+
     delete []buf;
     if (!pTex || hRes != S_OK) return -1;
 
@@ -588,22 +588,22 @@ int JRenderServerGL::GetTextureID( const char* texName )
     tex.m_pTexture      = pTex;
     m_Textures.push_back( tex );
     return m_Textures.size() - 1;*/
-    return -1; 
-}    
+    return -1;
+}
 
 void JRenderServerGL::SetTexture( int texID, int stage )
 {
    /* if (texID < 0 || texID >= (int)m_Textures.size()) return;
     m_pDevice->SetTexture( stage, m_Textures[texID].m_pTexture );
     m_TexturesPerFrame++;*/
-}  
+}
 
 void JRenderServerGL::DeleteTexture( int texID )
 {
     //if (texID < 0 || texID >= (int)m_Textures.size()) return;
     //m_Textures[texID].m_pTexture->Release();
     //m_Textures[texID].m_pTexture = NULL;
-}  
+}
 
 void JRenderServerGL::ShowCursor( bool bShow )
 {
@@ -619,12 +619,12 @@ void JRenderServerGL::ShowCursor( bool bShow )
         ::ShowCursor( FALSE );
     }
     m_bCursorVisible = bShow;*/
-} 
+}
 
 int JRenderServerGL::CreateDepthStencil( const char* texName, int w, int h, DepthFormat fmt )
 {
     /*DXSurface* pSurface = NULL;
-    HRESULT hRes = m_pDevice->CreateDepthStencilSurface( w, h, ConvertDepthFormat( fmt ), 
+    HRESULT hRes = m_pDevice->CreateDepthStencilSurface( w, h, ConvertDepthFormat( fmt ),
         D3DMULTISAMPLE_NONE, 0, TRUE, &pSurface, NULL );
     if (hRes != S_OK || !pSurface)
     {
@@ -645,17 +645,17 @@ int JRenderServerGL::CreateDepthStencil( const char* texName, int w, int h, Dept
     tp.m_PoolType       = ConvertPoolType( desc.Pool );
     tp.m_NMips          = 0;
     strcpy( tp.m_Name, texName );
-    
+
     tex.m_pTexture      = NULL;
     tex.m_pDepthStencil = pSurface;
     tex.m_Name          = texName;
     m_Textures.push_back( tex );
     return m_Textures.size() - 1;*/
     return 0;
-}  
+}
 
 int JRenderServerGL::CreateRenderTarget( const char* texName, int w, int h, ColorFormat fmt )
-{                                   
+{
     /*uint32_t usage = D3DUSAGE_RENDERTARGET;
     DXTexture* pTex = NULL;
     HRESULT hRes = D3DXCreateTexture( m_pDevice, w, h, 1, usage, ConvertColorFormat( fmt ), D3DPOOL_DEFAULT, &pTex );
@@ -678,18 +678,18 @@ int JRenderServerGL::CreateRenderTarget( const char* texName, int w, int h, Colo
     tp.m_bRenderTarget  = true;
     tp.m_NMips          = pTex->GetLevelCount();
     strcpy( tp.m_Name, texName );
-    
+
     tex.m_pTexture      = pTex;
     tex.m_pDepthStencil = NULL;
     tex.m_Name          = texName;
     m_Textures.push_back( tex );
     return m_Textures.size() - 1;*/
     return 0;
-}  
+}
 
 bool JRenderServerGL::SetRenderTarget( int texID, int dsID )
 {
-    //if (texID < 0 || texID >= (int)m_Textures.size()) 
+    //if (texID < 0 || texID >= (int)m_Textures.size())
     //{
     //    //  restore backbuffer render target
     //    HRESULT res = m_pDevice->SetRenderTarget( 0, m_pBackBuffer );
@@ -706,7 +706,7 @@ bool JRenderServerGL::SetRenderTarget( int texID, int dsID )
     //pSurf->Release();
 
     //DXSurface* pDepthStencil = m_pDepthStencil;
-    //if (dsID >= 0 && dsID < (int)m_Textures.size()) 
+    //if (dsID >= 0 && dsID < (int)m_Textures.size())
     //{
     //    pDepthStencil = m_Textures[dsID].m_pDepthStencil;
     //}
@@ -734,14 +734,14 @@ bool JRenderServerGL::SetRenderTarget( int texID, int dsID )
 
     //return (res == S_OK);
     return false;
-} 
+}
 
 bool JRenderServerGL::SaveTexture( int texID, const char* fname )
 {
     /*if (texID < 0 || texID >= (int)m_Textures.size()) return false;
     DXTexture* pTex = (DXTexture*)m_Textures[texID].m_pTexture;
     if (!pTex) return false;
-    
+
     char drive[_MAX_PATH];
     char dir  [_MAX_PATH];
     char file [_MAX_PATH];
@@ -758,35 +758,35 @@ bool JRenderServerGL::SaveTexture( int texID, const char* fname )
     HRESULT hRes = D3DXSaveTextureToFile( fname, type, pTex, 0 );
     return (hRes == S_OK);*/
     return false;
-} 
+}
 
 void JRenderServerGL::SetAmbient( uint32_t color )
 {
     m_Ambience = color;
-}  
+}
 
-int JRenderServerGL::AddPointLight( const Vec3& pos, float radius, float falloff, 
+int JRenderServerGL::AddPointLight( const Vec3& pos, float radius, float falloff,
                           uint32_t diffuse, uint32_t specular, bool bPerPixel )
 {
     return 0;
-} 
+}
 
 int JRenderServerGL::AddDirLight( const Vec3& dir, uint32_t diffuse, uint32_t specular, bool bPerPixel )
 {
    /* D3DLIGHT9 light;
-    light.Type		    = D3DLIGHT_DIRECTIONAL ;            
+    light.Type		    = D3DLIGHT_DIRECTIONAL ;
     light.Diffuse	    = ConvertColor( diffuse  );
-    light.Specular	    = ConvertColor( specular );        
-    light.Ambient	    = ConvertColor( 0xFF000000 );   
+    light.Specular	    = ConvertColor( specular );
+    light.Ambient	    = ConvertColor( 0xFF000000 );
 
     Vec3 ldir( dir.x, dir.y, dir.z );
     ldir.normalize();
-    light.Direction.x	= ldir.x; 
+    light.Direction.x	= ldir.x;
     light.Direction.y	= ldir.y;
     light.Direction.z	= ldir.z;
 
     light.Range			= 100.0f;
-    light.Position.x	= 0.0f; 
+    light.Position.x	= 0.0f;
     light.Position.y	= 0.0f;
     light.Position.z	= 0.0f;
 
@@ -800,9 +800,9 @@ int JRenderServerGL::AddDirLight( const Vec3& dir, uint32_t diffuse, uint32_t sp
 
     m_pDevice->LightEnable( 0, TRUE );
     m_pDevice->SetLight   ( 0, &light );*/
-    
+
     return 0;
-}  
+}
 
 int JRenderServerGL::GetConstantID( int shaderID, const char* name )
 {
@@ -811,7 +811,7 @@ int JRenderServerGL::GetConstantID( int shaderID, const char* name )
     //int res = (int)sh.m_pEffect->GetParameterByName( NULL, name );
     //return res;
     return 0;
-}  
+}
 
 bool JRenderServerGL::SetConstant( int shaderID, int constID, const Mat4& val )
 {
@@ -820,7 +820,7 @@ bool JRenderServerGL::SetConstant( int shaderID, int constID, const Mat4& val )
     //HRESULT hRes = shader.m_pEffect->SetMatrix( reinterpret_cast<D3DXHANDLE>( constID ), (D3DXMATRIX*)&val );
     //return (hRes == S_OK);
     return false;
-} 
+}
 
 bool JRenderServerGL::SetConstant( int shaderID, int constID, float x, float y, float z, float w )
 {
@@ -830,7 +830,7 @@ bool JRenderServerGL::SetConstant( int shaderID, int constID, float x, float y, 
     //HRESULT hRes = shader.m_pEffect->SetVector( reinterpret_cast<D3DXHANDLE>( constID ), &vec );
     //return (hRes == S_OK);
     return false;
-}  
+}
 
 bool JRenderServerGL::SetConstant( int shaderID, int constID, float val )
 {
@@ -840,16 +840,16 @@ bool JRenderServerGL::SetConstant( int shaderID, int constID, float val )
     return (hRes == S_OK);
     */
     return false;
-}  
+}
 
 int JRenderServerGL::GetShaderID( const char* name, bool bReload )
 {
     int shID = -1;
 //    for (int i = 0; i < (int)m_Shaders.size(); i++)
 //    {
-//        if (!stricmp( m_Shaders[i].GetName(), name )) 
+//        if (!stricmp( m_Shaders[i].GetName(), name ))
 //        {
-//            shID = i; 
+//            shID = i;
 //            break;
 //        }
 //    }
@@ -875,12 +875,12 @@ int JRenderServerGL::GetShaderID( const char* name, bool bReload )
 //        rlog.err( "Could not find shader media file: %s", name );
 //        return -1;
 //    }
-//    
+//
 //    //  this is to be as low-end as possible
 //    flags |= D3DXSHADER_USE_LEGACY_D3DX9_31_DLL;
 //
 //    HRESULT hRes = D3DXCreateEffectFromFile( m_pDevice, path, NULL, NULL, flags, m_pEffectPool, &pEffect, &pErrors );
-//    
+//
 //    if (hRes != S_OK || !pEffect)
 //    {
 //      if (pErrors)
@@ -909,7 +909,7 @@ int JRenderServerGL::GetShaderID( const char* name, bool bReload )
 //        m_Shaders[shID].m_pEffect = pEffect;
 //    }
     return shID;
-}  
+}
 
 void JRenderServerGL::SetShader( int shID )
 {
@@ -919,18 +919,18 @@ void JRenderServerGL::SetShader( int shID )
     if (m_CurShader >= 0)
     {
       ShaderInstance& shCurrent = m_Shaders[m_CurShader];
-      if (shCurrent.m_pEffect) 
+      if (shCurrent.m_pEffect)
       {
         shCurrent.m_pEffect->EndPass();
         shCurrent.m_pEffect->End();
       }
     }
     m_CurShader = shID;
-    
+
     if (m_CurShader < 0) return;
 
     ShaderInstance& sh = m_Shaders[m_CurShader];
-    if (sh.m_pEffect) 
+    if (sh.m_pEffect)
     {
       UINT nPasses = 0;
       uint32_t flags = D3DXFX_DONOTSAVESTATE | D3DXFX_DONOTSAVESAMPLERSTATE | D3DXFX_DONOTSAVESHADERSTATE;
@@ -941,18 +941,18 @@ void JRenderServerGL::SetShader( int shID )
 
       sh.m_pEffect->CommitChanges();
     }
-    
+
     if (m_bWireFrame)
     {
         m_pDevice->SetRenderState( D3DRS_FILLMODE, D3DFILL_WIREFRAME );
     }*/
 
     m_ShadersPerFrame++;
-}  
+}
 
-void JRenderServerGL::SetWireFrame( bool bWireFrame ) 
-{ 
-    m_bWireFrame = bWireFrame; 
+void JRenderServerGL::SetWireFrame( bool bWireFrame )
+{
+    m_bWireFrame = bWireFrame;
     //m_pDevice->SetRenderState( D3DRS_FILLMODE, m_bWireFrame ? D3DFILL_WIREFRAME : D3DFILL_SOLID );
 }
 
@@ -980,19 +980,19 @@ int JRenderServerGL::CreateTexture( const TextureProperties& texProp )
     D3DFORMAT   format  = ConvertColorFormat( texProp.m_Format );
     D3DPOOL     pool    = ConvertPoolType( texProp.m_PoolType );
     IDirect3DTexture9* pTexture = NULL;
-    if (texProp.m_bRenderTarget) 
+    if (texProp.m_bRenderTarget)
     {
         usage = D3DUSAGE_RENDERTARGET;
     }
-    HRESULT hRes = m_pDevice->CreateTexture( texProp.m_Width, texProp.m_Height, 
+    HRESULT hRes = m_pDevice->CreateTexture( texProp.m_Width, texProp.m_Height,
         texProp.m_NMips, usage, format, pool, &pTexture, NULL );
     if (hRes != S_OK)
     {
-        rlog.err( "Could not create texture %s (width=%d, height=%d).", 
+        rlog.err( "Could not create texture %s (width=%d, height=%d).",
             texProp.m_Name, texProp.m_Width, texProp.m_Height );
         return -1;
     }
-    
+
     TextureFile& tex = m_Textures[texID];
     tex.m_Prop          = texProp;
     tex.m_pTexture      = pTexture;
@@ -1000,9 +1000,9 @@ int JRenderServerGL::CreateTexture( const TextureProperties& texProp )
     tex.m_Name          = texProp.m_Name;
     return texID;*/
     return 0;
-}  
+}
 
-BYTE* JRenderServerGL::LockTexture( int texID, const Frame& rect, int level, uint32_t* pStride )
+uint8_t* JRenderServerGL::LockTexture( int texID, const Frame& rect, int level, uint32_t* pStride )
 {
     /*if (texID < 0 || texID >= (int)m_Textures.size()) return NULL;
     D3DLOCKED_RECT dRect;
@@ -1012,14 +1012,14 @@ BYTE* JRenderServerGL::LockTexture( int texID, const Frame& rect, int level, uin
     wrct.right  = rect.r();
     wrct.bottom = rect.b();
     uint32_t flags = 0;
-    
+
     DXTexture* pTex = (DXTexture*)m_Textures[texID].m_pTexture;
     HRESULT hRes = pTex->LockRect( level, &dRect, &wrct, flags );
     if (hRes != S_OK) return NULL;
     if (pStride) *pStride = dRect.Pitch;
-    return (BYTE*)dRect.pBits;*/
+    return (uint8_t*)dRect.pBits;*/
     return NULL;
-} 
+}
 
 bool JRenderServerGL::UnlockTexture( int texID, int level )
 {
@@ -1028,16 +1028,16 @@ bool JRenderServerGL::UnlockTexture( int texID, int level )
     //HRESULT hRes = pTex->UnlockRect( level );
     //return (hRes == S_OK);
     return false;
-}  
+}
 
 void JRenderServerGL::SetColorTint( uint32_t color )
 {
     //m_pDevice->SetRenderState( D3DRS_TEXTUREFACTOR, color );
-}  
+}
 
 int JRenderServerGL::GetVDeclID( const VertexDeclaration& vdecl )
 {
-    /*if (!m_bInited) 
+    /*if (!m_bInited)
     {
         return -1;
     }
@@ -1053,7 +1053,7 @@ int JRenderServerGL::GetVDeclID( const VertexDeclaration& vdecl )
     m_VertexDeclarations.push_back( vd );
     return m_VertexDeclarations.size() - 1;*/
     return -1;
-}  
+}
 
 int JRenderServerGL::CreateVB( const char* name, int numBytes, bool bStatic )
 {
@@ -1073,7 +1073,7 @@ int JRenderServerGL::CreateVB( const char* name, int numBytes, bool bStatic )
     //VBInstance& vb = m_VBuffers[vbID];
 
     //uint32_t usage = D3DUSAGE_WRITEONLY;
-    //if (!bStatic) 
+    //if (!bStatic)
     //{
     //    usage |= D3DUSAGE_DYNAMIC;
     //}
@@ -1091,7 +1091,7 @@ int JRenderServerGL::CreateVB( const char* name, int numBytes, bool bStatic )
     //vb.m_Size           = numBytes;
     //return vbID;
     return 0;
-}  
+}
 
 int JRenderServerGL::GetVBID( const char* name )
 {
@@ -1100,7 +1100,7 @@ int JRenderServerGL::GetVBID( const char* name )
     //    if (!stricmp( name, m_VBuffers[i].m_Name.c_str() )) return i;
     //}
     return -1;
-}  
+}
 
 bool JRenderServerGL::UnlockVB( int vbID )
 {
@@ -1110,23 +1110,23 @@ bool JRenderServerGL::UnlockVB( int vbID )
     //HRESULT hRes = pBuffer->Unlock();
     //return (hRes == S_OK);
     return false;
-}  
+}
 
 bool JRenderServerGL::SetVB( int vbID, int vdeclID, int stream )
 {
-    //if (vbID < 0 || vbID >= m_VBuffers.size() || 
-    //    vdeclID < 0 || vdeclID >= m_VertexDeclarations.size()) 
+    //if (vbID < 0 || vbID >= m_VBuffers.size() ||
+    //    vdeclID < 0 || vdeclID >= m_VertexDeclarations.size())
     //{
     //    return false;
     //}
     //IDirect3DVertexBuffer9* pBuffer = m_VBuffers[vbID].m_pBuffer;
-    //if (!pBuffer) 
+    //if (!pBuffer)
     //{
     //    return false;
     //}
     //const VDeclInstance& vdecl = m_VertexDeclarations[vdeclID];
     //HRESULT hRes = S_OK;
-    //if (vdecl.m_FVF != m_CurFVF) 
+    //if (vdecl.m_FVF != m_CurFVF)
     //{
     //    //hRes = m_pDevice->SetVertexDeclaration( vdecl.m_pVDecl );
     //    m_pDevice->SetFVF( vdecl.m_FVF );
@@ -1136,7 +1136,7 @@ bool JRenderServerGL::SetVB( int vbID, int vdeclID, int stream )
     //hRes = m_pDevice->SetStreamSource( stream, pBuffer, 0, vdecl.m_VDecl.m_VertexSize  );
     //return (hRes == S_OK);
     return false;
-} 
+}
 
 bool JRenderServerGL::DeleteVB( int vbID )
 {
@@ -1144,7 +1144,7 @@ bool JRenderServerGL::DeleteVB( int vbID )
     //m_VBuffers[vbID].m_pBuffer->Release();
     //m_VBuffers[vbID].m_pBuffer = NULL;
     return true;
-}  
+}
 
 int JRenderServerGL::CreateIB( const char* name, int numBytes, bool bStatic )
 {
@@ -1164,7 +1164,7 @@ int JRenderServerGL::CreateIB( const char* name, int numBytes, bool bStatic )
     IBInstance& ib = m_IBuffers[ibID];
 
     uint32_t usage = D3DUSAGE_WRITEONLY;
-    if (!bStatic) 
+    if (!bStatic)
     {
         usage |= D3DUSAGE_DYNAMIC;
     }
@@ -1181,7 +1181,7 @@ int JRenderServerGL::CreateIB( const char* name, int numBytes, bool bStatic )
     ib.m_Size           = numBytes;
     return ibID;*/
     return 0;
-} 
+}
 
 int JRenderServerGL::GetIBID( const char* name )
 {
@@ -1190,7 +1190,7 @@ int JRenderServerGL::GetIBID( const char* name )
     //    if (!stricmp( name, m_IBuffers[i].m_Name.c_str() )) return i;
     //}
     return -1;
-}  
+}
 
 bool JRenderServerGL::UnlockIB( int ibID )
 {
@@ -1200,7 +1200,7 @@ bool JRenderServerGL::UnlockIB( int ibID )
     //HRESULT hRes = pBuffer->Unlock();
     //return (hRes == S_OK);
     return false;
-} 
+}
 
 bool JRenderServerGL::SetIB( int ibID, int baseIndex )
 {
@@ -1211,7 +1211,7 @@ bool JRenderServerGL::SetIB( int ibID, int baseIndex )
     //m_BaseIndex = baseIndex;
     //return (hRes == S_OK);
     return false;
-} 
+}
 
 bool JRenderServerGL::DeleteIB( int ibID )
 {
@@ -1220,7 +1220,7 @@ bool JRenderServerGL::DeleteIB( int ibID )
     m_IBuffers[ibID].m_pBuffer = NULL;
     return true;*/
     return false;
-}  
+}
 
 bool JRenderServerGL::Draw( int firstIdx, int numIdx, int firstVert, int numVert, PrimitiveType primType )
 {
@@ -1229,7 +1229,7 @@ bool JRenderServerGL::Draw( int firstIdx, int numIdx, int firstVert, int numVert
     ////  FIXME: for each draw call?..
     //SetGlobalConstants();
 
-    //bool bIndexed   = true; 
+    //bool bIndexed   = true;
     //int numPri      = 0;
     //if (numIdx == 0)
     //{
@@ -1266,7 +1266,7 @@ bool JRenderServerGL::Draw( int firstIdx, int numIdx, int firstVert, int numVert
     //
     //return (hRes == S_OK);
     return false;
-}  
+}
 
 int JRenderServerGL::ClearVB( int vbID )
 {
@@ -1280,7 +1280,7 @@ int JRenderServerGL::ClearVB( int vbID )
     m_VBuffers[vbID].m_CurIteration++;
     return m_VBuffers[vbID].m_CurIteration;*/
     return -1;
-}  
+}
 
 int JRenderServerGL::ClearIB( int ibID )
 {
@@ -1294,23 +1294,23 @@ int JRenderServerGL::ClearIB( int ibID )
     //m_IBuffers[ibID].m_CurIteration++;
     //return m_IBuffers[ibID].m_CurIteration;
     return 0;
-} 
+}
 
 int JRenderServerGL::GetVBIteration( int vbID )
 {
     //if (vbID < 0 || vbID >= m_VBuffers.size()) return -1;
     //return m_VBuffers[vbID].m_CurIteration;
     return -1;
-} 
+}
 
 int JRenderServerGL::GetIBIteration( int ibID )
 {
     //if (ibID < 0 || ibID >= m_IBuffers.size()) return -1;
     //return m_IBuffers[ibID].m_CurIteration;
     return -1;
-}  
+}
 
-BYTE* JRenderServerGL::LockIB( int ibID, int firstByte, int numBytes )
+uint8_t* JRenderServerGL::LockIB( int ibID, int firstByte, int numBytes )
 {
     /*if (ibID < 0 || ibID >= m_IBuffers.size()) return NULL;
     uint32_t flags = 0;
@@ -1321,11 +1321,11 @@ BYTE* JRenderServerGL::LockIB( int ibID, int firstByte, int numBytes )
     HRESULT hRes = pBuffer->Lock( firstByte, numBytes, &pData, flags );
     if (hRes != S_OK) return NULL;
     m_IBuffers[ibID].m_CurLastByte = firstByte + numBytes;
-    return (BYTE*)pData;*/
+    return (uint8_t*)pData;*/
     return NULL;
-}  
+}
 
-bool JRenderServerGL::CacheIB( int ibID, BYTE* pData, int size, int& iteration, int& firstByte )
+bool JRenderServerGL::CacheIB( int ibID, uint8_t* pData, int size, int& iteration, int& firstByte )
 {
 //    if (ibID < 0 || ibID >= m_IBuffers.size()) return -1;
 //    IBInstance& ib = m_IBuffers[ibID];
@@ -1340,23 +1340,23 @@ bool JRenderServerGL::CacheIB( int ibID, BYTE* pData, int size, int& iteration, 
 //        ib.m_CurIteration++;
 //    }
 //
-//    if (ib.m_Size < size) 
+//    if (ib.m_Size < size)
 //    {
-//        rlog.err( "Could not cache %d bytes in index buffer %s", size, ib.m_Name.c_str() );
+//        rlog.err( "Could not cache %d uint8_ts in index buffer %s", size, ib.m_Name.c_str() );
 //        return false;
 //    }
-//    
+//
 //    firstByte = ib.m_CurLastByte;
 //    iteration = ib.m_CurIteration;
 //
-//    BYTE* pBuf = LockIB( ibID, firstByte, size );
+//    uint8_t* pBuf = LockIB( ibID, firstByte, size );
 //    memcpy( pBuf, pData, size );
 //    UnlockIB( ibID );
 
     return true;
-} 
+}
 
-BYTE* JRenderServerGL::LockVB( int vbID, int firstByte, int numBytes )
+uint8_t* JRenderServerGL::LockVB( int vbID, int firstByte, int numBytes )
 {/*
     if (vbID < 0 || vbID >= m_VBuffers.size()) return NULL;
     uint32_t flags = 0;
@@ -1367,11 +1367,11 @@ BYTE* JRenderServerGL::LockVB( int vbID, int firstByte, int numBytes )
     HRESULT hRes = pBuffer->Lock( firstByte, numBytes, &pData, flags );
     if (hRes != S_OK) return NULL;
     m_VBuffers[vbID].m_CurLastByte = firstByte + numBytes;
-    return (BYTE*)pData;*/
+    return (uint8_t*)pData;*/
     return NULL;
-} 
+}
 
-bool JRenderServerGL::CacheVB( int vbID, BYTE* pData, int size, int stride, int& iteration, int& firstByte )
+bool JRenderServerGL::CacheVB( int vbID, uint8_t* pData, int size, int stride, int& iteration, int& firstByte )
 {
 //    if (vbID < 0 || vbID >= m_VBuffers.size()) return -1;
 //    VBInstance& vb = m_VBuffers[vbID];
@@ -1386,12 +1386,12 @@ bool JRenderServerGL::CacheVB( int vbID, BYTE* pData, int size, int stride, int&
 //        vb.m_CurIteration++;
 //    }
 //
-//    if (vb.m_Size < size) 
+//    if (vb.m_Size < size)
 //    {
-//        rlog.err( "Could not cache %d bytes in vertex buffer %s", size, vb.m_Name.c_str() );
+//        rlog.err( "Could not cache %d uint8_ts in vertex buffer %s", size, vb.m_Name.c_str() );
 //        return false;
 //    }
-//    
+//
 //    firstByte = vb.m_CurLastByte;
 //    //  align firstByte to stride
 //    if (firstByte%stride != 0)
@@ -1401,8 +1401,8 @@ bool JRenderServerGL::CacheVB( int vbID, BYTE* pData, int size, int stride, int&
 //
 //    iteration = vb.m_CurIteration;
 //
-//    BYTE* pBuf = LockVB( vbID, firstByte, size );
-//    if (!pBuf) 
+//    uint8_t* pBuf = LockVB( vbID, firstByte, size );
+//    if (!pBuf)
 //    {
 //        return false;
 //    }
@@ -1410,10 +1410,10 @@ bool JRenderServerGL::CacheVB( int vbID, BYTE* pData, int size, int stride, int&
 //    UnlockVB( vbID );
 
     return false;
-}  
+}
 
-bool JRenderServerGL::CopyTexture( int destID, int srcID, const Frame* rct, int nRect ) 
-{ 
+bool JRenderServerGL::CopyTexture( int destID, int srcID, const Frame* rct, int nRect )
+{
 //    if (destID < 0 || destID >= m_Textures.size()) return false;
 //    if (srcID < 0 || srcID >= m_Textures.size()) return false;
 //
@@ -1435,7 +1435,7 @@ bool JRenderServerGL::CopyTexture( int destID, int srcID, const Frame* rct, int 
 //        wrct.bottom  = rct[i].b();
 //        pDst->AddDirtyRect( &wrct );
 //    }
-//    
+//
 //    //  if source is default pool render target
 //    if (m_Textures[srcID].m_Prop.m_bRenderTarget)
 //    {
@@ -1461,14 +1461,14 @@ bool JRenderServerGL::CopyTexture( int destID, int srcID, const Frame* rct, int 
 //        hRes &= D3DXLoadSurfaceFromSurface( pDstSurf, NULL, NULL, pSrcSurf, NULL, NULL, D3DX_FILTER_NONE, NULL );
 //    }
     return false;
-}  
+}
 
 bool JRenderServerGL::GetTextureProp( int texID, TextureProperties& texProp )
 {
     /*if (texID < 0 || texID >= m_Textures.size()) return false;
     texProp = m_Textures[texID].m_Prop;*/
     return false;
-}  
+}
 
 void JRenderServerGL::Register( IRenderServerClient* pClient )
 {
@@ -1477,19 +1477,19 @@ void JRenderServerGL::Register( IRenderServerClient* pClient )
         if (pClient == m_Clients[i]) return;
     }
     m_Clients.push_back( pClient );
-}  
+}
 
 void JRenderServerGL::Unregister( IRenderServerClient* pClient )
 {
     for (int i = 0; i < m_Clients.size(); i++)
     {
-        if (pClient == m_Clients[i]) 
+        if (pClient == m_Clients[i])
         {
             m_Clients.erase( m_Clients.begin() + i );
             return;
         }
     }
-}  
+}
 
 void JRenderServerGL::ReleaseDefaultRes()
 {/*
@@ -1498,23 +1498,23 @@ void JRenderServerGL::ReleaseDefaultRes()
         rlog.msg( "BackBuffer: %d", GetRefCount( m_pBackBuffer ) );
         rlog.msg( "DepthStencil: %d", GetRefCount( m_pDepthStencil ) );
 
-        for (int i = 0; i < m_Textures.size(); i++) 
+        for (int i = 0; i < m_Textures.size(); i++)
         {
             TextureFile& tex = m_Textures[i];
             if (tex.m_Prop.m_PoolType == PoolType_Video)
             {
                 rlog.msg( "Texture %i (%s): %d", i, tex.m_Name.c_str(), GetRefCount( tex.m_pTexture ) );
-                rlog.msg( "Texture %i (%s) depth stencil: %d", i, 
+                rlog.msg( "Texture %i (%s) depth stencil: %d", i,
                     tex.m_Name.c_str(), GetRefCount( tex.m_pDepthStencil ) );
             }
         }
 
-        for (int i = 0; i < m_VBuffers.size(); i++) 
+        for (int i = 0; i < m_VBuffers.size(); i++)
         {
             rlog.msg( "VBuffer %i (%s): %d", i, m_VBuffers[i].m_Name.c_str(), GetRefCount( m_VBuffers[i].m_pBuffer ) );
         }
 
-        for (int i = 0; i < m_IBuffers.size(); i++) 
+        for (int i = 0; i < m_IBuffers.size(); i++)
         {
             rlog.msg( "IBuffer %i (%s): %d", i, m_IBuffers[i].m_Name.c_str(), GetRefCount( m_IBuffers[i].m_pBuffer ) );
         }
@@ -1529,7 +1529,7 @@ void JRenderServerGL::ReleaseDefaultRes()
     SAFE_RELEASE( m_pBackBuffer );
     SAFE_RELEASE( m_pDepthStencil );
 
-    for (int i = 0; i < m_Textures.size(); i++) 
+    for (int i = 0; i < m_Textures.size(); i++)
     {
         TextureFile& tex = m_Textures[i];
         if (tex.m_Prop.m_PoolType == PoolType_Video)
@@ -1539,12 +1539,12 @@ void JRenderServerGL::ReleaseDefaultRes()
         }
     }
 
-    for (int i = 0; i < m_VBuffers.size(); i++) 
+    for (int i = 0; i < m_VBuffers.size(); i++)
     {
         SAFE_RELEASE( m_VBuffers[i].m_pBuffer );
     }
 
-    for (int i = 0; i < m_IBuffers.size(); i++) 
+    for (int i = 0; i < m_IBuffers.size(); i++)
     {
         SAFE_RELEASE( m_IBuffers[i].m_pBuffer );
     }
@@ -1553,7 +1553,7 @@ void JRenderServerGL::ReleaseDefaultRes()
     {
         m_Shaders[i].m_pEffect->OnLostDevice();
     }*/
-}  
+}
 
 void JRenderServerGL::RecreateDefaultRes()
 {/*
@@ -1561,19 +1561,19 @@ void JRenderServerGL::RecreateDefaultRes()
     m_pDevice->GetBackBuffer( 0, 0, D3DBACKBUFFER_TYPE_MONO, &m_pBackBuffer );
     m_pDevice->GetDepthStencilSurface( &m_pDepthStencil );
 
-    for (int i = 0; i < m_VBuffers.size(); i++) 
+    for (int i = 0; i < m_VBuffers.size(); i++)
     {
         VBInstance& vb = m_VBuffers[i];
         CreateVB( vb.m_Name.c_str(), vb.m_Size, !vb.m_bDynamic );
     }
 
-    for (int i = 0; i < m_IBuffers.size(); i++) 
+    for (int i = 0; i < m_IBuffers.size(); i++)
     {
         IBInstance& ib = m_IBuffers[i];
         CreateIB( ib.m_Name.c_str(), ib.m_Size, !ib.m_bDynamic );
     }
 
-    for (int i = 0; i < m_Textures.size(); i++) 
+    for (int i = 0; i < m_Textures.size(); i++)
     {
         TextureFile& tex = m_Textures[i];
         if (tex.m_Prop.m_PoolType == PoolType_Video)
@@ -1589,13 +1589,13 @@ void JRenderServerGL::RecreateDefaultRes()
 
     CreateQuadIB();*/
 
-}  
+}
 
 void JRenderServerGL::CreateQuadIB()
 {
     //  create quad index buffer
     m_QuadIB = CreateIB( "QuadIndexBuffer", c_QuadIBSize, true );
-    WORD* pQuadIdx = (WORD*)LockIB( m_QuadIB, 0, c_QuadIBSize );
+    uint16_t* pQuadIdx = (uint16_t*)LockIB( m_QuadIB, 0, c_QuadIBSize );
     if (!pQuadIdx)
     {
         rlog.err( "JRenderServerGL: Could not create internal quad index buffer." );
@@ -1613,7 +1613,7 @@ void JRenderServerGL::CreateQuadIB()
         curV += 4;
     }
     UnlockIB( m_QuadIB );
-}  
+}
 
 
 
