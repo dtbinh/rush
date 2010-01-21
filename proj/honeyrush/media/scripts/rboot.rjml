@@ -1,4 +1,4 @@
-modelviewer "rboot"
+dialog "rboot"
 {
     xalign       = Parent;
     yalign       = Parent;

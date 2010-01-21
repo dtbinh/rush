@@ -15,6 +15,4 @@ else ()
   set(SOURCE_FILES ${SOURCE_FILES} Posix/SignalTranslator.cpp Posix/TimeHelpers.cpp)
 endif(WIN32)
 
-
-
-add_library(unittest++ STATIC ${HEADER_FILES} ${SOURCE_FILES} ${TEST_FILES})
+add_library(unittest++ STATIC ${HEADER_FILES} ${SOURCE_FILES})

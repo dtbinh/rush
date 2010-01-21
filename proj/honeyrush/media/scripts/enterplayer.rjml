@@ -1,11 +1,7 @@
 dialog "EnterPlayer"
 {
-    xalign       = Center;
-    yalign       = Center;
-    extents		 = { 0, 0, 640, 480 };
+
     defaultfocus = "EnterPlayerBox";
-    
-    
     picture "Stars"
     {
         xalign      = Parent;

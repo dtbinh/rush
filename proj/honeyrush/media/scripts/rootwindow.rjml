@@ -1,10 +1,18 @@
-RootWindow "RootWindow"
+windowserver "RootWindow"
 {
+    xalign        = Center;
+    yalign        = Center;
+    extents		    = { 0, 0, 640, 480 };
+    
     text            = "honeyrush";
     xalign          = Parent;
     yalign          = Parent; 
     screenmode      = Desktop;  
     hasstencil      = false;
     
-    widget "mainmenu";
+    widget "dialogs"
+    {
+      widget "enterplayer";
+      widget "mainmenu";
+    }
 };

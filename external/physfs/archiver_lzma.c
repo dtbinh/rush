@@ -18,9 +18,9 @@
 #define __PHYSICSFS_INTERNAL__
 #include "physfs_internal.h"
 
-#include "lzma/C/7zCrc.h"
-#include "lzma/C/Archive/7z/7zIn.h"
-#include "lzma/C/Archive/7z/7zExtract.h"
+#include "lzma/7zCrc.h"
+#include "lzma/Archive/7z/7zIn.h"
+#include "lzma/Archive/7z/7zExtract.h"
 
 
 /* 7z internal from 7zIn.c */
