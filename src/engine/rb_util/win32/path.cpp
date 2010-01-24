@@ -53,7 +53,7 @@ bool Path::SetPath( const char* val )
     CreateFileExt();
     CreateDriveDir();
     return true;
-} // Path::SetPath
+}  
 
 bool Path::SetDrive( const char* val )
 {
@@ -67,7 +67,7 @@ bool Path::SetDrive( const char* val )
     CreateFullPath();
     CreateDriveDir();
     return true;
-} // Path::SetDrive
+}  
 
 bool Path::SetDirectory( const char* val )
 {
@@ -110,7 +110,7 @@ bool Path::SetDirectory( const char* val )
     CreateFullPath();
     CreateDriveDir();
     return true;
-} // Path::SetDirectory
+}  
 
 bool Path::SetFile( const char* val )
 {
@@ -125,7 +125,7 @@ bool Path::SetFile( const char* val )
     CreateFileExt();
     CreateFullPath();
     return true;
-} // Path::SetFile
+}  
 
 bool Path::SetExt( const char* val )
 {
@@ -140,7 +140,7 @@ bool Path::SetExt( const char* val )
     CreateFileExt();
     CreateFullPath();
     return true;
-} // Path::SetExt
+}  
 
 bool Path::SetFileExt( const char* val )
 {
@@ -165,7 +165,7 @@ bool Path::SetFileExt( const char* val )
     CreateFileExt();
     CreateFullPath();
     return true;
-} // Path::SetFileExt
+}  
 
 void Path::Clear()
 {
@@ -177,12 +177,12 @@ void Path::Clear()
     m_Ext[0]        = 0;
     m_DriveDir[0]   = 0;
     m_DirDepth      = 0;
-} // Path::Clear
+}  
 
 void Path::CreateFullPath()
 {
     _makepath( m_FullPath, m_Drive, m_Directory, m_File, m_Ext );
-} // Path::CreateFullPath
+}  
 
 void Path::CalcDirDepth()
 {

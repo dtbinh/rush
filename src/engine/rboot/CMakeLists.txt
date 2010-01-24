@@ -1,7 +1,5 @@
 include_directories(.)
 
-include(unittest++)
-
 set(INTERNAL_LIBS
     rb_math
     rb_util
@@ -12,6 +10,8 @@ set(INTERNAL_LIBS
     rb_ui
     rb_scene
     )
+
+include(unittest++)
 
 if(WIN32)
     set(INTERNAL_LIBS ${INTERNAL_LIBS} rb_render9)
