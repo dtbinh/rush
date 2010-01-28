@@ -1,6 +1,6 @@
 project(libtheora)
 
-include_directories(.)
+include_directories(. include ./../libogg/include)
 
 file(GLOB HEADER_FILES "lib/*.h")
 file(GLOB SOURCE_FILES "lib/*.c")

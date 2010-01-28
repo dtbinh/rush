@@ -1,6 +1,6 @@
 project(libvorbis)
 
-include_directories(. include lib)
+include_directories(. include lib ./../libogg/include)
 
 file(GLOB HEADER_FILES "lib/*.h")
 file(GLOB SOURCE_FILES "lib/*.c")

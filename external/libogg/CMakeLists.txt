@@ -1,6 +1,6 @@
 project(libogg)
 
-include_directories(.)
+include_directories(include)
 
 file(GLOB HEADER_FILES "src/*.h")
 file(GLOB SOURCE_FILES "src/*.c")
