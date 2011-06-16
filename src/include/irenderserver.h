@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/*	File:  IRenderServer.h
+/*  File:  IRenderServer.h
 /*****************************************************************************/
 #ifndef __IRENDERSERVER_H__
 #define __IRENDERSERVER_H__
@@ -9,18 +9,18 @@
 
 class Frame;
 /*****************************************************************************/
-/*	Enum:  PrimitiveType
+/*  Enum:  PrimitiveType
 /*  Desc:   
 /*****************************************************************************/
 enum PrimitiveType
 {
     PrimitiveType_Unknown               = 0,
-    PrimitiveType_PointList				= 1,
-    PrimitiveType_LineList				= 2,
-    PrimitiveType_LineStrip				= 3,
-    PrimitiveType_TriangleList			= 4,
-    PrimitiveType_TriangleStrip			= 5,
-    PrimitiveType_TriangleFan			= 6,
+    PrimitiveType_PointList             = 1,
+    PrimitiveType_LineList              = 2,
+    PrimitiveType_LineStrip             = 3,
+    PrimitiveType_TriangleList          = 4,
+    PrimitiveType_TriangleStrip         = 5,
+    PrimitiveType_TriangleFan           = 6,
     PrimitiveType_QuadList              = 7
 }; // enum PrimitiveType
 
@@ -28,15 +28,15 @@ inline int GetNumPrimitives( PrimitiveType pType, int indNum )
 {
     switch (pType)
     {
-    case PrimitiveType_Unknown:			return 0;
-    case PrimitiveType_TriangleList:	return indNum/3; 	
-    case PrimitiveType_LineStrip:	    return indNum - 2;
-    case PrimitiveType_LineList:		return indNum/2;
-    case PrimitiveType_TriangleStrip:	return indNum - 1;
-    case PrimitiveType_PointList:		return indNum; 
-    case PrimitiveType_TriangleFan:		return indNum - 2;
+    case PrimitiveType_Unknown:         return 0;
+    case PrimitiveType_TriangleList:    return indNum/3;    
+    case PrimitiveType_LineStrip:       return indNum - 2;
+    case PrimitiveType_LineList:        return indNum/2;
+    case PrimitiveType_TriangleStrip:   return indNum - 1;
+    case PrimitiveType_PointList:       return indNum; 
+    case PrimitiveType_TriangleFan:     return indNum - 2;
     case PrimitiveType_QuadList:        return indNum/6;
-    }	
+    }   
     return 0;
 } // GetNumPrimitives
 
@@ -46,7 +46,7 @@ class Mat4;
 class Vec4;
 class Vec3;
 /*****************************************************************************/
-/*	Class:  IRenderServer
+/*  Class:  IRenderServer
 /*  Desc:   
 /*****************************************************************************/
 class IRenderServer 
@@ -146,7 +146,7 @@ public:
 extern IRenderServer* g_pRenderServer;
 
 /*****************************************************************************/
-/*	Class:  IRenderServerClient
+/*  Class:  IRenderServerClient
 /*  Desc:   interface for receiver of the device notifications
 /*****************************************************************************/
 class IRenderServerClient

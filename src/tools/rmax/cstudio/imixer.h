@@ -1,14 +1,14 @@
 /**********************************************************************
  *<
-	FILE: IMixer.h
+    FILE: IMixer.h
 
-	DESCRIPTION:  Mixer classes
+    DESCRIPTION:  Mixer classes
 
-	CREATED BY: Susan Amkraut
+    CREATED BY: Susan Amkraut
 
-	HISTORY: created summer 2000
+    HISTORY: created summer 2000
 
- *>	Copyright (c) 2000, All Rights Reserved.
+ *> Copyright (c) 2000, All Rights Reserved.
  **********************************************************************/
 
 /**********************************************************************
@@ -43,26 +43,26 @@ both for technical reasons and because this is more of a user interface feature.
 #include "keytrack.h"
 
 // track types
-#define TRANSTRACK	1
-#define LAYERTRACK	2
+#define TRANSTRACK  1
+#define LAYERTRACK  2
 
 // transition track levels
-#define TOP_ROW	1
-#define BOT_ROW	2
+#define TOP_ROW 1
+#define BOT_ROW 2
 
 // transition focus types
-#ifndef FOCUS_AUTO 	// these are in imoflow.h as well
-#define FOCUS_AUTO	0
-#define FOCUS_COM	1
-#define FOCUS_LFOOT	2
-#define FOCUS_RFOOT	3
-#define FOCUS_BFEET	4
+#ifndef FOCUS_AUTO  // these are in imoflow.h as well
+#define FOCUS_AUTO  0
+#define FOCUS_COM   1
+#define FOCUS_LFOOT 2
+#define FOCUS_RFOOT 3
+#define FOCUS_BFEET 4
 #endif
 
 // load options
-#define RE_SOURCE_CLIP_ONLY	1
-#define RE_SOURCE_INSTANCES	2
-#define RE_SOURCE_FILEGROUP	3
+#define RE_SOURCE_CLIP_ONLY 1
+#define RE_SOURCE_INSTANCES 2
+#define RE_SOURCE_FILEGROUP 3
 
 // forward definition
 class IMixer;
@@ -258,8 +258,8 @@ class IMixer
   public:
     //**************** trackgroups ***********************
     virtual int NumTrackgroups()=0;
-    virtual IMXtrackgroup *GetTrackgroup(int index)=0;	
-    virtual BOOL InsertTrackgroup(int index)=0;	
+    virtual IMXtrackgroup *GetTrackgroup(int index)=0;  
+    virtual BOOL InsertTrackgroup(int index)=0; 
     virtual BOOL DeleteTrackgroup(int index)=0;
 
     //**************** mixer ***********************
@@ -282,8 +282,8 @@ class IMixer
     // gets the total time interval of the mixer, including all trackgroups and tracks
     virtual void GetInterval(Interval& iv)=0;
     virtual BOOL ExistingMixdown()=0;
-	// clear all clips, tracks, and trackgroups - the mixer will be empty
-	virtual void ClearMixer()=0;
+    // clear all clips, tracks, and trackgroups - the mixer will be empty
+    virtual void ClearMixer()=0;
 
     // This group of functions actually applies not to the individual mixer,
     // but to the mixer dialog and display.  Many of these just get and set
@@ -320,7 +320,7 @@ class IMixer
     virtual void   AddToDisplay()=0;      // adds this mixer to the mixer dialog
     virtual void   RemoveFromDisplay()=0; // removes this mixer from the mixer dialog
     virtual void   ShowMixer()=0;         // shows the mixer dialog
-	virtual void   HideMixer()=0;         // hides the mixer dialog
+    virtual void   HideMixer()=0;         // hides the mixer dialog
 };
 
 #endif // __IMIXER__

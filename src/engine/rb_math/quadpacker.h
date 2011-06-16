@@ -4,8 +4,8 @@
 #ifndef __QUADPACKER_H__
 #define __QUADPACKER_H__
 
-const uint16_t	c_PowSide[]  = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768 };
-const int 	c_MaxQuadLevels	= 16; //  maximal powers of m_Quad side in texture layout
+const uint16_t  c_PowSide[]  = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768 };
+const int   c_MaxQuadLevels = 16; //  maximal powers of m_Quad side in texture layout
 
 struct QuadPos
 {
@@ -13,30 +13,30 @@ struct QuadPos
 }; // struct QuadPos
 
 //****************************************************************************/
-//	Struct:	QuadPackerLevel
-//  Desc:	Helper structure for packing sprite chunks on the texture surface
+//  Struct: QuadPackerLevel
+//  Desc:   Helper structure for packing sprite chunks on the texture surface
 //****************************************************************************/
 struct QuadPackerLevel
 {
-    QuadPos		m_Quad[3];
-    uint16_t		m_NQuads;
+    QuadPos     m_Quad[3];
+    uint16_t        m_NQuads;
 };  // struct QuadPackerLevel
 
 /****************************************************************************/
 //  Class:  QuadPacker                                        
-//  Desc:	Describes layout of sprite chunks on the texture surface
+//  Desc:   Describes layout of sprite chunks on the texture surface
 /****************************************************************************/
 class QuadPacker
 {
-    QuadPackerLevel			m_Level[c_MaxQuadLevels + 1];
-    int						m_CurLevel;
-    int						m_MaxLevel;
-    int						m_NFreePixels;
-    int						m_MaxPixels;
+    QuadPackerLevel         m_Level[c_MaxQuadLevels + 1];
+    int                     m_CurLevel;
+    int                     m_MaxLevel;
+    int                     m_NFreePixels;
+    int                     m_MaxPixels;
 
 public:
-    QuadPacker		() : m_MaxLevel( c_MaxQuadLevels ) {}
-    inline bool	AllocateQuad( int sidePow, uint16_t& allocx, uint16_t& allocy )
+    QuadPacker      () : m_MaxLevel( c_MaxQuadLevels ) {}
+    inline bool AllocateQuad( int sidePow, uint16_t& allocx, uint16_t& allocy )
     {
         if (sidePow > m_CurLevel) return false;
 
@@ -94,7 +94,7 @@ public:
         m_NFreePixels -= (int)c_PowSide[sidePow] * (int)c_PowSide[sidePow];
         return true;
     }
-    int	        NumFreePixels	() const { return m_NFreePixels; }
+    int         NumFreePixels   () const { return m_NFreePixels; }
     void Init( int texSide )
     {
         m_NFreePixels = texSide * texSide;
@@ -102,7 +102,7 @@ public:
         while (texSide > 1) 
         {
             texSide >>= 1;
-            m_MaxLevel++;				
+            m_MaxLevel++;               
         }
         Free();
     }

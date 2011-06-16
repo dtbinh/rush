@@ -33,26 +33,26 @@ public:
     virtual void    OnMouse( JMouseEvent& e );
     virtual void    OnWheel( JWheelEvent& e );
 
-	void			Home();
+    void            Home();
 
     expose( JEditCamera )
     {
         parent( JCameraController );
-        field( "Roll",     		m_Roll 				);
-        field( "Tilt",     		m_Tilt 				);
-        field( "Zoom",     		m_Zoom 				);
+        field( "Roll",          m_Roll              );
+        field( "Tilt",          m_Tilt              );
+        field( "Zoom",          m_Zoom              );
 
-        field( "HomeRoll",     	m_HomeRoll 			);
-        field( "HomeTilt",     	m_HomeTilt 			);
-        field( "HomeZoom",     	m_HomeZoom 			);
+        field( "HomeRoll",      m_HomeRoll          );
+        field( "HomeTilt",      m_HomeTilt          );
+        field( "HomeZoom",      m_HomeZoom          );
 
-        field( "MaxRoll",     	m_MaxRoll 			);
-        field( "MaxTilt",     	m_MaxTilt 			);
-        field( "MaxZoom",     	m_MaxZoom 			);
+        field( "MaxRoll",       m_MaxRoll           );
+        field( "MaxTilt",       m_MaxTilt           );
+        field( "MaxZoom",       m_MaxZoom           );
 
-        field( "MinRoll",     	m_MinRoll 			);
-        field( "MinTilt",     	m_MinTilt 			);
-        field( "MinZoom",     	m_MinZoom 			);
+        field( "MinRoll",       m_MinRoll           );
+        field( "MinTilt",       m_MinTilt           );
+        field( "MinZoom",       m_MinZoom           );
 
         field( "RollSpeed",     m_RollSpeed         );
         field( "TiltSpeed",     m_TiltSpeed         );
@@ -61,7 +61,7 @@ public:
         field( "UseControlKey", m_bUseControlKey    );
         field( "LookAt",        m_LookAt            );
 
-		method( "Home",			Home );
+        method( "Home",         Home );
     }
 
 private:
@@ -77,14 +77,14 @@ private:
     float           m_Tilt;
     float           m_Zoom;
 
-	//  limits
-	float           m_MaxRoll;
-	float           m_MaxTilt;
-	float           m_MaxZoom;
+    //  limits
+    float           m_MaxRoll;
+    float           m_MaxTilt;
+    float           m_MaxZoom;
 
-	float           m_MinRoll;
-	float           m_MinTilt;
-	float           m_MinZoom;
+    float           m_MinRoll;
+    float           m_MinTilt;
+    float           m_MinZoom;
 
     //  camera parameters speed
     float           m_RollSpeed;

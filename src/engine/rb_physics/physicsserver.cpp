@@ -25,12 +25,12 @@ IPhysicsServer*       g_pPhysicsServer = NULL;
 
 PhysicsServer::PhysicsServer()
 {
-    m_ERP		        = 0.9f;
-    m_CFM		        = 0.001f;
+    m_ERP               = 0.9f;
+    m_CFM               = 0.001f;
     m_Gravity           = Vec3( 0.0f, 0.0f, -9.81f );
     m_WorldScale        = 0.01f;
     m_Mode              = smStepFast;
-    m_MaxIter	        = 10;
+    m_MaxIter           = 10;
     m_StepSize          = 0.01f;
     m_TimeRepr          = 0.0f;
     m_bDrawVolumes      = false;
@@ -172,45 +172,45 @@ void PhysicsServer::ProcessCollision( void *data, dGeomID o1, dGeomID o2 )
 
         if (!pSurf1 && !pSurf2)
         {
-            surface.mu			= 8.0f;
-            surface.mu2			= 8.0f;
-            surface.bounce		= 1.0f; 
-            surface.bounce_vel	= 0.0f;
-            surface.soft_erp	= 0.1f; 
-            surface.soft_cfm	= 1e-3f;
-            surface.motion1		= 0.0f; 
-            surface.motion2		= 0.0f; 
-            surface.slip1		= 0.1f;
-            surface.slip2		= 0.1f;
+            surface.mu          = 8.0f;
+            surface.mu2         = 8.0f;
+            surface.bounce      = 1.0f; 
+            surface.bounce_vel  = 0.0f;
+            surface.soft_erp    = 0.1f; 
+            surface.soft_cfm    = 1e-3f;
+            surface.motion1     = 0.0f; 
+            surface.motion2     = 0.0f; 
+            surface.slip1       = 0.1f;
+            surface.slip2       = 0.1f;
         }
         else if (pSurf2 == pSurf1)
         {
-            surface.mu			= pSurf1->m_Mu; 
-            surface.mu2			= pSurf1->m_Mu2;
-            surface.bounce		= pSurf1->m_Bounce;
-            surface.bounce_vel	= pSurf1->m_BounceVel;
-            surface.soft_erp	= pSurf1->m_SoftERP; 
-            surface.soft_cfm	= pSurf1->m_SoftCFM;
-            surface.motion1		= pSurf1->m_Motion1;
-            surface.motion2		= pSurf1->m_Motion2; 
-            surface.slip1		= pSurf1->m_Slip1;
-            surface.slip2		= pSurf1->m_Slip2;
+            surface.mu          = pSurf1->m_Mu; 
+            surface.mu2         = pSurf1->m_Mu2;
+            surface.bounce      = pSurf1->m_Bounce;
+            surface.bounce_vel  = pSurf1->m_BounceVel;
+            surface.soft_erp    = pSurf1->m_SoftERP; 
+            surface.soft_cfm    = pSurf1->m_SoftCFM;
+            surface.motion1     = pSurf1->m_Motion1;
+            surface.motion2     = pSurf1->m_Motion2; 
+            surface.slip1       = pSurf1->m_Slip1;
+            surface.slip2       = pSurf1->m_Slip2;
         }
         else
         {
             if (!pSurf1) pSurf1 = pSurf2;
             if (!pSurf2) pSurf2 = pSurf1;
 
-            surface.mu			= sqrtf( pSurf1->m_Mu * pSurf2->m_Mu );
-            surface.mu2			= sqrtf( pSurf1->m_Mu2 * pSurf2->m_Mu2 );
-            surface.bounce		= 0.5f*( pSurf1->m_Bounce + pSurf2->m_Bounce );
-            surface.bounce_vel	= tmin( pSurf1->m_BounceVel, pSurf2->m_BounceVel );
-            surface.soft_erp	= sqrtf( pSurf1->m_SoftERP * pSurf2->m_SoftERP ); 
-            surface.soft_cfm	= 0.5f*( pSurf1->m_SoftCFM + pSurf2->m_SoftCFM );
-            surface.motion1		= sqrtf( pSurf1->m_Motion1 * pSurf2->m_Motion1 );
-            surface.motion2		= sqrtf( pSurf1->m_Motion2 * pSurf2->m_Motion2 ); 
-            surface.slip1		= sqrtf( pSurf1->m_Slip1 * pSurf2->m_Slip1 );
-            surface.slip2		= sqrtf( pSurf1->m_Slip2 * pSurf2->m_Slip2 );
+            surface.mu          = sqrtf( pSurf1->m_Mu * pSurf2->m_Mu );
+            surface.mu2         = sqrtf( pSurf1->m_Mu2 * pSurf2->m_Mu2 );
+            surface.bounce      = 0.5f*( pSurf1->m_Bounce + pSurf2->m_Bounce );
+            surface.bounce_vel  = tmin( pSurf1->m_BounceVel, pSurf2->m_BounceVel );
+            surface.soft_erp    = sqrtf( pSurf1->m_SoftERP * pSurf2->m_SoftERP ); 
+            surface.soft_cfm    = 0.5f*( pSurf1->m_SoftCFM + pSurf2->m_SoftCFM );
+            surface.motion1     = sqrtf( pSurf1->m_Motion1 * pSurf2->m_Motion1 );
+            surface.motion2     = sqrtf( pSurf1->m_Motion2 * pSurf2->m_Motion2 ); 
+            surface.slip1       = sqrtf( pSurf1->m_Slip1 * pSurf2->m_Slip1 );
+            surface.slip2       = sqrtf( pSurf1->m_Slip2 * pSurf2->m_Slip2 );
         }
 
         PhysObject* pObj1 = (PhysObject*)dGeomGetData( o1 );

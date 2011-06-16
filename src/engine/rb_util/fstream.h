@@ -17,7 +17,7 @@
 class FOutStream : public OutStream
 {
     std::string     m_FileName;
-    FILE*			m_hFile;
+    FILE*           m_hFile;
 
 public:
                     FOutStream  ( const char* fname );
@@ -37,7 +37,7 @@ private:
 class FInStream : public InStream
 {
     std::string     m_FileName;
-    FILE*			m_hFile;
+    FILE*           m_hFile;
 
 public:
                     FInStream   () : m_hFile(NULL) {}

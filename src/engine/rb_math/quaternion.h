@@ -34,13 +34,13 @@ public:
 
     inline void reverse()
     {
-	    s = -s;
-	    v.reverse();
+        s = -s;
+        v.reverse();
     }
 
     float dot( const Quaternion& q ) const
     {
-	    return s*q.s + v.x*q.v.x + v.y*q.v.y + v.z*q.v.z;
+        return s*q.s + v.x*q.v.x + v.y*q.v.y + v.z*q.v.z;
     }
 
     inline bool is_equal( const Quaternion& q, float eps = c_FltEpsilon )

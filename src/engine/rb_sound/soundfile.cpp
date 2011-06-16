@@ -7,7 +7,7 @@
 #include "SoundFile.h"
 
 //****************************************************************************/
-/*	SoundFile implementation
+/*  SoundFile implementation
 //****************************************************************************/
 decl_class( SoundFile )
 SoundFile::SoundFile()

@@ -5,7 +5,7 @@
 #define __JPROPERTYATTR_H__
 
 //****************************************************************************/
-//  Class:	JPropertyAttr
+//  Class:  JPropertyAttr
 //****************************************************************************/
 template <class BaseT, class PropT>
 class JPropertyAttr : public JClassAttr
@@ -13,8 +13,8 @@ class JPropertyAttr : public JClassAttr
     typedef PropT (BaseT::*FnGetter) () const;
     typedef void  (BaseT::*FnSetter)( PropT val );
 
-    FnGetter		m_Getter;	
-    FnSetter		m_Setter; 
+    FnGetter        m_Getter;   
+    FnSetter        m_Setter; 
 
 public:
     JPropertyAttr()

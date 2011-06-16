@@ -13,7 +13,7 @@
 #include "jmathtypecast.h"
 
 //****************************************************************************/
-//	Enum:  JXAlign
+//  Enum:  JXAlign
 //  Desc:  Describes horizontal alignment type
 //****************************************************************************/
 enum JXAlign
@@ -36,7 +36,7 @@ enum_beg(JXAlign)
 enum_end(JXAlign)
 
 //****************************************************************************/
-//	Enum:  JYAlign
+//  Enum:  JYAlign
 //  Desc:  Describes vertical alignment type
 //****************************************************************************/
 enum JYAlign
@@ -174,7 +174,7 @@ public:
     int             GetSkinFrame    () const { return m_SkinFrame; }
     void            SetSkinFrame    ( int val ) { m_SkinFrame = val; }
     const char*     GetSkinPack     () const { return m_SkinPack.c_str(); }
-    void			SetSkinPack     ( const char* name );
+    void            SetSkinPack     ( const char* name );
 
     //  messages
     bool            IsConsumeEvents () const { return m_bConsumeEvents; }
@@ -188,7 +188,7 @@ public:
     virtual void    ResInit         ();
 
     //  bounds
-	virtual	void	DrawBounds	    ();
+    virtual void    DrawBounds      ();
 
 protected:
 
@@ -331,7 +331,7 @@ private:
 Frame ApplyAlignment( const Frame& rcAdjust, const Frame& rcParent, JXAlign xalign, JYAlign yalign );
 
 //****************************************************************************/
-/*	Inline Functions
+/*  Inline Functions
 //****************************************************************************/
 inline Frame JWidget::GetExt() const
 {

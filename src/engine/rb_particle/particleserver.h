@@ -16,7 +16,7 @@ typedef UniformPool<Particle, c_PSPoolPageSize> ParticlePool;
 typedef UniformPool<EmitterInstance, c_PSPoolPageSize> EmitterPool;
 
 //****************************************************************************/
-//	Enum:  PSProcessMode
+//  Enum:  PSProcessMode
 //  Desc:    
 //****************************************************************************/
 enum PSProcessMode

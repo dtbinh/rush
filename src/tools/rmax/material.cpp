@@ -220,13 +220,13 @@ void RBExport::CopyTextures()
         }
         dstPath.SetFileExt( srcPath.GetFileExt() );
 
-		//  check whether texture is in .dds format and warn
-		if (stricmp( srcPath.GetExt(), "dds" ) && 
+        //  check whether texture is in .dds format and warn
+        if (stricmp( srcPath.GetExt(), "dds" ) && 
             stricmp( srcPath.GetExt(), ".dds" ))
-		{
-			Warn( "Texture %s is not in DDS format. Consider converting it to DDS, "
-					"otherwise its in-game usage will be inefficient.", srcPath.GetFileExt() );
-		}
+        {
+            Warn( "Texture %s is not in DDS format. Consider converting it to DDS, "
+                    "otherwise its in-game usage will be inefficient.", srcPath.GetFileExt() );
+        }
 
         if (!stricmp( srcPath.GetFullPath(), dstPath.GetFullPath() ))
         {

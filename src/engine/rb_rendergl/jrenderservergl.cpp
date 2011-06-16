@@ -75,7 +75,7 @@ void JRenderServerGL::InitGlobalConstants()
       return;
     }
 
-    m_hWorldTM		      = GetConstantID( m_PoolShaderID, "g_WorldTM"	        );
+    m_hWorldTM            = GetConstantID( m_PoolShaderID, "g_WorldTM"          );
     m_hViewTM           = GetConstantID( m_PoolShaderID, "g_ViewTM"           );
     m_hProjTM           = GetConstantID( m_PoolShaderID, "g_ProjTM"           );
     m_hWorldViewProjTM  = GetConstantID( m_PoolShaderID, "g_WorldViewProjTM"  );
@@ -83,10 +83,10 @@ void JRenderServerGL::InitGlobalConstants()
     m_hMtlAmbient       = GetConstantID( m_PoolShaderID, "g_MtlAmbient"       );
     m_hAmbience         = GetConstantID( m_PoolShaderID, "g_Ambience"         );
     m_hSunDirection     = GetConstantID( m_PoolShaderID, "g_SunDirection"     );
-    m_hSunDiffuse	    = GetConstantID( m_PoolShaderID, "g_SunDiffuse"	        );
-    m_hSunSpecular	    = GetConstantID( m_PoolShaderID, "g_SunSpecular"	    );
-    m_hCamPos           = GetConstantID( m_PoolShaderID, "g_CamPos"	          );
-    m_hTime             = GetConstantID( m_PoolShaderID, "g_Time"	            );*/
+    m_hSunDiffuse       = GetConstantID( m_PoolShaderID, "g_SunDiffuse"         );
+    m_hSunSpecular      = GetConstantID( m_PoolShaderID, "g_SunSpecular"        );
+    m_hCamPos           = GetConstantID( m_PoolShaderID, "g_CamPos"           );
+    m_hTime             = GetConstantID( m_PoolShaderID, "g_Time"               );*/
 
 }
 
@@ -142,7 +142,7 @@ void JRenderServerGL::Init()
     //m_PresParam.SwapEffect                = bWindowed ? D3DSWAPEFFECT_COPY : D3DSWAPEFFECT_FLIP;
     //m_PresParam.EnableAutoDepthStencil    = TRUE;
     //m_PresParam.AutoDepthStencilFormat    = D3DFMT_D16;
-    //m_PresParam.BackBufferFormat		  = d3ddm.Format;
+    //m_PresParam.BackBufferFormat        = d3ddm.Format;
     //m_PresParam.BackBufferCount           = 1;
     //m_PresParam.hDeviceWindow             = m_hWnd;
     //m_PresParam.PresentationInterval      = D3DPRESENT_INTERVAL_IMMEDIATE;
@@ -164,13 +164,13 @@ void JRenderServerGL::Init()
 
     //rlog.msg( "Creating d3d9 render device..." );
 
-    //HRESULT res = m_pD3D->CreateDevice(	adapterID, devType, m_hWnd, flags, &m_PresParam, &m_pDevice );
+    //HRESULT res = m_pD3D->CreateDevice(   adapterID, devType, m_hWnd, flags, &m_PresParam, &m_pDevice );
     //if (!m_pDevice)
     //{
     //    rlog.warn( "Could not create render device. Switching to software vertex processing." );
     //
     //    flags = D3DCREATE_SOFTWARE_VERTEXPROCESSING;
-    //    res = m_pD3D->CreateDevice(	0, devType, m_hWnd, flags, &m_PresParam, &m_pDevice );
+    //    res = m_pD3D->CreateDevice(   0, devType, m_hWnd, flags, &m_PresParam, &m_pDevice );
     //
     //    if (!m_pDevice)
     //    {
@@ -427,12 +427,12 @@ void JRenderServerGL::SetViewport( const Frame& rc )
 
     //m_Viewport = vp;
     //D3DVIEWPORT9 dvp;
-    //dvp.X		= m_Viewport.x;
-    //dvp.Y		= m_Viewport.y;
-    //dvp.Width	= m_Viewport.w;
-    //dvp.Height	= m_Viewport.h;
-    //dvp.MinZ	= 0.0f;
-    //dvp.MaxZ	= 1.0f;
+    //dvp.X     = m_Viewport.x;
+    //dvp.Y     = m_Viewport.y;
+    //dvp.Width = m_Viewport.w;
+    //dvp.Height    = m_Viewport.h;
+    //dvp.MinZ  = 0.0f;
+    //dvp.MaxZ  = 1.0f;
     //m_pDevice->SetViewport( (D3DVIEWPORT9*)&dvp );
 }
 
@@ -774,29 +774,29 @@ int JRenderServerGL::AddPointLight( const Vec3& pos, float radius, float falloff
 int JRenderServerGL::AddDirLight( const Vec3& dir, uint32_t diffuse, uint32_t specular, bool bPerPixel )
 {
    /* D3DLIGHT9 light;
-    light.Type		    = D3DLIGHT_DIRECTIONAL ;
-    light.Diffuse	    = ConvertColor( diffuse  );
-    light.Specular	    = ConvertColor( specular );
-    light.Ambient	    = ConvertColor( 0xFF000000 );
+    light.Type          = D3DLIGHT_DIRECTIONAL ;
+    light.Diffuse       = ConvertColor( diffuse  );
+    light.Specular      = ConvertColor( specular );
+    light.Ambient       = ConvertColor( 0xFF000000 );
 
     Vec3 ldir( dir.x, dir.y, dir.z );
     ldir.normalize();
-    light.Direction.x	= ldir.x;
-    light.Direction.y	= ldir.y;
-    light.Direction.z	= ldir.z;
+    light.Direction.x   = ldir.x;
+    light.Direction.y   = ldir.y;
+    light.Direction.z   = ldir.z;
 
-    light.Range			= 100.0f;
-    light.Position.x	= 0.0f;
-    light.Position.y	= 0.0f;
-    light.Position.z	= 0.0f;
+    light.Range         = 100.0f;
+    light.Position.x    = 0.0f;
+    light.Position.y    = 0.0f;
+    light.Position.z    = 0.0f;
 
-    light.Attenuation0	= 0.0f;
-    light.Attenuation1	= 0.0f;
-    light.Attenuation2	= 0.0f;
+    light.Attenuation0  = 0.0f;
+    light.Attenuation1  = 0.0f;
+    light.Attenuation2  = 0.0f;
 
-    light.Falloff		= 0.0f;
-    light.Theta			= c_PI;
-    light.Phi			= c_PI;
+    light.Falloff       = 0.0f;
+    light.Theta         = c_PI;
+    light.Phi           = c_PI;
 
     m_pDevice->LightEnable( 0, TRUE );
     m_pDevice->SetLight   ( 0, &light );*/

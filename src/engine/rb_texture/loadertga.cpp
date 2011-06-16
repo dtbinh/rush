@@ -20,9 +20,9 @@ bool LoadTGA( InStream& is, ColorSurface& image )
         return false;
     }
 
-    int width	= header[0 + 12] + header[1 + 12]*256; 
-    int height	= header[2 + 12] + header[3 + 12]*256;
-    int bitspp	= header[4 + 12]; 
+    int width   = header[0 + 12] + header[1 + 12]*256; 
+    int height  = header[2 + 12] + header[3 + 12]*256;
+    int bitspp  = header[4 + 12]; 
     
     image.SetExt( width, height );
 

@@ -103,7 +103,7 @@ private:
     JString         m_ParentName;
     JMetaClass*     m_pParent;
 
-    JAttrList	    m_Attr;
+    JAttrList       m_Attr;
 
     JString         m_Name;
     JObject*        m_pTemplate;

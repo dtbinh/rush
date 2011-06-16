@@ -174,7 +174,7 @@ public:
 }; // ColorF
 
 //****************************************************************************/
-//	Enum:   ColorFormat
+//  Enum:   ColorFormat
 //  Desc:   Decribes pixel color configuration
 //****************************************************************************/
 enum ColorFormat

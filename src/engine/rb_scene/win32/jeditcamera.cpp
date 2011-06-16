@@ -14,21 +14,21 @@
 decl_class(JEditCamera);
 JEditCamera::JEditCamera()
 {
-    m_HomeTilt      	= 0.0f;
-    m_HomeZoom      	= 800.0f;
-    m_HomeRoll      	= 0.0f;
+    m_HomeTilt          = 0.0f;
+    m_HomeZoom          = 800.0f;
+    m_HomeRoll          = 0.0f;
 
-    m_Tilt          	= m_HomeTilt;
-    m_Zoom          	= m_HomeZoom;
-    m_Roll          	= m_HomeRoll;
+    m_Tilt              = m_HomeTilt;
+    m_Zoom              = m_HomeZoom;
+    m_Roll              = m_HomeRoll;
 
-    m_MinRoll       	= 1.0f;
-    m_MaxRoll       	= -1.0f;
-    m_MinTilt       	= -180;
-    m_MaxTilt       	= 0;
+    m_MinRoll           = 1.0f;
+    m_MaxRoll           = -1.0f;
+    m_MinTilt           = -180;
+    m_MaxTilt           = 0;
 
-    m_MaxZoom       	= 1200.0f;
-    m_MinZoom       	= 300.0f;
+    m_MaxZoom           = 1200.0f;
+    m_MinZoom           = 300.0f;
 
     m_RollSpeed         = 0.2f;
     m_TiltSpeed         = 0.2f;
@@ -44,29 +44,29 @@ JEditCamera::JEditCamera()
     m_FocusDist         = 0.0f;
     m_bUseControlKey    = true;
 
-    m_MousePos.x    	= -1;
-    m_MousePos.y    	= -1;
+    m_MousePos.x        = -1;
+    m_MousePos.y        = -1;
 
     m_Timer.Start();
 }
 
 void JEditCamera::Init()
 {
-	JCameraController::Init();
-	Home();
+    JCameraController::Init();
+    Home();
 }
 
 void JEditCamera::Home()
 {
-	m_Tilt = m_HomeTilt;
-	m_Roll = m_HomeRoll;
-	m_Zoom = m_HomeZoom;
+    m_Tilt = m_HomeTilt;
+    m_Roll = m_HomeRoll;
+    m_Zoom = m_HomeZoom;
 }
 
 void JEditCamera::Render()
 {
-	JCamera* pCamera = GetCamera();
-	if (!pCamera) return;
+    JCamera* pCamera = GetCamera();
+    if (!pCamera) return;
 
     //  scrolling lookAt point
     POINT pt;
@@ -77,15 +77,15 @@ void JEditCamera::Render()
     m_Roll   += m_RollDelta;
     m_Tilt   += m_TiltDelta;
     m_Zoom   += m_ZoomDelta;
-	m_LookAt += m_LookAtDelta;
+    m_LookAt += m_LookAtDelta;
 
-	//  recalculate camera view/projection matrices
+    //  recalculate camera view/projection matrices
     m_RollDelta     = 0.0f;
     m_TiltDelta     = 0.0f;
     m_ZoomDelta     = 0.0f;
     m_LookAtDelta   = Vec3::null;
 
-	Frame ext = GetExt();
+    Frame ext = GetExt();
     if (m_MinRoll <= m_MaxRoll) m_Roll = clamp( m_Roll,  m_MinRoll, m_MaxRoll );
     if (m_MinTilt <= m_MaxTilt) m_Tilt = clamp( m_Tilt,  m_MinTilt, m_MaxTilt );
     if (m_MinZoom <= m_MaxZoom) m_Zoom = clamp( m_Zoom,  m_MinZoom, m_MaxZoom );
@@ -105,7 +105,7 @@ void JEditCamera::Render()
     gdir.normalize();
     Vec3 pos( gdir );
     pos.reverse();
-	pos *= m_Zoom - pCamera->GetZNear();
+    pos *= m_Zoom - pCamera->GetZNear();
 
     pos += m_LookAt;
 
@@ -116,8 +116,8 @@ void JEditCamera::Render()
 
 void JEditCamera::OnMouse( JMouseEvent& e )
 {
-	JCamera* pCamera = GetCamera();
-	if (!pCamera) return;
+    JCamera* pCamera = GetCamera();
+    if (!pCamera) return;
 
     if (GetKeyState( VK_MENU ) >= 0 && m_bUseControlKey)
     {

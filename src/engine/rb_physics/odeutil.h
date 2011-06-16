@@ -23,7 +23,7 @@ inline void Convert( dMatrix3& dm, const Mat3& m )
     dm[0] = m.e00; dm[4] = m.e01; dm[8]  = m.e02;
     dm[1] = m.e10; dm[5] = m.e11; dm[9]  = m.e12;
     dm[2] = m.e20; dm[6] = m.e21; dm[10] = m.e22;
-    dm[3] = 0;	   dm[7] = 0;	  dm[11] = 0;
+    dm[3] = 0;     dm[7] = 0;     dm[11] = 0;
 }
 
 inline void Convert( dVector4& dv, const Vec4& v )
@@ -72,10 +72,10 @@ inline void Convert( Vec3& v, const dVector3& dv )
 
 inline void Convert( Quaternion& q, const dQuaternion& dq )
 {
-    q.s		= dq[0]; 
-    q.v.x	= dq[1];
-    q.v.y	= dq[2];
-    q.v.z	= dq[3];
+    q.s     = dq[0]; 
+    q.v.x   = dq[1];
+    q.v.y   = dq[2];
+    q.v.z   = dq[3];
 }
 
 

@@ -144,7 +144,7 @@ public:
 private:
     Frame                           m_Viewport;
 
-    uint32_t					    m_CurFrame;
+    uint32_t                        m_CurFrame;
     bool                            m_bInited;
     float                           m_FPS;
     bool                            m_bCursorVisible;

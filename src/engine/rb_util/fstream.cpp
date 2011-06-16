@@ -30,7 +30,7 @@ void Load( std::wstring& s, FILE* fp )
 FInStream::FInStream( const char* fname )
 {
     m_FileName  = fname;
-    m_hFile		= NULL;
+    m_hFile     = NULL;
     OpenFile( fname );
 }
 

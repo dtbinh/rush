@@ -1,8 +1,8 @@
 //****************************************************************************/
-//  File:	VecN.cpp
-//  Desc:	Variable-sized vector
-/*	Author:	Ruslan Shestopalyuk
-/*	Date:	17-03-2005
+//  File:   VecN.cpp
+//  Desc:   Variable-sized vector
+/*  Author: Ruslan Shestopalyuk
+/*  Date:   17-03-2005
 //****************************************************************************/
 #include "precompile.h"
 #include "matmn.h"

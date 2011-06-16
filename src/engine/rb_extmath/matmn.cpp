@@ -1,8 +1,8 @@
 //****************************************************************************/
-//  File:	MatMN.cpp
-//  Desc:	Variable-sized matrix
-/*	Author:	Ruslan Shestopalyuk
-/*	Date:	17-03-2005
+//  File:   MatMN.cpp
+//  Desc:   Variable-sized matrix
+/*  Author: Ruslan Shestopalyuk
+/*  Date:   17-03-2005
 //****************************************************************************/
 #include "precompile.h"
 #include "scalar.h"

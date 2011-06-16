@@ -5,13 +5,13 @@
 #define __JMETHODATTR_H__
 
 //****************************************************************************/
-//  Class:	JMethodAttr
+//  Class:  JMethodAttr
 //****************************************************************************/
 template <class BaseT>
 class JMethodAttr : public JClassAttr
 {
     typedef void (BaseT::*FnProcess)();
-    FnProcess		m_fnProcess;
+    FnProcess       m_fnProcess;
 
 public:
     JMethodAttr( const char* name, FnProcess call ) : m_fnProcess( call ) 

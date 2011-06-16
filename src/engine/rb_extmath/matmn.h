@@ -1,8 +1,8 @@
 //****************************************************************************/
-//  File:	mMatMN.h
-//  Desc:	Variable-sized matrix
-/*	Author:	Ruslan Shestopalyuk
-/*	Date:	17-03-2005
+//  File:   mMatMN.h
+//  Desc:   Variable-sized matrix
+/*  Author: Ruslan Shestopalyuk
+/*  Date:   17-03-2005
 //****************************************************************************/
 #ifndef __MATMN_H__
 #define __MATMN_H__

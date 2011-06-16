@@ -9,13 +9,13 @@
 #include "vec3.h"
 
 //****************************************************************************/
-//	Enum:  ParticleFlags
+//  Enum:  ParticleFlags
 //  Desc:    
 //****************************************************************************/
 enum ParticleFlags
 {
     pfJustDied  = 0x01,
-    pfDead		= 0x02,
+    pfDead      = 0x02,
     pfJustBorn  = 0x04,
     pfJustHit   = 0x08
 }; // enum ParticleFlags

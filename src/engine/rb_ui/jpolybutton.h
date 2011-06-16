@@ -17,7 +17,7 @@ class JPolyButton : public JButton
 {
 public:
                     JPolyButton ();
-    virtual	void	DrawBounds	();
+    virtual void    DrawBounds  ();
     virtual bool    PtIn        ( int px, int py ) const;
 
     PolyLine2       GetContour  () const;

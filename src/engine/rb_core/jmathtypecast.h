@@ -30,7 +30,7 @@ inline bool extractFloat( PCChar& pFrom, float& val )
 } // extractFloat
 
 //****************************************************************************/
-/*	JString <=> Vec2
+/*  JString <=> Vec2
 //****************************************************************************/
 template <>
 inline bool cast<JString, Vec2>( JString& to, const Vec2& from )
@@ -58,7 +58,7 @@ template <> inline const char* type_name<Vec2>() { return "Vec2"; }
 
 
 //****************************************************************************/
-/*	JString <=> Vec3
+/*  JString <=> Vec3
 //****************************************************************************/
 template <>
 inline bool cast<JString, Vec3>( JString& to, const Vec3& from )
@@ -88,7 +88,7 @@ template <> inline const char* type_name<Vec3>() { return "Vec3"; }
 
 
 //****************************************************************************/
-/*	JString <=> Vec4
+/*  JString <=> Vec4
 //****************************************************************************/
 template <>
 inline bool cast<JString, Vec4>( JString& to, const Vec4& from )
@@ -120,7 +120,7 @@ template <> inline const char* type_name<Vec4>() { return "Vec4"; }
 
 
 //****************************************************************************/
-/*	JString <=> Mat3
+/*  JString <=> Mat3
 //****************************************************************************/
 template <>
 inline bool cast<JString, Mat3>( JString& to, const Mat3& from )
@@ -156,7 +156,7 @@ template <> inline const char* type_name<Mat3>() { return "Mat3"; }
 
 
 //****************************************************************************/
-/*	JString <=> Mat4
+/*  JString <=> Mat4
 //****************************************************************************/
 template <>
 inline bool cast<JString, Mat4>( JString& to, const Mat4& from )
@@ -198,7 +198,7 @@ inline bool cast<Mat4, JString>( Mat4& to, const JString& from )
 template <> inline const char* type_name<Mat4>() { return "Mat4"; }
 
 //****************************************************************************/
-/*	JString <=> Frame
+/*  JString <=> Frame
 //****************************************************************************/
 template <>
 inline bool cast<JString, Frame>( JString& to, const Frame& from )
@@ -229,7 +229,7 @@ inline bool cast<Frame, JString>( Frame& to, const JString& from )
 template <> inline const char* type_name<Frame>() { return "Frame"; }
 
 //****************************************************************************/
-/*	JString <=> Plane
+/*  JString <=> Plane
 //****************************************************************************/
 template <>
 inline bool cast<JString, Plane>( JString& to, const Plane& from )
@@ -255,7 +255,7 @@ template <> inline const char* type_name<Plane>() { return "Plane"; }
 
 typedef std::vector<Vec3> JVec3List;
 //****************************************************************************/
-/*	JString <=> JVec3List
+/*  JString <=> JVec3List
 //****************************************************************************/
 template <>
 inline bool cast<JString, JVec3List>( JString& to, const JVec3List& from )
@@ -344,7 +344,7 @@ inline InStream& operator >>( InStream& is, JVec3List& lst )
 template <> inline const char* type_name<JVec3List>() { return "JVec3List"; }
 
 //****************************************************************************/
-/*	JString <=> Date
+/*  JString <=> Date
 //****************************************************************************/
 template <>
 inline bool cast<JString, Date>( JString& to, const Date& from )
@@ -410,7 +410,7 @@ inline bool cast<Date, JString>( Date& to, const JString& from )
 template <> inline const char* type_name<Date>() { return "Date"; }
 
 //****************************************************************************/
-/*	JString <=> PolyLine2
+/*  JString <=> PolyLine2
 //****************************************************************************/
 template <>
 inline bool cast<JString, PolyLine2>( JString& to, const PolyLine2& from )
@@ -494,7 +494,7 @@ inline InStream& operator >>( InStream& is, PolyLine2& pl )
 template <> inline const char* type_name<PolyLine2>() { return "PolyLine2"; }
 
 //****************************************************************************/
-/*	JString <=> Ramp
+/*  JString <=> Ramp
 //****************************************************************************/
 template <>
 inline bool cast<JString, Ramp>( JString& to, const Ramp& from )
@@ -581,7 +581,7 @@ inline InStream& operator >>( InStream& is, Ramp& pl )
 template <> inline const char* type_name<Ramp>() { return "Ramp"; }
 
 //****************************************************************************/
-/*	JString <=> ColorRamp
+/*  JString <=> ColorRamp
 //****************************************************************************/
 template <>
 inline bool cast<JString, ColorRamp>( JString& to, const ColorRamp& from )

@@ -25,7 +25,7 @@ const int c_StaticVBSize = 1024*1024*8;
 const int c_StaticIBSize = 1024*1024*4;
 
 //****************************************************************************/
-/*	JModelServer implementation
+/*  JModelServer implementation
 //****************************************************************************/
 decl_class(JModelServer);
 JModelServer::JModelServer() 

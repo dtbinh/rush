@@ -37,12 +37,12 @@ dGeomID ColMesh::CreateGeom( dSpaceID spaceID )
         m_CachedVertices[i] = scale*m_Vertices[i];
     }
 
-	dGeomTriMeshDataBuildSingle( m_TriMeshDataID, &m_CachedVertices[0], 3*sizeof( float ), 
+    dGeomTriMeshDataBuildSingle( m_TriMeshDataID, &m_CachedVertices[0], 3*sizeof( float ), 
         nVert, (int*)&m_Indices[0], m_Indices.size(), 3*sizeof( int ) );
-	dGeomID id = dCreateTriMesh( spaceID, m_TriMeshDataID, 0, 0, 0 );
+    dGeomID id = dCreateTriMesh( spaceID, m_TriMeshDataID, 0, 0, 0 );
 
-	// remember the mesh's dTriMeshDataID on its userdata for convenience.
-	dGeomSetData( id, m_TriMeshDataID );
+    // remember the mesh's dTriMeshDataID on its userdata for convenience.
+    dGeomSetData( id, m_TriMeshDataID );
 
     dMassSetTrimesh( &m_MeshMass, GetDensity(), id );
     return id;

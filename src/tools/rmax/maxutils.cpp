@@ -49,10 +49,10 @@ DWORD ColorToDWORD( const Color& color )
 
 float TimeToMs( TimeValue t )
 {
-	return 1000.0f*float( t )/float( TIME_TICKSPERSEC );
+    return 1000.0f*float( t )/float( TIME_TICKSPERSEC );
 } // TimeToMs
 
 TimeValue MsToTime( float ms )
 {
-	return TimeValue( float( TIME_TICKSPERSEC )*ms/1000.0f );
+    return TimeValue( float( TIME_TICKSPERSEC )*ms/1000.0f );
 } // MsToTime

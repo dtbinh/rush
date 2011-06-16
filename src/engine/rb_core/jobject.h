@@ -31,7 +31,7 @@ public:
 
     virtual void            Render          () {}
     virtual void            PostRender      () {}
-    virtual	void	        DrawBounds	    () {}
+    virtual void            DrawBounds      () {}
 
     virtual void            Init            () {}
     virtual void            ResInit         () {}

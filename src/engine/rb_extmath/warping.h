@@ -1,8 +1,8 @@
 //****************************************************************************/
-//  File:	Warping.h
-//  Desc:	 
-/*	Author:	Ruslan Shestopalyuk
-/*	Date:	17-03-2005
+//  File:   Warping.h
+//  Desc:    
+/*  Author: Ruslan Shestopalyuk
+/*  Date:   17-03-2005
 //****************************************************************************/
 #ifndef __WARPING_H__
 #define __WARPING_H__

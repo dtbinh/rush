@@ -48,11 +48,11 @@ int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
     link_class( JMazeControl    );
     link_class( JPaintGame      );
     link_class( JPaintArea      );
-    link_class( JBlotGame		);
-    link_class( JBlotPiece		);
-    link_class( JSlideGame		);
-    link_class( JSlidePiece		);
-    link_class( JNumber  		);
+    link_class( JBlotGame       );
+    link_class( JBlotPiece      );
+    link_class( JSlideGame      );
+    link_class( JSlidePiece     );
+    link_class( JNumber         );
 
     JObject* pGame = JObjectServer::inst().CreateFromFile( "RusyaGame" );
     JDialog* pUI   = dynamic_cast<JDialog*>( JObjectServer::inst().CreateFromFile( "RusyaUI" ) );
@@ -62,7 +62,7 @@ int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
     pUI->InitTree();
     pUI->Show();
 
-	int res = JWidgetServer::s_pInstance->RunApplicationLoop();
+    int res = JWidgetServer::s_pInstance->RunApplicationLoop();
 
     pCore->Release();
     return res;

@@ -15,20 +15,20 @@ class JCamera;
 /***********************************************************************************/
 class JCameraController : public JWidget
 {
-	JWeakRef<JCamera>		m_pCamera;
-	JString					m_CameraName;
+    JWeakRef<JCamera>       m_pCamera;
+    JString                 m_CameraName;
 
 public:
-							JCameraController();
-	const char*				GetCameraName() const { return m_CameraName.c_str(); }
-	void					SetCameraName( const char* name );
-	virtual void			Init();
-	JCamera*				GetCamera() const { return m_pCamera; }
+                            JCameraController();
+    const char*             GetCameraName() const { return m_CameraName.c_str(); }
+    void                    SetCameraName( const char* name );
+    virtual void            Init();
+    JCamera*                GetCamera() const { return m_pCamera; }
 
     expose( JCameraController )
     {
         parent( JWidget );
-		prop( "Camera", GetCameraName, SetCameraName );
+        prop( "Camera", GetCameraName, SetCameraName );
     }
 }; // class JCameraController
 

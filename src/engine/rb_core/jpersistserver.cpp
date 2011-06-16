@@ -561,11 +561,11 @@ JObject* JPersistServer::LoadXML( char* text, JObject* pSrc )
 {
     TiXmlDocument doc;
     doc.Parse( text );
-	if (doc.Error())
-	{
+    if (doc.Error())
+    {
         rlog.err( "Error parsing XML in %s: %s\n", doc.Value(), doc.ErrorDesc() );
-		return NULL;
-	}
+        return NULL;
+    }
 
     return FromXML( doc.FirstChildElement(), pSrc );
 } // JPersistServer::LoadXML
@@ -618,7 +618,7 @@ bool JPersistServer::SaveXML( OutStream& os, const JObject* pObject )
     TiXmlElement* pNode = ToXML( pObject, true );
     if (!pNode) return false;
     TiXmlPrinter printer;
-	bool bRes = pNode->Accept( &printer );
+    bool bRes = pNode->Accept( &printer );
     if (!bRes)
     {
         return false;
@@ -1019,7 +1019,7 @@ void JPersistServer::SaveMetaTable( OutStream& os ) const
 
     //  write xml tree
     TiXmlPrinter printer;
-	bool bRes = pNode->Accept( &printer );
+    bool bRes = pNode->Accept( &printer );
     if (!bRes)
     {
         return;

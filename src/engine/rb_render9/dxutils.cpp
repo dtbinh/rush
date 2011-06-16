@@ -95,27 +95,27 @@ uint32_t CreateFVF( const VertexDeclaration& vdecl )
     {
         switch (vdecl.m_Element[i].m_Usage)
         {
-        case VertexComponent_Position		: fvf |= D3DFVF_XYZ;    break; 
-        case VertexComponent_PositionRHW	: fvf |= D3DFVF_XYZRHW; break; 
+        case VertexComponent_Position       : fvf |= D3DFVF_XYZ;    break; 
+        case VertexComponent_PositionRHW    : fvf |= D3DFVF_XYZRHW; break; 
 
-        case VertexComponent_Blend0		    : fvf |= D3DFVF_XYZB1; break; 
-        case VertexComponent_Blend1		    : fvf |= D3DFVF_XYZB2; fvf &= ~D3DFVF_XYZB1; break; 
-        case VertexComponent_Blend2		    : fvf |= D3DFVF_XYZB3; fvf &= ~D3DFVF_XYZB2; break; 
-        case VertexComponent_Blend3		    : fvf |= D3DFVF_XYZB4; fvf &= ~D3DFVF_XYZB3; break; 
-        case VertexComponent_BlendIdx	    : fvf |= D3DFVF_LASTBETA_UBYTE4; break; 
+        case VertexComponent_Blend0         : fvf |= D3DFVF_XYZB1; break; 
+        case VertexComponent_Blend1         : fvf |= D3DFVF_XYZB2; fvf &= ~D3DFVF_XYZB1; break; 
+        case VertexComponent_Blend2         : fvf |= D3DFVF_XYZB3; fvf &= ~D3DFVF_XYZB2; break; 
+        case VertexComponent_Blend3         : fvf |= D3DFVF_XYZB4; fvf &= ~D3DFVF_XYZB3; break; 
+        case VertexComponent_BlendIdx       : fvf |= D3DFVF_LASTBETA_UBYTE4; break; 
 
-        case VertexComponent_Normal		    : fvf |= D3DFVF_NORMAL; break;
-        case VertexComponent_Diffuse		: fvf |= D3DFVF_DIFFUSE; break;
-        case VertexComponent_Specular		: fvf |= D3DFVF_SPECULAR; break;
+        case VertexComponent_Normal         : fvf |= D3DFVF_NORMAL; break;
+        case VertexComponent_Diffuse        : fvf |= D3DFVF_DIFFUSE; break;
+        case VertexComponent_Specular       : fvf |= D3DFVF_SPECULAR; break;
 
-        case VertexComponent_TexCoor0		: fvf |= D3DFVF_TEX1; break; 
-        case VertexComponent_TexCoor1		: fvf |= D3DFVF_TEX2; fvf &= ~D3DFVF_TEX1; break; 
-        case VertexComponent_TexCoor2		: fvf |= D3DFVF_TEX3; fvf &= ~D3DFVF_TEX2; break; 
-        case VertexComponent_TexCoor3		: fvf |= D3DFVF_TEX4; fvf &= ~D3DFVF_TEX3; break; 
-        case VertexComponent_TexCoor4		: fvf |= D3DFVF_TEX5; fvf &= ~D3DFVF_TEX4; break; 
-        case VertexComponent_TexCoor5		: fvf |= D3DFVF_TEX6; fvf &= ~D3DFVF_TEX5; break; 
-        case VertexComponent_TexCoor6		: fvf |= D3DFVF_TEX7; fvf &= ~D3DFVF_TEX6; break; 
-        case VertexComponent_TexCoor7		: fvf |= D3DFVF_TEX8; fvf &= ~D3DFVF_TEX7; break; 
+        case VertexComponent_TexCoor0       : fvf |= D3DFVF_TEX1; break; 
+        case VertexComponent_TexCoor1       : fvf |= D3DFVF_TEX2; fvf &= ~D3DFVF_TEX1; break; 
+        case VertexComponent_TexCoor2       : fvf |= D3DFVF_TEX3; fvf &= ~D3DFVF_TEX2; break; 
+        case VertexComponent_TexCoor3       : fvf |= D3DFVF_TEX4; fvf &= ~D3DFVF_TEX3; break; 
+        case VertexComponent_TexCoor4       : fvf |= D3DFVF_TEX5; fvf &= ~D3DFVF_TEX4; break; 
+        case VertexComponent_TexCoor5       : fvf |= D3DFVF_TEX6; fvf &= ~D3DFVF_TEX5; break; 
+        case VertexComponent_TexCoor6       : fvf |= D3DFVF_TEX7; fvf &= ~D3DFVF_TEX6; break; 
+        case VertexComponent_TexCoor7       : fvf |= D3DFVF_TEX8; fvf &= ~D3DFVF_TEX7; break; 
         }
     }
     return fvf;

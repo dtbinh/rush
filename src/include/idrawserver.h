@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/*	File:  IDrawServer.h
+/*  File:  IDrawServer.h
 /*****************************************************************************/
 #ifndef __IDRAWSYSTEM_H__
 #define __IDRAWSYSTEM_H__
@@ -21,7 +21,7 @@ typedef void (*PVertProcessCB)( void* pVert, int nVert, VertexType vType );
 typedef void (*PSpriteUpdateCB)( int sprID, const Frame& ext, uint8_t* pPixels, ColorFormat fmt );
 
 /*****************************************************************************/
-/*	Enum:  DrawSystemStat
+/*  Enum:  DrawSystemStat
 /*  Desc:  Draw system statistics type
 /*****************************************************************************/
 enum DrawSystemStat
@@ -36,7 +36,7 @@ class JModelAnim;
 
 const int c_NDefaultSegments = 16;
 /*****************************************************************************/
-/*	Class:  IDrawServer
+/*  Class:  IDrawServer
 /*  Desc:   
 /*****************************************************************************/
 class IDrawServer : public IRenderServerClient

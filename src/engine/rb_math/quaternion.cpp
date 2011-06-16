@@ -26,12 +26,12 @@ Quaternion::Quaternion( const Mat3& rotM )
     if (trace > 0.0f)
     {
         root = sqrtf( trace + 1.0f );
-        s	 = root*0.5f;
+        s    = root*0.5f;
 
         root = 0.5f/root;
-        v.x	 = (rotM.e12 - rotM.e21)*root;
-        v.y	 = (rotM.e20 - rotM.e02)*root;
-        v.z	 = (rotM.e01 - rotM.e10)*root;
+        v.x  = (rotM.e12 - rotM.e21)*root;
+        v.y  = (rotM.e20 - rotM.e02)*root;
+        v.z  = (rotM.e01 - rotM.e10)*root;
     }
     else
     {

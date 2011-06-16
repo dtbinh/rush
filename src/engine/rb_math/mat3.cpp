@@ -41,7 +41,7 @@ Mat3::Mat3( const Quaternion& q )
     yz = 2.0f * q.v.y * q.v.z;
     xz = 2.0f * q.v.x * q.v.z;
     sx = 2.0f * q.s   * q.v.x;
-    sy = 2.0f * q.s	  * q.v.y;
+    sy = 2.0f * q.s   * q.v.y;
     sz = 2.0f * q.s   * q.v.z;
 
     e00 = 1.0f - yy - zz;
@@ -67,19 +67,19 @@ float Mat3::inverse( const Mat3& tm )
     const float* m   = tm.buf();
     float*       r   = buf();
     float det = tm.determinant();
-	if (_fabs( det ) < c_FltEpsilon) return false;
+    if (_fabs( det ) < c_FltEpsilon) return false;
 
-	r[0] = (-m[5]*m[7] + m[4]*m[8])/det;
-	r[1] = ( m[2]*m[7] - m[1]*m[8])/det;
-	r[2] = (-m[2]*m[4] + m[1]*m[5])/det;
+    r[0] = (-m[5]*m[7] + m[4]*m[8])/det;
+    r[1] = ( m[2]*m[7] - m[1]*m[8])/det;
+    r[2] = (-m[2]*m[4] + m[1]*m[5])/det;
 
-	r[3] = ( m[5]*m[6] - m[3]*m[8])/det;
-	r[4] = (-m[2]*m[6] + m[0]*m[8])/det;
-	r[5] = ( m[2]*m[3] - m[0]*m[5])/det;
+    r[3] = ( m[5]*m[6] - m[3]*m[8])/det;
+    r[4] = (-m[2]*m[6] + m[0]*m[8])/det;
+    r[5] = ( m[2]*m[3] - m[0]*m[5])/det;
 
-	r[6] = (-m[4]*m[6] + m[3]*m[7])/det;
-	r[7] = ( m[1]*m[6] - m[0]*m[7])/det;
-	r[8] = (-m[1]*m[3] + m[0]*m[4])/det;
+    r[6] = (-m[4]*m[6] + m[3]*m[7])/det;
+    r[7] = ( m[1]*m[6] - m[0]*m[7])/det;
+    r[8] = (-m[1]*m[3] + m[0]*m[4])/det;
 
     return det;
 } // Mat3::inverse

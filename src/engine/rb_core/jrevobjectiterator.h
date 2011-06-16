@@ -12,16 +12,16 @@
 //****************************************************************************/
 class JRevObjectIterator 
 {
-    static const int	c_StackSize = 64;
+    static const int    c_StackSize = 64;
 
-    JObject*			m_pRoot;
-    JObject*			m_pNode;
+    JObject*            m_pRoot;
+    JObject*            m_pNode;
 
-    JObject*			m_Stack		[c_StackSize];
-    int					m_IdxStack	[c_StackSize];
-    int					m_CurDepth;                 //  length of current node's parental chain
+    JObject*            m_Stack     [c_StackSize];
+    int                 m_IdxStack  [c_StackSize];
+    int                 m_CurDepth;                 //  length of current node's parental chain
     //  (not including current node)
-    int					m_CurChildIdx;
+    int                 m_CurChildIdx;
 
 
 public:
@@ -29,7 +29,7 @@ public:
     JObject*        operator *      () const { return m_pNode; }
     JObject*        get_parent      () const { return (m_CurDepth > 0) ? m_Stack[m_CurDepth - 1] : NULL; }
     operator        bool            () const { return (m_pNode != NULL); }
-    int	            depth           () const { return m_CurDepth; }
+    int             depth           () const { return m_CurDepth; }
     void            reset           ()
     {
         m_pNode         = m_pRoot;

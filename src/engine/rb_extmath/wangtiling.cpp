@@ -1,8 +1,8 @@
 //****************************************************************************/
-//  File:	WangTiling.cpp
-//  Desc:	Implementation of class WangTiling
-/*	Author:	Ruslan Shestopalyuk
-/*	Date:	16-05-2006
+//  File:   WangTiling.cpp
+//  Desc:   Implementation of class WangTiling
+/*  Author: Ruslan Shestopalyuk
+/*  Date:   16-05-2006
 //****************************************************************************/
 #include "precompile.h"
 #include "wangtiling.h"

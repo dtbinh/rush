@@ -12,24 +12,24 @@
 /***********************************************************************************/
 class JUpObjectIterator
 {
-    static const int	c_StackSize = 64;
+    static const int    c_StackSize = 64;
 
-    JObject*			m_pRoot;
-    JObject*			m_pNode;
-    JObject*			m_pParent;
-    JObject*			m_pChild;
+    JObject*            m_pRoot;
+    JObject*            m_pNode;
+    JObject*            m_pParent;
+    JObject*            m_pChild;
 
-    JObject*			m_Stack		[c_StackSize];
-    int					m_IdxStack	[c_StackSize];
-    int					m_CurDepth;               
-    int					m_CurChildIdx;
+    JObject*            m_Stack     [c_StackSize];
+    int                 m_IdxStack  [c_StackSize];
+    int                 m_CurDepth;               
+    int                 m_CurChildIdx;
 
 
 public:
                     JUpObjectIterator   ( JObject* pRoot ) : m_pRoot( pRoot ) { reset(); }
     JObject*        operator *          () const { return m_pNode; }
                     operator bool       () const { return (m_pNode != NULL); }
-    int	            depth               () const { return m_CurDepth; }
+    int             depth               () const { return m_CurDepth; }
     JObject*        get_parent          () const { return (m_CurDepth > 0) ? m_Stack[m_CurDepth - 1] : m_pParent; }
     void            reset               ()
     {

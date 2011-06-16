@@ -47,7 +47,7 @@ struct ExpVertex
     struct Less
     {
         bool operator()( ExpVertex* va, ExpVertex* vb ) const
-		{	
+        {   
             return (*va) < (*vb);
         }
     };

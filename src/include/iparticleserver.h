@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/*	File:   IParticleServer.h
+/*  File:   IParticleServer.h
 /*  Date:   12.07.2006
 /*  Author: Ruslan Shestopalyuk
 /*****************************************************************************/
@@ -10,8 +10,8 @@ class Mat3;
 class Vec3;
 
 /*****************************************************************************/
-/*	Class:  IParticleServer
-/*	Desc:   Abstract interface for particle system
+/*  Class:  IParticleServer
+/*  Desc:   Abstract interface for particle system
 /*****************************************************************************/
 class IParticleServer 
 {

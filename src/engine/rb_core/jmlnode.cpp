@@ -1,7 +1,7 @@
 //****************************************************************************/
-//  File:	JMLNode.cpp
-/*	Author:	Ruslan Shestopalyuk
-/*	Date:	04.04.2003
+//  File:   JMLNode.cpp
+/*  Author: Ruslan Shestopalyuk
+/*  Date:   04.04.2003
 //****************************************************************************/
 #include "precompile.h"
 #include "stream.h"
@@ -9,35 +9,35 @@
 #include "jmlparser.h"
 
 //****************************************************************************/
-/*	JMLNode implementation
+/*  JMLNode implementation
 //****************************************************************************/
-int	JMLNode::s_Indent = 0;
+int JMLNode::s_Indent = 0;
 
 JMLNode::JMLNode( InStream& is )
 {
-    m_pChild		= NULL;	
-    m_pAttr			= NULL;
-    m_pParent		= NULL;	
-    m_pNext			= NULL;	
+    m_pChild        = NULL; 
+    m_pAttr         = NULL;
+    m_pParent       = NULL; 
+    m_pNext         = NULL; 
     m_bComplete     = true;
     Read( is );
 }
 
 JMLNode::JMLNode()
 {
-    m_pChild		= NULL;	
-    m_pAttr			= NULL;
-    m_pParent		= NULL;	
-    m_pNext			= NULL;	
+    m_pChild        = NULL; 
+    m_pAttr         = NULL;
+    m_pParent       = NULL; 
+    m_pNext         = NULL; 
     m_bComplete     = true;
 }
 
 JMLNode::JMLNode( char* buf )
 {
-    m_pChild		= NULL;	
-    m_pAttr			= NULL;
-    m_pParent		= NULL;	
-    m_pNext			= NULL;	
+    m_pChild        = NULL; 
+    m_pAttr         = NULL;
+    m_pParent       = NULL; 
+    m_pNext         = NULL; 
     m_bComplete     = true;
     JMLParser parser( this );
     parser.ParseBuffer( buf );
@@ -194,7 +194,7 @@ JMLNode* JMLNode::AddChild( JMLNode* pChild )
     return pChild;
 }
 
-int	JMLNode::GetNChildren() const
+int JMLNode::GetNChildren() const
 {
     int nCh = 0;
     JMLNode* pHead = m_pChild;
@@ -202,7 +202,7 @@ int	JMLNode::GetNChildren() const
     return nCh;
 }
 
-int	JMLNode::GetNAttr() const
+int JMLNode::GetNAttr() const
 {
     int nCh = 0;
     JMLNode* pHead = m_pAttr;

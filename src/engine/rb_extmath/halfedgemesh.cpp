@@ -1,8 +1,8 @@
 //****************************************************************************/
-//  File:	HalfEdgeMesh.cpp
-//  Desc:	Implementation of class HalfEdgeMesh
-/*	Author:	Ruslan Shestopalyuk
-/*	Date:	17-02-2006
+//  File:   HalfEdgeMesh.cpp
+//  Desc:   Implementation of class HalfEdgeMesh
+/*  Author: Ruslan Shestopalyuk
+/*  Date:   17-02-2006
 //****************************************************************************/
 #include "precompile.h"
 #include "halfedgemesh.h"

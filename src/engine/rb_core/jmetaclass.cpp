@@ -6,7 +6,7 @@
 #include "jmetaclass.h"
 
 //****************************************************************************/
-/*	JMetaClass implementation
+/*  JMetaClass implementation
 //****************************************************************************/
 JClassAttr* JMetaClass::FindAttr( const char* name )
 {

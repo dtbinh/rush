@@ -41,52 +41,52 @@
 #include "vec2.h"
 #include "frame.h"
 
-struct	Freenode
+struct  Freenode
 {
-	struct	Freenode *nextfree;
+    struct  Freenode *nextfree;
 };
 
 struct FreeNodeArrayList
 {
-	struct	Freenode* memory;
-	struct	FreeNodeArrayList* next;
+    struct  Freenode* memory;
+    struct  FreeNodeArrayList* next;
 
 };
 
-struct	Freelist
+struct  Freelist
 {
-	struct	Freenode	*head;
-	int		nodesize;
+    struct  Freenode    *head;
+    int     nodesize;
 };
 
 struct Point
 {
-	float x,y;
+    float x,y;
 };
 
 // structure used both for sites and for vertices
 struct Site
 {
-	struct	Point	coord;
-	int		sitenbr;
-	int		refcnt;
+    struct  Point   coord;
+    int     sitenbr;
+    int     refcnt;
 };
 
 
 
 struct Edge
 {
-	float   a,b,c;
-	struct	Site 	*ep[2];
-	struct	Site	*reg[2];
-	int		edgenbr;
+    float   a,b,c;
+    struct  Site    *ep[2];
+    struct  Site    *reg[2];
+    int     edgenbr;
 
 };
 
 struct GraphEdge
 {
-	float x1,y1,x2,y2;
-	struct GraphEdge* next;
+    float x1,y1,x2,y2;
+    struct GraphEdge* next;
 };
 
 
@@ -94,13 +94,13 @@ struct GraphEdge
 
 struct Halfedge
 {
-	struct	Halfedge	*ELleft, *ELright;
-	struct	Edge	*ELedge;
-	int		ELrefcnt;
-	char	ELpm;
-	struct	Site	*vertex;
-	float	ystar;
-	struct	Halfedge *PQnext;
+    struct  Halfedge    *ELleft, *ELright;
+    struct  Edge    *ELedge;
+    int     ELrefcnt;
+    char    ELpm;
+    struct  Site    *vertex;
+    float   ystar;
+    struct  Halfedge *PQnext;
 };
 
 
@@ -109,130 +109,130 @@ struct Halfedge
 class Voronoi
 {
 public:
-	Voronoi();
-	~Voronoi();
+    Voronoi();
+    ~Voronoi();
 
-	bool Generate( const Vec2* pSites, int numPoints, const Frame& bounds, float minDist = 0 );
+    bool Generate( const Vec2* pSites, int numPoints, const Frame& bounds, float minDist = 0 );
 
-	void ResetIterator()
-	{
-		iteratorEdges = allEdges;
-	}
+    void ResetIterator()
+    {
+        iteratorEdges = allEdges;
+    }
 
-	bool GetNextEdge( Vec2& a, Vec2& b )
-	{
-		if(iteratorEdges == 0)
-			return false;
+    bool GetNextEdge( Vec2& a, Vec2& b )
+    {
+        if(iteratorEdges == 0)
+            return false;
 
-		a.x = iteratorEdges->x1;
-		b.x = iteratorEdges->x2;
-		a.y = iteratorEdges->y1;
-		b.y = iteratorEdges->y2;
+        a.x = iteratorEdges->x1;
+        b.x = iteratorEdges->x2;
+        a.y = iteratorEdges->y1;
+        b.y = iteratorEdges->y2;
 
-		iteratorEdges = iteratorEdges->next;
+        iteratorEdges = iteratorEdges->next;
 
-		return true;
-	}
+        return true;
+    }
 
 
 private:
-	void cleanup();
-	void cleanupEdges();
-	char *getfree(struct Freelist *fl);
-	struct	Halfedge *PQfind();
-	int PQempty();
+    void cleanup();
+    void cleanupEdges();
+    char *getfree(struct Freelist *fl);
+    struct  Halfedge *PQfind();
+    int PQempty();
 
 
 
-	struct	Halfedge **ELhash;
-	struct	Halfedge *HEcreate(), *ELleft(), *ELright(), *ELleftbnd();
-	struct	Halfedge *HEcreate(struct Edge *e,int pm);
+    struct  Halfedge **ELhash;
+    struct  Halfedge *HEcreate(), *ELleft(), *ELright(), *ELleftbnd();
+    struct  Halfedge *HEcreate(struct Edge *e,int pm);
 
 
-	struct Point PQ_min();
-	struct Halfedge *PQextractmin();
-	void freeinit(struct Freelist *fl,int size);
-	void makefree(struct Freenode *curr,struct Freelist *fl);
-	void geominit();
-	void plotinit();
-	bool voronoi(int triangulate);
-	void ref(struct Site *v);
-	void deref(struct Site *v);
-	void endpoint(struct Edge *e,int lr,struct Site * s);
+    struct Point PQ_min();
+    struct Halfedge *PQextractmin();
+    void freeinit(struct Freelist *fl,int size);
+    void makefree(struct Freenode *curr,struct Freelist *fl);
+    void geominit();
+    void plotinit();
+    bool voronoi(int triangulate);
+    void ref(struct Site *v);
+    void deref(struct Site *v);
+    void endpoint(struct Edge *e,int lr,struct Site * s);
 
-	void ELdelete(struct Halfedge *he);
-	struct Halfedge *ELleftbnd(struct Point *p);
-	struct Halfedge *ELright(struct Halfedge *he);
-	void makevertex(struct Site *v);
-	void out_triple(struct Site *s1, struct Site *s2,struct Site * s3);
+    void ELdelete(struct Halfedge *he);
+    struct Halfedge *ELleftbnd(struct Point *p);
+    struct Halfedge *ELright(struct Halfedge *he);
+    void makevertex(struct Site *v);
+    void out_triple(struct Site *s1, struct Site *s2,struct Site * s3);
 
-	void PQinsert(struct Halfedge *he,struct Site * v, float offset);
-	void PQdelete(struct Halfedge *he);
-	bool ELinitialize();
-	void ELinsert(struct	Halfedge *lb, struct Halfedge *newHe);
-	struct Halfedge * ELgethash(int b);
-	struct Halfedge *ELleft(struct Halfedge *he);
-	struct Site *leftreg(struct Halfedge *he);
-	void out_site(struct Site *s);
-	bool PQinitialize();
-	int PQbucket(struct Halfedge *he);
-	void clip_line(struct Edge *e);
-	char *myalloc(unsigned n);
-	int right_of(struct Halfedge *el,struct Point *p);
+    void PQinsert(struct Halfedge *he,struct Site * v, float offset);
+    void PQdelete(struct Halfedge *he);
+    bool ELinitialize();
+    void ELinsert(struct    Halfedge *lb, struct Halfedge *newHe);
+    struct Halfedge * ELgethash(int b);
+    struct Halfedge *ELleft(struct Halfedge *he);
+    struct Site *leftreg(struct Halfedge *he);
+    void out_site(struct Site *s);
+    bool PQinitialize();
+    int PQbucket(struct Halfedge *he);
+    void clip_line(struct Edge *e);
+    char *myalloc(unsigned n);
+    int right_of(struct Halfedge *el,struct Point *p);
 
-	struct Site *rightreg(struct Halfedge *he);
-	struct Edge *bisect(struct	Site *s1,struct	Site *s2);
-	float dist(struct Site *s,struct Site *t);
-	struct Site *intersect(struct Halfedge *el1, struct Halfedge *el2, struct Point *p=0);
+    struct Site *rightreg(struct Halfedge *he);
+    struct Edge *bisect(struct  Site *s1,struct Site *s2);
+    float dist(struct Site *s,struct Site *t);
+    struct Site *intersect(struct Halfedge *el1, struct Halfedge *el2, struct Point *p=0);
 
-	void out_bisector(struct Edge *e);
-	void out_ep(struct Edge *e);
-	void out_vertex(struct Site *v);
-	struct Site *nextone();
+    void out_bisector(struct Edge *e);
+    void out_ep(struct Edge *e);
+    void out_vertex(struct Site *v);
+    struct Site *nextone();
 
-	void pushGraphEdge(float x1, float y1, float x2, float y2);
+    void pushGraphEdge(float x1, float y1, float x2, float y2);
 
-	void openpl();
-	void line(float x1, float y1, float x2, float y2);
-	void circle(float x, float y, float radius);
-	void range(float minX, float minY, float maxX, float maxY);
+    void openpl();
+    void line(float x1, float y1, float x2, float y2);
+    void circle(float x, float y, float radius);
+    void range(float minX, float minY, float maxX, float maxY);
 
 
-	struct  Freelist	hfl;
-	struct	Halfedge *ELleftend, *ELrightend;
-	int 	ELhashsize;
+    struct  Freelist    hfl;
+    struct  Halfedge *ELleftend, *ELrightend;
+    int     ELhashsize;
 
-	int		triangulate, sorted, plot, debug;
-	float	xmin, xmax, ymin, ymax, deltax, deltay;
+    int     triangulate, sorted, plot, debug;
+    float   xmin, xmax, ymin, ymax, deltax, deltay;
 
-	struct	Site	*sites;
-	int		nsites;
-	int		siteidx;
-	int		sqrt_nsites;
-	int		nvertices;
-	struct 	Freelist sfl;
-	struct	Site	*bottomsite;
+    struct  Site    *sites;
+    int     nsites;
+    int     siteidx;
+    int     sqrt_nsites;
+    int     nvertices;
+    struct  Freelist sfl;
+    struct  Site    *bottomsite;
 
-	int		nedges;
-	struct	Freelist efl;
-	int		PQhashsize;
-	struct	Halfedge *PQhash;
-	int		PQcount;
-	int		PQmin;
+    int     nedges;
+    struct  Freelist efl;
+    int     PQhashsize;
+    struct  Halfedge *PQhash;
+    int     PQcount;
+    int     PQmin;
 
-	int		ntry, totalsearch;
-	float	pxmin, pxmax, pymin, pymax, cradius;
-	int		total_alloc;
+    int     ntry, totalsearch;
+    float   pxmin, pxmax, pymin, pymax, cradius;
+    int     total_alloc;
 
-	float borderMinX, borderMaxX, borderMinY, borderMaxY;
+    float borderMinX, borderMaxX, borderMinY, borderMaxY;
 
-	FreeNodeArrayList* allMemoryList;
-	FreeNodeArrayList* currentMemoryBlock;
+    FreeNodeArrayList* allMemoryList;
+    FreeNodeArrayList* currentMemoryBlock;
 
-	GraphEdge* allEdges;
-	GraphEdge* iteratorEdges;
+    GraphEdge* allEdges;
+    GraphEdge* iteratorEdges;
 
-	float minDistanceBetweenSites;
+    float minDistanceBetweenSites;
 
 };
 

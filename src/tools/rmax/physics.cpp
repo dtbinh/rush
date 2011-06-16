@@ -20,8 +20,8 @@
 #include "PhysBody.h"
 
 //  capsule parameter g_pDrawServer
-#define PB_RADIUS	0
-#define PB_HEIGHT	1
+#define PB_RADIUS   0
+#define PB_HEIGHT   1
 #define PB_CENTERS  2
 
 JObject* RBExport::ProcessPhysicsObject( INode* node )

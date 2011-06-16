@@ -1,6 +1,6 @@
 //****************************************************************************/
-//  File:	unistd.h
-//  Desc:	Dummy header to make FLEX feel happy
-/*	Author:	Ruslan Shestopalyuk
-/*	Date:	04.04.2003
+//  File:   unistd.h
+//  Desc:   Dummy header to make FLEX feel happy
+/*  Author: Ruslan Shestopalyuk
+/*  Date:   04.04.2003
 //****************************************************************************/

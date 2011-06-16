@@ -46,8 +46,8 @@ void JCharCamera::Init()
 
 void JCharCamera::Render()
 {
-	JCamera* pCamera = GetCamera();
-	if (!pCamera) return;
+    JCamera* pCamera = GetCamera();
+    if (!pCamera) return;
 
     m_Pitch     += m_PitchDelta;
     m_Heading   += m_HeadingDelta;
@@ -100,8 +100,8 @@ void JCharCamera::Render()
 
 void JCharCamera::OnMouse( JMouseEvent& e )
 {
-	JCamera* pCamera = GetCamera();
-	if (!pCamera) return;
+    JCamera* pCamera = GetCamera();
+    if (!pCamera) return;
 
     int mX = e.MouseX();
     int mY = e.MouseY();

@@ -67,11 +67,11 @@ class JRenderServer : public JObject, public IRenderServer
 {
     Frame                            m_Viewport;
 
-    DXAPI*					        m_pD3D;
-    DXDevice*				        m_pDevice;
-    HWND					        m_hWnd;
-    DEVMODE					        m_dmDesktop;
-    DWORD					        m_CurFrame;
+    DXAPI*                          m_pD3D;
+    DXDevice*                       m_pDevice;
+    HWND                            m_hWnd;
+    DEVMODE                         m_dmDesktop;
+    DWORD                           m_CurFrame;
     bool                            m_bInited;
     float                           m_FPS;
     bool                            m_bCursorVisible;

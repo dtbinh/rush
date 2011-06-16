@@ -5,7 +5,7 @@
 #define __VERTEXTYPE_H__
 
 //****************************************************************************/
-//	Enum:   VertexType
+//  Enum:   VertexType
 //  Desc:   Stock common vertex declaration types
 //****************************************************************************/
 enum VertexType
@@ -30,13 +30,13 @@ enum VertexType
 class VertexW
 {
 public:
-    float					x;
-    float					y;
-    float					z;
+    float                   x;
+    float                   y;
+    float                   z;
 
-    uint32_t					diffuse;
-    float					u, v;
-    float					u2, v2;
+    uint32_t                    diffuse;
+    float                   u, v;
+    float                   u2, v2;
 
     static const VertexType Type = VertexType_XYZDUV2;
 }; // class VertexW
@@ -48,13 +48,13 @@ public:
 class VertexS
 {
 public:
-    float				x, y;
-    float				z;
-    float				w;
+    float               x, y;
+    float               z;
+    float               w;
 
-    uint32_t				diffuse;
-    uint32_t				specular;
-    float				u, v;
+    uint32_t                diffuse;
+    uint32_t                specular;
+    float               u, v;
 
     static const VertexType Type = VertexType_XYZWDSUV;
 }; // class VertexS
@@ -66,9 +66,9 @@ public:
 class VertexN
 {
 public:
-    float				x, y, z;
-    float				nx, ny, nz;
-    float				u, v;
+    float               x, y, z;
+    float               nx, ny, nz;
+    float               u, v;
 
     static const VertexType Type = VertexType_XYZNUV;
 }; // class VertexN
@@ -80,9 +80,9 @@ public:
 class VertexW4
 {
 public:
-    float				x, y, z;
-    float				nx, ny, nz;
-    float				u, v;
+    float               x, y, z;
+    float               nx, ny, nz;
+    float               u, v;
     uint8_t             weights[4];
     uint8_t             boneIdx[4];
 

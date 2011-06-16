@@ -14,7 +14,7 @@ template <class BaseT>
 class JTagMethodAttr : public JClassAttr
 {
     typedef void (BaseT::*FnProcess)(int tag);
-    FnProcess		m_fnProcess;
+    FnProcess       m_fnProcess;
 
 public:
     JTagMethodAttr( const char* name, FnProcess call ) : m_fnProcess( call ) 

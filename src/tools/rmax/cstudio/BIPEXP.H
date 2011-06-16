@@ -1,12 +1,12 @@
 /******************************************************************************
  *<
-	FILE: bipexp.h
-				  
-	DESCRIPTION:  Export Interface Functionality for BIped
+    FILE: bipexp.h
+                  
+    DESCRIPTION:  Export Interface Functionality for BIped
 
-	CREATED BY: Susan Amkraut with a lot of help from John Chadwick
+    CREATED BY: Susan Amkraut with a lot of help from John Chadwick
 
-	HISTORY: created June 2, 1998
+    HISTORY: created June 2, 1998
 
  *>     Copyright (c) Unreal Pictures, Inc. 1997, 1998 All Rights Reserved.
  *******************************************************************************/
@@ -23,12 +23,12 @@
 #include "max.h"
 
 // This is the interface ID for a Biped Controller Interface
-#define I_BIPINTERFACE	0x00100101
+#define I_BIPINTERFACE  0x00100101
 
 // These are subanim numbers for the center of mass (root) controller
-#define VERTICAL_SUBANIM	0
-#define HORIZONTAL_SUBANIM	1
-#define ROTATION_SUBANIM	2
+#define VERTICAL_SUBANIM    0
+#define HORIZONTAL_SUBANIM  1
+#define ROTATION_SUBANIM    2
 
 
 // These are the Class ID defines for Biped Controllers.
@@ -47,10 +47,10 @@
 
 // Using the Biped Export Interface
 // 
-//  1.	Find the Biped Controller you wish to export from (see the sample code).
+//  1.  Find the Biped Controller you wish to export from (see the sample code).
 //
-//	2.	Given  a Biped controller c, get the Biped Export Interface:
-//		IBipedExport *BipIface = (BipedExport *)c->GetInterface(I_BIPINTERFACE);		
+//  2.  Given  a Biped controller c, get the Biped Export Interface:
+//      IBipedExport *BipIface = (BipedExport *)c->GetInterface(I_BIPINTERFACE);        
 //
 // At the moment this interface only allows you to remove the non uniform scale.
 // This allows you to export cleaner transform information from a biped.
@@ -93,26 +93,26 @@
 
 class IBipedExport
 {
-	public:
-		
-		BIPExport virtual ~IBipedExport() {}
+    public:
+        
+        BIPExport virtual ~IBipedExport() {}
 
         // For the BipedExport you got from the center of mass (root) controller, send in: 
         // VERTICAL_SUBANIM, HORIZONTAL_SUBANIM, and ROTATION_SUBANIM 
         // to get information for those tracks.
         // For other BipedExports this method is irrelevant.
-		// The SetSubAnim method is actually included for future releases, 
-		// when more methods will be added to the IBipedExport class.
-		// Then you could call these methods for the three center of mass subanims.
-		// It is not presently useful.
+        // The SetSubAnim method is actually included for future releases, 
+        // when more methods will be added to the IBipedExport class.
+        // Then you could call these methods for the three center of mass subanims.
+        // It is not presently useful.
         BIPExport virtual void SetSubAnim (int i) {};
 
-		// call this from any IBipedExport instance to remove or restore non uniform scaling
-		BIPExport virtual void RemoveNonUniformScale(BOOL onOFF) {};
+        // call this from any IBipedExport instance to remove or restore non uniform scaling
+        BIPExport virtual void RemoveNonUniformScale(BOOL onOFF) {};
 
         // call these to begin and end figure mode
-		BIPExport virtual void BeginFigureMode(int redraw) {};
-		BIPExport virtual void EndFigureMode(int redraw) {};
+        BIPExport virtual void BeginFigureMode(int redraw) {};
+        BIPExport virtual void EndFigureMode(int redraw) {};
 };
 
 

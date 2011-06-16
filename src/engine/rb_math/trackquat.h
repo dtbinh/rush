@@ -40,16 +40,16 @@ public:
     //  correct adjacent keys to go through shortest arc
     void FixupAdjacentKeys()
     {
-	    int nKeys = GetNKeys();
-	    for (int i = 1; i < nKeys; i++)
-	    {
-		    float cosTheta = m_KeyVal[i - 1].dot( m_KeyVal[i] );
-		    if (cosTheta < 0.0f)
-		    {
-			    m_KeyVal[i].reverse();
-		    }
+        int nKeys = GetNKeys();
+        for (int i = 1; i < nKeys; i++)
+        {
+            float cosTheta = m_KeyVal[i - 1].dot( m_KeyVal[i] );
+            if (cosTheta < 0.0f)
+            {
+                m_KeyVal[i].reverse();
+            }
         }
-	}
+    }
 }; //class TrackQuat
 
 #endif //__TRACKQUAT_H__

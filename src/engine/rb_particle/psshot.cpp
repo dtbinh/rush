@@ -51,10 +51,10 @@ void PSShot::Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleSe
 Vec3 PSShot::GetDirection() const
 {
     Vec3  dir = m_Dir;
-	if (m_bPlanar)
-	{
+    if (m_bPlanar)
+    {
         float ang = 0.0f;
-		if (m_bSurface)
+        if (m_bSurface)
         {
             ang = DegToRad( frand( m_ConeAngle - m_ConeAngleD, m_ConeAngle + m_ConeAngleD ) );
             int v = rand()%2;
@@ -72,9 +72,9 @@ Vec3 PSShot::GetDirection() const
         float ca = cosf( ang );
         Vec3 ndir( dir.x*ca - dir.y*sa, dir.x*sa + dir.y*ca, dir.z );
         dir = ndir;
-	}
-	else 
-	{
+    }
+    else 
+    {
         if (m_bSurface)
         {
             float fullAng = frand( 0.0f, c_DoublePI );
@@ -85,13 +85,13 @@ Vec3 PSShot::GetDirection() const
         }
         else
         {
-		    float r1 = frand( 0.0f, 1.0f );
-		    float r2 = frand( 0.0f, 1.0f );
+            float r1 = frand( 0.0f, 1.0f );
+            float r2 = frand( 0.0f, 1.0f );
             float ang = DegToRad( frand( -m_ConeAngle - m_ConeAngleD, m_ConeAngle + m_ConeAngleD ) );
 
-		    float m1 = 1.0f - r2 * (1.0f - cosf( ang )); 
-		    float m2 = sqrtf( 1.0f - m1*m1 );
-		    dir += Vec3( m2*cosf( c_DoublePI * r1 ), m2*sinf( c_DoublePI * r1 ), m1 );
+            float m1 = 1.0f - r2 * (1.0f - cosf( ang )); 
+            float m2 = sqrtf( 1.0f - m1*m1 );
+            dir += Vec3( m2*cosf( c_DoublePI * r1 ), m2*sinf( c_DoublePI * r1 ), m1 );
         }
     }
     return dir;

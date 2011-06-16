@@ -1,8 +1,8 @@
 //****************************************************************************/
-//  File:	VecN.h
-//  Desc:	Variable-sized vector
-/*	Author:	Ruslan Shestopalyuk
-/*	Date:	17-03-2005
+//  File:   VecN.h
+//  Desc:   Variable-sized vector
+/*  Author: Ruslan Shestopalyuk
+/*  Date:   17-03-2005
 //****************************************************************************/
 #ifndef __VECN_H__
 #define __VECN_H__

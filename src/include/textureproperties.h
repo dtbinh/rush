@@ -1,12 +1,12 @@
 /*****************************************************************************/
-/*	File:  TextureProperties.h
+/*  File:  TextureProperties.h
 /*****************************************************************************/
 #ifndef __TEXTUREPROPERTIES_H__
 #define __TEXTUREPROPERTIES_H__
 #include "color.h"
 
 /*****************************************************************************/
-/*	Enum:   DepthFormat
+/*  Enum:   DepthFormat
 /*  Desc:   Decribes depth stencil buffer pixel configuration
 /*****************************************************************************/
 enum DepthFormat
@@ -20,7 +20,7 @@ enum DepthFormat
 }; // enum DepthFormat
 
 /*****************************************************************************/
-/*	Enum:   PoolType
+/*  Enum:   PoolType
 /*  Desc:   Decribes memory pool type
 /*****************************************************************************/
 enum PoolType
@@ -32,7 +32,7 @@ enum PoolType
 }; // enum PoolType
 
 /*****************************************************************************/
-/*	Class:  TextureProperties
+/*  Class:  TextureProperties
 /*  Desc:   Bundle of texture resource properties
 /*****************************************************************************/
 struct TextureProperties

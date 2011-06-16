@@ -42,7 +42,7 @@ TEST( Templates )
     CHECK( !stricmp( prop.c_str(), "mytext_btn1" ) );
     CHECK_EQUAL( true, pBtn1->GetProperty( "mywidth", prop ) );
     CHECK( !stricmp( prop.c_str(), "40" ) );
-	CHECK_EQUAL( true, pBtn1->GetProperty( "myheight", prop ) );
+    CHECK_EQUAL( true, pBtn1->GetProperty( "myheight", prop ) );
     CHECK( !stricmp( prop.c_str(), "20" ) );
 
     CHECK_EQUAL( true, pBtn2->GetProperty( "mycolor", prop ) );
@@ -51,7 +51,7 @@ TEST( Templates )
     CHECK( !stricmp( prop.c_str(), "mytext_btn2" ) );
     CHECK_EQUAL( true, pBtn2->GetProperty( "mywidth", prop ) );
     CHECK( !stricmp( prop.c_str(), "20" ) );
-	CHECK_EQUAL( true, pBtn2->GetProperty( "myheight", prop ) );
+    CHECK_EQUAL( true, pBtn2->GetProperty( "myheight", prop ) );
     CHECK( !stricmp( prop.c_str(), "20" ) );
 
     JObject* pPic1 = g_pObjectServer->FindObject( "objpic", pBtn1 );

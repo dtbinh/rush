@@ -9,7 +9,7 @@
 #include "JWeakRef.h"
 
 //****************************************************************************/
-//	Enum:  JSetOperation
+//  Enum:  JSetOperation
 //  Desc:  Operation when setting value
 //****************************************************************************/
 enum JSetOperation

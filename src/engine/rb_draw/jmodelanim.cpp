@@ -175,10 +175,10 @@ bool JModelAnim::Apply( JBoneInstance* pBones, float cTime, float weight )
             pos   = oldPos*oldW + weight*pos;
             scale = oldScale*oldW + weight*scale;
             float cosTheta = oldRot.dot( rot );
-		    if (cosTheta < 0.0f)
-		    {
-			    oldRot.reverse();
-		    }
+            if (cosTheta < 0.0f)
+            {
+                oldRot.reverse();
+            }
             rot.slerp( oldRot, rot, weight );
         }
 

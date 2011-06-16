@@ -11,18 +11,18 @@
 
 enum_beg(PrimitiveType)
 enum_val( "Unknown",        PrimitiveType_Unknown         ),
-enum_val( "PointList",      PrimitiveType_PointList		  ),
-enum_val( "LineList",       PrimitiveType_LineList		  ),
-enum_val( "LineStrip",      PrimitiveType_LineStrip		  ),
-enum_val( "TriangleList",   PrimitiveType_TriangleList	  ),
+enum_val( "PointList",      PrimitiveType_PointList       ),
+enum_val( "LineList",       PrimitiveType_LineList        ),
+enum_val( "LineStrip",      PrimitiveType_LineStrip       ),
+enum_val( "TriangleList",   PrimitiveType_TriangleList    ),
 enum_val( "TriangleStrip",  PrimitiveType_TriangleStrip   ),
-enum_val( "TriangleFan",    PrimitiveType_TriangleFan	  ),
+enum_val( "TriangleFan",    PrimitiveType_TriangleFan     ),
 enum_val( "QuadList",       PrimitiveType_QuadList        )
 enum_end(PrimitiveType)
 
 enum_beg(VertexType)
 enum_val( "Unknown",  VertexType_Unknown    ),
-enum_val( "XYZDUV2",  VertexType_XYZDUV2 	),
+enum_val( "XYZDUV2",  VertexType_XYZDUV2    ),
 enum_val( "XYZWDSUV", VertexType_XYZWDSUV   ),
 enum_val( "XYZDUV",   VertexType_XYZDUV     ),
 enum_val( "XYZNUV",   VertexType_XYZNUV     ),

@@ -50,7 +50,7 @@ private:
 }; // class JWeakRef
 
 //*****************************************************************************
-//	JWeakRefHolder inlines
+//  JWeakRefHolder inlines
 //*****************************************************************************
 inline JWeakRefHolder::JWeakRefHolder()
     :   m_pPtr( NULL ),
@@ -78,7 +78,7 @@ inline void JWeakRefHolder::Release()
 }
 
 //*****************************************************************************
-//	JWeakRef inlines
+//  JWeakRef inlines
 //*****************************************************************************
 template <class T>
 inline JWeakRef<T>::JWeakRef( T* pObject )

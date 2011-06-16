@@ -7,7 +7,7 @@
 #define __PSEMITTER_H__
 
 //****************************************************************************/
-//	Enum:  PSEmitMode
+//  Enum:  PSEmitMode
 //  Desc:  Particle emittance mode for emitter  
 //****************************************************************************/
 enum PSEmitMode
@@ -24,7 +24,7 @@ enum_beg(PSEmitMode)
 enum_end(PSEmitMode)
 
 //****************************************************************************/
-//	Enum:  PSCreateMode
+//  Enum:  PSCreateMode
 //  Desc:  Child emitter creation mode
 //****************************************************************************/
 enum PSCreateMode
@@ -41,7 +41,7 @@ enum_beg(PSCreateMode)
 enum_end(PSCreateMode)
 
 //****************************************************************************/
-//	Enum:  PSRampUsage
+//  Enum:  PSRampUsage
 //  Desc:  Defines the way some particular ramp operator is applied
 //****************************************************************************/
 enum PSRampUsage
@@ -58,7 +58,7 @@ enum_beg(PSRampUsage)
 enum_end(PSRampUsage)
 
 //****************************************************************************/
-//	Enum:  PSAxis
+//  Enum:  PSAxis
 //  Desc:  Defines the influence axis of some operator
 //****************************************************************************/
 enum PSAxis

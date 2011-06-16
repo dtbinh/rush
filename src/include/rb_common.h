@@ -33,9 +33,9 @@
     }
 
     inline void _strlwr( char* string )
-	{
+    {
         while ( 0 != ( *string++ = (char)tolower( *string ) ) );
-	}
+    }
 
     namespace __gnu_cxx
     {
@@ -58,9 +58,9 @@
 
     typedef unsigned char   uint8_t;
     typedef unsigned short  uint16_t;
-    typedef unsigned long	uint32_t;
-    typedef unsigned int	int_t;
-    typedef long int		int32_t;
+    typedef unsigned long   uint32_t;
+    typedef unsigned int    int_t;
+    typedef long int        int32_t;
 
     #define NULL            0
 

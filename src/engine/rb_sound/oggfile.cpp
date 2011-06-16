@@ -6,7 +6,7 @@
 #include "OggFile.h"
 
 //****************************************************************************/
-/*	OggFile implementation
+/*  OggFile implementation
 //****************************************************************************/
 decl_class(OggFile);
 OggFile::OggFile()

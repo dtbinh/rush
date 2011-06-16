@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/*	File:  ISpriteServer.h
+/*  File:  ISpriteServer.h
 /*****************************************************************************/
 #ifndef __ISPRITESERVER_H__
 #define __ISPRITESERVER_H__
@@ -22,7 +22,7 @@ typedef void (*PVertProcessCB)( void* pVert, int nVert, VertexType vType );
 typedef void (*PSpriteUpdateCB)( int sprID, const Frame& ext, BYTE* pPixels, ColorFormat fmt );
 
 /*****************************************************************************/
-/*	Enum:  DrawSystemStat
+/*  Enum:  DrawSystemStat
 /*  Desc:  Draw system statistics type
 /*****************************************************************************/
 enum DrawSystemStat
@@ -33,7 +33,7 @@ enum DrawSystemStat
 }; // enum DrawSystemStat
 
 /*****************************************************************************/
-/*	Class:  ISpriteServer
+/*  Class:  ISpriteServer
 /*  Desc:   
 /*****************************************************************************/
 class ISpriteServer : public IRenderServerClient

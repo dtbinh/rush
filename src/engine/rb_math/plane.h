@@ -15,10 +15,10 @@ class Mat4;
 class Plane
 {
 public:
-    float	        a;
-    float	        b;
-    float	        c;
-    float	        d;
+    float           a;
+    float           b;
+    float           c;
+    float           d;
 
                     Plane           (){}
                     Plane           ( float pa, float pb, float pc, float pd );

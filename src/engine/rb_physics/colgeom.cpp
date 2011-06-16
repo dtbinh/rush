@@ -142,7 +142,7 @@ void ColGeom::Synchronize( bool bFromSolver )
                 }
                 if (!rotTM.is_equal( Mat3::identity ))
                 {
-	                dMassRotate( &m, rotD );
+                    dMassRotate( &m, rotD );
                 }
 
                 m_pBody->AccumulateMass( m );

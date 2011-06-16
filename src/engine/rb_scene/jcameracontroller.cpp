@@ -13,7 +13,7 @@
 decl_class(JCameraController);
 JCameraController::JCameraController()
 {
-	m_pCamera = NULL;
+    m_pCamera = NULL;
 
     SetXAlign( XAlign_Parent );
     SetYAlign( YAlign_Parent );
@@ -23,11 +23,11 @@ JCameraController::JCameraController()
 
 void JCameraController::SetCameraName( const char* name )
 {
-	m_pCamera = g_pObjectServer->FindObject<JCamera>( name, this );
-	m_CameraName = name;
+    m_pCamera = g_pObjectServer->FindObject<JCamera>( name, this );
+    m_CameraName = name;
 }
 
 void JCameraController::Init()
 {
-	m_pCamera = g_pObjectServer->FindObject<JCamera>( GetCameraName(), this );
+    m_pCamera = g_pObjectServer->FindObject<JCamera>( GetCameraName(), this );
 }

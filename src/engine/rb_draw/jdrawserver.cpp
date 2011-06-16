@@ -30,7 +30,7 @@
 #include "ifileserver.h"
 
 //****************************************************************************/
-/*	JDrawServer implementation
+/*  JDrawServer implementation
 //****************************************************************************/
 decl_class(JDrawServer);
 
@@ -1044,8 +1044,8 @@ int JDrawServer::AllocateChunk( JFrameChunk& ch )
     JSpriteSurface& dsurf = m_Surfaces[dropID];
     dsurf.Drop();
     int chunkID = AllocateChunk( ch );
-	assert( chunkID != -1 );
-	return chunkID;
+    assert( chunkID != -1 );
+    return chunkID;
 }  
 
 int JDrawServer::GetNFrames( int sprID ) const

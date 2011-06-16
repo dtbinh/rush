@@ -10,14 +10,14 @@
 //****************************************************************************/
 FileReader::FileReader()
 {
-    m_hFile		= NULL;
+    m_hFile     = NULL;
     m_TotalSize = 0;
 }
 
 FileReader::FileReader( const char* fileName )
 {
     m_FileName  = fileName;
-    m_hFile		= NULL;
+    m_hFile     = NULL;
     m_TotalSize = 0;
     OpenFile( fileName );
 }

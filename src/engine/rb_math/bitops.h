@@ -9,9 +9,9 @@
 inline uint32_t ReverseBits( uint32_t n )
 {
     n = n - ((n >> 1) & 0x55555555);
-	n = ((n >> 2) & 0x33333333) + (n & 0x33333333);
-	n = ((n >> 4) + n) & 0x0F0F0F0F;
-	return (n * 0x01010101) >> 24;
+    n = ((n >> 2) & 0x33333333) + (n & 0x33333333);
+    n = ((n >> 4) + n) & 0x0F0F0F0F;
+    return (n * 0x01010101) >> 24;
 } // ReverseBits
 
 inline uint32_t CountBits( uint32_t n )
@@ -36,7 +36,7 @@ inline uint32_t NextPow2( uint32_t n )
 
 inline bool IsPowerOfTwo( uint32_t n )
 { 
-    return ((n&(n - 1)) == 0);					
+    return ((n&(n - 1)) == 0);                  
 } // IsPowerOfTwo
 
 inline int GetPow2( uint32_t p )

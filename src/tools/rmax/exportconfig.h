@@ -33,8 +33,8 @@ class ExportConfig : public JObject
     bool            m_bExportNormals;     
     bool            m_bExportVertexColors;
     bool            m_bPreview;
-	bool			m_bVerboseLog;
-	bool			m_bShowLog;
+    bool            m_bVerboseLog;
+    bool            m_bShowLog;
     bool            m_bExportCameras;
     bool            m_bExportAnimSet;
     
@@ -62,8 +62,8 @@ public:
         field( "Preview",               m_bPreview              );
         field( "Format",                m_Format                );
         field( "PrevFolder",            m_PrevFolder            );
-        field( "VerboseLog",			m_bVerboseLog           );
-        field( "ShowLog",				m_bShowLog				);
+        field( "VerboseLog",            m_bVerboseLog           );
+        field( "ShowLog",               m_bShowLog              );
         field( "ExportCameras",         m_bExportCameras        );
         field( "ExportAnimSet",         m_bExportAnimSet        );
     }                   

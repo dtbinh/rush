@@ -23,7 +23,7 @@ int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
 
   g_Boot.Init( cmd );
 
-	int res = g_Boot.Run();
+    int res = g_Boot.Run();
 
   g_Boot.Shut();
   return res;

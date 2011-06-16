@@ -95,7 +95,7 @@ protected:
     void                    Log             ( LogType type, const char* format, va_list argList );
     void                    Msg             ( LogType type, const char* format, ... );
 
-	void                    Info            ( const char* format, ... );
+    void                    Info            ( const char* format, ... );
     void                    Spam            ( const char* format, ... );
     void                    Err             ( const char* format, ... );
     void                    Warn            ( const char* format, ... );
@@ -115,7 +115,7 @@ private:
     VertexPool              m_VertexPool;
     VertexPtrArray          m_Vertices;
 
-	//  export log options
+    //  export log options
     int                     m_IndentLevel;
     int                     m_NErrors;
     int                     m_NWarnings;

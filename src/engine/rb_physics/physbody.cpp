@@ -16,16 +16,16 @@
 decl_class(PhysBody);
 PhysBody::PhysBody()
 {
-    m_Velocity      = Vec3::null;	
+    m_Velocity      = Vec3::null;   
     m_AngVelocity   = Vec3::null;
-    m_Mass          = 1.0f;		
+    m_Mass          = 1.0f;     
     m_ID            = 0;
     m_Inertia       = Mat3::identity;
     m_TM            = Mat4::identity;
     m_OffsetTM      = Mat4::identity;
     m_bAutoDisable  = true;
 
-    m_Force         = Vec3::null;	
+    m_Force         = Vec3::null;   
     m_Torque        = Vec3::null;
 
     m_BodyScale     = Vec3::one;

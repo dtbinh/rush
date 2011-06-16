@@ -1,85 +1,85 @@
 //****************************************************************************/
-//  File:	JMLParser.cpp
-/*	Author:	Ruslan Shestopalyuk
-/*	Date:	04.04.2003
+//  File:   JMLParser.cpp
+/*  Author: Ruslan Shestopalyuk
+/*  Date:   04.04.2003
 //****************************************************************************/
 #include "precompile.h"
 #include "jmlnode.h"
 #include "jmlparser.h"
 
 //****************************************************************************/
-/*	JMLParser implementation
+/*  JMLParser implementation
 //****************************************************************************/
 JMLParser::JMLParser()
 {
-	m_Buffer		= NULL;
-	m_pErrToken		= 0;
-	m_FileName[0]	= 0;
-	m_bInited		= false;
+    m_Buffer        = NULL;
+    m_pErrToken     = 0;
+    m_FileName[0]   = 0;
+    m_bInited       = false;
     m_pCurNode      = NULL;
     m_pCurAttr      = NULL;
 } // JMLParser::JMLParser
 
 JMLParser::JMLParser( JMLNode* pRoot )
 {
-    m_Buffer		= NULL;
-    m_pErrToken		= 0;
-    m_FileName[0]	= 0;
-    m_bInited		= false;
+    m_Buffer        = NULL;
+    m_pErrToken     = 0;
+    m_FileName[0]   = 0;
+    m_bInited       = false;
     m_pRoot         = pRoot;
     m_pCurAttr      = NULL;
 } // JMLParser::JMLParser
 
 bool JMLParser::ParseFile( const char* fName )
 {
-	strcpy( m_FileName, fName );
-	FILE* fp = fopen( m_FileName, "rb" );
-	if (!fp) return false;
-	fseek( fp, 0, SEEK_END );
-	int fileSize = ftell( fp );
-	fseek( fp, 0, SEEK_SET );
-	char* buf = new char[fileSize + 1];
-	fread( buf, fileSize, 1, fp );
-	fclose( fp );
-	buf[fileSize] = 0;
+    strcpy( m_FileName, fName );
+    FILE* fp = fopen( m_FileName, "rb" );
+    if (!fp) return false;
+    fseek( fp, 0, SEEK_END );
+    int fileSize = ftell( fp );
+    fseek( fp, 0, SEEK_SET );
+    char* buf = new char[fileSize + 1];
+    fread( buf, fileSize, 1, fp );
+    fclose( fp );
+    buf[fileSize] = 0;
 
     ClearStringPool();
 
-	ParseBuffer( buf );
+    ParseBuffer( buf );
 
     ClearStringPool();
-	delete []buf;
-	return true;
+    delete []buf;
+    return true;
 } // JMLParser::ParseFile
 
 const char* JMLParser::GetCurLocation() const
 {
-	static const int c_MaxLocationStr = 256;
-	static char buf[c_MaxLocationStr];
-	buf[0] = 0;
-	return buf;
+    static const int c_MaxLocationStr = 256;
+    static char buf[c_MaxLocationStr];
+    buf[0] = 0;
+    return buf;
 }
 
-int	JMLParser::yyInput( char* buf, int max_size )
+int JMLParser::yyInput( char* buf, int max_size )
 {
-	assert( m_Buffer );
-	int nSym = 0;
-	while (*m_BufPtr && *m_BufPtr != '\n')
-	{
-		buf[nSym++] = *(m_BufPtr++);
-		if (nSym >= max_size)
+    assert( m_Buffer );
+    int nSym = 0;
+    while (*m_BufPtr && *m_BufPtr != '\n')
+    {
+        buf[nSym++] = *(m_BufPtr++);
+        if (nSym >= max_size)
         {
             rlog.err( "Too long JML input buffer." );
             return nSym;
         }
-	}
-	if (*m_BufPtr == '\n')
-	{
-		buf[nSym++] = '\n';
-		m_BufPtr++;
-	}
+    }
+    if (*m_BufPtr == '\n')
+    {
+        buf[nSym++] = '\n';
+        m_BufPtr++;
+    }
 
-	return nSym;
+    return nSym;
 } // JMLParser::yyInput
 
 void JMLParser::StartObject( const char* className, const char* objName )
@@ -129,7 +129,7 @@ void JMLParser::SetFileName( const char* fname )
 } // JMLParser::SetFileName
 
 //****************************************************************************/
-/*	String pooling
+/*  String pooling
 //****************************************************************************/
 
 static std::vector<const char*>    s_StrPool;

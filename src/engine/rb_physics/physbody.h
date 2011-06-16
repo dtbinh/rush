@@ -15,11 +15,11 @@
 /***********************************************************************************/
 class PhysBody : public PhysEntity
 {
-    float			    m_Mass;		
+    float               m_Mass;     
     Mat3                m_Inertia;
 
-    Vec3	            m_Velocity;		
-    Vec3	            m_AngVelocity;	
+    Vec3                m_Velocity;     
+    Vec3                m_AngVelocity;  
     Mat4                m_TM;
 
     bool                m_bAutoDisable;

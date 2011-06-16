@@ -1,8 +1,8 @@
 //****************************************************************************/
-//  File:	Warping.cpp
+//  File:   Warping.cpp
 //  Desc:
-/*	Author:	Ruslan Shestopalyuk
-/*	Date:	17-03-2005
+/*  Author: Ruslan Shestopalyuk
+/*  Date:   17-03-2005
 //****************************************************************************/
 #include "precompile.h"
 #include "mat3.h"

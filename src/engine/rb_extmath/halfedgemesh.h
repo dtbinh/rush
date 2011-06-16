@@ -1,7 +1,7 @@
 //****************************************************************************/
-//  File:	HalfEdgeMesh.h
+//  File:   HalfEdgeMesh.h
 //  Desc:
-/*	Author:	Ruslan Shestopalyuk
+/*  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #ifndef __HALFEDGEMESH_H__
 #define __HALFEDGEMESH_H__

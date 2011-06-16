@@ -31,9 +31,9 @@ public:
     void            SetWorldTM      ( const Mat4& tm );
     void            SetProjTM       ( const Mat4& tm );
 
-	const Mat4&		GetWorldTM		() const { return m_WorldTM; }
-	const Mat4&		GetProjTM		() const { return m_ProjTM; }
-	Mat4			GetViewTM		() const;
+    const Mat4&     GetWorldTM      () const { return m_WorldTM; }
+    const Mat4&     GetProjTM       () const { return m_ProjTM; }
+    Mat4            GetViewTM       () const;
 
     bool            GetTM           ( JSpace src, JSpace dest, Mat4& tm ) const;
 
@@ -83,24 +83,24 @@ public:
     }
 
 private:
-	float			m_ZNear;
-	float			m_ZFar;
-	float			m_FOVx;
-	float			m_Aspect;
-	Vec3			m_ViewDir;
-	Vec3			m_ViewUp;
-	bool            m_bOrtho;
+    float           m_ZNear;
+    float           m_ZFar;
+    float           m_FOVx;
+    float           m_Aspect;
+    Vec3            m_ViewDir;
+    Vec3            m_ViewUp;
+    bool            m_bOrtho;
 
 
-	Mat4            m_WorldTM;
+    Mat4            m_WorldTM;
     Mat4            m_ProjTM;
 
     bool            m_bRestoreState;
     Frame           m_PreviousVP;
     Mat4            m_SpaceTM[4][4];
 
-	void			ValidateProjTM();
-	void			ValidateProjParam();
+    void            ValidateProjTM();
+    void            ValidateProjParam();
 }; // class JCamera
 
 /***********************************************************************************/
@@ -152,7 +152,7 @@ inline void JCamera::SetAspect( float val )
 
 inline void JCamera::SetOrtho( bool bOrtho )
 {
-	bOrtho = bOrtho;
+    bOrtho = bOrtho;
     ValidateProjTM();
 } // JCamera::SetOrtho
 
@@ -201,9 +201,9 @@ inline void JCamera::SetPos( Vec3 at )
 
 inline Mat4 JCamera::GetViewTM() const
 {
-	Mat4 vtm;
-	vtm.inverse( m_WorldTM );
-	return vtm;
+    Mat4 vtm;
+    vtm.inverse( m_WorldTM );
+    return vtm;
 } // JCamera::GetViewTM
 
 #endif //__JCAMERA_H__

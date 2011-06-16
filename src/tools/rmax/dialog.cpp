@@ -194,7 +194,7 @@ void RBExport::Msg( LogType type, const char* format, ... )
 
 void RBExport::Spam( const char* format, ... )
 {
-	if (m_pConfig->m_bVerboseLog == false) return;
+    if (m_pConfig->m_bVerboseLog == false) return;
     va_list argList;
     va_start( argList, format );
     Log( LogType_Spam, format, argList );

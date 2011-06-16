@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/*	File:   JSwimChar.h
+/*  File:   JSwimChar.h
 /*  Date:   26.08.2006
 /*  Author: Ruslan Shestopalyuk
 /*****************************************************************************/
@@ -31,8 +31,8 @@ enum_beg(JSwimCharState)
 enum_end(JSwimCharState)
 
 /*****************************************************************************/
-/*	Class:  JSwimChar
-/*	Desc:   Boolean button
+/*  Class:  JSwimChar
+/*  Desc:   Boolean button
 /*****************************************************************************/
 class JSwimChar : public JCharacter
 {

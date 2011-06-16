@@ -377,7 +377,7 @@ int JLuaServer::FnParent( lua_State* pLua )
         return 1;
     }
 
-	JObject* pObj = NULL;
+    JObject* pObj = NULL;
     const char* pPath = lua_tostring( pLua, -1 );
     if (pPath)
     {
@@ -391,7 +391,7 @@ int JLuaServer::FnParent( lua_State* pLua )
         pObj = reinterpret_cast<JObject*>( lua_touserdata( pLua, -1 ) );
     }
     
-	if (!pObj)
+    if (!pObj)
     {
         lua_pushnil( pLua );
         return 1;

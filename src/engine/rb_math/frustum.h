@@ -18,7 +18,7 @@ class Mat4;
 class Frustum
 {
 public:
-	Frustum() {}
+    Frustum() {}
     Frustum( const Mat4& cm ) { FromCameraMatrix( cm ); }
 
     const Vec3&     ltn() const { return vLTN; }
@@ -33,7 +33,7 @@ public:
 
     void            FromCameraMatrix( const Mat4& cm );
     bool            PtIn            ( const Vec3& pt ) const;
-	const Plane&    GetPlane        ( int idx ) const { return (&plNear)[idx]; }
+    const Plane&    GetPlane        ( int idx ) const { return (&plNear)[idx]; }
     bool            GetTop          ( Vec3& top ) const;
 
 public:

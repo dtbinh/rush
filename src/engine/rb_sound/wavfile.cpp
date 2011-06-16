@@ -6,7 +6,7 @@
 #include "WavFile.h"
 
 //****************************************************************************/
-/*	WavFile implementation
+/*  WavFile implementation
 //****************************************************************************/
 decl_class(WavFile);
 bool WavFile::LoadHeader()

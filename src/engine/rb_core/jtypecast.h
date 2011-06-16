@@ -21,7 +21,7 @@ template <class T> inline bool enumerate( JStringList& valList ) { return false;
 
 
 //****************************************************************************/
-/*	std::string <=> JString
+/*  std::string <=> JString
 //****************************************************************************/
 template <>
 inline bool cast<std::string, JString>( std::string& to, const JString& from )
@@ -57,7 +57,7 @@ inline InStream& operator >>( InStream& is, JString& val )
 //  FIXME
 const int c_ConvBufSize = 2048;
 //****************************************************************************/
-/*	JString <=> int
+/*  JString <=> int
 //****************************************************************************/
 template <>
 inline bool cast<JString, int>( JString& to, const int& from )
@@ -79,7 +79,7 @@ inline bool cast<int, JString>( int& to, const JString& from )
 template <> inline const char* type_name<int>() { return "int"; }
 
 //****************************************************************************/
-/*	JString <=> const char*
+/*  JString <=> const char*
 //****************************************************************************/
 typedef const char* PConstChar;
 template <>
@@ -99,7 +99,7 @@ inline bool cast<PConstChar, JString>( PConstChar& to, const JString& from )
 template <> inline const char* type_name<const char*>() { return "string"; }
 
 //****************************************************************************/
-/*	std::wstring <=> int
+/*  std::wstring <=> int
 //****************************************************************************/
 template <>
 inline bool cast<std::wstring, int>( std::wstring& to, const int& from )
@@ -120,7 +120,7 @@ inline bool cast<int, std::wstring>( int& to, const std::wstring& from )
 }
 
 //****************************************************************************/
-/*	JString <=> uint32_t
+/*  JString <=> uint32_t
 //****************************************************************************/
 template <>
 inline bool cast<JString, uint32_t>( JString& to, const uint32_t& from )
@@ -143,7 +143,7 @@ inline bool cast<uint32_t, JString>( uint32_t& to, const JString& from )
 template <> inline const char* type_name<uint32_t>() { return "uint32_t"; }
 
 //****************************************************************************/
-/*	JString <=> uint16_t
+/*  JString <=> uint16_t
 //****************************************************************************/
 template <>
 inline bool cast<JString, uint16_t>( JString& to, const uint16_t& from )
@@ -166,7 +166,7 @@ inline bool cast<uint16_t, JString>( uint16_t& to, const JString& from )
 template <> inline const char* type_name<uint16_t>() { return "uint16_t"; }
 
 //****************************************************************************/
-/*	JString <=> uint8_t
+/*  JString <=> uint8_t
 //****************************************************************************/
 template <>
 inline bool cast<JString, uint8_t>( JString& to, const uint8_t& from )
@@ -189,7 +189,7 @@ inline bool cast<uint8_t, JString>( uint8_t& to, const JString& from )
 template <> inline const char* type_name<uint8_t>() { return "uint8_t"; }
 
 //****************************************************************************/
-/*	JString <=> float
+/*  JString <=> float
 //****************************************************************************/
 template <>
 inline bool cast<JString, float>( JString& to, const float& from )
@@ -225,7 +225,7 @@ inline bool cast<float, JString>( float& to, const JString& from )
 template <> inline const char* type_name<float>() { return "float"; }
 
 //****************************************************************************/
-/*	JString <=> double
+/*  JString <=> double
 //****************************************************************************/
 template <>
 inline bool cast<JString, double>( JString& to, const double& from )
@@ -248,7 +248,7 @@ inline bool cast<double, JString>( double& to, const JString& from )
 template <> inline const char* type_name<double>() { return "double"; }
 
 //****************************************************************************/
-/*	JString <=> bool
+/*  JString <=> bool
 //****************************************************************************/
 template <>
 inline bool cast<JString, bool>( JString& to, const bool& from )
@@ -269,7 +269,7 @@ template <> inline const char* type_name<bool>() { return "bool"; }
 
 
 //****************************************************************************/
-/*	JString <=> JStringList
+/*  JString <=> JStringList
 //****************************************************************************/
 template <>
 inline bool cast<JString, JStringList>( JString& to, const JStringList& from )
@@ -339,7 +339,7 @@ template <> inline const char* type_name<JStringList>() { return "stringlist"; }
 
 #include "jobject.h"
 //****************************************************************************/
-/*	JString <=> JObject
+/*  JString <=> JObject
 //****************************************************************************/
 #include "jobjectserver.h"
 typedef JObject* PObject;
@@ -369,7 +369,7 @@ template <> inline const char* type_name<JString>() { return "string"; }
 
 typedef std::vector<float> JFloatList;
 //****************************************************************************/
-/*	JString <=> JFloatList
+/*  JString <=> JFloatList
 //****************************************************************************/
 template <>
 inline bool cast<JString, JFloatList>( JString& to, const JFloatList& from )
@@ -443,7 +443,7 @@ template <> inline const char* type_name<JFloatList>() { return "JFloatList"; }
 
 typedef std::vector<int> JIntList;
 //****************************************************************************/
-/*	JString <=> JIntList
+/*  JString <=> JIntList
 //****************************************************************************/
 template <>
 inline bool cast<JString, JIntList>( JString& to, const JIntList& from )

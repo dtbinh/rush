@@ -16,8 +16,8 @@ JCheckBox::JCheckBox()
     m_bTwoState = true;
     // default appearance
     SetSkinPack( "button" );
-    m_NormalFrame 	= 15;
-    m_PressedFrame	= 16;
+    m_NormalFrame   = 15;
+    m_PressedFrame  = 16;
 } // JCheckBox::JCheckBox
 
 void JCheckBox::Check( bool bCheck )

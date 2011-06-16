@@ -41,7 +41,7 @@ int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
     import( rb_scene );
     import( rb_logic );
 
-	link_class(Autorun);
+    link_class(Autorun);
     link_class(DrawServerGDI);
 
     pCore->Init();
@@ -72,7 +72,7 @@ int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
         pRootDlg->Show();
     }
 
-	int res = JWindowServer::s_pInstance->RunApplicationLoop();
+    int res = JWindowServer::s_pInstance->RunApplicationLoop();
 
     pCore->Release();
     return res;

@@ -29,7 +29,7 @@ Frame ApplyAlignment( const Frame& rcAdjust, const Frame& rcParent, JXAlign xali
 } // ApplyAlignment
 
 //****************************************************************************/
-/*	JWidget implementation
+/*  JWidget implementation
 //****************************************************************************/
 decl_class(JWidget);
 JWidget::JWidget()
@@ -104,8 +104,8 @@ void JWidget::ResInit()
 
 void JWidget::DrawBounds()
 {
-	Frame ext = GetExt();
-	g_pDrawServer->DrawFrame( ext, 0xFFFFFF00 );
+    Frame ext = GetExt();
+    g_pDrawServer->DrawFrame( ext, 0xFFFFFF00 );
 }; // JWidget::DrawBounds
 
 int JWidget::GetFontID() const
@@ -134,11 +134,11 @@ void JWidget::SetFont( const char* name )
 
 void JWidget::SetSkinPack( const char* name )
 {
-	if (m_SkinPackID != -1)
+    if (m_SkinPackID != -1)
     {
         m_SkinPackID = g_pDrawServer->GetSpriteID( name );
     }
-	m_SkinPack = name;
+    m_SkinPack = name;
 } // JWidget::SetSkinPack
 
 int JWidget::GetSkinPackID() const

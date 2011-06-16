@@ -6,7 +6,7 @@
 #include "jspritesurface.h"
 
 //****************************************************************************/
-/*	JSpriteSurface implementation
+/*  JSpriteSurface implementation
 //****************************************************************************/
 uint32_t JSpriteSurface::s_Stamp = 1;
 JSpriteSurface::JSpriteSurface() : m_TexID(-1)

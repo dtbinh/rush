@@ -1,7 +1,7 @@
 #ifndef __RB_RENDER_DX9_PCH_H__
 #define __RB_RENDER_DX9_PCH_H__
 #pragma once
-#define WIN32_LEAN_AND_MEAN	
+#define WIN32_LEAN_AND_MEAN 
 
 #include "windows.h"
 #include "rb_common.h"

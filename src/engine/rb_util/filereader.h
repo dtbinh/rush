@@ -16,7 +16,7 @@
 class FileReader : public IStreamReader
 {
     std::string     m_FileName;
-    FILE*		    m_hFile;
+    FILE*           m_hFile;
     int             m_TotalSize;
 public:
                     FileReader  ();

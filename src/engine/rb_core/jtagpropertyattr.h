@@ -16,8 +16,8 @@ class JTagPropertyAttr : public JClassAttr
     typedef PropT (BaseT::*FnGetter)( int tag ) const;
     typedef void  (BaseT::*FnSetter)( int tag, PropT val );
     
-    FnGetter		m_Getter;	
-    FnSetter		m_Setter; 
+    FnGetter        m_Getter;   
+    FnSetter        m_Setter; 
 
 public:
     JTagPropertyAttr( const char* name, FnGetter getter, FnSetter setter ) 

@@ -1,7 +1,7 @@
 //****************************************************************************/
-//  File:	WangTiling.h
+//  File:   WangTiling.h
 //  Desc:
-/*	Author:	Ruslan Shestopalyuk
+/*  Author: Ruslan Shestopalyuk
 //****************************************************************************/
 #ifndef __WANGTILING_H__
 #define __WANGTILING_H__

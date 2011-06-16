@@ -40,7 +40,7 @@ public:
 
     inline bool IsOutside( const Frame& rct ) const
     {
-        return	(r() < rct.x) || (x > rct.r()) ||
+        return  (r() < rct.x) || (x > rct.r()) ||
                 (b() < rct.y) || (y > rct.b());
     }
 

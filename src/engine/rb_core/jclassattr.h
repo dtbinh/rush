@@ -13,14 +13,14 @@ class JClassAttr;
 typedef std::vector<JClassAttr*> JClassAttrList;
 
 //****************************************************************************/
-//  Class:	JClassAttr
-//  Desc:	Interface for the property map attributes
+//  Class:  JClassAttr
+//  Desc:   Interface for the property map attributes
 //****************************************************************************/
 class JClassAttr
 {
 public:
-    const char*	    GetName     () const;
-    const char*	    GetType     () const;
+    const char*     GetName     () const;
+    const char*     GetType     () const;
 
     virtual bool    Get         ( const void* pThis, void* pVal, int tag = -1 ) const { return false; }
     virtual bool    Set         ( void* pThis, const void* pVal, int tag = -1 ) { return false; }
@@ -45,8 +45,8 @@ protected:
                     JClassAttr  ();
                     JClassAttr  ( const char* name, const char* type );
 
-    JString		    m_Name;		//  name of the attribute
-    JString         m_Type;		//  type name
+    JString         m_Name;     //  name of the attribute
+    JString         m_Type;     //  type name
 
     JMetaClass*     m_pMeta;    //  property map for child attributes (for complex types)
 
@@ -56,7 +56,7 @@ protected:
 }; // class JClassAttr
 
 //*****************************************************************************
-//	JClassAttr inlines
+//  JClassAttr inlines
 //*****************************************************************************
 inline JClassAttr::JClassAttr()
     :   m_pMeta     ( NULL ),

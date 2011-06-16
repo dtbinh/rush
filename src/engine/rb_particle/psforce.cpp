@@ -24,7 +24,7 @@ void PSForce::Update( EmitterInstance* pInst, float dt, uint32_t mode, ParticleS
     if ((mode&ProcessMode_State) == 0) return;
 
     Vec3 dv = m_Force;
-	dv *= dt;
+    dv *= dt;
 
     Particle* p = pInst->m_pParticle;
     while (p)

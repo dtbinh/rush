@@ -7,12 +7,12 @@
 #include "stream.h"
 
 //****************************************************************************/
-//  Class:	JFieldAttr
+//  Class:  JFieldAttr
 //****************************************************************************/
 template <class FieldT>
 class JFieldAttr : public JClassAttr
 {
-    int		        m_Offset;
+    int             m_Offset;
 
 public:
     JFieldAttr( const char* name, int offset )
@@ -78,7 +78,7 @@ public:
     }
 
 protected:
-    FieldT&	FieldRef( void* pThis )
+    FieldT& FieldRef( void* pThis )
     {
         return *((FieldT*)((unsigned char*)pThis + m_Offset));
     }

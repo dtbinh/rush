@@ -15,20 +15,20 @@
 /***********************************************************************************/
 class PhysMaterial : public PhysEntity
 {
-    float				m_Mu; 
-    float				m_Mu2; 
-    float				m_Bounce; 
-    float				m_BounceVel; 
-    float				m_SoftERP; 
-    float				m_SoftCFM; 
-    float				m_Motion1; 
-    float				m_Motion2;
-    float				m_Slip1;
-    float				m_Slip2; 
+    float               m_Mu; 
+    float               m_Mu2; 
+    float               m_Bounce; 
+    float               m_BounceVel; 
+    float               m_SoftERP; 
+    float               m_SoftCFM; 
+    float               m_Motion1; 
+    float               m_Motion2;
+    float               m_Slip1;
+    float               m_Slip2; 
 
-    bool				m_bFDir1; 
-    bool				m_bApprox1; 
-    bool				m_bApprox2; 
+    bool                m_bFDir1; 
+    bool                m_bApprox1; 
+    bool                m_bApprox2; 
 
     float               m_Density;
 

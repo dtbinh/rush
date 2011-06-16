@@ -8,7 +8,7 @@
 #include "jdialog.h"
 
 //****************************************************************************/
-/*	JDialog implementation
+/*  JDialog implementation
 //****************************************************************************/
 decl_class(JDialog);
 JDialog::JDialog()

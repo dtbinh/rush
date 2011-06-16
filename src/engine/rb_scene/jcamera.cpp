@@ -80,15 +80,15 @@ void JCamera::SetViewUp( Vec3 up )
 void JCamera::Render()
 {
     Frame ext = GetExt();
-	if (ext.w > c_FltEpsilon)
-	{
-		float aspect = ext.w/ext.h;
+    if (ext.w > c_FltEpsilon)
+    {
+        float aspect = ext.w/ext.h;
         if (fabs( aspect - m_Aspect ) > c_FltEpsilon)
         {
             m_Aspect = aspect;
             ValidateProjTM();
         }
-	}
+    }
 
     m_PreviousVP = g_pRenderServer->GetViewport();
     g_pRenderServer->SetProjTM( m_ProjTM );

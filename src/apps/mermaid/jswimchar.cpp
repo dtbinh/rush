@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/*	File:   JSwimChar.cpp
+/*  File:   JSwimChar.cpp
 /*  Date:   26.08.2006
 /*  Desc:   Implementation of the swimming mermaid infernal hackmachine
 /*  Author: Ruslan Shestopalyuk 

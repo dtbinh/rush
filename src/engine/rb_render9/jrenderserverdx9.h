@@ -205,11 +205,11 @@ public:
 private:
     Frame                           m_Viewport;
 
-    DXAPI*					        m_pD3D;
-    DXDevice*				        m_pDevice;
-    HWND					        m_hWnd;
-    DEVMODE					        m_dmDesktop;
-    uint32_t					        m_CurFrame;
+    DXAPI*                          m_pD3D;
+    DXDevice*                       m_pDevice;
+    HWND                            m_hWnd;
+    DEVMODE                         m_dmDesktop;
+    uint32_t                            m_CurFrame;
     bool                            m_bInited;
     float                           m_FPS;
     bool                            m_bCursorVisible;
@@ -253,7 +253,7 @@ private:
 
     int                             m_PoolShaderID;
 
-    int                             m_hWorldTM;		  
+    int                             m_hWorldTM;       
     int                             m_hViewTM;         
     int                             m_hProjTM;    
     int                             m_hCamPos;
@@ -262,8 +262,8 @@ private:
     int                             m_hMtlAmbient;     
     int                             m_hAmbience;       
     int                             m_hSunDirection;   
-    int                             m_hSunDiffuse;	  
-    int                             m_hSunSpecular;	 
+    int                             m_hSunDiffuse;    
+    int                             m_hSunSpecular;  
     int                             m_hTime;
 
     int                             m_DIPsPerFrame;    
